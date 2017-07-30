@@ -1,0 +1,9 @@
+@CHARSET "ISO-8859-1";
+
+html { 
+  background: url(../images/books21.jpog) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
