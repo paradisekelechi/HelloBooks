@@ -3,7 +3,7 @@
 -------------------------------------------------- */
 
 body{
-	font-family: 'Macondo', 'Open Sans', sans-serif;
+	font-family: 'Open Sans', 'Open Sans', sans-serif;
 }
 .select{
 	width: 100%;
@@ -73,4 +73,17 @@ a:hover, a:visited, a:focus{
   -o-background-size: cover;
   background-size: cover;
 }
-
+.login-wrapper{
+	border: 1px solid #000;padding: 14px;
+}
+.top-banner{
+	height: 60px !important;
+	padding: 20px;
+	border-bottom: 1px #000 solid;
+}
+.account-type{
+	margin-right: 20px;
+}
+.view-label{
+	padding: 20px;
+}
