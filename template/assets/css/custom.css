@@ -87,3 +87,7 @@ a:hover, a:visited, a:focus{
 .view-label{
 	padding: 20px;
 }
+.profile-image{
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
