@@ -39,8 +39,7 @@
         <ul class="sidebar-nav" id="sidebar">
           <li><a>Profile</a></li>
           <li><a>Books</a></li>
-          <li><a>Borrow History</a></li>
-          <li><a>Donate Books</a></li>
+          
         </ul>
       </div>
           
@@ -52,13 +51,13 @@
       			<div class="col-md-12 top-banner">
       				<span>Kelechi Paradise</span>
       				<span class="pull-right"><i class="material-icons">power_settings_new</i></span>
-      				<span class="pull-right account-type" >Platinum Account</span>
+      				<span class="pull-right account-type" >Admin Account</span>
       			</div>
       		</div>
       	</div>
 
       	<div class="row view-label">
-      		<h5>Books > View Books</h5>
+      		<h5>Books > Admin</h5>
       	</div>
 
       	<div class="row">
@@ -87,8 +86,8 @@
 			                <td><img src="assets/images/hys.png" width="150px" class="img img-responsive"></td>
 			                <td>Novel</td>
 			                <td>Available</td>
-			                <td>12</td>
-			                <td><button class="btn btn-success">Borrow</button></td>
+			                <td><input name="quantity" value="21"></td>
+			                <td><button class="btn btn-danger">Delete</button></td>
 			            </tr>
 
 			            <tr>
@@ -100,8 +99,8 @@
 			                <td><img src="assets/images/ph.jpg" width="150px" class="img img-responsive"></td>
 			                <td>Novel</td>
 			                <td>Unavailable</td>
-			                <td>0</td>
-			                <td><button class="btn btn-danger">Borrow</button></td>
+			                <td><input name="quantity" value="0"></td>
+			                <td><button class="btn btn-danger">Delete</button></td>
 			            </tr>
 			            
 			        </tbody>
@@ -109,6 +108,80 @@
       		</div>
       	</div>
     </div>
+    <div class="row">
+   <div class="col-md-6">
+
+    
+    <div class="panel panel-default">
+        <div class="panel-body">
+               <div class="col-md-12">
+                  <a href="#" class="tile tile-default tile-valign" style="font-size:150%;">
+                         <div class="col-md-3">
+                                <span class="fa fa-edit"></span>
+                         </div>
+                         <div class="col-md-9">Add New Book</div>
+                  </a>
+              </div>
+            <form id="validate" role="form" class="form-horizontal" action="https://spanatech.com/school/profile/edit" method="post">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Name </label>
+                    <div class="col-md-9">
+                        <input type="text" name="name" value="min@admin.co" class="validate[required] form-control">
+                        <span class="help-block">Required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Description </label>
+                    <div class="col-md-9">
+                        <input type="text"  name="description" class="validate[required] form-control">
+                        <span class="help-block">Required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Category</label>
+                    <div class="col-md-9">
+                        <select name="category">
+                        	<option>Select Category</option>
+                        	<option>Novel</option>
+                        	<option>Documentary</option>
+                        	<option>Mathematics</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Quantity </label>
+                    <div class="col-md-9">
+                        <input type="text" name="quantity" class="validate[required] form-control" id="form-validation-field-1">
+                        <span class="help-block">Required</span>
+                    </div>
+                </div>
+                <div class="form-group">
+        			<label class="col-md-3 control-label">Upload Book </label>
+                    <div class="col-md-9">
+                        <input type="file" name="book" accept="file/*">
+                        <span class="help-block">Required</span>
+                    </div>
+        		</div>
+                <div class="form-group">
+        			<label class="col-md-3 control-label">Book Cover </label>
+                    <div class="col-md-9">
+                        <input type="file" name="pic" accept="image/*">
+                        
+                    </div>
+        		</div>
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default" type="submit">Edit </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- END ADD SINGLE student -->
+
+</div>
+
+
+</div>
       
 </div>
 
