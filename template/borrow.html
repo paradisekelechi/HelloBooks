@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Borrow</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="css/c3.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Muli|Sedgwick+Ave+Display" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    
+    <link href="css/dashboard.css" rel="stylesheet">
+
+<!-- Latest compiled and minified JavaScript -->
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body class="full-page">
+
+      <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">HelloBooks</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="adminBooks.html">Books</a>
+                    </li>
+                    <li>
+                        <a href="profile.html">Profile</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+      	<div class="row">
+	      	<div>
+	      		<div class="col-md-8 col-md-offset-2">
+	      			<div class="col-md-4">
+	      				<div class="image-borrow">
+	      					<img class="img img-responsive" src="img/hys.png">
+	      				</div>
+	      			</div>
+	      			<div class="col-md-4">
+	      				<div>
+	      					<table class="table-responsive">
+	      						<tr>
+	      							<td height="45px">Name</td>
+	      							<td style="padding:10px"><b>Half of A Yellow Sun</b></td>
+	      						</tr>
+	      						<tr>
+	      							<td height="45px">Tag</td>
+	      							<td style="padding:10px"><b>NCA004</b></td>
+	      						</tr>
+	      						<tr>
+	      							<td height="45px">Description</td>
+	      							<td style="padding:10px"><b>hhhhhhhhhh hhhhhhhhhhhhhhhhhb shh </b></td>
+	      						</tr>
+	      						<tr>
+	      							<td height="45px">Category</td>
+	      							<td style="padding:10px"><b>Novel</b></td>
+	      						</tr>
+	      					</table>
+	      				</div>
+	      			</div>
+	      		</div>
+	      		<div class="clearfix"></div>
+	      		<div class="col-md-8 col-md-offset-2">
+	      			<div class="col-md-6"> <button class="btn btn-block btn-primary">Borrow Book</button></div>
+	      		</div>
+	      	</div>
+      	</div>
+    </div>
+      
+</div>
+
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('.carousel').carousel();
+			$('.carousel').carousel({
+				interval: 1000
+			});
+			$('#example').DataTable();
+    	});
+    	
+    </script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+	<script src="assets/js/styles.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

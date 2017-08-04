@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link href="css/c3.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Muli|Sedgwick+Ave+Display" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    
+    <link href="css/dashboard.css" rel="stylesheet">
+        
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">HelloBooks</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="adminBooks.html">Books</a>
+                    </li>
+                    <li>
+                        <a href="profile.html">Profile</a>
+                    </li>
+                    <li><span><i class="material-icons">power_settings_new</i></span></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row chartRow">
+            <div class="col-md-6">
+                <div class="chartBox">
+                    <div>Books Overview</div>
+                    <div id="bookChart"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chartBox">
+                    <div>User Overview</div>
+                    <div id="userChart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row chartRow">
+            <div class="col-md-6">
+                <div class="chartBox">
+                    <div>User Category Overview</div>
+                    <div id="userCategoryChart"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="chartBox">
+                    <div>Account Overview</div>
+                    <div id="accountChart"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.4.4/c3.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#bookTable').DataTable();
+        } );
+    </script>
+
+    <script>
+        var chart = c3.generate({
+            bindto: '#bookChart',
+            data: {
+                columns: [
+                    ['Available Books', 40],
+                    ['Unavailable Books', 120],
+                ],
+                type : 'pie' 
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#userChart',
+            data: {
+              columns: [
+                ['Active Users', 30, 200, 100, 400, 150, 250],
+                ['Inactive Users', 50, 20, 10, 40, 15, 25]
+              ]
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#accountChart',
+            data: {
+                columns: [
+                    ['Platinum Account', 40],
+                    ['Gold Account', 10],
+                    ['Silver Account', 10],
+                ],
+                type : 'donut' 
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#userCategoryChart',
+            data: {
+                columns: [
+                    ['Admin ', 20],
+                    ['Client ', 60],
+                ],
+                type : 'donut' 
+            }
+        });
+    </script>
+
+</body>
+
+
+
+</html>
