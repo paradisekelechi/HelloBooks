@@ -6,19 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="Kelechi" content="">
 
-<!-- Le styles -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!-- Custom styles -->
-<link href="assets/css/custom.css" rel="stylesheet">
-<link href="assets/css/style.css" rel="stylesheet">
+    <link href="css/c3.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css?family=Muli|Sedgwick+Ave+Display" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    
+    <link href="css/dashboard.css" rel="stylesheet">
 
 <!-- Latest compiled and minified JavaScript -->
 
@@ -31,35 +28,41 @@
 
 	<div id="wrapper" class="active">  
     <!-- Sidebar -->
-            <!-- Sidebar -->
-    <div id="sidebar-wrapper">
-        <ul id="sidebar_menu" class="sidebar-nav">
-           <li class="sidebar-brand"><a id="menu-toggle" href="#">HelloBooks</a></li>
-        </ul>
-        <ul class="sidebar-nav" id="sidebar">
-          <li><a>Profile</a></li>
-          <li><a>Books</a></li>
-          <li><a>Borrow History</a></li>
-          <li><a>Donate Books</a></li>
-        </ul>
-      </div>
-          
+      <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">HelloBooks</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav pull-right">
+                    <li>
+                        <a href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="adminBooks.html">Books</a>
+                    </li>
+                    <li>
+                        <a href="profile.html">Profile</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
       <!-- Page content -->
-      <div id="page-content-wrapper">
-
-      	<div class="container-fluid">
-      		<div class="row">
-      			<div class="col-md-12 top-banner">
-      				<span>Kelechi Paradise</span>
-      				<span class="pull-right"><i class="material-icons">power_settings_new</i></span>
-      				<span class="pull-right account-type" >Platinum Account</span>
-      			</div>
-      		</div>
-      	</div>
-
-      	<div class="row view-label">
-      		<h5>Books > View Books</h5>
-      	</div>
+      <div class="container">
 
       	<div class="row">
       		<div class="col-md-12">
@@ -82,7 +85,7 @@
 			                <td>1</td>
 			                <td>Half Of A Yellow Sun</td>
 			                <td>NCA004</td>
-			                <td><img src="assets/images/hys.png" width="150px" class="img img-responsive"></td>
+			                <td><img src="img/hys.png" width="150px" class="img img-responsive"></td>
 			                <td>Novel</td>
 			                <td>Returned</td>
 			                <td>10/03/2017</td>
@@ -94,7 +97,7 @@
 			                <td>2</td>
 			                <td>Purple Hibiscus</td>
 			                <td>NCA002</td>
-			                <td><img src="assets/images/ph.jpg" width="150px" class="img img-responsive"></td>
+			                <td><img src="img/ph.jpg" width="150px" class="img img-responsive"></td>
 			                <td>Novel</td>
 			                <td>Returned</td>
 			                <td>12/07/2017</td>
