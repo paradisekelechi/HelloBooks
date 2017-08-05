@@ -1,3 +1,4 @@
+//Import User model
 const User = require('../models').User;
 
 module.exports = {
