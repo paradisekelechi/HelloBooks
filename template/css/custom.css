@@ -5,27 +5,7 @@
 body{
 	font-family: 'Open Sans', 'Open Sans', sans-serif;
 }
-.select{
-	width: 100%;
-	height:33px;
-}
-.__button{
-	height: 60px;
-}
-.submit_button{
-	margin-top: 10px;
-}
-.welcome{
-	text-align:right;
-}
-.calculator_wrapper{
-	background-color: #fff !important;
-	border-radius: 8px;
-	padding: 20px 0;
-}
-.calculator_header{
-	background-color: #fff !important;
-}
+
 .header_data{
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -90,4 +70,38 @@ a:hover, a:visited, a:focus{
 .profile-image{
 	margin-bottom: 30px;
 	margin-top: 30px;
+}
+
+
+
+
+
+
+
+.wrapper{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.topbar{
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	position: fixed;
+	background-color: #000;
+	z-index: 999;
+}
+
+.topbar-left{
+	float:left;
+	height: 70px;
+	position:relative;
+	width: 300px;
+	z-index: 1;
+	border:1px #000;
+	padding: 25px;
+}
+.topbar-left a{
+	color:#fff;
 }
