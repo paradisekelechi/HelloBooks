@@ -1,0 +1,24 @@
+{
+  "name": "hello-books",
+  "version": "1.0.0",
+  "description": "Backend code for hello-books application",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon ./bin/www",
+    "test": "test hello-books"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "pg": "^7.0.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "nodemon": "^1.11.0"
+  }
+}
