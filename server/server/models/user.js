@@ -1,5 +1,5 @@
 'use strict';
-//const Book = require('../models').Book;
+
 export default (sequelize, DataTypes) => {
   let User = sequelize.define('User', {
     username: {
@@ -38,25 +38,25 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    usertype: {
-      type:   DataTypes.ENUM,
-      values: ['ADMIN', 'USER',],
-    },
     image: {
       type: DataTypes.STRING,
       notNull: false,
     },
-    accounttype: {
-      type: DataTypes.STRING,
-      notNull: false,
-      validate: {
-        notEmpty: {
-          args: true,
-          msg: 'Account Type must not be empty'
-        }
-      }
+    active: {
+      type: DataTypes.BOOLEAN,
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
     } 
+  },
+  {
+    freezeTableName: true,
   });
+  User.associate = (models) => {
+    User.belongsToMany(models.Book, {through: 'BorrowLog'});
+    User.belongsTo(models.UserType, {foreignKey: 'user_type_id', targetKey: 'id'});
+    User.belongsTo(models.AccountType, {foreignKey: 'account_type_id', targetKey: 'id'});
+  }
   return User;
 };
 

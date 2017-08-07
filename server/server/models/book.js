@@ -1,17 +1,34 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   let Book = sequelize.define('Book', {
-    name: DataTypes.STRING,
-    book_tag: DataTypes.STRING,
-    description: DataTypes.STRING,
-    category: DataTypes.STRING,
-    quantity: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: (models) => {
-        // associations can be defined here
-      }
-    }
+    name: {
+      type: DataTypes.STRING,
+      notNull: true,
+    },
+    booktag: {
+      type: DataTypes.STRING,
+      notNull: true,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+    cover: {
+      type: DataTypes.STRING,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+    },
+    deleted: {
+      type: DataTypes.BOOLEAN,
+      notNull: true,
+    },
+  }, 
+  {
+    freezeTableName: true,
   });
+  Book.associate = (models) => {
+    Book.belongsToMany(models.User, {through: 'BorrowLog'});
+    Book.belongsTo(models.BookCategory, {foreignKey: 'category_id', targetKey: 'id'});
+  }
   return Book;
 };
