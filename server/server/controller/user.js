@@ -50,13 +50,13 @@ export default {
                     res.status(200).send(user);
                 }else{
                     res.status(400).send({
-                        msg: 'Password incorrect'
+                        msg: 'Oops! Password is incorrect'
                     });
                 }
              });
         }else{
             res.status(400).send({
-                msg: 'user exists'
+                msg: 'Oops! Username does not exist'
             });
         }
     })
