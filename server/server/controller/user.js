@@ -1,9 +1,13 @@
 //Import User model
-const User = require('../models').User;
+import models from '../models'
+const User = models.User;
+
+import dotenv from 'dotenv';
+
 //import  User from '../models';
-const bcrypt = require('bcrypt');
+import bcrypt from 'bcrypt';
 const salt = bcrypt.genSaltSync(10);
-const dotenv = require('dotenv');
+
 
 module.exports = {
   signup(req, res) {

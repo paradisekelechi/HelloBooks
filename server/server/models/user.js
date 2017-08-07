@@ -59,8 +59,6 @@ export default (sequelize, DataTypes) => {
       }
     } 
   });
-
-  User
   return User;
 };
 

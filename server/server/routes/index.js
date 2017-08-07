@@ -1,7 +1,9 @@
-const userController = require('../controller').user;
-const bookController = require('../controller').book;
+import controllers from '../controller'
+const userController = controllers.user;
+const bookController = controllers.book;
 
-module.exports = (app) => {
+let routes = (app) => {
+  
   app.get('/api', (req, res) => res.status(200).send({
     message: 'Welcome to Hello Books library',
   }));
@@ -14,3 +16,5 @@ module.exports = (app) => {
 
   app.get('/api/books/', bookController.getAllBooks);
 };
+
+export default routes;
