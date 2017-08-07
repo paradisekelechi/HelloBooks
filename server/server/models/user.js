@@ -5,12 +5,11 @@ export default (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       notNull: true,
-      is: /^[a-z]+$/i,
-      len: [2, 12],
+      unique: true,
       validate: {
           is: {
               args: /^[A-Za-z][A-Za-z0-9-]+$/i, // must start with letter and only have letters, numbers, dashes
-              msg: 'Username must start with a letter, have no spaces, and be 3 - 40 characters.'
+              msg: 'Oops! Username should contain letters only'
           },
           len: {
             args: [2, 12],
@@ -21,6 +20,7 @@ export default (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING,
       notNull: true,
+      unique: true,
       validate: {
         isEmail: {
           args: true,
@@ -34,15 +34,13 @@ export default (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Password must not be empty'
+          msg: 'Oops! Password must not be empty'
         }
       }
     },
     usertype: {
       type:   DataTypes.ENUM,
       values: ['ADMIN', 'USER',],
-      //type: DataTypes.STRING,
-      //notNull: false,
     },
     image: {
       type: DataTypes.STRING,

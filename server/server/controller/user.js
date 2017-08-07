@@ -9,14 +9,13 @@ import bcrypt from 'bcrypt';
 const salt = bcrypt.genSaltSync(10);
 
 
-module.exports = {
+export default {
   signup(req, res) {
     let username = req.body.username;
     let email  = req.body.email;
     let password = req.body.password;
-    //let hashedPassword = bcrypt.hashSync(password, salt);
-    //console.log(dotenv.load());
-
+    
+    //Encrypt password using bcrypt js 
     bcrypt.hash(password, salt, (err, hashedPassword) => {
         return User
         .create({
@@ -48,9 +47,7 @@ module.exports = {
         if(user){
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
-                    res.status(200).send({
-                        msg: 'Peace'
-                    });
+                    res.status(200).send(user);
                 }else{
                     res.status(400).send({
                         msg: 'Password incorrect'

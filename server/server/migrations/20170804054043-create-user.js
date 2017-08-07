@@ -1,9 +1,9 @@
 'use strict';
 //Import User model
-const Book = require('../models').Book;
+//const Book = require('../models').Book;
 console.log(Book);
 
-module.exports = {
+export default {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Users', {
       id: {
@@ -25,12 +25,6 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
-        validate: {
-          isEmail: true,
-          notEmpty: true,
-          len: [1,30]
-        }
       },
       password: {
         type: Sequelize.STRING,
@@ -59,13 +53,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      //  bookId: {
-      //    type: Sequelize.INTEGER,
-      //    references: {
-      //      model: Book,
-      //      key: 'id',
-      //    },
-      //  },
     });
   },
   down: function(queryInterface, Sequelize) {
