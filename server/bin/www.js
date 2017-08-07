@@ -1,5 +1,5 @@
-const app = require('../app.js');
-const http = require('http');
+import app from '../app.js';
+import http from 'http';
 
 const port = parseInt(process.env.PORT, 10) || 4000;
 app.set('port', port);
