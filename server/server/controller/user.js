@@ -5,7 +5,10 @@ const User = models.User;
 import dotenv from 'dotenv';
 
 import jwt from 'jsonwebtoken';
-import randomstring from 'just.randomstring';
+
+//Secret for authentication -- to be added to the environment as a variable
+const secret = 'Jm7MmG6YrssZemeHxG0h';
+
 
 //import  User from '../models';
 import bcrypt from 'bcrypt';
@@ -25,11 +28,10 @@ export default {
             username: username,
             email: email,
             password: hashedPassword,
-            usertype: 'USER',
-            accounttype: 'silver',
             active: true,
             deleted: false,
-            user_type_id: 1
+            user_type_id: 1,
+            account_type_id: 1
         })
         .then(user => res.status(201).send({
             message: 'User Account Creation Successful',
@@ -54,14 +56,12 @@ export default {
         if(user){
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
-                    const secret = randomstring();
-                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret);
+                    //token generated
+                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60});
+                    
+                    //token an user details sent to the user
                     res.status(200).send({
-                        token: token,
-                        email: user.email, 
-                        username: user.username, 
-                        usertype: user.usertype, 
-                        accounttype: user.accounttype 
+                        token: token, user
                     });
                 }else{
                     res.status(400).send({

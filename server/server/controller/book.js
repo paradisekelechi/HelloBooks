@@ -21,7 +21,7 @@ export default {
         let categoryId = req.body.categoryId;
         let quantity = req.body.quantity;
 
-        //checks on the category. If none is specified, the book is categorized as OTHERS with id 3. This is subject to modifications
+        //checks on the category. If none is specified, the book is categorized as OTHERS with id 1. This is subject to modifications
         if(categoryId == '' || categoryId == null){
             categoryId = 1;
         }

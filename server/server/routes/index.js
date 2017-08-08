@@ -1,4 +1,10 @@
 import controllers from '../controller'
+import userHelper from '../helper/checkuser';
+import loginHelper from '../helper/checklogin';
+
+const checkUser = userHelper;
+const checkLogin = loginHelper;
+
 const userController = controllers.user;
 const bookController = controllers.book;
 const borrowLogController = controllers.borrowlog;
@@ -18,7 +24,9 @@ let routes = (app) => {
 
   app.post('/api/users/signin', userController.signin);
 
-  app.post('/api/books/', bookController.addBook);
+  app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
+  
+  //app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
 
   app.put('/api/books/', bookController.editBook);
 
