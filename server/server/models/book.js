@@ -4,10 +4,24 @@ export default (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       isNull: false,
+      notNull: true,
+      validate: {
+        isNull: {
+          args: false,
+          msg: 'Oops, book name cannot be empty'
+        },
+      }
     },
     author: {
       type: DataTypes.STRING,
       isNull: false,
+      notNull: true,
+      validate: {
+        isNull: {
+          args: false,
+          msg: 'Oops, author cannot be empty'
+        },
+      }
     },
     description: {
       type: DataTypes.STRING,
