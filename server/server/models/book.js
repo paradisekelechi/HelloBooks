@@ -3,11 +3,11 @@ export default (sequelize, DataTypes) => {
   let Book = sequelize.define('Book', {
     name: {
       type: DataTypes.STRING,
-      notNull: true,
+      isNull: false,
     },
     booktag: {
       type: DataTypes.STRING,
-      notNull: true,
+      isNull: false,
     },
     description: {
       type: DataTypes.STRING,
@@ -20,7 +20,7 @@ export default (sequelize, DataTypes) => {
     },
     deleted: {
       type: DataTypes.BOOLEAN,
-      notNull: true,
+      isNull: false,
     },
   }, 
   {

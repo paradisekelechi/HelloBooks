@@ -1,58 +1,80 @@
-const Book = require('../models').Book;
+import models from '../models';
+const Book = models.Book;
 
-module.exports = {
-    //admin add a new book
-  addBook(req, res) {
-    let name = req.body.bookname;
-    let description = req.body.description;
-    let bookTag = makeBookTag(name);
-    
-    let category = req.body.category;
-    let quantity = 1;
-    
-    return Book
-        .create({
-        name: name,
-        description: description,
-        book_tag: bookTag,
-        })
-        .then(book => res.status(201).send(book))
-        .catch(error => res.status(400).send(error));
-  },
-
+export default {
     //view all books in the library
-    getAllBooks(req, res) {
+    getBooks(req, res) {
         return Book
-        .findAll()
+        .findAll({
+            include: [{
+                model: models.BookCategory,
+            }],
+        })
         .then(book => res.status(201).send(book))
         .catch(error => res.status(400).send(error));
     },
 
-}
-
-//internal function to make book tag
-let makeBookTag = (bookName) => {
-    if(bookName.length > 0){
-        let book = bookName.trim().toString();
-        let bookTag = 'HBK' +'-'+ book.substring(1, 3)+'-'+book.substring(0, 2);
-        return bookTag;
-    }
-}
-
-//check if book is available 
-let bookIsAvailable = (bookTag) => {
-    Book.findOne({
-        where: {
-            book_tag: bookTag
+    addBook(req, res){
+        let name = req.body.name;
+        let bookTag = makeBookTag(name);
+        let description = req.body.description;
+        let category = req.body.category;
+        let quantity = 1;
+        if(req.body.quantity){
+            quantity = req.body.quantity;
         }
-    })
-    .then(book =>{
-        if(book){
-            console.log('book exists');
-            return true;
-        }else{
-            console.log('book does not exists');
-            return false;
-        }
-    });
-}
+        return Book
+        .create({
+            name: name,
+            description: description,
+            bookTag: '',
+            quantity: quantity,
+            deleted: false,
+            category_id: category
+        })
+        .then(book => {
+            res.send({
+                msg: 'Udo'
+            });
+        })
+        .catch(error => res.status(400).send(error));
+    },
+
+    editBook(req, res){
+        let description = req.body.description;
+        let quantity = req.body.quantity;
+        let category = req.body.category;
+        let bookId = req.body.bookid;
+        let bookCover = req.body.cover;
+        console.log(bookId);
+        return Book
+        .update({
+            description: description,
+            quantity: quantity,
+            category_id: category,
+            cover: bookCover
+        }, 
+        {
+            where: {
+                id: bookId
+            }
+        })
+        .then(book => {
+            res.status(200).send({
+                message: 'Book edited successfully',
+                status: true
+            });
+        })
+        .catch(error => res.status(400).send(error));
+    },
+
+};
+
+// //internal function to make book tag
+// let makeBookTag = (bookName) => {
+//     if(bookName.length > 0){
+//         let book = bookName.trim().toString();
+//         let bookTag = 'HBK' +'-'+ book.substring(1, 3)+'-'+book.substring(0, 2);
+//         return bookTag;
+//     }
+// }

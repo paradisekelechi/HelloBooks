@@ -4,7 +4,6 @@ export default (sequelize, DataTypes) => {
   let BorrowLog = sequelize.define('BorrowLog', {
     borrow_date: {
       type: DataTypes.DATE,
-      notNull: true,
       validate: {
           isDate: {
               args: true,
@@ -14,7 +13,6 @@ export default (sequelize, DataTypes) => {
     },
     return_date: {
       type: DataTypes.DATE,
-      notNull: true,
       validate: {
           isDate: {
               args: true,

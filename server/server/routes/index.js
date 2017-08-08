@@ -1,6 +1,7 @@
 import controllers from '../controller'
 const userController = controllers.user;
 const bookController = controllers.book;
+const borrowLogController = controllers.borrowlog;
 
 let routes = (app) => {
   
@@ -14,7 +15,16 @@ let routes = (app) => {
 
   app.post('/api/books/', bookController.addBook);
 
-  app.get('/api/books/', bookController.getAllBooks);
+  app.put('/api/books/', bookController.editBook);
+
+  app.get('/api/books/', bookController.getBooks);
+
+  app.post('/api/users/:userId/books/', borrowLogController.borrowBook);
+
+  app.get('/api/users/:userId/books/', borrowLogController.getPendingBooks);
+
+  app.put('/api/users/:userId/books/', borrowLogController.returnBook);
+
 };
 
 export default routes;
