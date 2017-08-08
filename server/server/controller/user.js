@@ -4,6 +4,9 @@ const User = models.User;
 
 import dotenv from 'dotenv';
 
+import jwt from 'jsonwebtoken';
+import randomstring from 'just.randomstring';
+
 //import  User from '../models';
 import bcrypt from 'bcrypt';
 const salt = bcrypt.genSaltSync(10);
@@ -51,7 +54,15 @@ export default {
         if(user){
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
-                    res.status(200).send(user);
+                    const secret = randomstring();
+                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret);
+                    res.status(200).send({
+                        token: token,
+                        email: user.email, 
+                        username: user.username, 
+                        usertype: user.usertype, 
+                        accounttype: user.accounttype 
+                    });
                 }else{
                     res.status(400).send({
                         msg: 'Oops! Password is incorrect'
@@ -69,27 +80,4 @@ export default {
           status: false
       }));
   },
-
-    // borrowBook(req, res){
-    //     let borrowDate = req.body.borrow_date == null? new Date(): new Date(req.body.borrow_date);
-    //     let returnDate = req.body.return_date == null? new Date(): new Date(req.body.return_date);
-    //     let userId = req.params.userId;
-    //     let bookId = req.body.bookId;
-    //     return User
-    // .create({
-    //     borrow_date: borrowDate,
-    //     return_date: returnDate,
-    //     returned: false,
-    //     deleted: false,
-    //     UserId: userId,
-    //     BookId: bookId,
-    // })
-    // .then(booklog => {
-    //     res.status(200).send({
-    //         msg: 'Book borrowed'
-    //     });
-    // })
-    // .catch(error => res.status(400).send(error));
-    // },
-
 };
