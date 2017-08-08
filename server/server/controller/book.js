@@ -11,7 +11,10 @@ export default {
             }],
         })
         .then(book => res.status(201).send(book))
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({
+            success: true,
+            message: 'Oops! Books list not gotten'
+        }));
     },
 
     addBook(req, res){
@@ -21,7 +24,23 @@ export default {
         let categoryId = req.body.categoryId;
         let quantity = req.body.quantity;
 
-        //checks on the category. If none is specified, the book is categorized as OTHERS with id 1. This is subject to modifications
+        //checks if the name is undefined or null and insists on it
+        if(name == null || name == '' || name == undefined){
+            res.status(400).send({
+                success: false,
+                message: 'Oops, book name cannot be null'
+            });
+        }
+
+        //checks if the author is undefined or null and insists on it
+        if(author == null || author == '' || author == undefined){
+            res.status(400).send({
+                success: false,
+                message: 'Oops, author cannot be null'
+            });
+        }
+
+        //Checks the category. If none is specified, the book is categorized as OTHERS with id 1. This is subject to modifications
         if(categoryId == '' || categoryId == null){
             categoryId = 1;
         }
@@ -40,20 +59,33 @@ export default {
             category_id: categoryId
         })
         .then(book => {
-            res.send({
-                msg: 'Book successfully added',
-                successful: true
+            res.status(200).send({
+                success: true,
+                message: 'Book successfully added',
+                book
             });
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({
+            success: false,
+            message: 'Oops! Book not successfully added'
+        }));
     },
 
     editBook(req, res){
         let description = req.body.description;
         let quantity = req.body.quantity;
         let categoryId = req.body.categoryId;
-        let bookId = req.body.bookid;
+        let bookId = req.params.bookId;
+        console.log(bookId);
         let bookCover = req.body.image;
+
+        if(bookId == null || bookId == 0 || bookId == undefined){
+            res.status(400).send({
+                success: false,
+                message: 'Oops!! BookId cannot be '+ bookId
+            });
+            return;
+        }
         
         return Book
         .update({
@@ -70,10 +102,13 @@ export default {
         .then(book => {
             res.status(200).send({
                 message: 'Book edited successfully',
-                status: true
+                success: true
             });
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({
+            success: false,
+            message: 'Oops! Book not edited successfully'
+        }));
     },
 
 };

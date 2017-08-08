@@ -24,11 +24,11 @@ let routes = (app) => {
 
   app.post('/api/users/signin', userController.signin);
 
-  app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
+  app.post('/api/books/', bookController.addBook);
   
   //app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
 
-  app.put('/api/books/', bookController.editBook);
+  app.put('/api/books/:bookId', bookController.editBook);
 
   app.get('/api/books/', bookController.getBooks);
 

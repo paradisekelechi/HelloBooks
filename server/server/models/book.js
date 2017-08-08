@@ -3,25 +3,11 @@ export default (sequelize, DataTypes) => {
   let Book = sequelize.define('Book', {
     name: {
       type: DataTypes.STRING,
-      isNull: false,
-      notNull: true,
-      validate: {
-        isNull: {
-          args: false,
-          msg: 'Oops, book name cannot be empty'
-        },
-      }
+      unique: true,
+      allowNull: false
     },
     author: {
       type: DataTypes.STRING,
-      isNull: false,
-      notNull: true,
-      validate: {
-        isNull: {
-          args: false,
-          msg: 'Oops, author cannot be empty'
-        },
-      }
     },
     description: {
       type: DataTypes.STRING,
