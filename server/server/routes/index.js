@@ -3,6 +3,11 @@ const userController = controllers.user;
 const bookController = controllers.book;
 const borrowLogController = controllers.borrowlog;
 
+//private models to handle model setups
+const userTypeController = controllers.usertype;
+const accountTypeController = controllers.accounttype;
+const bookCategoryController = controllers.bookcategory;
+
 let routes = (app) => {
   
   app.get('/api', (req, res) => res.status(200).send({
@@ -25,6 +30,17 @@ let routes = (app) => {
 
   app.put('/api/users/:userId/books/', borrowLogController.returnBook);
 
+
+
+  //urls for internal process - book categories, usertype and acccounttype
+  app.post('/api/category/', bookCategoryController.addCategory);
+  app.get('/api/category/', bookCategoryController.getCategories);
+
+  app.post('/api/usertype/', userTypeController.addUserType);
+  app.get('/api/usertype/', userTypeController.getUserTypes);
+
+  app.post('/api/accounttype/', accountTypeController.addAccountType);
+  app.get('/api/accounttype/', accountTypeController.getAccountTypes);
 };
 
 export default routes;

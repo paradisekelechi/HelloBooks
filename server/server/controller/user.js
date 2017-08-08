@@ -23,7 +23,10 @@ export default {
             email: email,
             password: hashedPassword,
             usertype: 'USER',
-            accounttype: 'silver'
+            accounttype: 'silver',
+            active: true,
+            deleted: false,
+            user_type_id: 1
         })
         .then(user => res.status(201).send({
             message: 'User Account Creation Successful',
@@ -41,7 +44,8 @@ export default {
     .findOne({
         where: {
             username: username,
-        }
+        },
+        include: [{model: models.UserType}, {model: models.AccountType}]
     })
     .then(user => {
         if(user){
@@ -65,5 +69,27 @@ export default {
           status: false
       }));
   },
+
+    // borrowBook(req, res){
+    //     let borrowDate = req.body.borrow_date == null? new Date(): new Date(req.body.borrow_date);
+    //     let returnDate = req.body.return_date == null? new Date(): new Date(req.body.return_date);
+    //     let userId = req.params.userId;
+    //     let bookId = req.body.bookId;
+    //     return User
+    // .create({
+    //     borrow_date: borrowDate,
+    //     return_date: returnDate,
+    //     returned: false,
+    //     deleted: false,
+    //     UserId: userId,
+    //     BookId: bookId,
+    // })
+    // .then(booklog => {
+    //     res.status(200).send({
+    //         msg: 'Book borrowed'
+    //     });
+    // })
+    // .catch(error => res.status(400).send(error));
+    // },
 
 };

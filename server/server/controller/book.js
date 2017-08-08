@@ -16,25 +16,33 @@ export default {
 
     addBook(req, res){
         let name = req.body.name;
-        let bookTag = makeBookTag(name);
+        let author = req.body.author;
         let description = req.body.description;
-        let category = req.body.category;
-        let quantity = 1;
-        if(req.body.quantity){
-            quantity = req.body.quantity;
+        let categoryId = req.body.categoryId;
+        let quantity = req.body.quantity;
+
+        //checks on the category. If none is specified, the book is categorized as OTHERS with id 3. This is subject to modifications
+        if(categoryId == '' || categoryId == null){
+            categoryId = 1;
         }
+        //Checks on quantity. If no quantity is indicated, it is assumed that quantity added is 1.
+        if(quantity == null || quantity == ''){
+            quantity = 1;
+        }
+
         return Book
         .create({
             name: name,
             description: description,
-            bookTag: '',
+            author: author,
             quantity: quantity,
             deleted: false,
-            category_id: category
+            category_id: categoryId
         })
         .then(book => {
             res.send({
-                msg: 'Udo'
+                msg: 'Book successfully added',
+                successful: true
             });
         })
         .catch(error => res.status(400).send(error));
@@ -43,15 +51,15 @@ export default {
     editBook(req, res){
         let description = req.body.description;
         let quantity = req.body.quantity;
-        let category = req.body.category;
+        let categoryId = req.body.categoryId;
         let bookId = req.body.bookid;
-        let bookCover = req.body.cover;
-        console.log(bookId);
+        let bookCover = req.body.image;
+        
         return Book
         .update({
             description: description,
             quantity: quantity,
-            category_id: category,
+            category_id: categoryId,
             cover: bookCover
         }, 
         {
@@ -69,12 +77,3 @@ export default {
     },
 
 };
-
-// //internal function to make book tag
-// let makeBookTag = (bookName) => {
-//     if(bookName.length > 0){
-//         let book = bookName.trim().toString();
-//         let bookTag = 'HBK' +'-'+ book.substring(1, 3)+'-'+book.substring(0, 2);
-//         return bookTag;
-//     }
-// }

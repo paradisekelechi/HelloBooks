@@ -53,7 +53,6 @@ export default (sequelize, DataTypes) => {
     freezeTableName: true,
   });
   User.associate = (models) => {
-    User.belongsToMany(models.Book, {through: 'BorrowLog'});
     User.belongsTo(models.UserType, {foreignKey: 'user_type_id', targetKey: 'id'});
     User.belongsTo(models.AccountType, {foreignKey: 'account_type_id', targetKey: 'id'});
   }

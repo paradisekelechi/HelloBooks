@@ -30,6 +30,10 @@ export default (sequelize, DataTypes) => {
   {
     freezeTableName: true,
   });
+  BorrowLog.associate = (models) => {
+    BorrowLog.belongsTo(models.User, {foreignKey: 'user_id', targetKey: 'id'});
+    BorrowLog.belongsTo(models.Book, {foreignKey: 'book_id', targetKey: 'id'});
+  }
   return BorrowLog;
 };
 

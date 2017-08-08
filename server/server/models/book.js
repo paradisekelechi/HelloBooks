@@ -5,7 +5,7 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       isNull: false,
     },
-    booktag: {
+    author: {
       type: DataTypes.STRING,
       isNull: false,
     },
@@ -27,7 +27,6 @@ export default (sequelize, DataTypes) => {
     freezeTableName: true,
   });
   Book.associate = (models) => {
-    Book.belongsToMany(models.User, {through: 'BorrowLog'});
     Book.belongsTo(models.BookCategory, {foreignKey: 'category_id', targetKey: 'id'});
   }
   return Book;

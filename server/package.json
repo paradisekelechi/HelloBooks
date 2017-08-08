@@ -4,8 +4,8 @@
   "description": "Backend code for hello-books application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon  ./bin/www --exec babel-node ./bin/www --presets env",
-    "test": "test hello-books"
+    "start:dev": "nodemon  ./bin/www --exec babel-node --presets env ",
+    "test": "test hello-books mocha --compilers js:babel-core/register "
   },
   "author": "",
   "license": "ISC",
@@ -14,8 +14,10 @@
     "babel-preset-stage-2": "^6.24.1",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "chai": "^4.1.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "mocha": "^3.5.0",
     "morgan": "^1.8.2",
     "pg": "^7.0.2",
     "pg-hstore": "^2.3.2",
@@ -23,8 +25,15 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
+    "babel-register": "^6.24.1",
     "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
     "nodemon": "^1.11.0"
   }
 }
