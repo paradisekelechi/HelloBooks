@@ -119,7 +119,7 @@ export default {
         }else{
             res.status(400).send({
                 message: 'Oops! Username does not exist',
-                success: false;
+                success: false
             });
         }
     })

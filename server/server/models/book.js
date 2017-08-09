@@ -4,7 +4,6 @@ export default (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
     },
     author: {
       type: DataTypes.STRING,

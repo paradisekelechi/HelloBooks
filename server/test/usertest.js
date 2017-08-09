@@ -10,14 +10,14 @@ let expect = chai.expect();
 const api = supertest('http://localhost:4000');
 
 
-describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
+describe('Unit test for signin and signup routes ', () => {
     /**
      * Signup: Test if user with credentials can signup
      * username: 'newusername'
      * email: 'newemail@email.com'
      * password: 'newpassword'
      */
-    it('User should be able signup successfully', (done) => {
+    it('SIGNUP: User should be able signup successfully', (done) => {
         api.post('/api/users/signup')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
@@ -40,7 +40,7 @@ describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
      * email: 'newemail@email.com'
      * password: 'newpassword'
      */
-    it('User should not be able signup successfully', (done) => {
+    it('SIGNUP: User should not be able signup successfully', (done) => {
         api.post('/api/users/signup')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
@@ -60,7 +60,7 @@ describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
     /**
      * Signup: Test if user with incomplete credentials (email) can signup
      */
-    it('User should not be able signup successfully', (done) => {
+    it('SIGNUP: User should not be able signup successfully', (done) => {
         api.post('/api/users/signup')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
@@ -72,7 +72,7 @@ describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
         .end((err, res) => {
             res.status.should.equal(400);
             res.body.success.should.equal(false);
-            res.body.message.should.equal('Oops! Email is required!');
+            res.body.should.have.property('message');
             done(err);
         });
     })
@@ -82,7 +82,7 @@ describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
     /**
      * Signin: Unit test for User signin with complete parameters
      */
-    it('User should be ble to signin successfully', (done) => {
+    it('SIGNIN: User should be ble to signin successfully', (done) => {
         api.post('/api/users/signin')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
@@ -100,7 +100,7 @@ describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
     /**
      * Signin: Unit test for User signin incomplete parameters
      */
-    it('User should be not be able to signin successfully', (done) => {
+    it('SIGNIN: User should be not be able to signin successfully', (done) => {
         api.post('/api/users/signin')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
@@ -118,7 +118,7 @@ describe('Unit test for SIGNIN AND SIGNUP ROUTES /', () => {
     /**
      * Signin: Unit test for User signin incomplete parameters
      */
-    it('User should be not be able to signin successfully', (done) => {
+    it('SIGNIN: User should be not be able to signin successfully', (done) => {
         api.post('/api/users/signin')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({

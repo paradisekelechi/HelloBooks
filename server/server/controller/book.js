@@ -10,7 +10,11 @@ export default {
                 model: models.BookCategory,
             }],
         })
-        .then(book => res.status(201).send(book))
+        .then(book => res.status(200).send({
+            success: true,
+            message: 'Books obtained successfully',
+            book
+        }))
         .catch(error => res.status(400).send({
             success: true,
             message: 'Oops! Books list not gotten'
@@ -30,6 +34,7 @@ export default {
                 success: false,
                 message: 'Oops, book name cannot be null'
             });
+            return;
         }
 
         //checks if the author is undefined or null and insists on it
@@ -38,6 +43,7 @@ export default {
                 success: false,
                 message: 'Oops, author cannot be null'
             });
+            return;
         }
 
         //Checks the category. If none is specified, the book is categorized as OTHERS with id 1. This is subject to modifications

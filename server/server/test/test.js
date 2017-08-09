@@ -18,19 +18,4 @@ describe('Test api routes *', ()=>{
             done(err);
         });
     });
-
-    it('Should signin successfully', (done) => {
-        api.post('/api/users/signin')
-        .set('Accept', 'application/x-www-form-urlencoded')
-        .send({
-            username: 'username',
-            password: 'username'
-        })
-        .expect(200)
-        .end((err, res) => {
-            res.status.should.equal(200);
-            //res.body.should.exist('message');
-            done(err);
-        });
-    });
 });
