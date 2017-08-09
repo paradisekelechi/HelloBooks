@@ -4,6 +4,11 @@ const User = models.User;
 
 import dotenv from 'dotenv';
 
+import jwt from 'jsonwebtoken';
+
+//Secret for authentication -- to be added to the environment as a variable
+const secret = 'Jm7MmG6YrssZemeHxG0h';
+
 //import  User from '../models';
 import bcrypt from 'bcrypt';
 const salt = bcrypt.genSaltSync(10);
@@ -47,11 +52,10 @@ export default {
             username: username,
             email: email,
             password: hashedPassword,
-            usertype: 'USER',
-            accounttype: 'silver',
             active: true,
             deleted: false,
-            user_type_id: 1
+            user_type_id: 1,
+            account_type_id: 1
         })
         .then(user => res.status(200).send({
             message: 'User Account Creation Successful',
@@ -95,22 +99,33 @@ export default {
         if(user){
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
-                    res.status(200).send({user});
+                    //token generated
+                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60});
+                    
+                    //token and user details sent to the user
+                    res.status(200).send({
+                        success: true,
+                        message: 'User credentials accurate ',
+                        token: token, 
+                        user
+                    });
                 }else{
                     res.status(400).send({
-                        msg: 'Oops! Password is incorrect'
+                        message: 'Oops! Password is incorrect',
+                        success: false
                     });
                 }
              });
         }else{
             res.status(400).send({
-                msg: 'Oops! Username does not exist'
+                message: 'Oops! Username does not exist',
+                success: false;
             });
         }
     })
       .catch(error => res.status(400).send({
-          message: 'User does not exist',
-          status: false
+          message: 'Oops! User does not exist',
+          success: false
       }));
   },
 
