@@ -7,12 +7,17 @@ const Book = models.Book;
 export default {
     
     borrowBook(req, res){
-        let today = new Date();
-        let borrowDate = req.body.borrow_date == null? today : new Date(req.body.borrow_date);
-        let returnDate = req.body.return_date == null? new Date(today.getTime() + 24 * 60 * 60 * 7000): new Date(req.body.return_date);
+        //Today is the borrow date
+        let borrowDate = new Date();
+        //If the return date is not sent, the return date is set to be 7 days from borrow
+        let returnDate = req.body.return_date == null? new Date(borrowDate.getTime() + 24 * 60 * 60 * 7000): new Date(req.body.return_date);
+        
         let userId = req.params.userId;
         let bookId = req.body.bookId;
 
+        /**
+         * Check if the userId is null and insist on it
+         */
         if(userId == null || userId == '' || userId == undefined){
             res.status(400).send({
                 success: false,
@@ -20,6 +25,9 @@ export default {
             });
         }
 
+        /**
+         * Check if the bookId is null and insist on it
+         */
         if(bookId == null || bookId == '' || bookId == undefined){
             res.status(400).send({
                 success: false,
