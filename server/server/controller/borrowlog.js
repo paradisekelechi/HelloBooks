@@ -7,10 +7,11 @@ const Book = models.Book;
 export default {
     
     borrowBook(req, res){
+        let today = new Date();
         //Today is the borrow date
-        let borrowDate = new Date();
+        let borrowDate = today;
         //If the return date is not sent, the return date is set to be 7 days from borrow
-        let returnDate = req.body.return_date == null? new Date(borrowDate.getTime() + 24 * 60 * 60 * 7000): new Date(req.body.return_date);
+        let returnDate = req.body.return_date == null? new Date(today.getTime() + 24 * 60 * 60 * 7000): new Date(req.body.return_date);
         
         let userId = req.params.userId;
         let bookId = req.body.bookId;
@@ -58,19 +59,58 @@ export default {
                 }else{
 
                     //Check if the user had already borrowed that book
-                    BorrowLog
-                    .find({
-                        include: [{model: models.User, where: {id: userId}}, {model: models.Book, where: {id: bookId}}],
+                    return BorrowLog
+                    .findAll({
+                        include: [{model: models.User}, {model: models.Book}],
                         where: {
                             returned: false,
-                        }
+                            user_id: userId,
+                            book_id: bookId
+                        },
+                        
                     })
                     .then(borrowlog => {
-                        if(borrowlog){
+                        if(borrowlog.length != 0){
                             res.status(400).send({
                                 message: 'Oops! Book has already been borrowed by you!',
                                 borrowlog
                             });
+                        }else{
+
+                            //Borrow book by user
+                            return BorrowLog
+                            .create({
+                                borrow_date: borrowDate,
+                                return_date: returnDate,
+                                returned: false,
+                                deleted: false,
+                                user_id: userId,
+                                book_id: bookId,
+                            })
+                            .then(booklog => {
+                                
+                                //Update book quantity
+                                return Book
+                                .update({quantity: models.sequelize.literal('quantity - 1')},{where: {id: bookId}})
+                                .then(
+                                    res.status(200).send({
+                                        success: true,
+                                        message: 'Book borrowed successfully'
+                                    }),
+                                )
+                                .catch(error => res.status(400).send({
+                                    success: false,
+                                    message: 'Oops! Book not borrowed successfully! Contact Support'
+                                }));
+
+                                    
+                            })
+                            .catch(error => res.status(400).send({
+                                success: false,
+                                message: 'Oops! Book not borrowed successfully!'
+                            }));
+
+
                         }
                     })
                     .catch(error => res.status(400).send({
@@ -81,6 +121,7 @@ export default {
                 
             }else{
                 res.status(400).send({
+                    success: false,
                     message: 'Oops! Book is not available in the library'
                 });
             }
@@ -89,70 +130,20 @@ export default {
             success: false,
             message: 'Oops! Book not available!'
         }));
-
-
-        //Check if the user had already borrowed that book
-        return BorrowLog
-        .findAll({
-            where: {
-                returned: false,
-                user_id: userId
-            }
-        })
-        .then(borrowlog => {
-            if(borrowlog){
-                res.status(400).send({
-                    message: 'Oops! Book has already been borrowed by you!'
-                });
-            }
-        })
-        .catch(error => res.status(400).send({
-            success: false,
-            message: 'Oops! Book not available!'
-        }));
-
-
-
-        //Borrow book by user
-        return BorrowLog
-        .create({
-            borrow_date: borrowDate,
-            return_date: returnDate,
-            returned: false,
-            deleted: false,
-            user_id: userId,
-            book_id: bookId,
-        })
-        .then(booklog => {
-            
-            //Update book quantity
-            return Book
-            .update({quantity: models.sequelize.literal('quantity - 1')},{where: {id: bookId}})
-            .then(
-                res.status(200).send({
-                    success: false,
-                    message: 'Book borrowed successfully'
-                }),
-            )
-            .catch(error => res.status(400).send({
-                success: false,
-                message: 'Oops! Book not borrowed successfully! Contact Support'
-            }));
-
-                
-        })
-        .catch(error => res.status(400).send({
-            success: false,
-            message: 'Oops! Book not borrowed successfully!'
-        }));
+        
     },
 
+
+    /**
+     * Return Book method
+     * @param {Request parameter} req 
+     * @param {Response parameter} res 
+     */
     returnBook(req, res){
         let today = new Date();
         let returnDate = today;
         let userId = req.params.userId;
         let bookId = req.body.bookId;
-        let borrowId = req.body.borrowId;
 
         if(userId == null || userId == '' || userId == undefined){
             res.status(400).send({
@@ -171,44 +162,73 @@ export default {
             return;
         }
 
-        if(borrowId == null || borrowId == '' || borrowId == undefined){
-            res.status(400).send({
-                success: false,
-                message: 'Oops! BorrowId is required!'
-            });
-            return;
-        }
-
+        //Check if user had borrowed the book and had already returned it
         return BorrowLog
-        .update({
-            return_date: returnDate,
-            returned: true,
-            deleted: false
-        }, 
-        {
-            include: [{model: models.User, where: {id: userId}}, {model: models.Book, where: {id: bookId}}],
+        .findAll({
             where: {
-                id: borrowId,
+                user_id: userId,
+                book_id: bookId,
+                returned: true,
             }
         })
         .then(booklog => {
-            //Update book quantity
-            return Book
-            .update({quantity: models.sequelize.literal('quantity + 1')},{where: {id: bookId}})
-            .then(
-                res.status(200).send({
+            if(booklog.length != 0){
+                res.status(400).send({
                     success: false,
-                    message: 'Book returned successfully'
-                }),
-            )
-            .catch(error => res.status(400).send({
-                success: false,
-                message: 'Oops! Book not returned successfully! Contact Support'
-            }));
+                    message: 'Oops! You have already returned this book!'
+                });
+            }else{
+
+                //Return Borrowed book
+                return BorrowLog
+                .update({
+                    return_date: returnDate,
+                    returned: true,
+                    deleted: false
+                }, 
+                {
+                    where: {
+                        user_id: userId,
+                        book_id: bookId,
+                        returned: false
+                    }
+                })
+                .then(borrowlog => {
+                    
+                    //Update book quantity accordingly
+                    return Book
+                    .update({quantity: models.sequelize.literal('quantity + 1')},{where: {id: bookId}})
+                    .then(
+                        res.status(200).send({
+                            success: false,
+                            message: 'Book returned successfully'
+                        }),
+                    )
+                    .catch(error => res.status(400).send({
+                        success: false,
+                        message: 'Oops! Book not returned successfully! Contact Support'
+                    }));
+                })
+                .catch(error => res.status(400).send({
+                    success: false,
+                    message: 'Oops! Book not borrowed successfully! Contact Support'
+                }));
+
+            }
+            
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => res.status(400).send({
+            success: false,
+            message: 'Oops! Borrow log data unavailable! Contact Support'
+        }));
+
     },
 
+    /**
+     * 
+     * @param {Request} req 
+     * @param {Response} res 
+     */
     getPendingBooks(req, res){
         let userId = req.params.userId;
         let isReturned = req.query.returned;
@@ -224,18 +244,28 @@ export default {
         return BorrowLog
         .findAll({
             include: [
-                {model: models.User, where: {id: userId}},
+                {model: models.User},
                 {model: models.Book}
             ],
             where: {
-                returned: isReturned
+                returned: isReturned,
+                user_id: userId
             }
         })
         .then(booklog => {
-            res.status(200).send({
-                success: true,
-                booklog
-            })
+            if(booklog.length != 0){
+                res.status(200).send({
+                    success: true,
+                    message: 'You have pending books!',
+                    booklog
+                })
+            }else{
+                res.status(200).send({
+                    success: true,
+                    message: 'You have no unreturned/pending books!'
+                })
+            }
+            
         })
         .catch(error => res.status(400).send(error));
     }
