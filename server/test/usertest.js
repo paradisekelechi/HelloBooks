@@ -3,6 +3,7 @@ import chai from 'chai';
 import should from 'should';
 import supertest from 'supertest';
 import app from '../app.js';
+import * as testConstants from './testdata';
 
 let expect = chai.expect();
 
@@ -13,17 +14,14 @@ const api = supertest('http://localhost:4000');
 describe('Unit test for signin and signup routes ', () => {
     /**
      * Signup: Test if user with credentials can signup
-     * username: 'newusername'
-     * email: 'newemail@email.com'
-     * password: 'newpassword'
      */
     it('SIGNUP: User should be able signup successfully', (done) => {
         api.post('/api/users/signup')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            username: 'neusername',
-            email: 'neemail@email.com',
-            password: 'newpassword'
+            username: testConstants.username,
+            email: testConstants.email,
+            password: testConstants.password
         })
         .expect(200)
         .end((err, res) => {
@@ -45,8 +43,8 @@ describe('Unit test for signin and signup routes ', () => {
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
             username: '',
-            email: 'newemail@email.com',
-            password: 'newpassword'
+            email: testConstants.email,
+            password: testConstants.password
         })
         .expect(400)
         .end((err, res) => {
@@ -64,9 +62,9 @@ describe('Unit test for signin and signup routes ', () => {
         api.post('/api/users/signup')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            username: 'newUser',
+            username: testConstants.username,
             email: '',
-            password: 'newpassword'
+            password: testConstants.password
         })
         .expect(400)
         .end((err, res) => {
@@ -86,8 +84,8 @@ describe('Unit test for signin and signup routes ', () => {
         api.post('/api/users/signin')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            username: 'username',
-            password: 'password'
+            username: testConstants.signinUsername,
+            password: testConstants.signinPassword,
         })
         .expect(200)
         .end((err, res) => {
@@ -105,7 +103,7 @@ describe('Unit test for signin and signup routes ', () => {
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
             username: '',
-            password: 'password'
+            password: testConstants.signinPassword,
         })
         .expect(400)
         .end((err, res) => {
@@ -122,7 +120,7 @@ describe('Unit test for signin and signup routes ', () => {
         api.post('/api/users/signin')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            username: 'username',
+            username: testConstants.signinUsername,
             password: ''
         })
         .expect(400)

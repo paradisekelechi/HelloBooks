@@ -18,35 +18,4 @@ describe('Unit test for BASE ROUTES /', () => {
             done(err);
         });
     });
-
-    it('Should signup successfully', (done) => {
-        api.post('/api/users/signup')
-        .set('Accept', 'application/x-www-form-urlencoded')
-        .send({
-            username: 'username',
-            email: 'goodness',
-            password: 'password'
-        })
-        .expect(400)
-        .end((err, res) => {
-            res.status.should.equal(400);
-            //res.body.should.exist('message');
-            done(err);
-        });
-    });
-
-    it('Should signin successfully', (done) => {
-        api.post('/api/users/signin')
-        .set('Accept', 'application/x-www-form-urlencoded')
-        .send({
-            username: 'username',
-            password: 'password'
-        })
-        .expect(200)
-        .end((err, res) => {
-            res.status.should.equal(200);
-            //res.body.should.exist('message');
-            done(err);
-        });
-    });
 });

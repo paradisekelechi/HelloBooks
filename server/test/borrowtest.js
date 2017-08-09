@@ -3,6 +3,7 @@ import chai from 'chai';
 import should from 'should';
 import supertest from 'supertest';
 import app from '../app.js';
+import * as testConstants from './testdata';
 
 let expect = chai.expect();
 
@@ -14,11 +15,11 @@ describe('Unit test for borrow and return routes ', () => {
     /**
      * Borrow book route test if book is available and user have not borrowed that book before
      */
-    it('BORROW BOOK: User should be able to borrow a book successfully if book is available and user have not borrowed that book before', (done) => {
-        api.post('/api/users/1/books/')
+    it('BORROW BOOK: User should be able to borrow a book successfully if book is available and user has not borrowed and not returned that book', (done) => {
+        api.post('/api/users/'+testConstants.userId+'/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: testConstants.bookId,
         })
         .expect(200)
         .end((err, res) => {
@@ -26,6 +27,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(true);
             res.body.should.have.property('message');
+            res.body.message.should.equal('Book borrowed successfully');
             done(err);
         });
     });
@@ -34,10 +36,10 @@ describe('Unit test for borrow and return routes ', () => {
      * Borrow book route test if book is available and user has borrowed that book before
      */
     it('BORROW BOOK: User should not be able to borrow a book successfully if book is available but user has borrowed that book before', (done) => {
-        api.post('/api/users/1/books/')
+        api.post('/api/users/'+testConstants.userId+'/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: testConstants.bookId,
         })
         .expect(400)
         .end((err, res) => {
@@ -57,7 +59,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.post('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: '',
         })
         .expect(400)
         .end((err, res) => {
@@ -65,7 +67,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
-            res.body.message.should.equal('');
+            res.body.message.should.equal('Oops! BookId is required!');
             done(err);
         });
     });
@@ -77,7 +79,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.post('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: testConstants.bookIdFinished,
         })
         .expect(400)
         .end((err, res) => {
@@ -85,7 +87,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
-            res.body.message.should.equal('');
+            res.body.message.should.equal('Oops! This book is no longer available for borrow');
             done(err);
         });
     });
@@ -97,7 +99,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.put('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: testConstants.bookId,
         })
         .expect(200)
         .end((err, res) => {
@@ -105,6 +107,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(true);
             res.body.should.have.property('message');
+            res.body.message.should.equal('Book returned successfully');
             done(err);
         });
     });
@@ -116,7 +119,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.put('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: testConstants.bookIdUnborrowed,
         })
         .expect(400)
         .end((err, res) => {
@@ -124,6 +127,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
+            res.body.message.should.equal('Oops! You are trying to return a  book you did not borrow!');
             done(err);
         });
     });
@@ -135,7 +139,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.put('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            bookId: 2,
+            bookId: testConstants.bookId,
         })
         .expect(400)
         .end((err, res) => {
@@ -143,6 +147,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
+            res.body.message.should.equal('Oops! You have already returned this book!');
             done(err);
         });
     });
@@ -152,16 +157,15 @@ describe('Unit test for borrow and return routes ', () => {
      * Get pending borrowed-books by user
      */
     it('GET PENDING BOOKS: Users should be able get all books that he has borrowed but is pending return', (done) => {
-        api.get('/api/users/1/books?returned=false')
+        api.get('/api/users/'+testConstants.userId+'/books?returned=false')
         .expect(200)
         .end((err, res) => {
             res.status.should.equal(200);
             res.body.should.have.property('success');
             res.body.success.should.equal(true);
             res.body.should.have.property('message');
-            res.body.message.should.equal('');
-            res.body.should.have.property('book');
-            res.body.book.should.be.instanceof(Array);
+            res.body.should.have.property('booklog');
+            res.body.booklog.should.be.instanceof(Array);
             done(err);
         });
     });

@@ -3,8 +3,10 @@ import chai from 'chai';
 import should from 'should';
 import supertest from 'supertest';
 import app from '../app.js';
+import * as testConstants from './testdata';
 
 let expect = chai.expect();
+
 
 //Define the API url
 const api = supertest('http://localhost:4000');
@@ -18,11 +20,11 @@ describe('Unit test for Book routes ', () => {
         api.post('/api/books')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            name: 'Our Way to life',
-            author: 'Luke Harry',
-            description: 'A classical book on happiness',
-            categoryId: '',
-            quantity: 5
+            name: testConstants.bookName,
+            author: testConstants.bookAuthor,
+            description: testConstants.bookDescription,
+            categoryId: testConstants.bookCategoryId,
+            quantity: testConstants.bookQuantity
         })
         .expect(200)
         .end((err, res) => {
@@ -43,10 +45,10 @@ describe('Unit test for Book routes ', () => {
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
             name: '',
-            author: 'Luke Harry',
-            description: 'A classical book on happiness',
-            categoryId: '',
-            quantity: 5
+            author: testConstants.bookAuthor,
+            description: testConstants.bookDescription,
+            categoryId: testConstants.bookCategoryId,
+            quantity: testConstants.bookQuantity
         })
         .expect(400)
         .end((err, res) => {
@@ -66,11 +68,11 @@ describe('Unit test for Book routes ', () => {
         api.post('/api/books')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            name: 'Life as being sweet',
+            name: testConstants.bookName,
             author: '',
-            description: 'A classical book on happiness',
-            categoryId: '',
-            quantity: 5
+            description: testConstants.bookDescription,
+            categoryId: testConstants.bookCategoryId,
+            quantity: testConstants.bookQuantity
         })
         .expect(400)
         .end((err, res) => {
@@ -90,13 +92,13 @@ describe('Unit test for Book routes ', () => {
      * Edit book route test
      */
     it('EDIT BOOK: Admin User should be able edit a book successfully', (done) => {
-        api.put('/api/books/2')
+        api.put('/api/books/'+testConstants.bookId)
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            description: 'A classical book on happiness',
-            categoryId: '1',
-            quantity: 5,
-            image: 'classical.jpg'
+            description: testConstants.bookDescription,
+            categoryId: testConstants.bookCategoryId,
+            quantity: testConstants.bookQuantity,
+            image: testConstants.bookImage
         })
         .expect(200)
         .end((err, res) => {
@@ -116,10 +118,10 @@ describe('Unit test for Book routes ', () => {
         api.put('/api/books/0')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
-            description: 'A classical book on happiness',
-            categoryId: '1',
-            quantity: 5,
-            image: 'classical.jpg'
+            description: testConstants.bookDescription,
+            categoryId: testConstants.bookCategoryId,
+            quantity: testConstants.bookQuantity,
+            image: testConstants.bookImage
         })
         .expect(400)
         .end((err, res) => {

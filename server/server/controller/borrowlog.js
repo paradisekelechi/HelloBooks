@@ -52,7 +52,7 @@ export default {
 
                 //Check if the book still available for borrow
                 if(book.quantity == 0){
-                    res.status(200).send({
+                    res.status(400).send({
                         success: false,
                         message: 'Oops! This book is no longer available for borrow'
                     });
@@ -162,60 +162,82 @@ export default {
             return;
         }
 
-        //Check if user had borrowed the book and had already returned it
+        //Check if a user borrowed a book he/she is trying to return
         return BorrowLog
         .findAll({
             where: {
                 user_id: userId,
                 book_id: bookId,
-                returned: true,
+                returned: false,
             }
         })
         .then(booklog => {
-            if(booklog.length != 0){
+            if(booklog.length == 0){
                 res.status(400).send({
                     success: false,
-                    message: 'Oops! You have already returned this book!'
+                    message: 'Oops! You are trying to return a  book you did not borrow!'
                 });
             }else{
-
-                //Return Borrowed book
+                //Check if user had borrowed the book and had already returned it
                 return BorrowLog
-                .update({
-                    return_date: returnDate,
-                    returned: true,
-                    deleted: false
-                }, 
-                {
+                .findAll({
                     where: {
                         user_id: userId,
                         book_id: bookId,
-                        returned: false
+                        returned: true,
                     }
                 })
-                .then(borrowlog => {
-                    
-                    //Update book quantity accordingly
-                    return Book
-                    .update({quantity: models.sequelize.literal('quantity + 1')},{where: {id: bookId}})
-                    .then(
-                        res.status(200).send({
+                .then(booklog => {
+                    if(booklog.length != 0){
+                        res.status(400).send({
                             success: false,
-                            message: 'Book returned successfully'
-                        }),
-                    )
-                    .catch(error => res.status(400).send({
-                        success: false,
-                        message: 'Oops! Book not returned successfully! Contact Support'
-                    }));
+                            message: 'Oops! You have already returned this book!'
+                        });
+                    }else{
+
+                        //Return Borrowed book
+                        return BorrowLog
+                        .update({
+                            return_date: returnDate,
+                            returned: true,
+                            deleted: false
+                        }, 
+                        {
+                            where: {
+                                user_id: userId,
+                                book_id: bookId,
+                                returned: false
+                            }
+                        })
+                        .then(borrowlog => {
+                            
+                            //Update book quantity accordingly
+                            return Book
+                            .update({quantity: models.sequelize.literal('quantity + 1')},{where: {id: bookId}})
+                            .then(
+                                res.status(200).send({
+                                    success: false,
+                                    message: 'Book returned successfully'
+                                }),
+                            )
+                            .catch(error => res.status(400).send({
+                                success: false,
+                                message: 'Oops! Book not returned successfully! Contact Support'
+                            }));
+                        })
+                        .catch(error => res.status(400).send({
+                            success: false,
+                            message: 'Oops! Book not borrowed successfully! Contact Support'
+                        }));
+
+                    }
+                    
                 })
                 .catch(error => res.status(400).send({
                     success: false,
-                    message: 'Oops! Book not borrowed successfully! Contact Support'
+                    message: 'Oops! Borrow log data unavailable! Contact Support'
                 }));
-
             }
-            
         })
         .catch(error => res.status(400).send({
             success: false,
@@ -262,7 +284,8 @@ export default {
             }else{
                 res.status(200).send({
                     success: true,
-                    message: 'You have no unreturned/pending books!'
+                    message: 'You have no unreturned/pending books!',
+                    booklog
                 })
             }
             
