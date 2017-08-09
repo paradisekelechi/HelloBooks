@@ -38,5 +38,7 @@ let userType = {
     }
 }
 
+
+
 // let val = accountType.GOLD;
 // console.log(accountType.properties[val].name);

@@ -5,9 +5,11 @@ export default (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       notNull: true,
+      unique: true,
     },
     abbreviation: {
       type: DataTypes.STRING,
+      unique: true,
     },
     description: {
       type: DataTypes.STRING,
@@ -19,6 +21,7 @@ export default (sequelize, DataTypes) => {
   {
     freezeTableName: true,
   });
+  
   return BookCategory;
 };
 
