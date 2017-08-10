@@ -15,6 +15,7 @@ let checkLogin = (req, res, next) => {
                         success: false,
                         message: 'Oops, user authentication failed!'
                     });
+                    return next();
                 }else{
                     let userType = decoded.usertype;
                     let accountType = decoded.accounttype;

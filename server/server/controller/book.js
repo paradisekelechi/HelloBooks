@@ -15,10 +15,7 @@ export default {
             message: 'Books obtained successfully',
             book
         }))
-        .catch(error => res.status(400).send({
-            success: true,
-            message: 'Oops! Books list not gotten'
-        }));
+        .catch(error => res.status(400).send(error));
     },
 
     addBook(req, res){

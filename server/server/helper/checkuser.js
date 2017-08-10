@@ -9,6 +9,7 @@ let checkUser = (req, res, next) => {
                 status: false,
                 message: 'Oops! User not authorized'
             });
+            return next();
         }
     }else{
         res.status(400).send({
