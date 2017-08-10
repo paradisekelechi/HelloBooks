@@ -6,7 +6,6 @@
   "scripts": {
     "start:dev": "nodemon  ./bin/www --exec babel-node --presets env ",
     "test": "mocha test/* --compilers js:babel-register",
-    "initialize:db": "babel-node server/server/scripts/initialize.js",
     "start": "./node_modules/.bin/babel-node ./server/bin/www.js"
   },
   "author": "",
