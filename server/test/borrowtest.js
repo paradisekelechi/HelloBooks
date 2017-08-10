@@ -20,6 +20,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.post('/api/users/'+testConstants.userId+'/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.user_token,
             bookId: testConstants.bookId,
         })
         .expect(200)
@@ -40,6 +41,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.post('/api/users/'+testConstants.userId+'/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.user_token,
             bookId: testConstants.bookId,
         })
         .expect(400)
@@ -80,6 +82,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.post('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.user_token,
             bookId: testConstants.bookIdFinished,
         })
         .expect(400)
@@ -100,6 +103,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.put('/api/users/'+testConstants.userId+'/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.user_token,
             bookId: testConstants.bookId,
         })
         .expect(200)
@@ -120,6 +124,7 @@ describe('Unit test for borrow and return routes ', () => {
         api.put('/api/users/1/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.user_token,
             bookId: testConstants.bookIdUnborrowed,
         })
         .expect(400)
@@ -139,6 +144,7 @@ describe('Unit test for borrow and return routes ', () => {
      */
     it('GET PENDING BOOKS: Users should be able get all books that he has borrowed but is pending return', (done) => {
         api.get('/api/users/'+testConstants.userId+'/books?returned=false')
+        .set('user-token', testConstants.user_token )
         .expect(200)
         .end((err, res) => {
             res.status.should.equal(200);

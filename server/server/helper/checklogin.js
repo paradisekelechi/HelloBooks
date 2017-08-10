@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+const config = dotenv.config();
 
 let checkLogin = (req, res, next) => {
     //const authenticator = req.headers.authorization;
@@ -7,7 +9,7 @@ let checkLogin = (req, res, next) => {
     //Check if token is sent
     if(token){
         jwt.verify (
-            token, 'Jm7MmG6YrssZemeHxG0h', (error, decoded) => {
+            token, config.parsed.SECRET, (error, decoded) => {
                 if(error){
                     res.status(403).send({
                         success: false,

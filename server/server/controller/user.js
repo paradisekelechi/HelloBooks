@@ -3,11 +3,11 @@ import models from '../models'
 const User = models.User;
 
 import dotenv from 'dotenv';
+const config = dotenv.config();
 
 import jwt from 'jsonwebtoken';
-
 //Secret for authentication -- to be added to the environment as a variable
-const secret = 'Jm7MmG6YrssZemeHxG0h';
+const secret = config.parsed.SECRET;
 
 //import  User from '../models';
 import bcrypt from 'bcrypt';
@@ -67,7 +67,7 @@ export default {
         })
         .then(user => {
             //token generated
-            const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60}); 
+            const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
             res.status(200).send({    
                 message: 'User Account Creation Successful',
                 token: token,
@@ -113,7 +113,7 @@ export default {
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
                     //token generated
-                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60});
+                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40});
                     
                     //token and user details sent to the user
                     res.status(200).send({

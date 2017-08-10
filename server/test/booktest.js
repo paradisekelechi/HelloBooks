@@ -20,6 +20,7 @@ describe('Unit test for Book routes ', () => {
         api.post('/api/books')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.admin_token,
             name: testConstants.bookName,
             author: testConstants.bookAuthor,
             description: testConstants.bookDescription,
@@ -45,6 +46,7 @@ describe('Unit test for Book routes ', () => {
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
             name: '',
+            token: testConstants.admin_token,
             author: testConstants.bookAuthor,
             description: testConstants.bookDescription,
             categoryId: testConstants.bookCategoryId,
@@ -68,6 +70,7 @@ describe('Unit test for Book routes ', () => {
         api.post('/api/books')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.admin_token,
             name: testConstants.bookName,
             author: '',
             description: testConstants.bookDescription,
@@ -95,6 +98,7 @@ describe('Unit test for Book routes ', () => {
         api.put('/api/books/'+testConstants.bookId)
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.admin_token,
             description: testConstants.bookDescription,
             categoryId: testConstants.bookCategoryId,
             quantity: testConstants.bookQuantity,
@@ -118,6 +122,7 @@ describe('Unit test for Book routes ', () => {
         api.put('/api/books/0')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
+            token: testConstants.admin_token,
             description: testConstants.bookDescription,
             categoryId: testConstants.bookCategoryId,
             quantity: testConstants.bookQuantity,
@@ -139,6 +144,7 @@ describe('Unit test for Book routes ', () => {
      */
     it('GET BOOKS: Users should be able get all books successfully', (done) => {
         api.get('/api/books')
+        .set('user-token', testConstants.user_token )
         .expect(200)
         .end((err, res) => {
             res.status.should.equal(200);

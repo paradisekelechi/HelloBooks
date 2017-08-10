@@ -80,7 +80,7 @@ describe('Unit test for signin and signup routes ', () => {
     /**
      * Signin: Unit test for User signin with complete parameters
      */
-    it('SIGNIN: User should be ble to signin successfully', (done) => {
+    it('SIGNIN: User should be able to signin successfully', (done) => {
         api.post('/api/users/signin')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
