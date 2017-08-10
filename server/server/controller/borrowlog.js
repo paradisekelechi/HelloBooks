@@ -73,7 +73,7 @@ export default {
                         if(borrowlog.length != 0){
                             res.status(400).send({
                                 message: 'Oops! Book has already been borrowed by you!',
-                                borrowlog
+                                success: false
                             });
                         }else{
 
@@ -145,7 +145,7 @@ export default {
         let userId = req.params.userId;
         let bookId = req.body.bookId;
 
-        if(userId == null || userId == '' || userId == undefined){
+        if(userId == null || userId == 0 || userId == undefined){
             res.status(400).send({
                 success: false,
                 message: 'Oops! Userid is required!'
@@ -171,13 +171,16 @@ export default {
                 returned: false,
             }
         })
-        .then(booklog => {
-            if(booklog.length == 0){
+        .then(booklogger => {
+            console.log(booklogger);
+            if(booklogger.length == 0){
                 res.status(400).send({
                     success: false,
                     message: 'Oops! You are trying to return a  book you did not borrow!'
                 });
             }else{
+                
+
                 //Check if user had borrowed the book and had already returned it
                 return BorrowLog
                 .findAll({
@@ -185,13 +188,14 @@ export default {
                         user_id: userId,
                         book_id: bookId,
                         returned: true,
-                    }
+                    },
                 })
-                .then(booklog => {
-                    if(booklog.length != 0){
+                .then(booklogobj => {
+                    if(booklogobj.length != 0){
                         res.status(400).send({
                             success: false,
-                            message: 'Oops! You have already returned this book!'
+                            message: 'Oops! You have already returned this book!',
+                            booklogobj
                         });
                     }else{
 
@@ -237,12 +241,16 @@ export default {
                     success: false,
                     message: 'Oops! Borrow log data unavailable! Contact Support'
                 }));
+
+
             }
         })
         .catch(error => res.status(400).send({
             success: false,
             message: 'Oops! Borrow log data unavailable! Contact Support'
         }));
+
+        
 
     },
 

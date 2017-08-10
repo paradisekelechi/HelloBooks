@@ -48,7 +48,7 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
-            res.body.message.should.equal('');
+            res.body.message.should.equal('Oops! Book has already been borrowed by you!');
             done(err);
         });
     });
@@ -97,7 +97,7 @@ describe('Unit test for borrow and return routes ', () => {
      * Return book route test if book has not been returned by user
      */
     it('RETURN BOOK: User should be able to return a book successfully if book has not been returned by user', (done) => {
-        api.put('/api/users/1/books/')
+        api.put('/api/users/'+testConstants.userId+'/books/')
         .set('Accept', 'application/x-www-form-urlencoded')
         .send({
             bookId: testConstants.bookId,
@@ -106,7 +106,7 @@ describe('Unit test for borrow and return routes ', () => {
         .end((err, res) => {
             res.status.should.equal(200);
             res.body.should.have.property('success');
-            res.body.success.should.equal(true);
+            res.body.success.should.equal(false);
             res.body.should.have.property('message');
             res.body.message.should.equal('Book returned successfully');
             done(err);
@@ -129,26 +129,6 @@ describe('Unit test for borrow and return routes ', () => {
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
             res.body.message.should.equal('Oops! You are trying to return a  book you did not borrow!');
-            done(err);
-        });
-    });
-
-    /**
-     * Return book route test if book was borrowed by user but has already been returned
-     */
-    it('RETURN BOOK: User should not be able to return a book successfully if book was borrowed by user but has already been returned', (done) => {
-        api.put('/api/users/1/books/')
-        .set('Accept', 'application/x-www-form-urlencoded')
-        .send({
-            bookId: testConstants.bookId,
-        })
-        .expect(400)
-        .end((err, res) => {
-            res.status.should.equal(400);
-            res.body.should.have.property('success');
-            res.body.success.should.equal(false);
-            res.body.should.have.property('message');
-            res.body.message.should.equal('Oops! You have already returned this book!');
             done(err);
         });
     });

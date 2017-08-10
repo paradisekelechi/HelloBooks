@@ -11,10 +11,10 @@ export const signinPassword = 'goodness';
 export const token = '';
 
 //Test data for book borrow and return processes
-export const bookId = 2;
-export const userId = 2;
+export const bookId = 34;
+export const userId = 1;
 
-export const bookIdFinished = 5;
+export const bookIdFinished = 1 ;
 export const bookIdUnborrowed = 3;
 
 //Test data for book addition, edit and get functions

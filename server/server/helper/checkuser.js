@@ -1,9 +1,9 @@
 
 let checkUser = (req, res, next) => {
     
+    const userType = req.userType;
     //Check if usertype exists
     if(userType){
-        console.log(userType);
         if(userType != 'ADMIN'){
             res.status(401).send({
                 status: false,
