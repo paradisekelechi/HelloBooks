@@ -7,7 +7,7 @@
     "start:dev": "nodemon  ./bin/www --exec babel-node --presets env ",
     "test": "mocha test/* --compilers js:babel-register",
     "initialize:db": "babel-node server/scripts/initialize.js",
-    "start": "./node_modules/.bin/babel-node ./bin/www"
+    "start": "./node_modules/.bin/babel-node ./bin/www.js"
   },
   "author": "",
   "license": "ISC",
