@@ -1,5 +1,6 @@
 import models from '../models';
 
+//import all models
 const UserType = models.UserType;
 const AccountType = models.AccountType;
 const BookCategory = models.BookCategory;
