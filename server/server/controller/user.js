@@ -118,7 +118,7 @@ export default {
                     //token and user details sent to the user
                     res.status(200).send({
                         success: true,
-                        message: 'User credentials accurate ',
+                        message: 'User successfully signed in ',
                         token: token
                     });
                 }else{
