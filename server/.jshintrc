@@ -1,7 +1,0 @@
-{
-  "" : true,
-  "esversion" : 6,
-  "strict" : "implied",
-  "mocha" : true,
-  "node" : true
-}
