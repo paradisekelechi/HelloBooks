@@ -90,7 +90,6 @@ describe('Unit test for signin and signup routes ', () => {
         .expect(200)
         .end((err, res) => {
             res.status.should.equal(200);
-            res.body.should.have.property('user');
             done(err);
         });
     });
