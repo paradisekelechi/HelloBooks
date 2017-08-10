@@ -48,6 +48,9 @@ export default {
 
         //Checks the category. If none is specified, the book is categorized as OTHERS with id 1. This is subject to modifications
         if(categoryId == '' || categoryId == null){
+            // res.status(200).send({
+            //     message: 'Hello, quanti'
+            // });
             categoryId = 1;
         }
         //Checks on quantity. If no quantity is indicated, it is assumed that quantity added is 1.

@@ -24,19 +24,19 @@ let routes = (app) => {
 
   app.post('/api/users/signin', userController.signin);
 
-  app.post('/api/books/', bookController.addBook);
+  app.post('/api/books/', checkLogin, bookController.addBook);
   
-  //app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
+  app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
 
-  app.put('/api/books/:bookId', bookController.editBook);
+  app.put('/api/books/:bookId', checkLogin, checkUser, bookController.editBook);
 
-  app.get('/api/books/', bookController.getBooks);
+  app.get('/api/books/', checkLogin, bookController.getBooks);
 
-  app.post('/api/users/:userId/books/', borrowLogController.borrowBook);
+  app.post('/api/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
 
-  app.get('/api/users/:userId/books/', borrowLogController.getPendingBooks);
+  app.get('/api/users/:userId/books/', checkLogin, borrowLogController.getPendingBooks);
 
-  app.put('/api/users/:userId/books/', borrowLogController.returnBook);
+  app.put('/api/users/:userId/books/', checkLogin, borrowLogController.returnBook);
 
 
 

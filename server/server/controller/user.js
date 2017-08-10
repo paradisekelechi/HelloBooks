@@ -45,6 +45,14 @@ export default {
         return;
     }
 
+    if(password == null || password == '' || password == undefined){
+        res.status(400).send({
+            success: false,
+            message: 'Oops! Password is required!'
+        });
+        return;
+    }
+
     //Encrypt password using bcrypt js 
     bcrypt.hash(password, salt, (err, hashedPassword) => {
         return User
@@ -57,13 +65,18 @@ export default {
             user_type_id: 1,
             account_type_id: 1
         })
-        .then(user => res.status(200).send({
-            message: 'User Account Creation Successful',
-            success: true
-        }))
+        .then(user => {
+            //token generated
+            const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60}); 
+            res.status(200).send({    
+                message: 'User Account Creation Successful',
+                token: token,
+                success: true
+            })
+        })
         .catch(error => res.status(400).send({
             success: false,
-            message: 'Oops! User account not created'
+            message: 'Oops! User account already exists'
         }));
     })    
   },
@@ -106,8 +119,7 @@ export default {
                     res.status(200).send({
                         success: true,
                         message: 'User credentials accurate ',
-                        token: token, 
-                        user
+                        token: token
                     });
                 }else{
                     res.status(400).send({
