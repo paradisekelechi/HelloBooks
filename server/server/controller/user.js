@@ -74,10 +74,7 @@ export default {
                 success: true
             })
         })
-        .catch(error => res.status(400).send({
-            success: false,
-            message: 'Oops! User account already exists'
-        }));
+        .catch(error => res.status(400).send(error));
     })    
   },
 
