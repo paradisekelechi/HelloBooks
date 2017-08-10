@@ -67,12 +67,21 @@ export default {
         })
         .then(user => {
             //token generated
-            //const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
-            res.status(200).send({    
-                message: 'User Account Creation Successful',
-                token: token,
-                success: true
-            })
+            const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
+            if(user){
+                    res.status(200).send({    
+                    message: 'User Account Creation Successful',
+                    token: token,
+                    success: true
+                })
+            }else{
+                    res.status(400).send({    
+                    message: 'User account not created',
+                    token: token,
+                    success: true
+                })
+            }
+            
         })
         .catch(error => res.status(400).send(error));
     })    
