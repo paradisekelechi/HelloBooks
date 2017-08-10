@@ -4,7 +4,7 @@
   "description": "Backend code for hello-books application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon  ./bin/www --exec babel-node --presets env ",
+    "start:dev": "nodemon  ./server/bin/www --exec babel-node --presets env ",
     "test": "mocha server/test/* --compilers js:babel-register",
     "start": "./node_modules/.bin/babel-node ./server/bin/www.js"
   },

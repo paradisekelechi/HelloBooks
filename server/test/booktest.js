@@ -56,7 +56,6 @@ describe('Unit test for Book routes ', () => {
         .end((err, res) => {
             res.status.should.equal(400);
             res.body.success.should.equal(false);
-            res.body.should.have.property('message');
             res.body.message.should.equal('Oops, book name cannot be null');
             res.body.should.have.property('success');
             done(err);
