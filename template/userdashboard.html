@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>HelloBooks | Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="Kelechi" content="">
+<html lang="en">
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dashboard</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href="css/c3.css" rel="stylesheet">
@@ -16,13 +21,14 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
     
     <link href="css/dashboard.css" rel="stylesheet">
+        
 
 </head>
-<body class="full-page">
 
-	<div id="wrapper" class="active">  
-    <!-- Sidebar -->
-      <!-- Navigation -->
+
+<body>
+
+    <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,15 +45,18 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav pull-right">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="userdashboard.html">Dashboard</a>
                     </li>
                     <li>
-                        <a href="userdashboard.html">Books</a>
-                    </li>
-                    <li>
-                        <a href="profile.html">Profile</a>
+                        <a href="userbooks.html">Books</a>
                     </li>
                     
+                    <li>
+                        <a href="userprofile.html">Profile</a>
+                    </li>
+                    <li>
+                        <a href="index.html"><button class="btn">Logout</button></a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -55,126 +64,190 @@
         <!-- /.container -->
     </nav>
 
-      <!-- Page content -->
-      <div class="container">
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Client User</h3>
+                <small>Basic user of the application</small>
+            </div>
+            <div class="col-md-6">
+                <h3 style="text-align: right">Book borrow and transaction records</h3>
+            </div>
+        </div>
 
-      	<div class="row">
-      		<div class="col-md-12">
-      			<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
-			        <thead>
-			            <tr>
-			            	<th>S/N</th>
-			                <th width="10%">Name</th>
-			                <th>Tag</th>
-			                <th width="45%">Description</th>
-			                <th>Cover</th>
-			                <th>Category</th>
-			                <th>Status</th>
-			                <th>Quantity</th>
-			                <th>Action</th>
-			            </tr>
-			        </thead>
-			        <tfoot>
-			        	<tr>
-			                <td>1</td>
-			                <td>Half Of A Yellow Sun</td>
-			                <td>NCA004</td>
-			                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			                tempor incididunt ut labore </td>
-			                <td><img src="img/hys.png" width="250px" class="img img-responsive"></td>
-			                <td>Novel</td>
-			                <td>Available</td>
-			                <td>12</td>
-			                <td><a href="borrow.html"><button class="btn btn-success">Borrow</button></a></td>
-			            </tr>
+        <div class="row chartRow">
 
-			            <tr>
-			                <td>2</td>
-			                <td>Purple Hibiscus</td>
-			                <td>NCA002</td>
-			                <td>Loamet, consectetur adipisicing elit, sed do eiusmod
-			                tempor incididunt ut labore </td>
-			                <td><img src="img/ph.jpg" width="250px" class="img img-responsive"></td>
-			                <td>Novel</td>
-			                <td>Unavailable</td>
-			                <td>0</td>
-			                <td><button class="btn btn-danger">Borrow</button></td>
-			            </tr>
-			            <tr>
-			                <td>3</td>
-			                <td>Half Of A Yellow Sun</td>
-			                <td>NCA004</td>
-			                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			                tempor incididunt ut labore </td>
-			                <td><img src="img/hys.png" width="250px" class="img img-responsive"></td>
-			                <td>Novel</td>
-			                <td>Available</td>
-			                <td>12</td>
-			                <td><a href="borrow.html"><button class="btn btn-success">Borrow</button></a></td>
-			            </tr>
+            <div class="col-md-3">
+                <div class="tiles">
+                    <div class="col-md-4">
+                        <div class="tile-data">
+                            <h1>10</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tile-data">
+                            <h2>My Books</h2>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="tiles">
+                    <div class="col-md-4">
+                        <div class="tile-data">
+                            <h1>5</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tile-data">
+                            <h2>Books Returned</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="tiles">
+                    <div class="col-md-4">
+                        <div class="tile-data">
+                            <h1>10</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tile-data">
+                            <h2>Books Borrowed</h2>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="tiles">
+                    <div class="col-md-4">
+                        <div class="tile-data">
+                            <h1>100</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="tile-data">
+                            <h2>Books Available</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			            <tr>
-			                <td>4</td>
-			                <td>Purple Hibiscus</td>
-			                <td>NCA002</td>
-			                <td>Loamet, consectetur adipisicing elit, sed do eiusmod
-			                tempor incididunt ut labore </td>
-			                <td><img src="img/ph.jpg" width="250px" class="img img-responsive"></td>
-			                <td>Novel</td>
-			                <td>Unavailable</td>
-			                <td>0</td>
-			                <td><button class="btn btn-danger">Borrow</button></td>
-			            </tr>
-			            <tr>
-			                <td>5</td>
-			                <td>Half Of A Yellow Sun</td>
-			                <td>NCA004</td>
-			                <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			                tempor incididunt ut labore </td>
-			                <td><img src="img/hys.png" width="250px" class="img img-responsive"></td>
-			                <td>Novel</td>
-			                <td>Available</td>
-			                <td>12</td>
-			                <td><a href="borrow.html"><button class="btn btn-success">Borrow</button></a></td>
-			            </tr>
+        <div class="row chartRow">
+            <div class="col-md-12">
+                <p>Book borrow history</p>
+                <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th width="10%">Name</th>
+                            <th>Tag</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Date Borrowed</th>
+                            <th>Return Date</th>
+                            
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td>1</td>
+                            <td>Half Of A Yellow Sun</td>
+                            <td>NCA004</td>
+                            <td>Novel</td>
+                            <td>Returned</td>
+                            <td>10/03/2017</td>
+                            <td>12/05/2017</td>
+                            
+                        </tr>
 
-			            <tr>
-			                <td>6</td>
-			                <td>Purple Hibiscus</td>
-			                <td>NCA002</td>
-			                <td>Loamet, consectetur adipisicing elit, sed do eiusmod
-			                tempor incididunt ut labore </td>
-			                <td><img src="img/ph.jpg" width="250px" class="img img-responsive"></td>
-			                <td>Novel</td>
-			                <td>Unavailable</td>
-			                <td>0</td>
-			                <td><button class="btn btn-danger">Borrow</button></td>
-			            </tr>
-			            
-			        </tbody>
-			    </table>
-      		</div>
-      	</div>
+                        <tr>
+                            <td>2</td>
+                            <td>Purple Hibiscus</td>
+                            <td>NCA002</td>
+                            <td>Novel</td>
+                            <td>Returned</td>
+                            <td>12/07/2017</td>
+                            <td>12/08/2017</td>
+                            
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
     </div>
-      
-</div>
+    <!-- /.container -->
 
-    <script type="text/javascript">
-    	$(document).ready(function(){
-    		$('.carousel').carousel();
-			$('.carousel').carousel({
-				interval: 1000
-			});
-			$('#example').DataTable();
-    	});
-    	
+    
+    <!-- jQuery Version 1.11.1 -->
+    <script src="js/jquery.js"></script>
+
+    
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/c3/0.4.4/c3.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#bookTable').DataTable();
+        } );
     </script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-	<script src="assets/js/styles.js"></script>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        var chart = c3.generate({
+            bindto: '#bookChart',
+            data: {
+                columns: [
+                    ['Available Books', 40],
+                    ['Unavailable Books', 120],
+                ],
+                type : 'pie' 
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#userChart',
+            data: {
+              columns: [
+                ['Active Users', 30, 200, 100, 400, 150, 250],
+                ['Inactive Users', 50, 20, 10, 40, 15, 25]
+              ]
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#accountChart',
+            data: {
+                columns: [
+                    ['Platinum Account', 40],
+                    ['Gold Account', 10],
+                    ['Silver Account', 10],
+                ],
+                type : 'donut' 
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#userCategoryChart',
+            data: {
+                columns: [
+                    ['Admin ', 20],
+                    ['Client ', 60],
+                ],
+                type : 'donut' 
+            }
+        });
+    </script>
 
 </body>
+
+
+
 </html>

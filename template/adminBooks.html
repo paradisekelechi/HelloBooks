@@ -46,13 +46,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav pull-right">
                     <li>
-                        <a href="dashboard">Dashboard</a>
+                        <a href="dashboard.html">Dashboard</a>
                     </li>
                     <li>
                         <a href="adminBooks.html">Books</a>
                     </li>
                     <li>
                         <a href="profile.html">Profile</a>
+                    </li>
+                    <li>
+                        <a href="index.html"><button class="btn">Logout</button></a>
                     </li>
                 </ul>
             </div>
@@ -65,113 +68,267 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-3">
-                <div class="book-image-wrap">
-                    
-                </div>
+            <div class="col-md-6">
+                <h3>Admin User</h3>
+                <small>Administrative user of the application</small>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table id="example" class="table table-striped table-bordered dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
-                    <thead>
-                        <tr role="row">
-                            <th tabindex="0" aria-controls="example" rowspan="1" colspan="1"  style="width: 256px;">#</th>
-                            <th tabindex="0" aria-controls="example" rowspan="1" colspan="1"  style="width: 256px;">Name</th>
-                            <th  tabindex="0" aria-controls="example" rowspan="1" colspan="1"  style="width: 154px;">Tag</th>
-                            <th  tabindex="0" aria-controls="example" rowspan="1" colspan="1"  style="width: 197px;">Category</th>
-                            <th  tabindex="0" aria-controls="example" rowspan="1" colspan="1"  style="width: 197px;">Quantity</th>
-                            <th  tabindex="0" aria-controls="example" rowspan="1" colspan="1"  style="width: 399px;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr role="row" class="odd">
-                            <td>1</td>
-                            <td>$1,200,000</td>
-                            <td class="sorting_1">Airi Satou</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td>2</td>
-                            <td>$1,200,000</td>
-                            <td class="sorting_1">Angelica Ramos</td>
-                            <td>Chief Executive Officer (CEO)</td>
-                            <td>London</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td>3</td>
-                            <td>$1,200,000</td><td class="sorting_1">Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td>4</td>
-                            <td>$1,200,000</td><td class="sorting_1">Bradley Greer</td>
-                            <td>Software Engineer</td>
-                            <td>London</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td>5</td>
-                            <td>$1,200,000</td><td class="sorting_1">Brenden Wagner</td>
-                            <td>Software Engineer</td>
-                            <td>San Francisco</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                        <tr role="row" class="even">
-                            <td>6</td>
-                            <td>$1,200,000</td><td class="sorting_1">Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                            <td>7</td>
-                            <td>$1,200,000</td>
-                            <td class="sorting_1">Bruno Nash</td>
-                            <td>Software Engineer</td>
-                            <td>London</td>
-                            <td>
-                                <span><button class="btn btn-responsive btn-success">View</button></span>
-                                <span><button class="btn btn-responsive btn-primary">Edit</button></span>
-                                <span><button class="btn btn-responsive btn-danger">Delete</button></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-md-6">
+                <h3 style="text-align: right">List of all the books in the library</h3>
+                <button class="btn btn-block" data-toggle="modal" data-target="#addModal">Add New Book</button>
             </div>
         </div>
 
+        <div class="row chartRow">
+
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book2.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="col-md-3">
+                <div class="book-tiles">
+                    <div class="col-md-12">
+                        <div class="book-image">
+                            <img class="img img-fluid img-responsive center-image" width="170px" src="img/book1.jpg">
+                            <h4>Half Of A Yellow Sun</h4>
+                            <small><b>Prose work by Chimamanda Adichie</b></small>
+                            <button class="btn btn-block btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+        </div>
+
+        <div class="row chartRow">
+            <div class="col-md-3 pull-right">
+                <button class="btn btn-block"> Next Page</button>
+            </div>
+        </div>
+
+        
     </div>
-    <!-- /.container -->
+
+    <!-- Modal -->
+    <div id="editModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Edit Book</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="image-borrow">
+                            <img class="img img-responsive" src="img/hys.png">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="about-info-p">
+                            <strong>Book Name</strong>
+                            <br>
+                            <p class="text-muted">Half Of a Yellow Sun</p>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Book Author</strong>
+                            <br>
+                            <p class="text-muted">Ngozi Adichie</p>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Quantity</strong>
+                            <br>
+                            <input type="text" name="password" value="7" class="validate[required] form-control">
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Description</strong>
+                            <br>
+                            <input type="text" name="password" value="A world class book" class="validate[required] form-control">
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Category</strong>
+                            <br>
+                            <select>
+                                <option>Choose Category</option>
+                                <option selected>Novel</option>
+                                <option>Documentary</option>
+                                <option>Others</option>
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default">Edit</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="addModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add New Book</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="about-info-p">
+                            <strong>Book Name</strong>
+                            <br>
+                            <input type="text" name="password" class="validate[required] form-control">
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Book Author</strong>
+                            <br>
+                            <input type="text"  class="validate[required] form-control">
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Description</strong>
+                            <br>
+                            <input type="text" class="validate[required] form-control">
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Category</strong>
+                            <br>
+                            <select>
+                                <option>Choose Category</option>
+                                <option>Novel</option>
+                                <option>Documentary</option>
+                                <option>Others</option>
+                            </select>
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Quantity</strong>
+                            <br>
+                            <input type="text" name="password" value="7" class="validate[required] form-control">
+                            <br>
+                        </div>
+                        <div class="about-info-p">
+                            <strong>Book Cover</strong>
+                            <br>
+                            <input type="file" class="validate[required] form-control">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default">Create Book</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row" style="background-color: #000; color:#fff; padding: 15px">
+            <div class="col-md-12" style="text-align:center">
+                <p>HelloBooks Application</p>
+            </div>
+        </div>
+    </div>
+        
 
     
     <!-- jQuery Version 1.11.1 -->

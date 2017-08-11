@@ -8,11 +8,40 @@ body {
 }
 .chartRow{
 	margin-top: 7%;
+	margin-bottom: 7%;
 }
 
 .chartBox{
-	background-color: rgba(0, 0, 0, 0.16);
+	background-color: rgba(0, 0, 0, 0.76);
 	padding: 15px;
 	margin: 15px;
 	border-radius: 10px 0px;
+}
+.tile-data{
+	padding: 10px;
+}
+.tiles{
+	background-color: rgba(0, 0, 0, 0.76);
+	min-height: 120px;
+	color: #fff;
+	border-radius: 10px 0px;
+	margin-top: 10px;
+
+}
+
+.book-tiles{
+}
+
+.book-image{
+	background-color: rgba(0, 0, 0, 0.76);
+	min-height: 120px;
+	color: #fff;
+	border-radius: 10px 0px;
+	margin-top: 25px;
+	padding: 10px;
+	text-align: center;
+}
+
+.center-image{
+	margin: 0 auto;
 }

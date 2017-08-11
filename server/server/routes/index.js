@@ -20,35 +20,35 @@ let routes = (app) => {
     message: 'Welcome to Hello Books library',
   }));
 
-  app.post('/api/users/signup', userController.signup);
+  app.post('/api/v1/users/signup', userController.signup);
 
-  app.post('/api/users/signin', userController.signin);
+  app.post('/api/v1/users/signin', userController.signin);
 
-  app.post('/api/books/', checkLogin, bookController.addBook);
+  app.post('/api/v1/books/', checkLogin, bookController.addBook);
   
-  app.post('/api/books/', checkLogin, checkUser, bookController.addBook);
+  app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
 
-  app.put('/api/books/:bookId', checkLogin, checkUser, bookController.editBook);
+  app.put('/api/v1/books/:bookId', checkLogin, checkUser, bookController.editBook);
 
-  app.get('/api/books/', checkLogin, bookController.getBooks);
+  app.get('/api/v1/books/', checkLogin, bookController.getBooks);
 
-  app.post('/api/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
+  app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
 
-  app.get('/api/users/:userId/books/', checkLogin, borrowLogController.getPendingBooks);
+  app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getPendingBooks);
 
-  app.put('/api/users/:userId/books/', checkLogin, borrowLogController.returnBook);
+  app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);
 
 
 
   //urls for internal process - book categories, usertype and acccounttype
-  app.post('/api/category/', bookCategoryController.addCategory);
-  app.get('/api/category/', bookCategoryController.getCategories);
+  app.post('/api/v1/category/', bookCategoryController.addCategory);
+  app.get('/api/v1/category/', bookCategoryController.getCategories);
 
-  app.post('/api/usertype/', userTypeController.addUserType);
-  app.get('/api/usertype/', userTypeController.getUserTypes);
+  app.post('/api/v1/usertype/', userTypeController.addUserType);
+  app.get('/api/v1/usertype/', userTypeController.getUserTypes);
 
-  app.post('/api/accounttype/', accountTypeController.addAccountType);
-  app.get('/api/accounttype/', accountTypeController.getAccountTypes);
+  app.post('/api/v1/accounttype/', accountTypeController.addAccountType);
+  app.get('/api/v1/accounttype/', accountTypeController.getAccountTypes);
 };
 
 export default routes;
