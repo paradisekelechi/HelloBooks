@@ -7,6 +7,8 @@ import * as testConstants from './testdata';
 
 let expect = chai.expect();
 const assert = chai.assert;
+const username = testConstants.username;
+const password = testConstants.password;
 
 
 
@@ -16,9 +18,9 @@ describe('Unit test for signin and signup routes ', () => {
         supertest(app).post('/api/v1/users/signup')
         .set('user-token', testConstants.user_token)
         .send({
-            username: testConstants.username,
+            username: username,
             email: testConstants.email,
-            password: testConstants.password
+            password: password
         })
         .end((err, res) => {
             assert.equal(res.statusCode, 200);
@@ -33,7 +35,7 @@ describe('Unit test for signin and signup routes ', () => {
         .set('user-token', testConstants.user_token)
         .send({
             email: testConstants.email,
-            password: testConstants.password
+            password: password
         })
         .end((err, res) => {
             assert.equal(res.statusCode, 400);
@@ -46,8 +48,8 @@ describe('Unit test for signin and signup routes ', () => {
         supertest(app).post('/api/v1/users/signup')
         .set('user-token', testConstants.user_token)
         .send({
-            username: testConstants.username,
-            password: testConstants.password
+            username: username,
+            password: password
         })
         .end((err, res) => {
             assert.equal(res.statusCode, 400);
@@ -60,8 +62,8 @@ describe('Unit test for signin and signup routes ', () => {
         supertest(app).post('/api/v1/users/signin')
         .set('user-token', testConstants.user_token)
         .send({
-            username: testConstants.username,
-            password: testConstants.password
+            username: username,
+            password: password
         })
         .end((err, res) => {
             assert.equal(res.statusCode, 200);
