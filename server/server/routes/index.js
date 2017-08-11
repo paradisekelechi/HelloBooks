@@ -51,7 +51,7 @@ let routes = (app) => {
 
   app.get('/api/v1/users/:userId/books/', borrowLogController.getBorrowedBooks);
 
-  app.put('/api/v1/users/:userId/books/', borrowLogController.returnBook);
+  app.put('/api/v1/users/:userId/books/',  borrowLogController.returnBook);
 
 
   //urls for internal process - book categories, usertype and acccounttype
