@@ -1,3 +1,4 @@
+https://travis-ci.org/paradiskelechi/HelloBooks.svg?branch=master
 # HelloBooks
 
 HelloBooks is an online book library and management application. Hello Books is aimed at handling the individual processes that take place in the library, from the borrowing of books to the return of books. This in turn handles inventory management of the book stock in the library effectively. 
@@ -63,10 +64,6 @@ npm run test
 * Express Js – Fast, minimalistic web framework for Node.js (https://expressjs.com)
 * Sequelize – A promise-based ORM for Node.js v4 and up. It supports the dialects PostgreSQL, MySQL, SQLite and MSSQL. (http://docs.sequelizejs.com)
 * Postgresql – An open source database (https://www.postgresql.org/)
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
