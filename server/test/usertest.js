@@ -67,7 +67,7 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .end((err, res) => {
             assert.equal(res.statusCode, 200);
-            assert.equal(res.body.success, false);
+            assert.equal(res.body.success, true);
             done();
         });
     });
