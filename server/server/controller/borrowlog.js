@@ -259,7 +259,7 @@ export default {
      * @param {Request} req 
      * @param {Response} res 
      */
-    getPendingBooks(req, res){
+    getBorrowedBooks(req, res){
         let userId = req.params.userId;
         let isReturned = req.query.returned;
 
@@ -271,34 +271,67 @@ export default {
             return;
         }
 
-        return BorrowLog
-        .findAll({
-            include: [
-                {model: models.User},
-                {model: models.Book}
-            ],
-            where: {
-                returned: isReturned,
-                user_id: userId
-            }
-        })
-        .then(booklog => {
-            if(booklog.length != 0){
-                res.status(200).send({
-                    success: true,
-                    message: 'You have pending books!',
-                    booklog
-                })
-            }else{
-                res.status(200).send({
-                    success: true,
-                    message: 'You have no unreturned/pending books!',
-                    booklog
-                })
-            }
-            
-        })
-        .catch(error => res.status(400).send(error));
+        if(isReturned == null){
+            return BorrowLog
+            .findAll({
+                include: [
+                    {model: models.User},
+                    {model: models.Book}
+                ],
+                where: {
+                    user_id: userId
+                }
+            })
+            .then(booklog => {
+                if(booklog.length != 0){
+                    res.status(200).send({
+                        success: true,
+                        message: 'You have borrowed some books!',
+                        booklog
+                    })
+                }else{
+                    res.status(400).send({
+                        success: true,
+                        message: 'You have not borrowed any book!',
+                        booklog
+                    })
+                }
+                
+            })
+            .catch(error => res.status(400).send(error));
+
+        }else{
+            return BorrowLog
+            .findAll({
+                include: [
+                    {model: models.User},
+                    {model: models.Book}
+                ],
+                where: {
+                    returned: isReturned,
+                    user_id: userId
+                }
+            })
+            .then(booklog => {
+                if(booklog.length != 0){
+                    res.status(200).send({
+                        success: true,
+                        message: 'You have pending books!',
+                        booklog
+                    })
+                }else{
+                    res.status(200).send({
+                        success: true,
+                        message: 'You have no unreturned/pending books!',
+                        booklog
+                    })
+                }
+                
+            })
+            .catch(error => res.status(400).send(error));
+        }
+
+        
     }
 
 };
