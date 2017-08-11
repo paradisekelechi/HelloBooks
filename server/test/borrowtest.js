@@ -25,7 +25,6 @@ describe('Unit test for borrow and return routes ', () => {
         })
         .expect(200)
         .end((err, res) => {
-            res.status.should.equal(200);
             res.body.should.have.property('success');
             res.body.success.should.equal(true);
             res.body.should.have.property('message');
@@ -46,7 +45,6 @@ describe('Unit test for borrow and return routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
@@ -66,7 +64,6 @@ describe('Unit test for borrow and return routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
@@ -87,7 +84,6 @@ describe('Unit test for borrow and return routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
@@ -108,7 +104,6 @@ describe('Unit test for borrow and return routes ', () => {
         })
         .expect(200)
         .end((err, res) => {
-            res.status.should.equal(200);
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
@@ -129,7 +124,6 @@ describe('Unit test for borrow and return routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.should.have.property('success');
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
@@ -147,7 +141,6 @@ describe('Unit test for borrow and return routes ', () => {
         .set('user-token', testConstants.user_token )
         .expect(200)
         .end((err, res) => {
-            res.status.should.equal(200);
             res.body.should.have.property('success');
             res.body.success.should.equal(true);
             res.body.should.have.property('message');

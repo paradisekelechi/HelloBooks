@@ -25,7 +25,6 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .expect(200)
         .end((err, res) => {
-            res.status.should.equal(200);
             res.body.success.should.equal(true);
             done(err);
         });
@@ -48,7 +47,6 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.success.should.equal(false);
             res.body.message.should.equal('Oops! Username is required!');
             done(err);
@@ -68,7 +66,6 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.success.should.equal(false);
             res.body.should.have.property('message');
             done(err);
@@ -89,7 +86,6 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .expect(200)
         .end((err, res) => {
-            res.status.should.equal(200);
             done(err);
         });
     });
@@ -106,7 +102,6 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.should.have.property('message');
             done(err);
         });
@@ -124,7 +119,6 @@ describe('Unit test for signin and signup routes ', () => {
         })
         .expect(400)
         .end((err, res) => {
-            res.status.should.equal(400);
             res.body.should.have.property('message');
             done(err);
         });
