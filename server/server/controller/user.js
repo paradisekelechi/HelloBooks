@@ -67,7 +67,7 @@ export default {
         })
         .then(user => {
             //token generated
-            const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
+            const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type, account_type: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
             if(user){
                 res.status(200).send({    
                 message: 'User Account Creation Successful',
@@ -118,8 +118,9 @@ export default {
         if(user){
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
+                    console.log(success);
                     //token generated
-                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.usertype, accounttype: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40});
+                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type_id, accounttype: user.account_type_id}, secret, {expiresIn: 24 * 60 * 60 * 40});
                     
                     //token and user details sent to the user
                     res.status(200).send({

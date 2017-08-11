@@ -17,8 +17,8 @@ let checkLogin = (req, res, next) => {
                     });
                     return next();
                 }else{
-                    let userType = decoded.usertype;
-                    let accountType = decoded.accounttype;
+                    req.userType = decoded.usertype;
+                    req.accountType = decoded.accounttype;
                     next();
                 }
             }
