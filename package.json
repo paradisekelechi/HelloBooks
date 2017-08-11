@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon  ./server/bin/www --exec babel-node --presets env ",
+    "test": "mocha server/test/* --compilers js:babel-register",
     "start": "./node_modules/.bin/babel-node ./server/bin/www.js"
   },
   "author": "",

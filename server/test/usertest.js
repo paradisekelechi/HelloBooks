@@ -6,121 +6,69 @@ import app from '../app.js';
 import * as testConstants from './testdata';
 
 let expect = chai.expect();
+const assert = chai.assert;
 
-//Define the API url
-const api = supertest('http://localhost:4000');
 
 
 describe('Unit test for signin and signup routes ', () => {
-    /**
-     * Signup: Test if user with credentials can signup
-     */
-    it('SIGNUP: User should be able signup successfully', (done) => {
-        api.post('/api/users/signup')
-        .set('Accept', 'application/x-www-form-urlencoded')
+    
+    it('User signup test', (done)=>{
+        supertest(app).post('/api/v1/users/signup')
+        .set('user-token', testConstants.user_token)
         .send({
             username: testConstants.username,
             email: testConstants.email,
             password: testConstants.password
         })
-        .expect(200)
         .end((err, res) => {
-            res.body.success.should.equal(true);
-            done(err);
+            assert.equal(res.statusCode, 200);
+            assert.equal(res.body.success, true);
+            done();
         });
     });
 
 
-    /**
-     * Signup: Test if user with incomplete credentials (username) can signup
-     * username: ''
-     * email: 'newemail@email.com'
-     * password: 'newpassword'
-     */
-    it('SIGNUP: User should not be able signup successfully', (done) => {
-        api.post('/api/users/signup')
-        .set('Accept', 'application/x-www-form-urlencoded')
+    it('User signup test', (done)=>{
+        supertest(app).post('/api/v1/users/signup')
+        .set('user-token', testConstants.user_token)
         .send({
-            username: '',
             email: testConstants.email,
             password: testConstants.password
         })
-        .expect(400)
         .end((err, res) => {
-            res.body.success.should.equal(false);
-            res.body.message.should.equal('Oops! Username is required!');
-            done(err);
+            assert.equal(res.statusCode, 400);
+            assert.equal(res.body.success, false);
+            done();
         });
-    })
+    });
 
-    /**
-     * Signup: Test if user with incomplete credentials (email) can signup
-     */
-    it('SIGNUP: User should not be able signup successfully', (done) => {
-        api.post('/api/users/signup')
-        .set('Accept', 'application/x-www-form-urlencoded')
+    it('User signup test', (done)=>{
+        supertest(app).post('/api/v1/users/signup')
+        .set('user-token', testConstants.user_token)
         .send({
             username: testConstants.username,
-            email: '',
             password: testConstants.password
         })
-        .expect(400)
         .end((err, res) => {
-            res.body.success.should.equal(false);
-            res.body.should.have.property('message');
-            done(err);
-        });
-    })
-
-
-
-    /**
-     * Signin: Unit test for User signin with complete parameters
-     */
-    it('SIGNIN: User should be able to signin successfully', (done) => {
-        api.post('/api/users/signin')
-        .set('Accept', 'application/x-www-form-urlencoded')
-        .send({
-            username: testConstants.signinUsername,
-            password: testConstants.signinPassword,
-        })
-        .expect(200)
-        .end((err, res) => {
-            done(err);
+            assert.equal(res.statusCode, 400);
+            assert.equal(res.body.success, false);
+            done();
         });
     });
 
-    /**
-     * Signin: Unit test for User signin incomplete parameters
-     */
-    it('SIGNIN: User should be not be able to signin successfully', (done) => {
-        api.post('/api/users/signin')
-        .set('Accept', 'application/x-www-form-urlencoded')
+    it('User signin test', (done)=>{
+        supertest(app).post('/api/v1/users/signin')
+        .set('user-token', testConstants.user_token)
         .send({
-            username: '',
-            password: testConstants.signinPassword,
+            username: testConstants.username,
+            password: testConstants.password
         })
-        .expect(400)
         .end((err, res) => {
-            res.body.should.have.property('message');
-            done(err);
+            assert.equal(res.statusCode, 200);
+            assert.equal(res.body.success, false);
+            done();
         });
     });
 
-    /**
-     * Signin: Unit test for User signin incomplete parameters
-     */
-    it('SIGNIN: User should be not be able to signin successfully', (done) => {
-        api.post('/api/users/signin')
-        .set('Accept', 'application/x-www-form-urlencoded')
-        .send({
-            username: testConstants.signinUsername,
-            password: ''
-        })
-        .expect(400)
-        .end((err, res) => {
-            res.body.should.have.property('message');
-            done(err);
-        });
-    });
+    
 });

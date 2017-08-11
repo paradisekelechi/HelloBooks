@@ -34,7 +34,7 @@ let routes = (app) => {
 
   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
 
-  app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getPendingBooks);
+  app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
 
   app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);
 
