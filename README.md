@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/paradiskelechi/HelloBooks.svg?branch=master)](https://travis-ci.org/paradiskelechi/HelloBooks)
+[![Build Status](https://travis-ci.org/paradiskelechi/HelloBooks.svg?branch=development)](https://travis-ci.org/paradiskelechi/HelloBooks)
 # HelloBooks
 
 HelloBooks is an online book library and management application. Hello Books is aimed at handling the individual processes that take place in the library, from the borrowing of books to the return of books. This in turn handles inventory management of the book stock in the library effectively. 
