@@ -1,4 +1,4 @@
-"use strict";
+
 import chai from 'chai';
 import should from 'should';
 import supertest from 'supertest';

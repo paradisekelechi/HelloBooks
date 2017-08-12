@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "nodemon  ./server/bin/www --exec babel-node --presets env ",
     "test": "mocha server/test/* --compilers js:babel-register",
-    "start": "./node_modules/.bin/babel-node ./server/bin/www.js"
+    "start": "./node_modules/.bin/babel-node ./server/bin/www.js",
+    "report-coverage": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "chai": "^4.1.1",
+    "coveralls": "^2.13.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.2",
@@ -50,6 +52,7 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.24.1",
+    "coveralls": "^2.13.1",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
