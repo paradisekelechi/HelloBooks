@@ -119,7 +119,7 @@ describe('Unit test for Book routes ', () => {
         });
     });
 
-    it('Get Book', (done)=>{
+    it('Get Books', (done)=>{
         supertest(app).get('/api/v1/books/')
         .set('user-token', testConstants.user_token)
         .send()
