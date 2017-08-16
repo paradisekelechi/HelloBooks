@@ -11,7 +11,7 @@ export const signinPassword = 'password';
 export const token = '';
 
 //Test data for book borrow and return processes
-export const bookId = 9;
+export const bookId = 1;
 export const userId = 1;
 
 export const bookIdFinished = 1 ;

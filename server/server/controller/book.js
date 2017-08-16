@@ -157,7 +157,7 @@ export default {
             categoryId = parseInt(categoryId);
         }
 
-        image = validator.trim(image);
+        image = validator.trim(image+'');
 
         return Book
         .create({
