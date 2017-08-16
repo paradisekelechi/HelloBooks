@@ -6,7 +6,7 @@ const AccountType = models.AccountType;
 const BookCategory = models.BookCategory;
 
 //Initialize Account type db data
-AccountType.create({
+  AccountType.create({
     name: 'SILVER',
     description: 'A new user of the application',
     level: 1,
@@ -27,7 +27,7 @@ AccountType.create({
 
   
   //Initialize Usertype database data
-UserType.create({
+  UserType.create({
     name: 'USER',
     description: 'A basic user of the application',
     level: 1,

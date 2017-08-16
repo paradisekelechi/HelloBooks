@@ -17,6 +17,9 @@ export default (sequelize, DataTypes) => {
     quantity: {
       type: DataTypes.INTEGER,
     },
+    borrowed: {
+      type: DataTypes.BOOLEAN,
+    },
     deleted: {
       type: DataTypes.BOOLEAN,
       isNull: false,

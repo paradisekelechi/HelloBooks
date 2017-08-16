@@ -4,12 +4,21 @@ export default (sequelize, DataTypes) => {
   let User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      notNull: true,
-      unique: true,
+      notNull: {
+        args: true,
+        msg: 'Username is required'
+      },
+      unique: {
+        args: true,
+        msg: 'Username must be unique'
+      }
     },
     email: {
       type: DataTypes.STRING,
-      notNull: true,
+      allowNull: {
+        args: false,
+        msg: 'Email is required'
+      },
       unique: true,
     },
     password: {

@@ -6,9 +6,11 @@
   "scripts": {
     "start:dev": "nodemon  ./server/bin/www --exec babel-node --presets env ",
     "test": "mocha server/test/* --compilers js:babel-register",
+    "initialize:db": "babel-node server/server/scripts/initialize.js",
     "start": "./node_modules/.bin/babel-node ./server/bin/www.js",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "cover": "istanbul cover _mocha"
   },
   "author": "",
   "license": "ISC",
@@ -44,7 +46,9 @@
     "randomstring": "^1.1.5",
     "sequelize": "^4.4.2",
     "should": "^11.2.1",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "validation": "0.0.1",
+    "validator": "^8.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -59,6 +63,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
+    "istanbul": "^0.4.5",
     "nodemon": "^1.11.0"
   }
 }

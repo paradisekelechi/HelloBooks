@@ -9,6 +9,7 @@ export default (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING,
+      notNull: true,
     },
     level: {
       type: DataTypes.INTEGER,
@@ -21,6 +22,6 @@ export default (sequelize, DataTypes) => {
   {
     freezeTableName: true,
   });
-  
+
   return AccountType;
 };

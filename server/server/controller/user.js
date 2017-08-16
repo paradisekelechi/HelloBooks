@@ -5,6 +5,8 @@ const User = models.User;
 import dotenv from 'dotenv';
 const config = dotenv.config();
 
+import validator from 'validator';
+
 import jwt from 'jsonwebtoken';
 //Secret for authentication -- to be added to the environment as a variable
 const secret = config.parsed.SECRET;
@@ -20,40 +22,46 @@ export default {
     let email  = req.body.email;
     let password = req.body.password;
 
-    if(username == null || username == '' || username == undefined){
+    if(validator.isEmpty(username+'') || username == null){
         res.status(400).send({
             success: false,
-            message: 'Oops! Username is required!'
+            message: 'Username is required'
         });
         return;
+    }else{
+        username = validator.trim(username+'');
     }
     
-    if(email == null || email == '' || email == undefined){
+    if(validator.isEmpty(email+'') || email == null){
         res.status(400).send({
             success: false,
-            message: 'Oops! Email is required!'
+            message: 'Email is required'
+        });
+        return;
+    }else{
+        email = validator.trim(email+'');
+    }
+
+    if(validator.isEmpty(password+'') || password == null){
+        res.status(400).send({
+            success: false,
+            message: 'Password is required'
+        });
+        return;
+    }else{
+        password = validator.trim(password+'');
+    }
+
+    if(!validator.isEmail(email+'')){
+        res.status(400).send({
+            success: false,
+            message: 'Enter a valid email address'
         });
         return;
     }
 
-    const emailRegExp = /\S+@\S+\.\S+/;
-    if(emailRegExp.test(email) == false){
-        res.status(400).send({
-            success: false,
-            message: 'Oops! Enter a valid email address!'
-        });
-        return;
-    }
 
-    if(password == null || password == '' || password == undefined){
-        res.status(400).send({
-            success: false,
-            message: 'Oops! Password is required!'
-        });
-        return;
-    }
-
-    //Encrypt password using bcrypt js 
+    
     bcrypt.hash(password, salt, (err, hashedPassword) => {
         return User
         .create({
@@ -83,26 +91,47 @@ export default {
             }
             
         })
-        .catch(error => res.status(400).send(error));
-    })    
+        .catch(  error => {
+            if(error.name == 'SequelizeUniqueConstraintError'){
+                if(error.fields.username){
+                    res.status(400).send({
+                        success: false,
+                        message: 'Username already exists'
+                    });
+                }
+
+                if(error.fields.email){
+                    res.status(400).send({
+                        success: false,
+                        message: 'Email is required'
+                    });
+                }
+            }else{
+                res.status(503).send({
+                    success: false,
+                    message: 'Service unavailable'
+                });
+            }
+        });
+    });   
   },
 
   signin(req, res) {
     let username = req.body.username;
     let password = req.body.password;
 
-    if(username == null || username == '' || username == undefined){
+    if(validator.isEmpty(username+'')){
         res.status(400).send({
             success: false,
-            message: 'Oops! Username is required!'
+            message: 'Username is required'
         });
         return;
     }
-    
-    if(password == null || password == '' || password == undefined){
+
+    if(validator.isEmpty(password+'')){
         res.status(400).send({
             success: false,
-            message: 'Oops! Password is required!'
+            message: 'Password is required'
         });
         return;
     }
@@ -146,6 +175,195 @@ export default {
           message: 'Oops! User does not exist',
           success: false
       }));
+  },
+
+  getUsers(req, res){
+      return User
+      .findAll({
+          where: {
+              deleted: false,
+          }
+      })
+        .then(users => {
+            res.status(200).send(users);
+        })
+        .catch(error => {
+            res.status.send({
+                success: false,
+                message: 'Users list not obtained'
+            });
+        })
+  },
+
+  getUsersByUserType(req, res){
+      let userTypeId = req.body.usertypeid;
+
+      if(userTypeId == null){
+          res.status(400).send({
+              success: false,
+              message: 'Usertypeid is required'
+          });
+        return;
+      }
+
+      return User
+      .findAll({
+          where: {
+              deleted: false,
+              user_type_id: userTypeId
+          }
+      })
+        .then(users => {
+            res.status(200).send(users);
+        })
+        .catch(error => {
+            res.status.send({
+                success: false,
+                message: 'Users list not obtained'
+            });
+        })
+  },
+
+  getUsersByAccountType(req, res){
+      let accountTypeId = req.body.accounttypeid;
+
+      if(accountTypeId == null){
+          res.status(400).send({
+              success: false,
+              message: 'Accounttypeid is required'
+          });
+      }
+
+      return User
+      .findAll({
+          where: {
+              deleted: false,
+              account_type_id: accountTypeId
+          }
+      })
+        .then(users => {
+            res.status(200).send(users);
+        })
+        .catch(error => {
+            res.status.send({
+                success: false,
+                message: 'Users list not obtained'
+            });
+        })
+  },
+
+  editUser(req, res){
+      let password = req.body.password;
+      let userTypeId = req.body.usertypeid;
+      let accountTypeId = req.body.accounttypeid;
+      let imageUrl = req.body.imageurl;
+      let userId = req.params.userId;
+
+      if(userId == null){
+          res.status(400).send({
+              success: false,
+              message: 'User Id is required'
+          });
+        return;
+      }
+      
+      return User
+      .update({
+        user_type_id: userTypeId,
+        account_type_id: accountTypeId,
+        image: imageUrl
+      },{
+        where: {
+            id: userId
+        }
+      })
+      .then(user => {
+          res.status(200).send({
+              success: true,
+              message: 'User successfully updated'
+          });
+      })
+      .catch(error => {
+          res.status(200).send({
+              success: false,
+              message: 'User not successfully updated'
+          });
+      })
+  },
+
+  editPassword(req, res){
+      let password = req.body.password;
+      let userId = req.params.userId;
+      if(userId == null){
+          res.status(400).send({
+              success: false,
+              message: 'User Id is required'
+          });
+        return;
+      }
+
+      if(validator.isEmpty(password+'') || password == null){
+          res.status(400).send({
+              success: false,
+              message: 'Password is required'
+          });
+            return;
+      }
+
+      bcrypt.hash(password, salt, (err, hashedPassword) => {
+        return User
+        .update({
+            password: hashedPassword
+        },{
+            where: {
+                id: userId
+            }
+        })
+        .then(user => {
+            res.status(200).send({
+                success: true,
+                message: 'Password successfully updated'
+            });
+        })
+        .catch(error => {
+            res.status(200).send({
+                success: false,
+                message: 'Password not successfully updated'
+            });
+        }); 
+      });
+  },
+
+  deleteUser(req, res){
+      let userId = req.params.userId;
+      if(userId == null){
+          res.status(400).send({
+              success: false,
+              message: 'User Id is required'
+          });
+        return;
+      }
+
+      return User
+      .update({
+        deleted: true,
+      },{
+        where: {
+            id: userId
+        }
+      })
+      .then(user => {
+          res.status(200).send({
+              success: true,
+              message: 'User successfully deleted'
+          });
+      })
+      .catch(error => {
+          res.status(200).send({
+              success: false,
+              message: 'User not successfully deleted'
+          });
+      })
   },
 
 };

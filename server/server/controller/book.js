@@ -1,11 +1,95 @@
 import models from '../models';
+import validator from 'validator';
 const Book = models.Book;
 
 export default {
     //view all books in the library
     getBooks(req, res) {
         return Book
-        .findAll({
+        .findAll(
+            {
+                where:{
+                    deleted: false,
+                }
+            },
+            {
+            include: [{
+                model: models.BookCategory,
+            }],
+        })
+        .then(book => res.status(200).send({
+            success: true,
+            message: 'Books obtained successfully',
+            book
+        }))
+        .catch(error => res.status(400).send(error));
+    },
+
+    //view all books in the library by category
+    getBookByCategory(req, res) {
+        let categoryId = req.body.categoryId;
+
+        if(categoryId == null){
+            res.status(200).send({
+                success: false,
+                message: 'Book category Id is required'
+            });
+            return;
+        }
+        return Book
+        .findAll(
+            {
+                where: {
+                    category_id: categoryId,
+                    deleted: false
+                }
+            },
+            {
+            include: [{
+                model: models.BookCategory,
+            }],
+        })
+        .then(book => res.status(200).send({
+            success: true,
+            message: 'Books obtained successfully',
+            book
+        }))
+        .catch(error => res.status(400).send(error));
+    },
+
+    getFinishedBooks(req, res) {
+        return Book
+        .findAll(
+            {
+                where:{
+                    deleted: false,
+                    quantity: 0
+                }
+            },
+            {
+            include: [{
+                model: models.BookCategory,
+            }],
+        })
+        .then(book => res.status(200).send({
+            success: true,
+            message: 'Books obtained successfully',
+            book
+        }))
+        .catch(error => res.status(400).send(error));
+    },
+
+    getBooksByBorrowStatus(req, res) {
+        let borrowStatus = req.query.borrowed;
+        return Book
+        .findAll(
+            {
+                where:{
+                    deleted: false,
+                    borrowed: borrowed
+                }
+            },
+            {
             include: [{
                 model: models.BookCategory,
             }],
@@ -24,36 +108,56 @@ export default {
         let description = req.body.description;
         let categoryId = req.body.categoryId;
         let quantity = req.body.quantity;
+        let image = req.body.image;
+
+        
 
         //checks if the name is undefined or null and insists on it
-        if(name == null || name == '' || name == undefined){
+        if(validator.isEmpty(name+'') || name == null){
             res.status(400).send({
                 success: false,
-                message: 'Oops, book name cannot be null'
+                message: 'Book name is required'
             });
             return;
+        }else{
+            name = validator.trim(name+'');
         }
 
         //checks if the author is undefined or null and insists on it
-        if(author == null || author == '' || author == undefined){
+        if(validator.isEmpty(author+'') || author == null){
             res.status(400).send({
                 success: false,
-                message: 'Oops, author cannot be null'
+                message: 'Book author is required'
             });
             return;
+        }else{
+            author = validator.trim(author+'');
         }
 
-        //Checks the category. If none is specified, the book is categorized as OTHERS with id 1. This is subject to modifications
-        if(categoryId == '' || categoryId == null){
-            // res.status(200).send({
-            //     message: 'Hello, quanti'
-            // });
-            categoryId = 1;
+
+        //checks if the quantity is empty or null and insists on it
+        if(validator.isEmpty(quantity+'') || quantity == null){
+            res.status(400).send({
+                success: false,
+                message: 'Quantity is required'
+            });
+            return;
+        }else{
+            quantity = parseInt(quantity);
         }
-        //Checks on quantity. If no quantity is indicated, it is assumed that quantity added is 1.
-        if(quantity == null || quantity == ''){
-            quantity = 1;
+
+        //checks if the categoryId is empty or null and insists on it
+        if(validator.isEmpty(categoryId+'') || categoryId == null){
+            res.status(400).send({
+                success: false,
+                message: 'Category is required'
+            });
+            return;
+        }else{
+            categoryId = parseInt(categoryId);
         }
+
+        image = validator.trim(image);
 
         return Book
         .create({
@@ -61,6 +165,8 @@ export default {
             description: description,
             author: author,
             quantity: quantity,
+            cover: image,
+            borrowed: false,
             deleted: false,
             category_id: categoryId
         })
@@ -82,7 +188,6 @@ export default {
         let quantity = req.body.quantity;
         let categoryId = req.body.categoryId;
         let bookId = req.params.bookId;
-        console.log(bookId);
         let bookCover = req.body.image;
 
         if(bookId == null || bookId == 0 || bookId == undefined){

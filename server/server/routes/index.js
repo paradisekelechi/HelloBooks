@@ -53,15 +53,24 @@ let routes = (app) => {
 
   app.put('/api/v1/users/:userId/books/',  borrowLogController.returnBook);
 
+  app.get('/api/v1/users', userController.getUsers);
 
-  //urls for internal process - book categories, usertype and acccounttype
+  app.put('/api/v1/users/:userId/password', userController.editPassword);
+
+  app.put('/api/v1/users/:userId/', userController.editUser);
+
+  app.delete('/api/v1/users/:userId/', userController.deleteUser);
+
   app.post('/api/v1/category/', bookCategoryController.addCategory);
+  
   app.get('/api/v1/category/', bookCategoryController.getCategories);
 
   app.post('/api/v1/usertype/', userTypeController.addUserType);
+  
   app.get('/api/v1/usertype/', userTypeController.getUserTypes);
 
   app.post('/api/v1/accounttype/', accountTypeController.addAccountType);
+  
   app.get('/api/v1/accounttype/', accountTypeController.getAccountTypes);
 };
 

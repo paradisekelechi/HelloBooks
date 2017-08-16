@@ -5,6 +5,10 @@ import bookcategory from './bookcategory';
 import usertype from './usertype';
 import accounttype from './accounttype';
 
+
+/**
+ * Export all the controllers in this folder
+ */
 export default {
     user, 
     book,
