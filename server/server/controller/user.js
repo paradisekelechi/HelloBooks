@@ -70,6 +70,7 @@ export default {
             password: hashedPassword,
             active: true,
             deleted: false,
+            use_count: 0,
             user_type_id: 1,
             account_type_id: 1
         })
@@ -148,6 +149,7 @@ export default {
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
                     console.log(success);
+
                     //token generated
                     const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type_id, accounttype: user.account_type_id}, secret, {expiresIn: 24 * 60 * 60 * 40});
                     
@@ -365,5 +367,4 @@ export default {
           });
       })
   },
-
 };
