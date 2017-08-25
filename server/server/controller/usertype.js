@@ -1,5 +1,5 @@
 import models from '../models';
-import validator from 'validation';
+import validator from 'validator';
 const UserType = models.UserType;
 
 /**
@@ -19,8 +19,16 @@ export default {
                 deleted: false
             }
         })
-        .then(usertype => res.status(201).send(usertype))
-        .catch(error => res.status(400).send(error));
+        .then(usertype => {
+            res.status(200).send({
+                success: true,
+                message: 'Usertypes gotten successfully',
+                usertype
+            })
+        })
+        .catch(error => {
+            res.status(400).send(error)
+        });
     },
 
     /**
@@ -66,7 +74,8 @@ export default {
         })
         .then(usertype => {
             res.send({
-                msg: 'Usertype added successfully'
+                message: 'Usertype added successfully',
+                success: true
             });
         })
         .catch(error => res.status(400).send(error));

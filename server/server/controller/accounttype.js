@@ -1,5 +1,5 @@
 import models from '../models';
-import validator from 'validation';
+import validator from 'validator';
 const AccountType = models.AccountType;
 
 export default {
@@ -17,8 +17,18 @@ export default {
                 deleted: false
             }
         })
-        .then(accounttype => res.status(201).send(accounttype))
-        .catch(error => res.status(400).send(error));
+        .then(accounttype => {
+            res.status(200).send(
+                {
+                    success: true,
+                    message: 'Account types gotten', 
+                    accounttype
+                }
+            )
+        })
+        .catch(error => {
+            res.status(400).send(error)
+        });
     },
 
     /**
@@ -63,8 +73,9 @@ export default {
             deleted: false,
         })
         .then(accounttype => {
-            res.send({
-                msg: 'Accounttype added successfully'
+            res.status(200).send({
+                message: 'Accounttype added successfully',
+                success: true
             });
         })
         .catch(error => res.status(400).send(error));

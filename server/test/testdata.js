@@ -1,5 +1,7 @@
 import randomstring from 'just.randomstring';
 
+//Random data
+export const randomData = randomstring().substring(0, 8);
 
 //Test data for user signin and signup
 export const username = randomstring().substring(0, 8);
@@ -13,6 +15,7 @@ export const token = '';
 //Test data for book borrow and return processes
 export const bookId = 1;
 export const userId = 1;
+export const deleteUserId = 2;
 
 export const bookIdFinished = 1 ;
 export const bookIdUnborrowed = 80;

@@ -55,6 +55,10 @@ let routes = (app) => {
 
   app.get('/api/v1/users', userController.getUsers);
 
+  app.get('/api/v1/users/accounttype/:accountTypeId', userController.getUsersByAccountType);
+
+  app.get('/api/v1/users/usertype/:userTypeId', userController.getUsersByUserType);
+
   app.put('/api/v1/users/:userId/password', userController.editPassword);
 
   app.put('/api/v1/users/:userId/', userController.editUser);

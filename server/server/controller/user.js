@@ -78,6 +78,8 @@ export default {
             //token generated
             const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type, account_type: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
             if(user){
+                
+                
                 res.status(200).send({    
                 message: 'User Account Creation Successful',
                 token: token,
@@ -198,7 +200,7 @@ export default {
   },
 
   getUsersByUserType(req, res){
-      let userTypeId = req.body.usertypeid;
+      let userTypeId = req.params.userTypeId;
 
       if(userTypeId == null){
           res.status(400).send({
@@ -219,7 +221,7 @@ export default {
             res.status(200).send(users);
         })
         .catch(error => {
-            res.status.send({
+            res.status(400).send({
                 success: false,
                 message: 'Users list not obtained'
             });
@@ -227,7 +229,7 @@ export default {
   },
 
   getUsersByAccountType(req, res){
-      let accountTypeId = req.body.accounttypeid;
+      let accountTypeId = req.params.accountTypeId;
 
       if(accountTypeId == null){
           res.status(400).send({
