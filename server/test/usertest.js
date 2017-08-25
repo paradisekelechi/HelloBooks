@@ -14,7 +14,7 @@ const password = testConstants.password;
 
 describe('Unit test for signin and signup routes ', () => {
     
-    it('User signup test', (done)=>{
+    it('User signup test1', (done)=>{
         supertest(app).post('/api/v1/users/signup')
         .set('user-token', testConstants.user_token)
         .send({
@@ -30,7 +30,7 @@ describe('Unit test for signin and signup routes ', () => {
     });
 
 
-    it('User signup test', (done)=>{
+    it('User signup test2', (done)=>{
         supertest(app).post('/api/v1/users/signup')
         .set('user-token', testConstants.user_token)
         .send({
@@ -45,7 +45,7 @@ describe('Unit test for signin and signup routes ', () => {
         });
     });
 
-    it('User signup test', (done)=>{
+    it('User signup test3', (done)=>{
         supertest(app).post('/api/v1/users/signup')
         .set('user-token', testConstants.user_token)
         .send({
@@ -60,7 +60,7 @@ describe('Unit test for signin and signup routes ', () => {
         });
     });
 
-    it('User signup test', (done)=>{
+    it('User signup test4', (done)=>{
         supertest(app).post('/api/v1/users/signup')
         .set('user-token', testConstants.user_token)
         .send({

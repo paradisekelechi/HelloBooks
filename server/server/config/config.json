@@ -9,11 +9,7 @@
     "dialect": "postgres"
   },  
   "test": {
-     "username": "postgres",
-    "password": "",
-    "database": "travis",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "logging": false
+    "use_env_variable": "postgres://vrjfhcrl:Bnh3v4OMvhNcDnLqyR09Z2Z0WkKc3Qw1@stampy.db.elephantsql.com:5432/vrjfhcrl",
+    "dialect": "postgres"
   }
 }

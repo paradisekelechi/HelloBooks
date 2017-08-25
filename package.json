@@ -4,10 +4,10 @@
   "description": "Backend code for hello-books application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon  ./server/bin/www --exec babel-node --presets env ",
-    "test": "nyc mocha server/test/* --compilers js:babel-register",
+    "start:dev": "set NODE_ENV=development && nodemon  ./server/bin/www --exec babel-node --presets env ",
+    "test": "set NODE_ENV=test && nyc mocha server/test/* --timeout 15000 --compilers js:babel-register",
     "initialize:db": "babel-node server/server/scripts/initialize.js",
-    "start": "./node_modules/.bin/babel-node ./server/bin/www.js",
+    "start": "set NODE_ENV=production && ./node_modules/.bin/babel-node ./server/bin/www.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls "
   },
   "author": "",

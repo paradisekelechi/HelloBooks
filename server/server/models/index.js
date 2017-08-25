@@ -4,9 +4,9 @@ import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 import dbConfig from '../config/config.json';
-process.env.NODE_ENV = 'development';
+
 const basename  = path.basename(module.filename);
-const env       = process.env.NODE_ENV;
+const env       = 'development';
 const config    = dbConfig[env];
 const db        = {};
 
@@ -24,7 +24,7 @@ fs
   })
   .forEach((file) => {
     let model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
+    db[model.name] = model; 
   });
 
 Object.keys(db).forEach((modelName) => {
