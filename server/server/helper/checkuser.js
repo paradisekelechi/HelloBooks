@@ -1,8 +1,6 @@
 
 let checkUser = (req, res, next) => {
-    console.log(req.userType);
     const userType = req.userType;
-    console.log(userType);
     //Check if usertype exists
     if(userType){
         if(userType != 2){

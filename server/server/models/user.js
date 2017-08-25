@@ -29,6 +29,9 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       notNull: false,
     },
+    use_count:{
+      type: DataTypes.INTEGER,
+    },
     active: {
       type: DataTypes.BOOLEAN,
     },

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 const config = dotenv.config();
 
 let checkLogin = (req, res, next) => {
-    //const authenticator = req.headers.authorization;
+    
     const token = req.body.token || req.headers['user-token'];
 
     //Check if token is sent
