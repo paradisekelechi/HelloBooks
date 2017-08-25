@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import Sequelize from 'sequelize';
 import dbConfig from '../config/config.json';
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 const basename  = path.basename(module.filename);
 const env       = process.env.NODE_ENV;
 const config    = dbConfig[env];

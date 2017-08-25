@@ -5,10 +5,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "andela",
-    "password": "andela",
-    "database": "hellobooks",
-    "host": "127.0.0.1",
+    "use_env_variable": "postgres://kcnqwqfd:Mc8twJz_ImB06mBjSl-4E3Vvn296rEjU@pellefant.db.elephantsql.com:5432/kcnqwqfd",
     "dialect": "postgres"
   },  
   "test": {
@@ -18,13 +15,5 @@
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false
-  },
-  "test_local": {
-    "username": "andela",
-   "password": "andela",
-   "database": "hellobooks",
-   "host": "127.0.0.1",
-   "dialect": "postgres",
-   "logging": false
- }
+  }
 }
