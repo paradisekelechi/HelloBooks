@@ -13,6 +13,7 @@ const borrowLogController = controllers.borrowlog;
 const userTypeController = controllers.usertype;
 const accountTypeController = controllers.accounttype;
 const bookCategoryController = controllers.bookcategory;
+const emailController = controllers.email;
 
 let routes = (app) => {
   
@@ -76,6 +77,7 @@ let routes = (app) => {
   app.post('/api/v1/accounttype/', accountTypeController.addAccountType);
   
   app.get('/api/v1/accounttype/', accountTypeController.getAccountTypes);
+  
 };
 
 export default routes;

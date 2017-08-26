@@ -2,6 +2,9 @@
 import models from '../models';
 import validator from 'validator';
 import dotenv from 'dotenv';
+import emailController from './email.js';
+const notification = emailController.notification;
+
 
 const config = dotenv.config();
 const BorrowLog = models.BorrowLog;
@@ -98,6 +101,7 @@ export default {
                                         success: true,
                                         message: 'Book borrowed successfully'
                                     }),
+                                    notification('Book borrowed successfully', 'pkelechi@seamfix.com', 'Hello Books')
                                 )
                                 .catch(error => res.status(400).send({
                                     success: false,
@@ -221,7 +225,8 @@ export default {
                                     res.status(200).send({
                                         success: true,
                                         message: 'Book returned successfully'
-                                    })
+                                    }),
+                                    notification('Book returned successfully', 'pkelechi@seamfix.com', 'Hello Books')
                                 })
                                 .catch(error => {
                                     res.status(400).send(error)

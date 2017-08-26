@@ -41,6 +41,7 @@
     "node-cron": "^1.2.1",
     "node-mocks-http": "^1.6.4",
     "node-schedule": "^1.2.4",
+    "nodemailer": "^4.0.1",
     "nodemon": "^1.11.0",
     "nyc": "^11.1.0",
     "pg": "^7.1.0",
