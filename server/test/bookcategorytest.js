@@ -10,14 +10,14 @@ const assert = chai.assert;
 
 
 
-describe('Unit test for Usertype routes ', () => {
-    it('Add User Type', (done)=>{
-        supertest(app).post('/api/v1/usertype')
+describe('Unit test for Book Category routes ', () => {
+    it('Add Category Type', (done)=>{
+        supertest(app).post('/api/v1/category')
         .set('user-token', testConstants.admin_token)
         .send({
             name: testConstants.randomData,
             description: testConstants.randomData,
-            level: 1
+            abbreviation: 'RND'
         })
         .end((err, res) => {
             assert.equal(res.statusCode, 400);
@@ -26,8 +26,8 @@ describe('Unit test for Usertype routes ', () => {
     });
 
     
-    it('Get User types', (done)=>{
-        supertest(app).get('/api/v1/usertype/')
+    it('Get Book categories', (done)=>{
+        supertest(app).get('/api/v1/category/')
         .set('user-token', testConstants.user_token)
         .send()
         .end((err, res) => {

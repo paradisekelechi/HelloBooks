@@ -6,8 +6,20 @@ export default {
     getCategories(req, res) {
         return BookCategory
         .findAll()
-        .then(bookcategory => res.status(201).send(bookcategory))
-        .catch(error => res.status(400).send(error));
+        .then(bookcategory => {
+            res.status(200).send({
+                success: true,
+                message: 'Book category successfully gotten',
+                bookcategory
+            });
+        })
+        .catch(error => {
+            res.status(400).send({
+                success: false,
+                message: 'Book category not successfully gotten',
+                error
+            });
+        });
     },
 
     addCategory(req, res){
@@ -22,10 +34,17 @@ export default {
             deleted: false,
         })
         .then(bookcategory => {
-            res.send({
-                msg: 'Category added successfully'
+            res.status(200).send({
+                message: 'Book category added',
+                success: true
             });
         })
-        .catch(error => res.status(400).send(error));
+        .catch(error => {
+            res.status(400).send({
+                message: 'Book cactegory not added',
+                success: false,
+                error
+            })
+        });
     },    
 };
