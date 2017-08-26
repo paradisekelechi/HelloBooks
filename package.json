@@ -8,7 +8,8 @@
     "test": "set NODE_ENV=test && nyc mocha server/test/* --timeout 15000 --compilers js:babel-register",
     "initialize:db": "babel-node server/server/scripts/initialize.js",
     "start": "set NODE_ENV=production && ./node_modules/.bin/babel-node ./server/bin/www.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls "
+    "coverage": "nyc report --reporter=text-lcov | coveralls ",
+    "codeclimate:report": "recink run unit -c codeclimate"
   },
   "author": "",
   "license": "ISC",
@@ -45,6 +46,7 @@
     "pg": "^7.1.0",
     "pg-hstore": "^2.3.2",
     "randomstring": "^1.1.5",
+    "recink-codeclimate": "^1.5.5",
     "sequelize": "^4.4.2",
     "should": "^11.2.1",
     "supertest": "^3.0.0",
