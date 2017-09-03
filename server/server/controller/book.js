@@ -27,7 +27,7 @@ export default {
 
     //view all books in the library by category
     getBookByCategory(req, res) {
-        let categoryId = req.body.categoryId;
+        let categoryId = req.params.categoryId;
 
         if(categoryId == null){
             res.status(200).send({

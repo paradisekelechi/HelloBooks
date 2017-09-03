@@ -129,4 +129,15 @@ describe('Unit test for Book routes ', () => {
             done();
         });
     });
+
+    it('Get Books by category', (done)=>{
+        supertest(app).get('/api/v1/books/category/2')
+        .set('user-token', testConstants.user_token)
+        .send()
+        .end((err, res) => {
+            assert.equal(res.statusCode, 200);
+            assert.equal(res.body.success, true);
+            done();
+        });
+    });
 });

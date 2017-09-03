@@ -48,6 +48,8 @@ let routes = (app) => {
 
   app.get('/api/v1/books/', bookController.getBooks);
 
+  app.get('/api/v1/books/category/:categoryId', bookController.getBooks);
+
   app.post('/api/v1/users/:userId/books/', borrowLogController.borrowBook);
 
   app.get('/api/v1/users/:userId/books/', borrowLogController.getBorrowedBooks);
