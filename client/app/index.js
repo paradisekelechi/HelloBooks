@@ -1,29 +1,32 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {BrowserRouter,  Route, Switch} from 'react-router-dom';
+import {Login} from './components/authentication/Login';
+//import Header from './components/main/Header';
+import {Dashboard} from './components/main/Dashboard';
+
+class BaseLayout extends React.Component{
+    render(){
+        return(
+            <div>
+                <Switch>
+                    <Route path="/" exact component={Login} />
+                    <Route path="/dashboard" component={Dashboard} />
+                </Switch>
+            </div>
+        );
+    }
+}
+
 
 class App extends React.Component{
     render(){
         return (
-            <div >
-                <span >HelloBooks</span>
-            </div>
+            <BrowserRouter history={browserHistory}>
+                <BaseLayout/>
+            </BrowserRouter>
         );
     }
 }
 
-class Logo extends React.Component {
-
-    componentWillMount(){
-        console.log('Logo mounting');
-    }
-
-    render(){
-        return(
-            <div className="col m12" >
-                <span className="brand-logo" >HelloBooks</span>
-            </div>
-        );
-    }
-}
-
-render (<Logo />, window.document.getElementById('login-logo'));
+render (<Login/>, window.document.getElementById('root'));
