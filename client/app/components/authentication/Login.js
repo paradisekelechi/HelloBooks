@@ -41,8 +41,8 @@ export  class Login extends React.Component{
                         <br/>
                         </div>
                         <div  className="col s12">
-                        <br/>
-                        <button   className="waves-effect waves-light btn col s12 blue darken-3">Register</button>
+                            <br/>
+                            <button   className="waves-effect waves-light btn col s12 blue darken-3">Register</button>
                         </div>
 
                     </div>
