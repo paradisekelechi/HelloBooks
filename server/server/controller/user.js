@@ -1,36 +1,35 @@
-//Import User model
-import models from '../models'
+// Import User  model  
+import dotenv from 'dotenv';
+import validator from 'validator';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
+import models from '../models';
+
+//  import  User from '../models';
 const User = models.User;
 
-import dotenv from 'dotenv';
 const config = dotenv.config();
+const empty = '';
 
-import validator from 'validator';
-
-import jwt from 'jsonwebtoken';
-//Secret for authentication -- to be added to the environment as a variable
+//  Secret for authentication -- to be added to the environment as a variable
 const secret = config.parsed.SECRET;
-
-//import  User from '../models';
-import bcrypt from 'bcrypt';
 const salt = bcrypt.genSaltSync(10);
-
 
 export default {
   signup(req, res) {
     let username = req.body.username;
-    let email  = req.body.email;
+    let email = req.body.email;
     let password = req.body.password;
 
-    if(validator.isEmpty(username+'') || username == null){
+    if (validator.isEmpty(`username  ${empty}`) || username == null) {
         res.status(400).send({
             success: false,
             message: 'Username is required'
         });
         return;
-    }else{
-        username = validator.trim(username+'');
     }
+    username = validator.trim(username+'');
     
     if(validator.isEmpty(email+'') || email == null){
         res.status(400).send({
@@ -38,9 +37,8 @@ export default {
             message: 'Email is required'
         });
         return;
-    }else{
-        email = validator.trim(email+'');
     }
+    email = validator.trim(email+'');
 
     if(validator.isEmpty(password+'') || password == null){
         res.status(400).send({
