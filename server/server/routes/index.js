@@ -17,9 +17,6 @@ const emailController = controllers.email;
 
 let routes = (app) => {
   
-  app.get('/api', (req, res) => res.status(200).send({
-    message: 'Welcome to Hello Books library',
-  }));
 
   app.post('/api/v1/users/signup', userController.signup);
 
@@ -47,6 +44,8 @@ let routes = (app) => {
   app.put('/api/v1/books/:bookId', bookController.editBook);
 
   app.get('/api/v1/books/', bookController.getBooks);
+
+  app.get('/api/v1/books/category/:categoryId', bookController.getBooks);
 
   app.post('/api/v1/users/:userId/books/', borrowLogController.borrowBook);
 
