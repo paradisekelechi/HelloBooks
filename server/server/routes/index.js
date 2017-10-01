@@ -22,36 +22,32 @@ let routes = (app) => {
 
   app.post('/api/v1/users/signin', userController.signin);
 
-  // app.post('/api/v1/books/', checkLogin, bookController.addBook);
-  
-  // app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
+  app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
 
-  // app.put('/api/v1/books/:bookId', checkLogin, checkUser, bookController.editBook);
+  app.put('/api/v1/books/:bookId', checkLogin, checkUser, bookController.editBook);
 
-  // app.get('/api/v1/books/', checkLogin, bookController.getBooks);
+  app.get('/api/v1/books/', checkLogin, bookController.getBooks);
 
-  // app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
+   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
 
-  // app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
+   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
 
-  // app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);
+   app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);
 
 
-  app.post('/api/v1/books/', bookController.addBook);
-  
-  app.post('/api/v1/books/', bookController.addBook);
+  //app.post('/api/v1/books/', bookController.addBook);
 
-  app.put('/api/v1/books/:bookId', bookController.editBook);
+  //app.put('/api/v1/books/:bookId', bookController.editBook);
 
-  app.get('/api/v1/books/', bookController.getBooks);
+  //app.get('/api/v1/books/', bookController.getBooks);
 
-  app.get('/api/v1/books/category/:categoryId', bookController.getBooks);
+  //app.get('/api/v1/books/category/:categoryId', bookController.getBooks);
 
-  app.post('/api/v1/users/:userId/books/', borrowLogController.borrowBook);
+  //app.post('/api/v1/users/:userId/books/', borrowLogController.borrowBook);
 
-  app.get('/api/v1/users/:userId/books/', borrowLogController.getBorrowedBooks);
+  //app.get('/api/v1/users/:userId/books/', borrowLogController.getBorrowedBooks);
 
-  app.put('/api/v1/users/:userId/books/',  borrowLogController.returnBook);
+  //app.put('/api/v1/users/:userId/books/',  borrowLogController.returnBook);
 
   app.get('/api/v1/users', userController.getUsers);
 

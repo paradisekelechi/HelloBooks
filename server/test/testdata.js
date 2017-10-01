@@ -1,7 +1,13 @@
 import randomstring from 'just.randomstring';
+import dotenv from 'dotenv';
+const envConfig = dotenv.config().parsed;
 
 //Random data
 export const randomData = randomstring().substring(0, 8);
+
+export const userToken = envConfig.USERTOKEN;
+conosle.log(envConfig.ADMINTOKEN);
+export const adminToken = envConfig.ADMINTOKEN;
 
 //Test data for user signin and signup
 export const username = randomstring().substring(0, 8);

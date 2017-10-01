@@ -13,7 +13,6 @@ const assert = chai.assert;
 describe('Unit test for Book routes ', () => {
     it('Add Book1', (done)=>{
         supertest(app).post('/api/v1/books')
-        .set('user-token', testConstants.admin_token)
         .send({
             token: testConstants.admin_token,
             name: testConstants.bookName,
@@ -31,9 +30,8 @@ describe('Unit test for Book routes ', () => {
 
     it('Add Book', (done)=>{
         supertest(app).post('/api/v1/books')
-        .set('user-token', testConstants.admin_token)
         .send({
-            token: testConstants.admin_token,
+            token: testConstants.adminToken,
             author: testConstants.bookAuthor,
             description: testConstants.bookDescription,
             categoryId: testConstants.bookCategoryId,
@@ -49,9 +47,8 @@ describe('Unit test for Book routes ', () => {
 
     it('Add Book', (done)=>{
         supertest(app).post('/api/v1/books')
-        .set('user-token', testConstants.admin_token)
         .send({
-            token: testConstants.admin_token,
+            token: testConstants.adminToken,
             name: testConstants.bookName,
             description: testConstants.bookDescription,
             categoryId: testConstants.bookCategoryId,
@@ -67,7 +64,6 @@ describe('Unit test for Book routes ', () => {
 
     it('Add Book', (done)=>{
         supertest(app).post('/api/v1/books')
-        .set('user-token', testConstants.admin_token)
         .send({
             token: testConstants.admin_token,
             name: testConstants.bookName,

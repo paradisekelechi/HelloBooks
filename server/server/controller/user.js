@@ -151,7 +151,7 @@ export default {
                     console.log(success);
 
                     //token generated
-                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type_id, accounttype: user.account_type_id}, secret, {expiresIn: 24 * 60 * 60 * 40});
+                    const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type_id, accounttype: user.account_type_id}, secret, {expiresIn: 24 * 3600 * 3600 * 40});
                     
                     //token and user details sent to the user
                     res.status(200).send({
