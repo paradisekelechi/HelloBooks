@@ -49,29 +49,29 @@ let routes = (app) => {
 
   //app.put('/api/v1/users/:userId/books/',  borrowLogController.returnBook);
 
-  app.get('/api/v1/users', userController.getUsers);
+  app.get('/api/v1/users', checkLogin, checkUser, userController.getUsers);
 
-  app.get('/api/v1/users/accounttype/:accountTypeId', userController.getUsersByAccountType);
+  app.get('/api/v1/users/accounttype/:accountTypeId', checkLogin, checkUser, userController.getUsersByAccountType);
 
-  app.get('/api/v1/users/usertype/:userTypeId', userController.getUsersByUserType);
+  app.get('/api/v1/users/usertype/:userTypeId', checkLogin, checkUser, userController.getUsersByUserType);
 
-  app.put('/api/v1/users/:userId/password', userController.editPassword);
+  app.put('/api/v1/users/:userId/password', checkLogin, userController.editPassword);
 
-  app.put('/api/v1/users/:userId/', userController.editUser);
+  app.put('/api/v1/users/:userId/', checkLogin, userController.editUser);
 
-  app.delete('/api/v1/users/:userId/', userController.deleteUser);
+  app.delete('/api/v1/users/:userId/', checkLogin, checkUser, userController.deleteUser);
 
-  app.post('/api/v1/category/', bookCategoryController.addCategory);
+  app.post('/api/v1/category/', checkLogin, checkUser, bookCategoryController.addCategory);
   
-  app.get('/api/v1/category/', bookCategoryController.getCategories);
+  app.get('/api/v1/category/', checkLogin, checkUser, bookCategoryController.getCategories);
 
-  app.post('/api/v1/usertype/', userTypeController.addUserType);
+  app.post('/api/v1/usertype/', checkLogin, checkUser, userTypeController.addUserType);
   
-  app.get('/api/v1/usertype/', userTypeController.getUserTypes);
+  app.get('/api/v1/usertype/', checkLogin, checkUser, userTypeController.getUserTypes);
 
-  app.post('/api/v1/accounttype/', accountTypeController.addAccountType);
+  app.post('/api/v1/accounttype/', checkLogin, checkUser, accountTypeController.addAccountType);
   
-  app.get('/api/v1/accounttype/', accountTypeController.getAccountTypes);
+  app.get('/api/v1/accounttype/', checkLogin, checkUser, accountTypeController.getAccountTypes);
   
 };
 
