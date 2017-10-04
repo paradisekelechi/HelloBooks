@@ -1,11 +1,10 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 
-export class Dashboard extends React.Component{
-    render(){
-        return(
-            <div>
-               <div className="custom-nav">
+export const Navigation = (props) => {
+    return(
+        <div>
+           <div className="custom-nav">
                     <ul id="slide-out" className="side-nav fixed">
                     <span className="dashboard-logo brand-logo">HelloBooks</span>
                     <div className="container">
@@ -26,8 +25,7 @@ export class Dashboard extends React.Component{
                     
                     </ul>
                 </div>
-                <a href="#" data-activates="slide-out" className="button-collapse account-slideout account-info"><i className="material-icons">menu</i></a> 
-            </div>
-        );
-    }
+                <a href="#" data-activates="slide-out" className="button-collapse account-slideout account-info"><i className="material-icons">menu</i></a>
+        </div>
+    );
 }
