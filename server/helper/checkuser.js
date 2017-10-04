@@ -8,7 +8,8 @@ let checkUser = (req, res, next) => {
                 status: false,
                 message: 'Oops! User not authorized'
             });
-            return next();
+            return;
+            next();
         }else{
             req.userType = 'ADMIN';
             next();
@@ -18,7 +19,8 @@ let checkUser = (req, res, next) => {
             status: false,
             message: 'User type is not available'
         });
-        return next();
+        return;
+        next();
     }
 }
 

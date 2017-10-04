@@ -15,16 +15,18 @@ let checkLogin = (req, res, next) => {
                         success: false,
                         message: 'Oops, user authentication failed!'
                     });
-                    return next();
+                    return;
+                    next();
                 }else{
                     req.userType = decoded.usertype;
                     req.accountType = decoded.accounttype;
+                    return;
                     next();
                 }
             }
         );
     }else{
-        res.status(412).send({
+        return res.status(412).send({
             success: false,
             message: 'User token is not provided'
         });

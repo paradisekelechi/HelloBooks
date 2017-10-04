@@ -8,9 +8,6 @@
     "start:test": "set NODE_ENV=test&& babel-node  ./server/bin/www.js --exec babel-node --presets env ",
     "test": "set NODE_ENV=test&&  nyc mocha server/test/* --timeout 15000 --compilers js:babel-register",
     "initialize:db": "babel-node server/server/scripts/initialize.js",
-    "start": "npm run build",
-    "build": "webpack -d && copyfiles client/index.html dist/index.html && webpack-dev-server --content-base client/ --inline --hot",
-    "build:prod": "webpack -p && cp client/index.html dist/index.html",
     "coverage": "nyc report --reporter=text-lcov | coveralls ",
     "codeclimate:report": "recink run unit -c codeclimate"
   },

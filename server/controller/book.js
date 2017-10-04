@@ -22,7 +22,11 @@ export default {
             message: 'Books obtained successfully',
             book
         }))
-        .catch(error => res.status(400).send(error));
+        .catch((error) => {
+            return res.status(400).send({
+                message: 'Error getting books'
+            });
+        });
     },
 
     //view all books in the library by category
