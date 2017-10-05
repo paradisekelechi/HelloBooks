@@ -1,6 +1,8 @@
 
 let checkUser = (req, res, next) => {
     const userType = req.userType;
+    const username = req.username;
+    const email = req.email;
     //Check if usertype exists
     if(userType){
         if(userType != 2){
@@ -12,7 +14,9 @@ let checkUser = (req, res, next) => {
             next();
         }else{
             req.userType = 'ADMIN';
-            next();
+            req.username = username;
+            req.email = email;
+            return next();
         }
     }else{
         res.status(400).send({

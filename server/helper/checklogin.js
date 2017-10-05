@@ -20,8 +20,9 @@ let checkLogin = (req, res, next) => {
                 }else{
                     req.userType = decoded.usertype;
                     req.accountType = decoded.accounttype;
-                    return;
-                    next();
+                    req.email = decoded.email;
+                    req.username = decoded.username;
+                    return next();
                 }
             }
         );

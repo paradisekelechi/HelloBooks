@@ -16,6 +16,9 @@ export default {
         let today = new Date();
         let borrowDate = today;
 
+        const username = req.username;
+        const userEmail = req.email;
+
         console.log(config.parsed.BORROW_VALIDITY_IN_DAYS);
         let returnDate = validator.isEmpty(req.body.return_date+'') || req.body.return_date == null? new Date(today.getTime() + 24 * 60 * 60 * 1000 * config.parsed.BORROW_VALIDITY_IN_DAYS): new Date(req.body.return_date);
         
@@ -101,7 +104,7 @@ export default {
                                         success: true,
                                         message: 'Book borrowed successfully'
                                     }),
-                                    notification('Book borrowed successfully', 'pkelechi@seamfix.com', 'Hello Books')
+                                    notification('Book borrowed successfully', userEmail, 'Hello Books')
                                 )
                                 .catch(error => res.status(400).send({
                                     success: false,
@@ -149,6 +152,7 @@ export default {
         let returnDate = today;
         let userId = req.params.userId;
         let bookId = req.body.bookId;
+        const userEmail = req.email;
 
         if(userId == null || userId == 0 || userId == undefined){
             res.status(400).send({
@@ -226,7 +230,7 @@ export default {
                                         success: true,
                                         message: 'Book returned successfully'
                                     }),
-                                    notification('Book returned successfully', 'pkelechi@seamfix.com', 'Hello Books')
+                                    notification('Book returned successfully', userEmail, 'Hello Books')
                                 })
                                 .catch(error => {
                                     res.status(400).send(error)

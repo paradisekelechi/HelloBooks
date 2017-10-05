@@ -19,7 +19,10 @@ export default (sequelize, DataTypes) => {
         args: false,
         msg: 'Email is required'
       },
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'Email already existing in the system'
+      }
     },
     password: {
       type: DataTypes.STRING,
