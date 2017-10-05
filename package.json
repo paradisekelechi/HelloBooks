@@ -2,6 +2,13 @@
   "name": "pluralsight-redux-starter",
   "version": "1.0.0",
   "description": "Hello Books Application clientside frontend",
+  "scripts": {
+      "prestart": "babel-node tools/startMessage.js",
+      "start": "npm-run-all --parallel open:client lint:watch",
+      "open:client": "babel-node tools/clientServer.js",
+      "lint": "node_modules/.bin/esw webpack.config.* client tools",
+      "lint:watch": "npm run lint -- --watch"
+  },
   "author": "Paradise Kelechi",
   "license": "MIT",
   "dependencies": {
