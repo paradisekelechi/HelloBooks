@@ -1,5 +1,8 @@
 import React from 'react';
 
+//Import the common layout components
+import Footer from '../common/authentication/Footer';
+
 /**
  * 
  * 
@@ -17,6 +20,7 @@ class Authentication extends React.Component{
         return(
             <div>
                 {this.props.children}
+                <Footer />
             </div>
         );
     }
