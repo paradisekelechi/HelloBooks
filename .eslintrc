@@ -1,15 +1,32 @@
 {
     "root": true,
-    "extends": "airbnb-standard",
+    "extends":[
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+    ],
+    "plugins": [
+        "react"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "env": {
       "node": true,
       "es6": true,
-      "mocha": true
+      "mocha": true,
+      "browser": true,
+      "jquery": true
     },
     "rules": {
       "one-var": 0,
       "one-var-declaration-per-line": 0,
       "new-cap": 0,
+<<<<<<< HEAD
       "consistent-return": 0,
       "no-param-reassign": 0,
       "comma-dangle": 0,
@@ -17,12 +34,23 @@
         "error", "windows"
       ],
       "no-useless-concat": "off",
+=======
+      "no-unused-vars": 1,
+      "no-console": 1,
+      "consistent-return": 0,
+      "no-param-reassign": 0,
+      "comma-dangle": 0,
+>>>>>>> client
       "curly": ["error", "multi-line"],
       "import/no-unresolved": [2, { "commonjs": true }],
       "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
       "valid-jsdoc": ["error", {
         "requireReturn": true,
+<<<<<<< HEAD
         "requireReturnType": true,
+=======
+        "requireReturnType": false,
+>>>>>>> client
         "requireParamDescription": false,
         "requireReturnDescription": true
       }],
@@ -32,6 +60,41 @@
               "MethodDefinition": true,
               "ClassDeclaration": true
           }
+<<<<<<< HEAD
       }]
+=======
+      }],
+      "react/display-name": [ 1, {"ignoreTranspilerName": false }],
+      "react/forbid-prop-types": [1, {"forbid": ["any"]}],
+      "react/jsx-boolean-value": 1,
+      "react/jsx-closing-bracket-location": 0,
+      "react/jsx-curly-spacing": 1,
+      "react/jsx-indent-props": 0,
+      "react/jsx-key": 1,
+      "react/jsx-max-props-per-line": 0,
+      "react/jsx-no-bind": 1,
+      "react/jsx-no-duplicate-props": 1,
+      "react/jsx-no-literals": 0,
+      "react/jsx-no-undef": 1,
+      "react/jsx-pascal-case": 1,
+      "react/jsx-sort-prop-types": 0,
+      "react/jsx-sort-props": 0,
+      "react/jsx-uses-react": 1,
+      "react/jsx-uses-vars": 1,
+      "react/no-danger": 1,
+      "react/no-did-mount-set-state": 1,
+      "react/no-did-update-set-state": 1,
+      "react/no-direct-mutation-state": 1,
+      "react/no-multi-comp": 1,
+      "react/no-set-state": 0,
+      "react/no-unknown-property": 1,
+      "react/prefer-es6-class": 1,
+      "react/prop-types": 1,
+      "react/react-in-jsx-scope": 0,
+      "react/require-extension": 1,
+      "react/self-closing-comp": 1,
+      "react/sort-comp": 1,
+      "react/wrap-multilines": 1
+>>>>>>> client
     }
   }
