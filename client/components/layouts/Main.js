@@ -1,9 +1,7 @@
 import React from 'react';
 
 //Import the common layout components
-import Header from '../common/main/Header';
 import Navigation from '../common/main/Navigation';
-import Footer from '../common/Footer';
 
 /**
  * 

@@ -143,9 +143,11 @@ export default {
 
 
     /**
-     * Return Book method
-     * @param {Request parameter} req 
-     * @param {Response parameter} res 
+     * 
+     * 
+     * @param {any} req 
+     * @param {any} res 
+     * @returns {type} description
      */
     returnBook(req, res){
         let today = new Date();
@@ -292,7 +294,7 @@ export default {
     },
 
     /**
-     * 
+     * @returns {type} description
      * @param {Request} req 
      * @param {Response} res 
      */

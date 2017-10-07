@@ -6,9 +6,8 @@
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel open:client lint:watch start:server",
     "open:client": "babel-node tools/clientServer.js",
-    "lint": "node_modules/.bin/esw webpack.config.* client tools",
+    "lint": "node_modules/.bin/esw webpack.config.* client tools server",
     "lint:watch": "npm run lint -- --watch",
-
     "start:server": "set NODE_ENV=development&& babel-node  ./server/bin/www.js --exec babel-node --presets env ",
     "start:test": "set NODE_ENV=test&& babel-node  ./server/bin/www.js --exec babel-node --presets env ",
     "test": "set NODE_ENV=test&&  nyc mocha server/test/* --timeout 15000 --compilers js:babel-register",

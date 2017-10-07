@@ -33,6 +33,7 @@ export default {
 
     /**
      * Add a new Account type
+     * @returns {null} description
      * @param {Request} req 
      * @param {Response} res 
      */
@@ -72,7 +73,7 @@ export default {
             description: description,
             deleted: false,
         })
-        .then(accounttype => {
+        .then(() => {
             res.status(200).send({
                 message: 'Accounttype added successfully',
                 success: true

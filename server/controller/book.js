@@ -90,7 +90,7 @@ export default {
             {
                 where:{
                     deleted: false,
-                    borrowed: borrowed
+                    borrowed: borrowStatus
                 }
             },
             {

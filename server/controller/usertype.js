@@ -9,6 +9,7 @@ export default {
 
     /**
      * Get all the usertypes 
+     * @returns {null} description
      * @param {Request} req 
      * @param {Response} res 
      */
@@ -33,6 +34,7 @@ export default {
 
     /**
      * Add a new usertype
+     * @returns {null} description
      * @param {Request} req 
      * @param {Response} res 
      */

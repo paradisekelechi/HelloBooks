@@ -1,7 +1,8 @@
 import app from '../app.js';
 import http from 'http';
-import cron from 'node-cron';
 import dotenv from 'dotenv';
+
+/*eslint-disable no-console */
 
 //Set the default port the application listens to
 let port = 9080;
