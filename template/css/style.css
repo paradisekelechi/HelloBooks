@@ -1,213 +1,155 @@
-@CHARSET "ISO-8859-1";
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
 
-body {
-        padding-top: 70px;
-        font-family: 'Muli', sans-serif;
-        background: inherit;
-    }
-  html{
-    background: url('../img/books1.jpeg');
-        background-repeat: no-repeat;
-        background-size: cover;
-    background-attachment: fixed;
-  }
-  
-    .authentication-wrapper{
-        width: 90%;
-        margin: 0 auto;
-        padding: 10px;
-        background: rgba(217, 237, 247, 0.36);
-        border-radius: 10px;
-
-    }
-
-    .authentication-wrapper h4{
-        text-align: center;
-    }
-
-    input{
-        width:100%;
-    }
-    .login-wrapper{
-        margin-top: 15%;
-    }
-
-.row{
-    margin-left:0px;
-    margin-right:0px;
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
 }
 
-#wrapper {
-    padding-left: 70px;
-    transition: all .4s ease 0s;
-    height: 100%
+
+/* Customised styles */
+.brand-logo{
+	font-family: 'Great Vibes', cursive;
 }
 
-#sidebar-wrapper {
-    margin-left: -200px;
-    left: 70px;
-    width: 200px;
-    background: #222;
-    position: fixed;
-    height: 100%;
-    z-index: 10000;
-    transition: all .4s ease 0s;
+.login-logo{
+	font-size: 36px;
+	margin-top: 20px;
 }
 
-.sidebar-nav {
-    display: block;
-    float: left;
-    width: 200px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.dashboard-logo{
+	text-align: center;
+	font-size: 30px;
+	margin: 50px;
+	color: #fff;
 }
-#page-content-wrapper {
-    padding-left: 0;
-    margin-left: 0;
+
+.side-nav{
+	padding-top: 30px;
+	background-color: rgba(0, 0, 0, 0.75);
+}
+.side-nav li a, .side-nav li a i {
+	color:#fff !important;
+}
+
+.custom-nav{
+	background: url('../img/back.jpeg');
+}
+
+.nav-link{
+	margin: 10px;
+	border-radius: 0px;
+}
+
+.authentication-row{
+	margin-top: 4%;
+}
+
+.authentication-header{
+	margin-bottom: 12%;
+}
+
+body, html {
+	font-family: 'Ubuntu', 'Titillium Web', 'Ubuntu', 'Encode Sans', sans-serif;
+}
+
+.dashboard-body{
+	background: url('../img/back.jpeg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.action-button{
+	width: 100%
+}
+
+.main-content{
+	position: absolute;
+	left: 312px;
+	right: 10px;
+	background-color: #fff;
+}
+
+.card{
+	-moz-box-shadow:    2px 2px 2px 2px #ccc;
+	-webkit-box-shadow: 2px 2px 2px 2px #ccc;
+	box-shadow:         2px 2px 2px 2px #ccc;
+}
+
+.account-details-bar{
+}
+
+.option-icon{
+	font-size: 26px;
+}
+
+.account-slideout{
+	color: transparent;
+}
+
+.account-info{
+	padding: 15px;
+}
+
+.hbk-row{
+	padding-top: 20px;
+	padding-right: 10px;
+	color: #fff;
+	text-align: center;
+}
+
+.button-collapse{
+	font-size:26px
+}
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 450px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
     width: 100%;
-    height: auto;
-}
-#wrapper.active {
-    padding-left: 200px;
-}
-#wrapper.active #sidebar-wrapper {
-    left: 200px;
-}
-
-#page-content-wrapper {
-  width: 100%;
-}
-
-#sidebar_menu li a, .sidebar-nav li a {
-    color: #999;
-    display: block;
-    float: left;
-    text-decoration: none;
-    width: 200px;
-    background: #252525;
-    border-top: 1px solid #373737;
-    border-bottom: 1px solid #1A1A1A;
-    -webkit-transition: background .5s;
-    -moz-transition: background .5s;
-    -o-transition: background .5s;
-    -ms-transition: background .5s;
-    transition: background .5s;
-}
-.sidebar_name {
-    padding-top: 25px;
-    color: #fff;
-    opacity: .7;
-}
-
-.sidebar-nav li {
-  line-height: 40px;
-  text-indent: 20px;
-}
-
-.sidebar-nav li a {
-  color: #999999;
-  display: block;
-  text-decoration: none;
-}
-
-.sidebar-nav li a:hover {
-  color: #fff;
-  background: rgba(255,255,255,0.2);
-  text-decoration: none;
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-  height: 65px;
-  line-height: 60px;
-  font-size: 18px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-  color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
-}
-
-#main_icon
-{
-    float:right;
-   padding-right: 65px;
-   padding-top:20px;
-}
-.sub_icon
-{
-    float:right;
-   padding-right: 65px;
-   padding-top:10px;
-}
-.content-header {
-  height: 65px;
-  line-height: 65px;
-}
-
-.content-header h1 {
-  margin: 0;
-  margin-left: 20px;
-  line-height: 65px;
-  display: inline-block;
-}
-
-@media (max-width:767px) {
-#wrapper {
-    padding-left: 70px;
-    transition: all .4s ease 0s;
-}
-#sidebar-wrapper {
-    left: 70px;
-}
-#wrapper.active {
-    padding-left: 200px;
-}
-#wrapper.active #sidebar-wrapper {
-    left: 200px;
-    width: 200px;
-    transition: all .4s ease 0s;
-}
-
-
-
-body {
-        padding-top: 70px;
-        font-family: 'Muli', sans-serif;
-        background: inherit;
-    }
-	html{
-		background: url('../img/pencil.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-		background-attachment: fixed;
 	}
 	
-    .authentication-wrapper{
-        width: 90%;
-        margin: 0 auto;
-        padding: 10px;
-        background: rgba(217, 237, 247, 0.36);
-        border-radius: 10px;
+.no-pad-bot{
+	margin-top: 8%
+}
 
-    }
+.application-info{
+	margin-top: 4%;
+}
 
-    .authentication-wrapper h4{
-        text-align: center;
-    }
 
-    input{
-        width:100%;
-    }
-    .login-wrapper{
-        margin-top: 15%;
-    }
+
+@media only screen and (max-width : 992px) {
+  .main-content{
+  		left: 0px;
+  		right:0px;
+	}
+	.account-slideout{
+		color: #fff;
+	}
+}
+
+

@@ -1,60 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>HelloBooks | Register</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
-    <title>Frontend project</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Muli|Sedgwick+Ave+Display" rel="stylesheet">
-
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
+<body>
 
-<body>   
-
-    <div class="container">
-
-        <div class="row login-wrapper">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="authentication-wrapper">
-                    <h4>Register</h4>
-                    <div >
-                        <input class="form-control" placeholder="Username" name ="Username" type="text">
-                    </div>
-                    <br>
-                    <div >
-                        <input class="form-control" placeholder="Email" name ="email" type="text">
-                    </div>
-                    <br>
-                    <div >
-                        <input class="form-control" placeholder="Enter Password" name ="Password" type="text">
-                    </div>
-                    <div >
-                        <input class="form-control" placeholder="Re-enter Password" name ="Password" type="text">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <a href="userdashboard.html"><button class="btn btn-block">Submit</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+  <div class="container">
+    <div class="row login-logo">
+      <div class="col m12">
+        <span class="brand-logo">HelloBooks</span>
+      </div>
     </div>
-    
-    
-    <script src="js/jquery.js"></script>
+    <div class="row authentication-row">
+      <div class="col m4 offset-m4">
+        <h5 class="center authentication-header">Register Account</h5>
+        
+        <div class="input-field col s12">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Email</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Username</label>
+        </div>
+        <div class="input-field col s12 ">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Password</label>
+        </div>
+        <div class="col s12">
+          <a href="dashboard-user.html">
+            <button class="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Register</button>
+          </a>
+        </div>
+        <div class="col s12">
+          <br>
+          <small class="">Already a User?</small>
+          <br/>
+        </div>
+        <div class="col s12">
+          <br>
+          <a href="signin.html">
+            <button class="waves-effect waves-light btn col s12 blue darken-3">Signin</button>
+          </a>
+        </div>
 
-    <script src="js/bootstrap.min.js"></script>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+          
+
+  <script>
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+    });
+  </script>
 
 </body>
-
-</html>
