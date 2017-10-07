@@ -1,5 +1,7 @@
-
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+
+$font-app: 'Ubuntu', 'Titillium Web', 'Ubuntu', 'Encode Sans', sans-serif;
+$font-logo: 'Great Vibes', cursive;
 
  .icon-block {
     padding: 0 15px;
@@ -11,7 +13,7 @@
   
   /* Customised styles */
   .brand-logo{
-      font-family: 'Great Vibes', cursive;
+      font-family: $font-logo;
   }
   
   .login-logo{
@@ -44,8 +46,7 @@
   }
   
   .authentication-row{
-      margin-top: 7%;
-      margin-bottom: 10%;
+      margin-top: 4%;
   }
   
   .authentication-header{
@@ -53,17 +54,9 @@
   }
   
   body, html {
-      font-family: 'Ubuntu', 'Titillium Web', 'Ubuntu', 'Encode Sans', sans-serif;
+      font-family: $font-app;
   }
-
-  body{
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-  }
-  main{
-      flex: 1 0 auto;
-  }
+  
   /* .dashboard-body{
       background: url('../img/back.jpeg');
       background-repeat: no-repeat;
@@ -87,6 +80,8 @@
       box-shadow:         2px 2px 2px 2px #ccc;
   }
   
+  .account-details-bar{
+  }
   
   .option-icon{
       font-size: 26px;
@@ -109,37 +104,6 @@
   
   .button-collapse{
       font-size:26px
-  }
-
-  nav ul a,
-  nav .brand-logo {
-    color: #444;
-  }
-  
-  p {
-    line-height: 2rem;
-  }
-  
-  .button-collapse {
-    color: #26a69a;
-  }
-  
-  .parallax-container {
-    min-height: 450px;
-    line-height: 0;
-    height: auto;
-    color: rgba(255,255,255,.9);
-  }
-    .parallax-container .section {
-      width: 100%;
-      }
-      
-  .no-pad-bot{
-      margin-top: 8%
-  }
-  
-  .application-info{
-      margin-top: 4%;
   }
   
   

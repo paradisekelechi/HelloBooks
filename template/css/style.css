@@ -109,6 +109,37 @@ body, html {
 	font-size:26px
 }
 
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 450px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+	}
+	
+.no-pad-bot{
+	margin-top: 8%
+}
+
+.application-info{
+	margin-top: 4%;
+}
+
 
 
 @media only screen and (max-width : 992px) {
