@@ -1,1 +1,1 @@
-web: npm open:client
+web: ./node_modules/.bin/babel-node tools/clientServer.js
