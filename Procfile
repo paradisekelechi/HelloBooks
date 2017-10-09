@@ -1,1 +1,1 @@
-web: ./node_modules/.bin/babel-node tools/clientServer.js
+web: npm start

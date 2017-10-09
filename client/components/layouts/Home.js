@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 //Import the common layout components
 import Navigation from '../common/home/Navigation';
@@ -26,6 +26,10 @@ class Home extends React.Component{
             </div>
         );
     }
+}
+
+Home.propTypes = {
+    children: PropTypes.object.isRequired
 }
 
 export default Home;

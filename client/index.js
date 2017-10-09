@@ -13,7 +13,6 @@ import './assets/img/background6.jpeg';
 
 //Import the layouts 
 import MainLayout from './components/layouts/Main.js';
-import AuthenicationLayout from './components/layouts/Authentication.js';
 import HomeLayout from './components/layouts/Home.js';
 
 //Import components

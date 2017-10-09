@@ -1,9 +1,7 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 //Import the common layout components
-import Header from '../common/main/Header';
 import Navigation from '../common/main/Navigation';
-import Footer from '../common/Footer';
 
 /**
  * 
@@ -27,6 +25,10 @@ class Main extends React.Component{
             </div>
         );
     }
+}
+
+Main.propTypes = {
+    children: PropTypes.object.isRequired
 }
 
 export default Main;
