@@ -6,7 +6,6 @@ const envConfig = dotenv.config().parsed;
 export const randomData = randomstring().substring(0, 8);
 
 export const userToken = envConfig.USERTOKEN;
-console.log(envConfig.ADMINTOKEN);
 export const adminToken = envConfig.ADMINTOKEN;
 
 //Test data for user signin and signup

@@ -1,11 +1,9 @@
 "use strict";
 import chai from 'chai';
-import should from 'should';
 import supertest from 'supertest';
 import app from '../app.js';
 import * as testConstants from './testdata';
 
-let expect = chai.expect();
 const assert = chai.assert;
 
 

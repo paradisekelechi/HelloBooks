@@ -148,8 +148,6 @@ export default {
         if(user){
              bcrypt.compare(password, user.password, (err, success)=>{
                 if(success){
-                    console.log(success);
-
                     //token generated
                     const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type_id, accounttype: user.account_type_id}, secret, {expiresIn: 24 * 3600 * 3600 * 40});
                     
@@ -173,7 +171,7 @@ export default {
             });
         }
     })
-      .catch(error => res.status(400).send({
+      .catch(() => res.status(400).send({
           message: 'Oops! User does not exist',
           success: false
       }));
@@ -189,7 +187,7 @@ export default {
         .then(users => {
             res.status(200).send(users);
         })
-        .catch(error => {
+        .catch(() => {
             res.status.send({
                 success: false,
                 message: 'Users list not obtained'
@@ -218,7 +216,7 @@ export default {
         .then(users => {
             res.status(200).send(users);
         })
-        .catch(error => {
+        .catch(() => {
             res.status(400).send({
                 success: false,
                 message: 'Users list not obtained'
@@ -246,7 +244,7 @@ export default {
         .then(users => {
             res.status(200).send(users);
         })
-        .catch(error => {
+        .catch(() => {
             res.status.send({
                 success: false,
                 message: 'Users list not obtained'
@@ -255,7 +253,6 @@ export default {
   },
 
   editUser(req, res){
-      let password = req.body.password;
       let userTypeId = req.body.usertypeid;
       let accountTypeId = req.body.accounttypeid;
       let imageUrl = req.body.imageurl;
@@ -279,13 +276,13 @@ export default {
             id: userId
         }
       })
-      .then(user => {
+      .then(() => {
           res.status(200).send({
               success: true,
               message: 'User successfully updated'
           });
       })
-      .catch(error => {
+      .catch(() => {
           res.status(200).send({
               success: false,
               message: 'User not successfully updated'
@@ -321,13 +318,13 @@ export default {
                 id: userId
             }
         })
-        .then(user => {
+        .then(() => {
             res.status(200).send({
                 success: true,
                 message: 'Password successfully updated'
             });
         })
-        .catch(error => {
+        .catch(() => {
             res.status(200).send({
                 success: false,
                 message: 'Password not successfully updated'
@@ -354,13 +351,13 @@ export default {
             id: userId
         }
       })
-      .then(user => {
+      .then(() => {
           res.status(200).send({
               success: true,
               message: 'User successfully deleted'
           });
       })
-      .catch(error => {
+      .catch(() => {
           res.status(200).send({
               success: false,
               message: 'User not successfully deleted'

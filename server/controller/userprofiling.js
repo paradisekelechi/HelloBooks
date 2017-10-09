@@ -2,6 +2,8 @@
 import models from '../models'
 const User = models.User;
 
+/* eslint-disable no-console */
+
 let profileUsers = () => {
     User
     .findAll({
@@ -12,7 +14,7 @@ let profileUsers = () => {
     .then(users => {
         console.log(users);
     })
-    .catch(error => {
+    .catch(() => {
         console.log("Something happened on getting all the users of the application");
     })
 }

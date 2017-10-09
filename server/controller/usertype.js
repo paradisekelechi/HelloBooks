@@ -74,7 +74,7 @@ export default {
             description: description,
             deleted: false,
         })
-        .then(usertype => {
+        .then(() => {
             res.send({
                 message: 'Usertype added successfully',
                 success: true

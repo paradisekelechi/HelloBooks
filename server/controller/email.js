@@ -2,6 +2,8 @@ import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 const config = dotenv.config();
 
+/* eslint-disable no-console */
+
 export default {
     notification(text, destination, subject) {
         const transporter =  nodemailer.createTransport({
@@ -23,7 +25,7 @@ export default {
             html: '<h1><b>'+message+'</b></h1>'
         }
 
-        transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, (error) => {
             if(error){
                 console.log('Error encountered when sending mail');
                 console.log(error);

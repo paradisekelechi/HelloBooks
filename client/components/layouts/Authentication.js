@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 //Import the common layout components
 import Footer from '../common/authentication/Footer';
@@ -24,6 +24,10 @@ class Authentication extends React.Component{
             </div>
         );
     }
+}
+
+Authentication.propTypes =  {
+    children: PropTypes.object.isRequired
 }
 
 export default Authentication;

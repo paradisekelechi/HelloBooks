@@ -1,2 +1,3 @@
-const  dotenv = require( 'dotenv');
-const today = new Date();
+import dotenv from 'dotenv';
+
+dotenv.load();

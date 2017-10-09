@@ -22,7 +22,7 @@ export default {
             message: 'Books obtained successfully',
             book
         }))
-        .catch((error) => {
+        .catch(() => {
             return res.status(400).send({
                 message: 'Error getting books'
             });
@@ -181,7 +181,7 @@ export default {
                 book
             });
         })
-        .catch(error => res.status(400).send({
+        .catch(() => res.status(400).send({
             success: false,
             message: 'Oops! Book not successfully added'
         }));
@@ -214,13 +214,13 @@ export default {
                 id: bookId
             }
         })
-        .then(book => {
+        .then(() => {
             res.status(200).send({
                 message: 'Book edited successfully',
                 success: true
             });
         })
-        .catch(error => res.status(400).send({
+        .catch(() => res.status(400).send({
             success: false,
             message: 'Oops! Book not edited successfully'
         }));

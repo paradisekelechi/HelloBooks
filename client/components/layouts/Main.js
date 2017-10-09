@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 
 //Import the common layout components
 import Navigation from '../common/main/Navigation';
@@ -25,6 +25,10 @@ class Main extends React.Component{
             </div>
         );
     }
+}
+
+Main.propTypes = {
+    children: PropTypes.object.isRequired
 }
 
 export default Main;

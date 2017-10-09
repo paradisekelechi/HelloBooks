@@ -16,10 +16,8 @@ export default {
         let today = new Date();
         let borrowDate = today;
 
-        const username = req.username;
         const userEmail = req.email;
 
-        console.log(config.parsed.BORROW_VALIDITY_IN_DAYS);
         let returnDate = validator.isEmpty(req.body.return_date+'') || req.body.return_date == null? new Date(today.getTime() + 24 * 60 * 60 * 1000 * config.parsed.BORROW_VALIDITY_IN_DAYS): new Date(req.body.return_date);
         
         let userId = req.params.userId;
@@ -94,7 +92,7 @@ export default {
                                 user_id: userId,
                                 book_id: bookId,
                             })
-                            .then(booklog => {
+                            .then(() => {
                                 
                                 //Update book quantity
                                 return Book
@@ -106,14 +104,14 @@ export default {
                                     }),
                                     notification('Book borrowed successfully', userEmail, 'Hello Books')
                                 )
-                                .catch(error => res.status(400).send({
+                                .catch(() => res.status(400).send({
                                     success: false,
                                     message: 'Oops! Book not borrowed successfully! Contact Support'
                                 }));
 
                                     
                             })
-                            .catch(error => res.status(400).send({
+                            .catch(() => res.status(400).send({
                                 success: false,
                                 message: 'Oops! Book not borrowed successfully!'
                             }));
@@ -121,7 +119,7 @@ export default {
 
                         }
                     })
-                    .catch(error => res.status(400).send({
+                    .catch(() => res.status(400).send({
                         success: false,
                         message: 'Oops! Book not available!'
                     }));
@@ -134,7 +132,7 @@ export default {
                 });
             }
         })
-        .catch(error => res.status(400).send({
+        .catch(() => res.status(400).send({
             success: false,
             message: 'Oops! Book not available!'
         }));
@@ -183,7 +181,6 @@ export default {
             }
         })
         .then(booklogger => {
-            console.log(booklogger);
             if(booklogger.length == 0){
                 res.status(400).send({
                     success: false,
@@ -214,12 +211,12 @@ export default {
                                 returned: false
                             }
                         })
-                        .then(borrowlog => {
+                        .then(() => {
                             
                             //Update book quantity accordingly
                             return Book
                             .update({quantity: models.sequelize.literal('quantity + 1')},{where: {id: bookId}})
-                            .then(bookupdate =>{
+                            .then(() => {
                                 
                                 //Update user use count for user account type profiling
                                 return User
@@ -227,7 +224,7 @@ export default {
                                     {use_count: models.sequelize.literal('use_count + 1')},
                                     {where: {id: userId}}
                                 )
-                                .then(userUpdate => {
+                                .then(() => {
                                     res.status(200).send({
                                         success: true,
                                         message: 'Book returned successfully'
@@ -238,13 +235,13 @@ export default {
                                     res.status(400).send(error)
                                 });
                             })
-                            .catch(error => 
+                            .catch(() => 
                                 res.status(400).send({
                                 success: false,
                                 message: 'Oops! Book not returned successfully! Contact Support'
                             }));
                         })
-                        .catch(error => res.status(400).send({
+                        .catch(() => res.status(400).send({
                             success: false,
                             message: 'Oops! Book not borrowed successfully! Contact Support'
                         }));
@@ -274,7 +271,7 @@ export default {
                             }
                             
                         })
-                        .catch(error => res.status(400).send({
+                        .catch(() => res.status(400).send({
                             success: false,
                             message: 'Oops! Borrow log data unavailable! Contact Support'
                         }));
@@ -284,7 +281,7 @@ export default {
 
             }
         })
-        .catch(error => res.status(400).send({
+        .catch(() => res.status(400).send({
             success: false,
             message: 'Oops! Borrow log data unavailable! Contact Support'
         }));
