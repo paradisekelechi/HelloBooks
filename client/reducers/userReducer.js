@@ -1,3 +1,4 @@
+import {SIGNIN_USER, SIGNUP_USER} from '../constants/actionConstants';
 
 /**
  * 
@@ -9,10 +10,11 @@
  */
 export default function userReducer(state = [], action){
     switch (action.type) {
-        case 'SIGNIN_USER':
-            return [...state,
-                Object.assign({}, action.user)
+        case SIGNIN_USER:
+            return [...state, action.user
             ];
+        case SIGNUP_USER:
+            return [...state, action.user];
         default:
             return state;
     }

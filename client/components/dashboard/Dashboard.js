@@ -7,6 +7,27 @@ import React from 'react';
  * @extends {React.Component}
  */
 class Dashboard extends React.Component{
+
+    /**
+     * Creates an instance of Dashboard.
+     * @param {any} props 
+     * @memberof Dashboard
+     */
+    constructor(props){
+        super(props);
+    }
+
+    /**
+     * 
+     * @returns {void} description
+     * @memberof Dashboard
+     */
+    componentWillMount(){
+        const token = localStorage.getItem('user-token');
+        console.log(`I am monting. I am the dashboard!${token}`)
+    }
+
+    
     /**
      * 
      * 

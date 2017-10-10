@@ -62,11 +62,12 @@ class Signin extends React.Component{
     /**
      * 
      * @returns {void} description
+     * @param {any} event 
      * @memberof Signin
      */
-    onClickSubmit(){
-        this.props.dispatch(userActions.signinUser(this.state.user));
-        browserHistory.push('/dashboard');
+    onClickSubmit(event){
+        event.preventDefault;
+        this.props.signin(this.state.user);
         //alert(`We are here! Username: ${this.state.user.username} and Password: ${this.state.user.password}`);
     }
 
@@ -94,7 +95,7 @@ class Signin extends React.Component{
                             <label>Username</label>
                         </div>
                         <div className="input-field col s12 ">
-                            <input id="last_name" type="text" onChange={this.onPasswordChange} value={this.state.password} className="validate" />
+                            <input id="last_name" type="password" onChange={this.onPasswordChange} value={this.state.password} className="validate" />
                             <label>Password</label>
                         </div>
                         <div className="col s12">
@@ -119,12 +120,18 @@ class Signin extends React.Component{
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        user: state.user
+        signin: (userData) => {
+            dispatch(userActions.signinUser(userData))  
+        }
     }
 }
 
-const connectedStateAndProps = connect(mapStateToProps);
+const mapStateToProps = (state, ownProps) => {
+    return {
+        user: state.user
+    };
+}
 
-export default connectedStateAndProps(Signin);
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);
