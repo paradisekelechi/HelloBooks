@@ -1,4 +1,12 @@
-import {SIGNIN_USER, SIGNUP_USER} from '../constants/actionConstants';
+import * as actionConstants from '../utils/actionConstants';
+
+const initialState = {
+    token: '',
+    username: '',
+    email: '',
+    usertype: '',
+    accounttype: '',
+}
 
 /**
  * 
@@ -8,14 +16,25 @@ import {SIGNIN_USER, SIGNUP_USER} from '../constants/actionConstants';
  * @param {any} action 
  * @returns {object} State object
  */
-export default function userReducer(state = [], action){
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SIGNIN_USER:
-            return [...state, action.user
-            ];
-        case SIGNUP_USER:
-            return [...state, action.user];
+        case actionConstants.SIGNUP_USER:
+        case actionConstants.SIGNIN_USER:
+            return Object.assign(
+                {},
+                state,
+                {
+                    token: action.payload.token,
+                    username: action.payload.username,
+                    email: action.payload.email,
+                    usertype: action.payload.usertype == 1 ? 'CLIENT' : 'ADMIN',
+                    accounttype: action.payload.accounttype == 1 ? 'SILVER' : action.payload.accounttype == 2 ? 'GOLD': 'PLATINIUM',
+                }
+            )
+        case actionConstants.LOGOUT_USER:
         default:
             return state;
     }
 }
+
+export default userReducer;

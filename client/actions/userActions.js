@@ -2,11 +2,11 @@ import axios from 'axios';
 import querystring from 'querystring';
 import {browserHistory} from 'react-router';
 
-import {SIGNUP_USER, SIGNIN_USER} from '../constants/actionConstants';
-import routes from '../../server/utils/apiRoutes';
+import {SIGNUP_USER, SIGNIN_USER, LOGOUT_USER} from '../utils/actionConstants';
+import routes from '../utils/apiRoutes';
+import {authenticatePersist, authenticateClear} from '../utils/authenticate';
+
 /**
- * 
- * 
  * @export
  * @param {any} user 
  * @returns {void}
@@ -18,17 +18,19 @@ export function signinUser(user) {
     });
     return dispatch => {
         axios.post(`${routes.signin}`, formdata)
-        .then((data) => {
-            return dispatch(signinUserAsync(data.data));
-
+        .then((response) => {
+            const responseData = response.data;
+            authenticatePersist(responseData.token);
+            dispatch(signinUserAsync(responseData));
+            browserHistory.push('/dashboard');
         })
     }
 }
 
-const signinUserAsync = (user) =>{
+const signinUserAsync = (data) =>{
     return {
         type: SIGNIN_USER,
-        user
+        payload: data
     }
 }
 
@@ -51,8 +53,8 @@ export function signupUser (user) {
         .then((response) => {
             const responseData = response.data;
             if(responseData.success){
-                dispatch(signupUserAsync(user));
-                localStorage.setItem('user-token', responseData.token);
+                authenticatePersist(responseData.token);
+                dispatch(signupUserAsync(response.data));
                 browserHistory.push('/dashboard');
             }
         });
@@ -62,6 +64,28 @@ export function signupUser (user) {
 const signupUserAsync = (user) => {
     return {
         type: SIGNUP_USER,
+        user
+    }
+}
+
+/**
+ * 
+ * 
+ * @export
+ * @param {any} user 
+ * @returns {Object} logout dispatch
+ */
+export function logoutUser (user) {
+    return (dispatch) => {
+        authenticateClear();
+        dispatch(logoutUserAsync(user));
+        browserHistory.push('/signin');
+    }
+}
+
+const logoutUserAsync = (user) => {
+    return {
+        type: LOGOUT_USER,
         user
     }
 }

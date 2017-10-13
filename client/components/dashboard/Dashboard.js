@@ -1,4 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
+import {authenticateFetch} from '../../utils/authenticate';
+import AdminDashboard from './AdminDashboard';
+import PageBar from '../common/main/PageBar';
+import * as bookActions from '../../actions/bookActions';
+
 
 /**
  * 
@@ -15,18 +22,81 @@ class Dashboard extends React.Component{
      */
     constructor(props){
         super(props);
+        this.state = {
+            books: [{
+                borrowed: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+                unreturned: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+                total: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+            }],
+            users: [{
+                total: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+                admin: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+                client: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+                deleted: {
+                    isLoading: true,
+                    error: '',
+                    count: 0,
+                    list: {}
+                },
+            }],
+            userdata: {}
+        }
+        this.testSomething = this.testSomething.bind(this);
     }
 
+    /**
+     * 
+     * @returns {type} description
+     * @memberof Dashboard
+     */
+    testSomething(){
+        this.props.getAllBooks();
+        console.log(this.props);
+    }
     /**
      * 
      * @returns {void} description
      * @memberof Dashboard
      */
-    componentWillMount(){
-        const token = localStorage.getItem('user-token');
-        console.log(`I am monting. I am the dashboard!${token}`)
+    componentDidMount (){
+        this.props.getAllBooks();
+        this.props.getBooksBorrowed();
+        this.props.getBooksUnreturned();
+        this.setState({
+            books: this.props.bookListReducer,
+            users: this.props.userListReducer
+        });
     }
-
     
     /**
      * 
@@ -35,132 +105,49 @@ class Dashboard extends React.Component{
      * @memberof Dashboard
      */
     render(){
-        return(
-            <div className="col m12">
-                <div className="col m8 offset-m4 main-content">
-                    <div className="row account-info account-details-bar">
-                        <span>DASHBOARD</span>
-                        <i className="material-icons option right">power_settings_new</i>
+        
+        if(this.props.users.usertype == 'ADMIN'){
+            return(
+                <div className="col m12">
+                    <div className="col m8 offset-m4 main-content">
+                        <PageBar pageName='Admin Dashboard' />
+                        <AdminDashboard users={this.state.users} books={this.state.books} />
+                        <p onClick={this.testSomething}>Testing stuffs for use</p>
                     </div>
-
-                    <div className="row">
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content ">
-                                <span className="card-title center">Total Books</span>
-                                <h4 className="center counter">50</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content ">
-                                <span className="card-title center">Books Deleted</span>
-                                <h4 className="center counter">0</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content ">
-                                <span className="card-title center">Books Borrowed</span>
-                                <h4 className="center counter">10</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content">
-                                <span className="card-title center">Books Available</span>
-                                <h4 className="center counter">40</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content">
-                                <span className="card-title center">Total Users</span>
-                                <h4 className="center counter">15</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col m3 s12">
-                            <div className="card blue white">
-                                <div className="card-content ">
-                                <span className="card-title center">Deleted Users</span>
-                                <h4 className="center counter">3</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content">
-                                <span className="card-title center">Active Users</span>
-                                <h4 className="center counter">12</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col m3 s12">
-                            <div className="card white">
-                                <div className="card-content ">
-                                <span className="card-title center">Admin Users</span>
-                                <h4 className="center counter">2</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col m6 s12">
-                            <ul className="collapsible popout" data-collapsible="accordion">
-                                <li>
-                                    <div className="collapsible-header"><i className="material-icons">person_pin</i>Admin User</div>
-                                    <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                </li>
-                                <li>
-                                    <div className="collapsible-header"><i className="material-icons">person_outline</i>Client User</div>
-                                    <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                </li>
-                                <li>
-                                    <div className="collapsible-header"><i className="material-icons">person_outline</i>Temporary User</div>
-                                    <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className="col m6 s12">
-                            <ul className="collapsible popout" data-collapsible="accordion">
-                                <li>
-                                    <div className="collapsible-header"><i className="material-icons">person_outline</i>Platinium Client Account</div>
-                                    <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                </li>
-                                <li>
-                                    <div className="collapsible-header"><i className="material-icons">person_outline</i>Gold Client Account</div>
-                                    <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                </li>
-                                <li>
-                                    <div className="collapsible-header"><i className="material-icons">person_outline</i>Silver Client Account</div>
-                                    <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-
                 </div>
-            </div>
-        );
+            );
+        }else{
+            return(
+                <div className="col m12">
+                    <div className="col m8 offset-m4 main-content">
+                        <PageBar pageName='User Dashboard' />
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
-export default Dashboard;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getAllBooks: () => {
+            dispatch(bookActions.getBooks());
+        },
+        getBooksBorrowed: () => {
+            dispatch(bookActions.getBooksBorrowed());
+        },
+        getBooksUnreturned: () => {
+            dispatch(bookActions.getBooksUnreturned());
+        }
+    }
+}
+
+const mapStateToProps = (state, props) =>{
+    return {
+        users: state.userReducer,
+        books: state.bookReducer
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

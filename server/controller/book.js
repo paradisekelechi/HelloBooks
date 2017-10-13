@@ -6,7 +6,7 @@ export default {
     //view all books in the library
     getBooks(req, res) {
         return Book
-        .findAll(
+        .findAndCountAll(
             {
                 where:{
                     deleted: false,

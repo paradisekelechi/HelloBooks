@@ -30,7 +30,7 @@ class Signin extends React.Component{
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onClickSubmit = this.onClickSubmit.bind(this);
     }
-
+    
     /**
      * 
      * @returns {type} description
@@ -130,7 +130,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        user: state.user
+        userState: state.users
     };
 }
 

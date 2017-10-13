@@ -70,6 +70,9 @@
       background-size: 100%;
   } */
   
+  .cursor-hand:hover{
+      cursor: pointer;
+  }
   .action-button{
       width: 100%
   }

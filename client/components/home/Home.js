@@ -1,5 +1,7 @@
 import React from 'react';
 
+import bg from  '../../assets/img/background6.jpeg';
+
 /**
  * 
  * 
@@ -28,7 +30,7 @@ class Home extends React.Component{
 
                     </div>
                     </div>
-                    <div className="parallax"><img src="./assets/img/background6.jpeg" alt="Unsplashed background img 1"/></div>
+                    <div className="parallax"><img src={bg} alt="Unsplashed background img 1"/></div>
                 </div>
 
                 <div className="container">
