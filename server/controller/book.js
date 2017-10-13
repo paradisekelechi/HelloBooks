@@ -63,11 +63,54 @@ export default {
 
     getFinishedBooks(req, res) {
         return Book
-        .findAll(
+        .findAndCountAll(
             {
                 where:{
                     deleted: false,
                     quantity: 0
+                }
+            },
+            {
+            include: [{
+                model: models.BookCategory,
+            }],
+        })
+        .then(book => res.status(200).send({
+            success: true,
+            message: 'Books obtained successfully',
+            book
+        }))
+        .catch(error => res.status(400).send(error));
+    },
+
+    getAvailableBooks(req, res) {
+        return Book
+        .findAndCountAll(
+            {
+                where:{
+                    deleted: false,
+                    quantity: {$ne: 0}
+                }
+            },
+            {
+            include: [{
+                model: models.BookCategory,
+            }],
+        })
+        .then(book => res.status(200).send({
+            success: true,
+            message: 'Books obtained successfully',
+            book
+        }))
+        .catch(error => res.status(400).send(error));
+    },
+
+    getDeletedBooks(req, res) {
+        return Book
+        .findAndCountAll(
+            {
+                where:{
+                    deleted: true
                 }
             },
             {

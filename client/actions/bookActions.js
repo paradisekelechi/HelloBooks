@@ -1,6 +1,6 @@
 import querystring from 'querystring';
 import axios from 'axios';
-import {ADD_BOOK, EDIT_BOOK, DELETE_BOOK, GET_BOOKS, GET_BOOKS_BORROWED, GET_BOOKS_UNRETURNED} from '../utils/actionConstants';
+import {ADD_BOOK, EDIT_BOOK, DELETE_BOOK, GET_BOOKS, GET_BOOKS_AVAILABLE, GET_BOOKS_DELETED, GET_BOOKS_FINISHED} from '../utils/actionConstants';
 import {authenticateFetch} from '../utils/authenticate';
 import routes from '../utils/apiRoutes';
 
@@ -135,7 +135,7 @@ const getBooksSync = (payload) => {
  * @export
  * @returns {type} book dispatch
  */
-export function getBooksBorrowed () {
+export function getBooksFinished () {
 
     const config = {
         headers: {
@@ -144,22 +144,47 @@ export function getBooksBorrowed () {
     }
     return dispatch => {
         axios
-        .get(routes.getBooksBorrowed, config)
+        .get(routes.getBooksFinished, config)
         .then((response) => {
             if(response.data.success){
-                dispatch(getBooksBorrowedSync(response.data));
+                dispatch(getBooksFinishedSync(response.data));
             }
         })
     }
 }
     
 
-const getBooksBorrowedSync = (payload) => {
+const getBooksFinishedSync = (payload) => {
     return{
-        type: GET_BOOKS_BORROWED,
+        type: GET_BOOKS_FINISHED,
         payload
     }
 }
+
+export function getBooksAvailable () {
+        const config = {
+            headers: {
+                'user-token': token
+            }
+        }
+        return dispatch => {
+            axios
+            .get(routes.getBooksAvailable, config)
+            .then((response) => {
+                if(response.data.success){
+                    dispatch(getBooksAvailableSync(response.data));
+                }
+            })
+        }
+    }
+        
+    
+    const getBooksAvailableSync = (payload) => {
+        return{
+            type: GET_BOOKS_AVAILABLE,
+            payload
+        }
+    }
 
 /**
  * 
@@ -167,7 +192,7 @@ const getBooksBorrowedSync = (payload) => {
  * @export
  * @returns {type} book dispatch
  */
-export function getBooksUnreturned () {
+export function getBooksDeleted () {
     
     const config = {
         headers: {
@@ -176,17 +201,17 @@ export function getBooksUnreturned () {
     }
     return dispatch => {
         axios
-        .get(routes.getBooksUnreturned, config)
+        .get(routes.getBooksDeleted, config)
         .then((response) => {
             if(response.data.success){
-                dispatch(getBooksUnreturnedSync(response.data));
+                dispatch(getBooksDeletedSync(response.data));
             }
         })
     }
 }
-const getBooksUnreturnedSync = (payload) => {
+const getBooksDeletedSync = (payload) => {
     return{
-        type: GET_BOOKS_UNRETURNED,
+        type: GET_BOOKS_DELETED,
         payload
     }
 }

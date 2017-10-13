@@ -1,7 +1,7 @@
 export const GET_BOOKS = 'get books';
-export const GET_BOOKS_BY_CATEGORY = 'get books by book category';
-export const GET_BOOKS_BORROWED = 'get all books that were borrowed';
-export const GET_BOOKS_UNRETURNED = 'get books that have not been returned';
+export const GET_BOOKS_DELETED = 'get books that have been deleted';
+export const GET_BOOKS_FINISHED = 'get all books that have finished';
+export const GET_BOOKS_AVAILABLE = 'get books that are available for borrow';
 
 export const ADD_BOOK = 'add book';
 export const EDIT_BOOK = 'edit book';

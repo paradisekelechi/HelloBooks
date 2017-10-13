@@ -89,9 +89,6 @@ class Dashboard extends React.Component{
      * @memberof Dashboard
      */
     componentDidMount (){
-        this.props.getAllBooks();
-        this.props.getBooksBorrowed();
-        this.props.getBooksUnreturned();
         this.setState({
             books: this.props.bookListReducer,
             users: this.props.userListReducer
@@ -111,7 +108,7 @@ class Dashboard extends React.Component{
                 <div className="col m12">
                     <div className="col m8 offset-m4 main-content">
                         <PageBar pageName='Admin Dashboard' />
-                        <AdminDashboard users={this.state.users} books={this.state.books} />
+                        <AdminDashboard/>
                         <p onClick={this.testSomething}>Testing stuffs for use</p>
                     </div>
                 </div>
@@ -128,20 +125,6 @@ class Dashboard extends React.Component{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getAllBooks: () => {
-            dispatch(bookActions.getBooks());
-        },
-        getBooksBorrowed: () => {
-            dispatch(bookActions.getBooksBorrowed());
-        },
-        getBooksUnreturned: () => {
-            dispatch(bookActions.getBooksUnreturned());
-        }
-    }
-}
-
 const mapStateToProps = (state, props) =>{
     return {
         users: state.userReducer,
@@ -150,4 +133,4 @@ const mapStateToProps = (state, props) =>{
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

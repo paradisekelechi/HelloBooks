@@ -1,19 +1,25 @@
 import * as actionConstants from '../utils/actionConstants';
 
 const initialState = {
-    borrowed: {
-        isLoading: true,
-        error: '',
-        count: 0,
-        list: {}
-    },
-    unreturned: {
-        isLoading: true,
-        error: '',
-        count: 0,
-        list: {}
-    },
     total: {
+        isLoading: true,
+        error: '',
+        count: 0,
+        list: {}
+    },
+    deleted: {
+        isLoading: true,
+        error: '',
+        count: 0,
+        list: {}
+    },
+    finished: {
+        isLoading: true,
+        error: '',
+        count: 0,
+        list: {}
+    },
+    available: {
         isLoading: true,
         error: '',
         count: 0,
@@ -23,12 +29,12 @@ const initialState = {
 
     export default (state = initialState, action) => {
         switch (action.type) {
-            case actionConstants.GET_BOOKS_BORROWED:
+            case actionConstants.GET_BOOKS_AVAILABLE:
                 return Object.assign(
                     {},
                     state,
                     {
-                        borrowed: {
+                        available: {
                             isLoading: false,
                             error: '',
                             count: action.payload.book.count,
@@ -36,12 +42,12 @@ const initialState = {
                         }
                     }
                 ); 
-            case actionConstants.GET_BOOKS_UNRETURNED:
+            case actionConstants.GET_BOOKS_DELETED:
                 return Object.assign(
                     {},
                     state,
                     {
-                        unreturned: {
+                        deleted: {
                             isLoading: false,
                             error: '',
                             count: action.payload.book.count,
@@ -62,6 +68,19 @@ const initialState = {
                         }
                     }
                 ); 
+            case actionConstants.GET_BOOKS_FINISHED:
+                return Object.assign(
+                    {},
+                    state,
+                    {
+                        finished: {
+                            isLoading: false,
+                            error: '',
+                            count: action.payload.book.count,
+                            list: action.payload.book.rows
+                        }
+                    }
+                );
             
           default:
             return state;
