@@ -7,6 +7,11 @@ const getBooksDeleted = `${baseRoute}books/deleted`;
 const getBooksAvailable = `${baseRoute}books/available`;
 const addBooks = `${baseRoute}books`;
 
+const getAllUsers = `${baseRoute}users`;
+const getAdminUsers = `${baseRoute}users/admin`;
+const getClientUsers = `${baseRoute}users/client`;
+const getDeletedUsers = `${baseRoute}users/deleted`;
+
 const routes = {
     signup,
     signin,
@@ -14,7 +19,11 @@ const routes = {
     getBooks,
     getBooksFinished,
     getBooksDeleted,
-    getBooksAvailable
+    getBooksAvailable,
+    getAllUsers,
+    getAdminUsers,
+    getClientUsers,
+    getDeletedUsers
 }
 
 export default routes;

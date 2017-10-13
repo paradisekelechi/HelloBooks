@@ -185,13 +185,17 @@ export default {
 
   getUsers(req, res){
       return User
-      .findAll({
+      .findAndCountAll({
           where: {
               deleted: false,
           }
       })
         .then(users => {
-            res.status(200).send(users);
+            res.status(200).send({
+                success: true,
+                message: 'Users list successfully gotten ',
+                users
+            });
         })
         .catch(() => {
             res.status.send({
@@ -200,6 +204,74 @@ export default {
             });
         })
   },
+
+  getAdminUsers(req, res){
+    return User
+    .findAndCountAll({
+        where: {
+            deleted: false,
+            user_type_id: 2
+        }
+    })
+      .then(users => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+        });
+      })
+      .catch(() => {
+          res.status.send({
+              success: false,
+              message: 'Users list not obtained'
+          });
+      })
+},
+
+getClientUsers(req, res){
+    return User
+    .findAndCountAll({
+        where: {
+            deleted: false,
+            user_type_id: 1
+        }
+    })
+      .then(users => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+        });
+      })
+      .catch(() => {
+          res.status.send({
+              success: false,
+              message: 'Users list not obtained'
+          });
+      })
+},
+
+getDeletedUsers(req, res){
+    return User
+    .findAndCountAll({
+        where: {
+            deleted: true,
+        }
+    })
+      .then(users => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+        });
+      })
+      .catch(() => {
+          res.status.send({
+              success: false,
+              message: 'Users list not obtained'
+          });
+      })
+},
 
   getUsersByUserType(req, res){
       let userTypeId = req.params.userTypeId;

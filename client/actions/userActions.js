@@ -2,9 +2,11 @@ import axios from 'axios';
 import querystring from 'querystring';
 import {browserHistory} from 'react-router';
 
-import {SIGNUP_USER, SIGNIN_USER, LOGOUT_USER} from '../utils/actionConstants';
+import * as userActions from '../utils/actionConstants';
 import routes from '../utils/apiRoutes';
-import {authenticatePersist, authenticateClear} from '../utils/authenticate';
+import {authenticateFetch, authenticatePersist, authenticateClear} from '../utils/authenticate';
+
+const token = authenticateFetch().token;
 
 /**
  * @export
@@ -29,7 +31,7 @@ export function signinUser(user) {
 
 const signinUserAsync = (data) =>{
     return {
-        type: SIGNIN_USER,
+        type: userActions.SIGNIN_USER,
         payload: data
     }
 }
@@ -63,7 +65,7 @@ export function signupUser (user) {
 
 const signupUserAsync = (user) => {
     return {
-        type: SIGNUP_USER,
+        type: userActions.SIGNUP_USER,
         user
     }
 }
@@ -85,7 +87,104 @@ export function logoutUser (user) {
 
 const logoutUserAsync = (user) => {
     return {
-        type: LOGOUT_USER,
+        type: userActions.LOGOUT_USER,
         user
+    }
+}
+
+export function getAllUsers () {
+    const config = {
+        headers: {
+            'user-token': token
+        }
+    }
+    return dispatch => {
+        axios
+        .get(routes.getAllUsers, config)
+        .then((response) => {
+            console.log(response);
+            if(response.data.success){
+                dispatch(getAllUsersSync(response.data));
+            }
+        })
+    }
+}
+
+const getAllUsersSync = (payload) => {
+    return {
+        type: userActions.GET_ALL_USERS,
+        payload
+    }
+}
+
+export function getAdminUsers () {
+    const config = {
+        headers: {
+            'user-token': token
+        }
+    }
+    return dispatch => {
+        axios
+        .get(routes.getAdminUsers, config)
+        .then((response) => {
+            if(response.data.success){
+                dispatch(getAdminUsersSync(response.data));
+            }
+        })
+    }
+}
+
+const getAdminUsersSync = (payload) => {
+    return {
+        type: userActions.GET_ADMIN_USERS,
+        payload
+    }
+}
+
+export function getClientUsers () {
+    const config = {
+        headers: {
+            'user-token': token
+        }
+    }
+    return dispatch => {
+        axios
+        .get(routes.getClientUsers, config)
+        .then((response) => {
+            if(response.data.success){
+                dispatch(getClientUsersSync(response.data));
+            }
+        })
+    }
+}
+
+const getClientUsersSync = (payload) => {
+    return {
+        type: userActions.GET_CLIENT_USERS,
+        payload
+    }
+}
+
+export function getDeletedUsers () {
+    const config = {
+        headers: {
+            'user-token': token
+        }
+    }
+    return dispatch => {
+        axios
+        .get(routes.getDeletedUsers, config)
+        .then((response) => {
+            if(response.data.success){
+                dispatch(getDeletedUsersSync(response.data));
+            }
+        })
+    }
+}
+
+const getDeletedUsersSync = (payload) => {
+    return {
+        type: userActions.GET_DELETED_USERS,
+        payload
     }
 }

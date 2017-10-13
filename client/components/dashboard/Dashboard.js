@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
 
 import {authenticateFetch} from '../../utils/authenticate';
 import AdminDashboard from './AdminDashboard';
 import PageBar from '../common/main/PageBar';
-import * as bookActions from '../../actions/bookActions';
+import * as userActions from '../../actions/userActions';
 
 
 /**
@@ -71,30 +72,21 @@ class Dashboard extends React.Component{
             }],
             userdata: {}
         }
-        this.testSomething = this.testSomething.bind(this);
     }
 
-    /**
-     * 
-     * @returns {type} description
-     * @memberof Dashboard
-     */
-    testSomething(){
-        this.props.getAllBooks();
-        console.log(this.props);
-    }
     /**
      * 
      * @returns {void} description
      * @memberof Dashboard
      */
-    componentDidMount (){
-        this.setState({
-            books: this.props.bookListReducer,
-            users: this.props.userListReducer
-        });
+    componentWillMount(){
+        const authStatus = authenticateFetch();
+        if(!authStatus.loggedIn){
+            browserHistory.push('/signin');
+        }
+        this.state.userdata = this.props.users;
     }
-    
+
     /**
      * 
      * 
@@ -109,7 +101,6 @@ class Dashboard extends React.Component{
                     <div className="col m8 offset-m4 main-content">
                         <PageBar pageName='Admin Dashboard' />
                         <AdminDashboard/>
-                        <p onClick={this.testSomething}>Testing stuffs for use</p>
                     </div>
                 </div>
             );
@@ -127,8 +118,14 @@ class Dashboard extends React.Component{
 
 const mapStateToProps = (state, props) =>{
     return {
-        users: state.userReducer,
-        books: state.bookReducer
+        users: state.userReducer
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUserData: () => {
+            dispatch(userActions.logoutUser())
+        }
     }
 }
 

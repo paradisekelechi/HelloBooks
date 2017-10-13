@@ -37,6 +37,58 @@ const initialState = {
  */
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
+        case actionConstants.GET_ALL_USERS:
+            return Object.assign(
+                {},
+                state,
+                {
+                    total: {
+                        isLoading: false,
+                        error: '',
+                        count: action.payload.users.count,
+                        list: action.payload.users.rows
+                    }
+                }
+            );
+        case actionConstants.GET_ADMIN_USERS:
+            return Object.assign(
+                {},
+                state,
+                {
+                    admin: {
+                        isLoading: false,
+                        error: '',
+                        count: action.payload.users.count,
+                        list: action.payload.users.rows
+                    }
+                }
+            );
+        case actionConstants.GET_CLIENT_USERS:
+            return Object.assign(
+                {},
+                state,
+                {
+                    client: {
+                        isLoading: false,
+                        error: '',
+                        count: action.payload.users.count,
+                        list: action.payload.users.rows
+                    }
+                }
+            );
+        case actionConstants.GET_DELETED_USERS:
+            return Object.assign(
+                {},
+                state,
+                {
+                    deleted: {
+                        isLoading: false,
+                        error: '',
+                        count: action.payload.users.count,
+                        list: action.payload.users.rows
+                    }
+                }
+            );
         default:
             return state;
     }

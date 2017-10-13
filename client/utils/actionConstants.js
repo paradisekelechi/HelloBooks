@@ -12,9 +12,11 @@ export const DELETE_USER = 'delete user';
 export const SIGNIN_USER = 'sign in user';
 export const SIGNUP_USER = 'sign up user';
 export const LOGOUT_USER = 'log out user';
+
 export const GET_ALL_USERS= 'get all users';
 export const GET_ADMIN_USERS = 'get admin users';
 export const GET_CLIENT_USERS = 'get client users';
+export const GET_DELETED_USERS = 'get deleted users';
 export const GET_SILVER_USERS = 'get silver users';
 export const GET_GOLD_USERS = 'get gold users';
 export const GET_PLATINIUM_USERS = 'get platinium users';

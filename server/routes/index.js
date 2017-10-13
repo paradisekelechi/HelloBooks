@@ -32,6 +32,9 @@ let routes = (app) => {
   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
   app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);
   app.get('/api/v1/users', checkLogin, checkUser, userController.getUsers);
+  app.get('/api/v1/users/admin', checkLogin, checkUser, userController.getAdminUsers);
+  app.get('/api/v1/users/client', checkLogin, checkUser, userController.getClientUsers);
+  app.get('/api/v1/users/deleted', checkLogin, checkUser, userController.getDeletedUsers);
 
   app.get('/api/v1/users/accounttype/:accountTypeId', checkLogin, checkUser, userController.getUsersByAccountType);
   app.get('/api/v1/users/usertype/:userTypeId', checkLogin, checkUser, userController.getUsersByUserType);

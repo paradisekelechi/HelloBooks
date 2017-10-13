@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import * as bookActions from '../../actions/bookActions';
+import * as userActions from '../../actions/userActions';
 
 
 class  AdminDashboard extends React.Component{
@@ -74,9 +75,15 @@ class  AdminDashboard extends React.Component{
         this.props.getBooksAvailable();
         this.props.getBooksDeleted();
         this.props.getBooksFinished();
+        this.props.getAllUsers();
+        this.props.getAdminUsers();
+        this.props.getClientUsers();
+        this.props.getDeletedUsers();
     }
 
- 
+    componentDidMount(){
+        console.log(this.props);
+    }
 
     /**
      * 
@@ -132,7 +139,7 @@ class  AdminDashboard extends React.Component{
                         <div className="card white">
                             <div className="card-content">
                             <span className="card-title center">Total Users</span>
-                            <h4 className="center counter">{this.state.users.total.count}</h4>
+                            <h4 className="center counter">{this.props.users.total.count}</h4>
                             </div>
                         </div>
                     </div>
@@ -141,7 +148,7 @@ class  AdminDashboard extends React.Component{
                         <div className="card blue white">
                             <div className="card-content ">
                             <span className="card-title center">Deleted Users</span>
-                            <h4 className="center counter">{this.state.users.deleted.count}</h4>
+                            <h4 className="center counter">{this.props.users.deleted.count}</h4>
                             </div>
                         </div>
                     </div>
@@ -149,8 +156,8 @@ class  AdminDashboard extends React.Component{
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content">
-                            <span className="card-title center">Active Users</span>
-                            <h4 className="center counter">{this.state.users.admin.count}</h4>
+                            <span className="card-title center">Client Users</span>
+                            <h4 className="center counter">{this.props.users.client.count}</h4>
                             </div>
                         </div>
                     </div>
@@ -159,7 +166,7 @@ class  AdminDashboard extends React.Component{
                         <div className="card white">
                             <div className="card-content ">
                             <span className="card-title center">Admin Users</span>
-                            <h4 className="center counter">{this.state.users.admin.count}</h4>
+                            <h4 className="center counter">{this.props.users.admin.count}</h4>
                             </div>
                         </div>
                     </div>
@@ -219,6 +226,18 @@ const mapDispatchToProps = (dispatch) => {
         },
         getBooksAvailable: () => {
             dispatch(bookActions.getBooksAvailable());
+        },
+        getAllUsers: () => {
+            dispatch(userActions.getAllUsers());
+        },
+        getAdminUsers: () => {
+            dispatch(userActions.getAdminUsers());
+        },
+        getClientUsers: () => {
+            dispatch(userActions.getClientUsers());
+        },
+        getDeletedUsers: () => {
+            dispatch(userActions.getDeletedUsers());
         }
     }
 }
