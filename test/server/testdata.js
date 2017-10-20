@@ -1,5 +1,6 @@
 import randomstring from 'just.randomstring';
 import dotenv from 'dotenv';
+
 const envConfig = dotenv.config().parsed;
 
 //Random data
