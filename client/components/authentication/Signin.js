@@ -1,4 +1,8 @@
 import React from 'react';
+import {browserHistory} from 'react-router';
+import {connect} from 'react-redux';
+
+import * as userActions from '../../actions/userActions';
 
 /**
  * 
@@ -7,6 +11,66 @@ import React from 'react';
  * @extends {React.Component}
  */
 class Signin extends React.Component{
+
+    /**
+     * Creates an instance of Signin.
+     * @param {any} props 
+     * @param {any} context 
+     * @memberof Signin
+     */
+    constructor(props, context){
+        super(props, context);
+        this.state = {
+            user: {
+                username: "",
+                password: ""
+            }
+        }
+        this.onUsernameChange = this.onUsernameChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onClickSubmit = this.onClickSubmit.bind(this);
+    }
+    
+    /**
+     * 
+     * @returns {type} description
+     * @param {any} event 
+     * @memberof Signin
+     */
+    onUsernameChange(event){
+        const user = this.state.user;
+        user.username = event.target.value;
+        this.setState({
+            user: user
+        });
+    }
+
+    /**
+     * 
+     * @returns {null} description
+     * @param {any} event 
+     * @memberof Signin
+     */
+    onPasswordChange(event){
+        const user = this.state.user;
+        user.password = event.target.value;
+        this.setState({
+            user: user
+        });
+    }
+
+    /**
+     * 
+     * @returns {void} description
+     * @param {any} event 
+     * @memberof Signin
+     */
+    onClickSubmit(event){
+        event.preventDefault;
+        this.props.signin(this.state.user);
+        //alert(`We are here! Username: ${this.state.user.username} and Password: ${this.state.user.password}`);
+    }
+
     /**
      * 
      * 
@@ -27,17 +91,15 @@ class Signin extends React.Component{
                             <p className="center">OR</p>
                         </div>
                         <div className="input-field col s12">
-                            <input id="last_name" type="text" className="validate" />
+                            <input id="last_name" type="text" onChange={this.onUsernameChange} value={this.state.username} className="validate" />
                             <label>Username</label>
                         </div>
                         <div className="input-field col s12 ">
-                            <input id="last_name" type="text" className="validate" />
+                            <input id="last_name" type="password" onChange={this.onPasswordChange} value={this.state.password} className="validate" />
                             <label>Password</label>
                         </div>
                         <div className="col s12">
-                            <a href="dashboard-admin.html">
-                                <button className="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Signin</button>
-                            </a>
+                            <button type="submit" onClick={this.onClickSubmit} className="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Signin</button>
                         </div>
                         <div className="col s12">
                             <br/>
@@ -58,4 +120,18 @@ class Signin extends React.Component{
     }
 }
 
-export default Signin;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signin: (userData) => {
+            dispatch(userActions.signinUser(userData))  
+        }
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        userState: state.users
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

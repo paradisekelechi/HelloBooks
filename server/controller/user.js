@@ -74,14 +74,16 @@ export default {
         })
         .then(user => {
             //token generated
-            const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type, account_type: user.accounttype}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
+            const token = jwt.sign({email: user.dataValues.email, username: user.dataValues.username, usertype: user.dataValues.user_type_id, account_type: user.dataValues.account_type_id}, secret, {expiresIn: 24 * 60 * 60 * 40}); 
             if(user){
-                
-                
                 res.status(200).send({    
                 message: 'User Account Creation Successful',
                 token: token,
-                success: true
+                success: true,
+                email: user.dataValues.email, 
+                username: user.dataValues.username, 
+                usertype: user.dataValues.user_type_id, 
+                account_type: user.dataValues.account_type_id
                 })
             }else{
                     res.status(400).send({    
@@ -146,7 +148,7 @@ export default {
     })
     .then(user => {
         if(user){
-             bcrypt.compare(password, user.password, (err, success)=>{
+             bcrypt.compare(password, user.password, (err, success) => {
                 if(success){
                     //token generated
                     const token = jwt.sign({email: user.email, username: user.username, usertype: user.user_type_id, accounttype: user.account_type_id}, secret, {expiresIn: 24 * 3600 * 3600 * 40});
@@ -155,7 +157,11 @@ export default {
                     res.status(200).send({
                         success: true,
                         message: 'User successfully signed in ',
-                        token: token
+                        token: token,
+                        usertype: user.user_type_id,
+                        username: user.username,
+                        email: user.email,
+                        accounttype: user.account_type_id
                     });
                 }else{
                     res.status(400).send({
@@ -179,13 +185,17 @@ export default {
 
   getUsers(req, res){
       return User
-      .findAll({
+      .findAndCountAll({
           where: {
               deleted: false,
           }
       })
         .then(users => {
-            res.status(200).send(users);
+            res.status(200).send({
+                success: true,
+                message: 'Users list successfully gotten ',
+                users
+            });
         })
         .catch(() => {
             res.status.send({
@@ -194,6 +204,74 @@ export default {
             });
         })
   },
+
+  getAdminUsers(req, res){
+    return User
+    .findAndCountAll({
+        where: {
+            deleted: false,
+            user_type_id: 2
+        }
+    })
+      .then(users => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+        });
+      })
+      .catch(() => {
+          res.status.send({
+              success: false,
+              message: 'Users list not obtained'
+          });
+      })
+},
+
+getClientUsers(req, res){
+    return User
+    .findAndCountAll({
+        where: {
+            deleted: false,
+            user_type_id: 1
+        }
+    })
+      .then(users => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+        });
+      })
+      .catch(() => {
+          res.status.send({
+              success: false,
+              message: 'Users list not obtained'
+          });
+      })
+},
+
+getDeletedUsers(req, res){
+    return User
+    .findAndCountAll({
+        where: {
+            deleted: true,
+        }
+    })
+      .then(users => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+        });
+      })
+      .catch(() => {
+          res.status.send({
+              success: false,
+              message: 'Users list not obtained'
+          });
+      })
+},
 
   getUsersByUserType(req, res){
       let userTypeId = req.params.userTypeId;

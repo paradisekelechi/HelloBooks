@@ -2,7 +2,10 @@ import 'babel-polyfill';
 import {render} from 'react-dom';
 import {Route, Router, browserHistory} from 'react-router';
 import React from 'react';
+import {Provider} from 'react-redux';
 
+//Import redux store
+import configureStore from './store/configureStore';
 
 //Import styles 
 import './assets/css/styles.css';
@@ -23,18 +26,23 @@ import Signin from './components/authentication/Signin';
 import Signup from './components/authentication/Signup';
 import Dashboard from './components/dashboard/Dashboard';
 
+const store = configureStore();
+
 render(
-    <Router history={browserHistory}>
-        <Route component={HomeLayout}>
-            <Route path="/" component={Home} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/signup" component={Signup} />
-        </Route>
-        <Route component={MainLayout}>
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/books" component={Books} />
-            <Route path='/profile' component={Profile} />
-        </Route>
-    </Router>,
+
+    <Provider store={store}>
+        <Router history={browserHistory}>
+            <Route component={HomeLayout}>
+                <Route path="/" component={Home} />
+                <Route path="/signin" component={Signin} />
+                <Route path="/signup" component={Signup} />
+            </Route>
+            <Route component={MainLayout}>
+                <Route path="/dashboard" component={Dashboard} />
+                <Route path="/books" component={Books} />
+                <Route path='/profile' component={Profile} />
+            </Route>
+        </Router>
+    </Provider>,
     document.getElementById('application')
 );

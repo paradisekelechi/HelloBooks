@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import * as userActions from '../../actions/userActions';
 
 /*eslint-disable no-console */
 /**
@@ -16,32 +18,70 @@ class Signup extends React.Component{
      */
     constructor(props){
         super(props);
-        this.state = {'value': ''};
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.state = {
+            user: {
+                username: '',
+                password: '',
+                email: ''
+            }
+        };
+        this.onEmailChange = this.onEmailChange.bind(this);
+        this.onUsernameChange = this.onUsernameChange.bind(this);
+        this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onClickSubmit = this.onClickSubmit.bind(this);
     }
 
     /**
      * 
-     * @returns {S} description
+     * @returns {void} description
      * @param {any} event 
      * @memberof Signup
      */
-    handleChange(event){
+    onEmailChange(event){
+        const user = this.state.user;
+        user.email = event.target.value;
         this.setState({
-            value: event.target.value
+            user: user
+        });
+    }
+    
+    /**
+     * 
+     * @returns {void} description
+     * @param {any} event 
+     * @memberof Signup
+     */
+    onUsernameChange(event){
+        const user = this.state.user;
+        user.username = event.target.value;
+        this.setState({
+            user: user
         });
     }
 
     /**
      * 
-     * @returns {type} description
+     * @returns {void} description
      * @param {any} event 
      * @memberof Signup
      */
-    handleSubmit(event){
-        event.preventDefault;
-        console.log(this.state.value);
+    onPasswordChange(event){
+        const user = this.state.user;
+        user.password = event.target.value;
+        this.setState({
+            user: user
+        });
+    }
+
+    /**
+     * 
+     * @returns {void} description
+     * @param {any} event 
+     * @memberof Signup
+     */
+    onClickSubmit(event){event.preventDefault;
+        console.log(this.state);
+        this.props.signup(this.state.user);
     }
     
     /**
@@ -56,25 +96,23 @@ class Signup extends React.Component{
                 <div className="row authentication-row">
                     <div className="col m4 offset-m4">
                         <h5 className="center authentication-header">Register Account</h5>
-                        <form onSubmit={this.handleSubmit}>
+                        
                             <div className="input-field col s12">
-                                <input id="email" type="text" className="validate" />
+                                <input id="email" type="text" value={this.state.user.email} onChange={this.onEmailChange} className="validate" />
                                 <label>Email</label>
                             </div>
                             <div className="input-field col s12">
-                                <input id="username" type="text" onChange={this.handleChange} className="validate" />
+                                <input id="username" name='username' type="text" value={this.state.user.username} onChange={this.onUsernameChange} className="validate" />
                                 <label>Username</label>
                             </div>
                             <div className="input-field col s12 ">
-                                <input id="password" type="text" className="validate" />
+                                <input id="password" type="text" name='password' value={this.state.user.password} onChange={this.onPasswordChange} className="validate" />
                                 <label>Password</label>
                             </div>
                             <div className="col s12">
-                                <a href="dashboard-admin.html">
-                                <button type="submit" className="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Register</button>
-                                </a>
+                                <button type="submit" onClick={this.onClickSubmit} className="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Register</button>
                             </div>
-                        </form>
+
                         <div className="col s12">
                             <br/>
                             <small className="">Already a User?</small>
@@ -95,4 +133,18 @@ class Signup extends React.Component{
     }
 }
 
-export default Signup;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signup: (userData) => {
+            dispatch(userActions.signupUser(userData));
+        }
+    }
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
