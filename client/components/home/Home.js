@@ -1,6 +1,6 @@
 import React from 'react';
 
-import bg from  '../../assets/img/background6.jpeg';
+// import bg from  '../../assets/img/background6.jpeg';
 
 /**
  * 

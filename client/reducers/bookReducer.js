@@ -2,7 +2,8 @@ import * as actionConstants from '../utils/actionConstants';
 
 const initialState = {
     isLoading: true,
-    error: '',
+    error: 'Action is still loading',
+    isSuccessful: false
 }
 
     export default (state = initialState, action) => {
@@ -15,7 +16,8 @@ const initialState = {
                     state,
                     {
                         isLoading: false,
-                        error: ''
+                        error: '',
+                        isSuccessful: true
                     }
                 );    
 
