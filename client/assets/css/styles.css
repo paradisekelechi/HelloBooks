@@ -1,0 +1,158 @@
+
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+
+ .icon-block {
+    padding: 0 15px;
+  }
+  .icon-block .material-icons {
+      font-size: inherit;
+  }
+  
+  
+  /* Customised styles */
+  .brand-logo{
+      font-family: 'Great Vibes', cursive;
+  }
+  
+  .login-logo{
+      font-size: 36px;
+      margin-top: 20px;
+  }
+  
+  .dashboard-logo{
+      text-align: center;
+      font-size: 30px;
+      margin: 50px;
+      color: #fff;
+  }
+  
+  .side-nav{
+      padding-top: 30px;
+      background-color: rgba(0, 0, 0, 0.75);
+  }
+  .side-nav li a, .side-nav li a i {
+      color:#fff !important;
+  }
+  
+  /* .custom-nav{
+      background: url('../img/back.jpeg');
+  } */
+  
+  .nav-link{
+      margin: 10px;
+      border-radius: 0px;
+  }
+  
+  .authentication-row{
+      margin-top: 7%;
+      margin-bottom: 10%;
+  }
+  
+  .authentication-header{
+      margin-bottom: 12%;
+  }
+  
+  body, html {
+      font-family: 'Ubuntu', 'Titillium Web', 'Ubuntu', 'Encode Sans', sans-serif;
+  }
+
+  body{
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+  }
+  main{
+      flex: 1 0 auto;
+  }
+  /* .dashboard-body{
+      background: url('../img/back.jpeg');
+      background-repeat: no-repeat;
+      background-size: 100%;
+  } */
+  
+  .cursor-hand:hover{
+      cursor: pointer;
+  }
+  .action-button{
+      width: 100%
+  }
+  
+  .main-content{
+      position: absolute;
+      left: 312px;
+      right: 10px;
+      background-color: #fff;
+  }
+  
+  .card{
+      -moz-box-shadow:    2px 2px 2px 2px #ccc;
+      -webkit-box-shadow: 2px 2px 2px 2px #ccc;
+      box-shadow:         2px 2px 2px 2px #ccc;
+  }
+  
+  
+  .option-icon{
+      font-size: 26px;
+  }
+  
+  .account-slideout{
+      color: transparent;
+  }
+  
+  .account-info{
+      padding: 15px;
+  }
+  
+  .hbk-row{
+      padding-top: 20px;
+      padding-right: 10px;
+      color: #fff;
+      text-align: center;
+  }
+  
+  .button-collapse{
+      font-size:26px
+  }
+
+  nav ul a,
+  nav .brand-logo {
+    color: #444;
+  }
+  
+  p {
+    line-height: 2rem;
+  }
+  
+  .button-collapse {
+    color: #26a69a;
+  }
+  
+  .parallax-container {
+    min-height: 450px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+  }
+    .parallax-container .section {
+      width: 100%;
+      }
+      
+  .no-pad-bot{
+      margin-top: 8%
+  }
+  
+  .application-info{
+      margin-top: 4%;
+  }
+  
+  
+  
+  @media only screen and (max-width : 992px) {
+    .main-content{
+            left: 0px;
+            right:0px;
+      }
+      .account-slideout{
+          color: #fff;
+      }
+  }  

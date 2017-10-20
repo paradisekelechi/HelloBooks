@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>HelloBooks | Signin</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+  <div class="container">
+    <div class="row login-logo">
+      <div class="col m12">
+        <span class="brand-logo">HelloBooks</span>
+      </div>
+    </div>
+
+    <div class="row authentication-row">
+      <div class="col m4 offset-m4">
+
+        <h5 class="center authentication-header">Account Signin</h5>
+        <div class="col s12">
+          <button class="waves-effect waves-light btn col s12 red ">Google Plus Signin</button>
+        </div>
+        <div class="col s12">
+          <br>
+          <p class="center">OR</p>
+        </div>
+
+        <div class="input-field col s12">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Username</label>
+        </div>
+        <div class="input-field col s12 ">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Password</label>
+        </div>
+        <div class="col s12">
+          <a href="dashboard-admin.html">
+            <button class="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Signin</button>
+          </a>
+        </div>
+        <div class="col s12">
+          <br>
+          <small class="">Not yet a User?</small>
+          <br/>
+        </div>
+        <div class="col s12">
+          <br>
+          <a href="register.html">
+            <button class="waves-effect waves-light btn col s12 blue darken-3">Register</button>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+          
+
+  <script>
+    $(document).ready(function(){
+      $('.collapsible').collapsible();
+    });
+  </script>
+
+</body>
+</html>
