@@ -1,7 +1,7 @@
 {
   "name": "hellobooks-application",
   "version": "1.0.0",
-  "description": "Hello Books Application clientside frontend",
+  "description": "Hello Books Application",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel lint:watch start:server",
@@ -9,8 +9,7 @@
     "lint": "node_modules/.bin/esw webpack.config.* client tools server",
     "lint:watch": "npm run lint -- --watch",
     "start:server": "set NODE_ENV=development&& babel-node  ./server/bin/www.js --exec babel-node --presets env ",
-    "start:test": "set NODE_ENV=test&& babel-node  ./server/bin/www.js --exec babel-node --presets env ",
-    "test": "nyc mocha server/test/* --timeout 15000 --compilers js:babel-register",
+    "test": "mocha test/* --timeout 15000 --compilers js:babel-register",
     "initialize:db": "babel-node server/scripts/initialize.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls ",
     "codeclimate:report": "recink run unit -c codeclimate"
@@ -41,6 +40,7 @@
     "node-schedule": "^1.2.4",
     "nodemailer": "^4.0.1",
     "nodemon": "^1.11.0",
+    "nyc": "^11.2.1",
     "pg": "^7.1.0",
     "pg-hstore": "^2.3.2",
     "querystring": "^0.2.0",
@@ -99,7 +99,6 @@
     "nock": "8.0.0",
     "nodemon": "^1.11.0",
     "npm-run-all": "1.8.0",
-    "nyc": "^11.2.1",
     "open": "0.0.5",
     "react-addons-test-utils": "15.0.2",
     "redux-immutable-state-invariant": "1.2.3",

@@ -1,7 +1,7 @@
 "use strict";
 import chai from 'chai';
 import supertest from 'supertest';
-import app from '../app.js';
+import app from '../../server/app.js';
 import * as testConstants from './testdata';
 
 const assert = chai.assert;
