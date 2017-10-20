@@ -1,0 +1,3 @@
+verbose: true
+instrumentation:
+    root: src
