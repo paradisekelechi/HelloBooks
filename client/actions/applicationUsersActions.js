@@ -1,50 +1,46 @@
 import axios from 'axios';
-import querystring from 'querystring';
-import {browserHistory} from 'react-router';
+import { GET_ALL_USERS } from '../utils/actionConstants';
 
-import {GET_ALL_USERS, GET_ADMIN_USERS} from '../utils/actionConstants';
-import routes from '../utils/apiRoutes';
-import {authenticatePersist, authenticateClear} from '../utils/authenticate';
-
+const getUsersSync = users => ({
+  type: GET_ALL_USERS,
+  users
+});
 /**
  * @export
- * @param {any} users 
+ * @param {any} users
  * @returns {object} object
  */
-export function getUsers (users){
-    return dispatch => {
-        axios
-        .get()
-        .then((response) => {
-            if(response){
-                dispatch(getUsersSync());
-            }
-        });
-    }
+export function getUsers(users) {
+  return (dispatch) => {
+    axios
+      .get()
+      .then((response) => {
+        if (response) {
+          dispatch(getUsersSync(users));
+        }
+      });
+  };
 }
 
-const getUsersSync = (users) => {
-    return {
-        type: GET_ALL_USERS,
-        users
-    }
-}
-
-
+const getAdminUsersSync = users => ({
+  type: GET_ALL_USERS,
+  users
+});
 /**
- * 
+ *
  * @export
- * @param {any} users 
+ * @param {any} users
  * @returns {void} Dispatch object
  */
-export function getAdminUsers (users){
-    return dispatch => {
-        axios
-        .get()
-        .then((response) => {
-            if(response){
-                dispatch(getUsersSync());
-            }
-        });
-    }
+export function getAdminUsers(users) {
+  return (dispatch) => {
+    axios
+      .get()
+      .then((response) => {
+        if (response) {
+          dispatch(getAdminUsersSync(users));
+        }
+      });
+  };
 }
+

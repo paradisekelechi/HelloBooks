@@ -6,7 +6,7 @@
 // 4. Requires jsdom so we can test via an in-memory DOM in Node
 // 5. Sets up global vars that mimic a browser.
 
-/* eslint-disable no-var*/
+/* eslint-disable no-var */
 
 /* This setting assures the .babelrc dev config (which includes
  hot module reloading code) doesn't apply for tests.
@@ -25,9 +25,9 @@ require('babel-register')();
 
 // Disable webpack-specific features for tests since
 // Mocha doesn't know what to do with them.
-require.extensions['.css'] = function () {return null;};
-require.extensions['.png'] = function () {return null;};
-require.extensions['.jpg'] = function () {return null;};
+require.extensions['.css'] = function () { return null; };
+require.extensions['.png'] = function () { return null; };
+require.extensions['.jpg'] = function () { return null; };
 
 // Configure JSDOM and set global variables
 // to simulate a browser environment for tests.
@@ -48,4 +48,4 @@ global.navigator = {
   userAgent: 'node.js'
 };
 
-documentRef = document;  //eslint-disable-line no-undef
+documentRef = document; // eslint-disable-line no-undef

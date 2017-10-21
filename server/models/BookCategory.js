@@ -1,26 +1,28 @@
-'use strict';
+
 
 export default (sequelize, DataTypes) => {
-  let BookCategory = sequelize.define('BookCategory', {
-    name: {
-      type: DataTypes.STRING,
-      notNull: true,
-      unique: true,
+  const BookCategory = sequelize.define(
+    'BookCategory', {
+      name: {
+        type: DataTypes.STRING,
+        notNull: true,
+        unique: true,
+      },
+      abbreviation: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      description: {
+        type: DataTypes.STRING,
+      },
+      deleted: {
+        type: DataTypes.BOOLEAN,
+      }
     },
-    abbreviation: {
-      type: DataTypes.STRING,
-      unique: true,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    deleted: {
-      type: DataTypes.BOOLEAN,
-    } 
-  },
-  {
-    freezeTableName: true,
-  });
+    {
+      freezeTableName: true,
+    }
+  );
 
   // BookCategory.sync({force: true}).then(() => {
   //     BookCategory.create({
@@ -42,7 +44,7 @@ export default (sequelize, DataTypes) => {
   //       deleted: false
   //   });
   // });
-  
+
   return BookCategory;
 };
 

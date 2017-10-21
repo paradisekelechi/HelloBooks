@@ -13,7 +13,7 @@ export const SIGNIN_USER = 'sign in user';
 export const SIGNUP_USER = 'sign up user';
 export const LOGOUT_USER = 'log out user';
 
-export const GET_ALL_USERS= 'get all users';
+export const GET_ALL_USERS = 'get all users';
 export const GET_ADMIN_USERS = 'get admin users';
 export const GET_CLIENT_USERS = 'get client users';
 export const GET_DELETED_USERS = 'get deleted users';
@@ -25,4 +25,4 @@ export const BORROW_BOOK = 'borrow book';
 export const RETURN_BOOK = 'return book';
 export const GET_BORROW_HISTORY = 'get borrow history';
 export const GET_PENDING_BOOKS = 'get pending books';
-export const GET_BORROWED_BOOKS = 'get borrowed books'; 
+export const GET_BORROWED_BOOKS = 'get borrowed books';
