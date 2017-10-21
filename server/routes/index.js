@@ -1,4 +1,4 @@
-import controllers from '../controller'
+import controllers from '../controller';
 import userHelper from '../helper/checkuser';
 import loginHelper from '../helper/checklogin';
 
@@ -9,14 +9,12 @@ const userController = controllers.user;
 const bookController = controllers.book;
 const borrowLogController = controllers.borrowlog;
 
-//private models to handle model setups
+// private models to handle model setups
 const userTypeController = controllers.usertype;
 const accountTypeController = controllers.accounttype;
 const bookCategoryController = controllers.bookcategory;
 
-let routes = (app) => {
-  
-
+const routes = (app) => {
   app.post('/api/v1/users/signup', userController.signup);
 
   app.post('/api/v1/users/signin', userController.signin);
@@ -50,7 +48,6 @@ let routes = (app) => {
 
   app.post('/api/v1/accounttype/', checkLogin, checkUser, accountTypeController.addAccountType);
   app.get('/api/v1/accounttype/', checkLogin, checkUser, accountTypeController.getAccountTypes);
-  
 };
 
 export default routes;

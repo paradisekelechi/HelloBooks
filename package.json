@@ -7,6 +7,7 @@
     "start": "npm-run-all --parallel lint:watch start:server",
     "open:client": "babel-node tools/clientServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* client tools server",
+    "lint:server": "node_modules/.bin/esw server",
     "lint:watch": "npm run lint -- --watch",
     "start:server": "set NODE_ENV=development&& babel-node  ./server/bin/www.js --exec babel-node --presets env ",
     "test": "mocha test/* --timeout 15000 --compilers js:babel-register",
@@ -41,6 +42,7 @@
     "nodemailer": "^4.0.1",
     "nodemon": "^1.11.0",
     "nyc": "^11.2.1",
+    "open": "0.0.5",
     "pg": "^7.1.0",
     "pg-hstore": "^2.3.2",
     "querystring": "^0.2.0",
@@ -52,6 +54,7 @@
     "react-router-redux": "4.0.4",
     "recink-codeclimate": "^1.5.5",
     "redux": "3.5.2",
+    "redux-immutable-state-invariant": "1.2.3",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "2.0.1",
     "sequelize": "^4.4.2",
@@ -59,7 +62,10 @@
     "supertest": "^3.0.0",
     "toastr": "2.1.2",
     "validation": "0.0.1",
-    "validator": "^8.0.0"
+    "validator": "^8.0.0",
+    "webpack": "^3.5.5",
+    "webpack-dev-middleware": "1.6.1",
+    "webpack-hot-middleware": "2.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -99,17 +105,12 @@
     "nock": "8.0.0",
     "nodemon": "^1.11.0",
     "npm-run-all": "1.8.0",
-    "open": "0.0.5",
     "react-addons-test-utils": "15.0.2",
-    "redux-immutable-state-invariant": "1.2.3",
     "redux-mock-store": "1.0.2",
     "resolve-url-loader": "^2.1.0",
     "rimraf": "2.5.2",
     "style-loader": "0.13.1",
-    "url-loader": "0.5.7",
-    "webpack": "^3.5.5",
-    "webpack-dev-middleware": "1.6.1",
-    "webpack-hot-middleware": "2.10.0"
+    "url-loader": "0.5.7"
   },
   "repository": {
     "type": "git",

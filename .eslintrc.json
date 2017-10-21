@@ -16,7 +16,7 @@
         "comma-dangle": 0,
         "curly": ["error", "multi-line"],
         "import/no-unresolved": [2, { "commonjs": true }],
-        "indent": [2, 4],
+        "indent": ["error", 2],
         "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
         "valid-jsdoc": ["error", {
           "requireReturn": true,

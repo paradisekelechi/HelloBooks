@@ -17,11 +17,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, '../client/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.listen(port, function(err) {
+app.listen(port, (err) => {
   if (err) {
     console.log(err);
   } else {
