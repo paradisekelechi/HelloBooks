@@ -2,7 +2,7 @@ import http from 'http';
 import dotenv from 'dotenv';
 import open from 'open';
 
-import app from '../app';
+import app from '../../app';
 
 
 /* eslint-disable no-console */
@@ -27,5 +27,7 @@ server.on('error', (err) => {
 });
 server.listen(port, () => {
   console.log(`Server started and listening on port ${port} `);
-  open(`http://localhost:${port}`);
+  // open(`http://localhost:${port}`);
 });
+
+console.log(process.env.NODE_ENV);

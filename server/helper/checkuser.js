@@ -7,8 +7,8 @@ const checkUser = (req, res, next) => {
   if (userType) {
     if (userType !== 2) {
       res.status(401).send({
-        status: false,
-        message: 'Oops! User not authorized'
+        success: false,
+        message: 'User not authorized'
       });
       return;
     }
@@ -17,8 +17,8 @@ const checkUser = (req, res, next) => {
     req.email = email;
     return next();
   }
-  res.status(400).send({
-    status: false,
+  res.status(401).send({
+    success: false,
     message: 'User type is not available'
   });
 };

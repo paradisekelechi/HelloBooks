@@ -1,9 +1,9 @@
 import chai from 'chai';
 import supertest from 'supertest';
-import app from '../../server/app';
+import app from '../../app';
 import * as testConstants from './testdata';
 
-const assert = chai.assert;
+const { assert } = chai;
 const testUserId = 1;
 const testBookId = 1;
 

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>HelloBooks | Dashboard</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro" rel="stylesheet">
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body class="dashboard-body">
+
+  <div class="custom-nav">
+    <ul id="slide-out" class="side-nav fixed">
+      <span class="dashboard-logo brand-logo">HelloBooks</span>
+      <div class="container">
+        <hr>
+      </div>
+      <div class="row hbk-row">
+        <div class="col m6 offset-m3 col s8 offset-s2">
+          <img src="img/profile.jpg" class="responsive-img circle" width="100%">
+          <span>user@user.com</span>
+        </div>
+      </div>
+
+      <li class=" active indigo nav-link">
+        <a href="#!">
+          <i class="material-icons">dashboard</i>DASHBOARD</a>
+      </li>
+      <li class="nav-link">
+        <a href="#!">
+          <i class="material-icons">face</i>PROFILE</a>
+      </li>
+      <li class="nav-link">
+        <a href="#!">
+          <i class="material-icons">settings_applications</i>SETTINGS</a>
+      </li>
+      <li class="nav-link">
+        <a href="#!">
+          <i class="material-icons">book</i>BOOKS</a>
+      </li>
+      <li class="nav-link">
+        <a href="#!">
+          <i class="material-icons">mail_outline</i>NOTIFICATIONS</a>
+      </li>
+
+    </ul>
+  </div>
+  <a href="#" data-activates="slide-out" class="button-collapse account-slideout account-info">
+    <i class="material-icons">menu</i>
+  </a>
+
+  <div class="col m12">
+    <div class="col m8 offset-m4 main-content">
+      <div class="row account-info account-details-bar">
+        <span>DASHBOARD</span>
+        <i class="material-icons option right">power_settings_new</i>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+      $('.counter').counterUp({
+        delay: 100,
+        time: 1000
+      });
+    });
+
+  </script>
+
+</body>
+
+</html>

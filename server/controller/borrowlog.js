@@ -25,8 +25,8 @@ export default {
     const { body: { bookId } } = req;
 
     /**
-         * Check if the userId is null and insist on it
-         */
+     * Check if userid
+     */
     if (userId == null || userId === '' || userId === undefined) {
       res.status(400).send({
         success: false,
@@ -141,9 +141,7 @@ export default {
   returnBook(req, res) {
     const today = new Date();
     const returnDate = today;
-    const { params: { userId } } = req;
-    const { body: { bookId } } = req;
-    const { email: userEmail } = req;
+    const { params: { userId }, body: { bookId }, email: userEmail } = req;
 
     if (userId == null || userId === 0 || userId === undefined) {
       res.status(400).send({

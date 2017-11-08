@@ -11,10 +11,11 @@ let sequelize;
 if (databaseConfiguration.use_env_variable) {
   sequelize = new Sequelize(databaseConfiguration.use_env_variable);
 } else {
+  const { database, username, password } = databaseConfiguration;
   sequelize = new Sequelize(
-    databaseConfiguration.database,
-    databaseConfiguration.username,
-    databaseConfiguration.password,
+    database,
+    username,
+    password,
     databaseConfiguration
   );
 }
@@ -36,6 +37,6 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// sequelize.sync({force: true});
+// sequelize.sync({ force: true });
 
 export default db;
