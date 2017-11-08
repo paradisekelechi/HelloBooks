@@ -1,9 +1,17 @@
+import dotenv from 'dotenv';
 import models from '../models';
 
+dotenv.config();
 // import all models
-const { UserType } = models;
-const { AccountType } = models;
-const { BookCategory } = models;
+const {
+  UserType
+} = models;
+const {
+  AccountType
+} = models;
+const {
+  BookCategory
+} = models;
 
 // Initialize Account type db data
 AccountType.create({

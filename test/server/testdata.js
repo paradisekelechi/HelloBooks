@@ -1,5 +1,7 @@
 import randomstring from 'just.randomstring';
+import dotenv from 'dotenv';
 
+dotenv.config();
 // Test data for user routes
 export const username = randomstring().substring(0, 8);
 export const testUsername = 'username';

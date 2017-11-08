@@ -8,13 +8,13 @@ export default {
     dialect: 'postgres'
   },
   production: {
-    use_env_variable: 'postgres://kcnqwqfd:Mc8twJz_ImB06mBjSl-4E3Vvn296rEjU@pellefant.db.elephantsql.com:5432/kcnqwqfd',
+    use_env_variable: 'postgres://pcyausvn:Y7vc35xlYsNal2T2v1H2WspFoq8NZkUY@pellefant.db.elephantsql.com:5432/pcyausvn',
     dialect: 'postgres'
   },
   test: {
-    username: 'andela',
-    password: 'andela',
-    database: 'hellobooks-test',
+    username: process.env.DB_USERNAME || 'andela',
+    password: process.env.DB_PASSWORD || 'andela',
+    database: process.env.DB_NAME || 'hellobooks-test',
     host: '127.0.0.1',
     port: 5432,
     dialect: 'postgres'
