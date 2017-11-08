@@ -1,11 +1,11 @@
 import chai from 'chai';
 import supertest from 'supertest';
 import app from '../app';
-import { username, email } from './server/testdata';
+import { bookName, bookAuthor, bookCategoryId, bookDescription } from './server/testdata';
 import routes from '../tools/apiRoutes';
 
 const {
-  signin, signup, getAllUsers, getAdminUsers, getClientUsers, getDeletedUsers, editUser, deleteUser
+  addBooks, 
 } = routes;
 const { assert } = chai;
 const request = supertest(app);

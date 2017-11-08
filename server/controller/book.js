@@ -156,12 +156,11 @@ export default {
   },
 
   addBook(req, res) {
-    let { body: { name } } = req;
-    let { body: { author } } = req;
-    const { body: { description } } = req;
-    let { body: { categoryId } } = req;
-    let { body: { quantity } } = req;
-    let { body: { image } } = req;
+    let {
+      body: {
+        name, author, description, categoryId, quantity, image
+      }
+    } = req;
 
 
     // checks if the name is undefined or null and insists on it
@@ -209,6 +208,7 @@ export default {
 
 
     image = validator.trim(`${image}`);
+    description = validator.trim(`${description}`);
 
     return Book
       .create({

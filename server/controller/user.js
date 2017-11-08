@@ -21,7 +21,7 @@ export default {
     let { body: { username, email, password } } = req;
 
     if (validator.isEmpty(`username  ${empty}`) || username == null) {
-      res.status(400).send({
+      res.status(401).send({
         success: false,
         message: 'Username is required'
       });
@@ -30,7 +30,7 @@ export default {
     username = validator.trim(`${username}`);
 
     if (validator.isEmpty(`${email}`) || email == null) {
-      res.status(400).send({
+      res.status(401).send({
         success: false,
         message: 'Email is required'
       });
@@ -39,7 +39,7 @@ export default {
     email = validator.trim(`${email}`);
 
     if (validator.isEmpty(`${password}`) || password == null) {
-      res.status(400).send({
+      res.status(401).send({
         success: false,
         message: 'Password is required'
       });
@@ -49,7 +49,7 @@ export default {
 
 
     if (!validator.isEmail(`${email}`)) {
-      res.status(400).send({
+      res.status(401).send({
         success: false,
         message: 'Enter a valid email address'
       });
@@ -87,7 +87,7 @@ export default {
             account_type: user.dataValues.account_type_id
           });
         } else {
-          res.status(400).send({
+          res.status(401).send({
             message: 'User account not created',
             token,
             success: true
@@ -97,16 +97,16 @@ export default {
       .catch((error) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
           if (error.fields.username) {
-            res.status(400).send({
+            res.status(401).send({
               success: false,
               message: 'Username already exists'
             });
           }
 
           if (error.fields.email) {
-            res.status(400).send({
+            res.status(401).send({
               success: false,
-              message: 'Email is required'
+              message: 'Email already exists'
             });
           }
         } else {
@@ -121,16 +121,16 @@ export default {
   signin(req, res) {
     const { body: { username, password } } = req;
 
-    if (validator.isEmpty(`${username}`)) {
-      res.status(400).send({
+    if (validator.isEmpty(`${username}`) || username == null) {
+      res.status(401).send({
         success: false,
         message: 'Username is required'
       });
       return;
     }
 
-    if (validator.isEmpty(`${password}`)) {
-      res.status(400).send({
+    if (validator.isEmpty(`${password}`) || password == null) {
+      res.status(401).send({
         success: false,
         message: 'Password is required'
       });
@@ -167,20 +167,20 @@ export default {
                 accounttype: user.account_type_id
               });
             } else {
-              res.status(400).send({
+              res.status(401).send({
                 message: 'Oops! Password is incorrect',
                 success: false
               });
             }
           });
         } else {
-          res.status(400).send({
+          res.status(401).send({
             message: 'Oops! Username does not exist',
             success: false
           });
         }
       })
-      .catch(() => res.status(400).send({
+      .catch(() => res.status(401).send({
         message: 'Oops! User does not exist',
         success: false
       }));
@@ -334,15 +334,25 @@ export default {
   },
 
   editUser(req, res) {
-    const userTypeId = req.body.usertypeid;
-    const accountTypeId = req.body.accounttypeid;
-    const imageUrl = req.body.imageurl;
-    const { params: { userId } } = req.params.userId;
+    const {
+      body: {
+        userTypeId, accountTypeId, imageUrl, password
+      }
+    } = req;
+    const { params: { userId } } = req;
 
     if (userId == null) {
       res.status(400).send({
         success: false,
         message: 'User Id is required'
+      });
+      return;
+    }
+
+    if(userTypeId == null && accountTypeId == null && imageUrl == null && password == null){
+      res.status(400).send({
+        success: false,
+        message: 'No data to edit'
       });
       return;
     }
@@ -364,56 +374,15 @@ export default {
         });
       })
       .catch(() => {
-        res.status(200).send({
+        res.status(400).send({
           success: false,
           message: 'User not successfully updated'
         });
       });
   },
 
-  editPassword(req, res) {
-    const { body: { password } } = req;
-    const { params: { userId } } = req;
-    if (userId == null) {
-      res.status(400).send({
-        success: false,
-        message: 'User Id is required'
-      });
-      return;
-    }
-
-    if (validator.isEmpty(`${password}`) || password == null) {
-      res.status(400).send({
-        success: false,
-        message: 'Password is required'
-      });
-      return;
-    }
-
-    bcrypt.hash(password, salt, (err, hashedPassword) => User
-      .update({
-        password: hashedPassword
-      }, {
-        where: {
-          id: userId
-        }
-      })
-      .then(() => {
-        res.status(200).send({
-          success: true,
-          message: 'Password successfully updated'
-        });
-      })
-      .catch(() => {
-        res.status(200).send({
-          success: false,
-          message: 'Password not successfully updated'
-        });
-      }));
-  },
-
   deleteUser(req, res) {
-    const { paramns: { userId } } = req;
+    const { params: { userId } } = req;
     if (userId == null) {
       res.status(400).send({
         success: false,
@@ -437,7 +406,7 @@ export default {
         });
       })
       .catch(() => {
-        res.status(200).send({
+        res.status(400).send({
           success: false,
           message: 'User not successfully deleted'
         });

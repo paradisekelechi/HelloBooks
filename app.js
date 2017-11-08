@@ -7,8 +7,8 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
 
-import routes from './routes';
-import config from '../webpack.config.dev';
+import routes from './server/routes';
+import config from './webpack.config.dev';
 
 dotenv.config();
 const app = express();
@@ -30,7 +30,7 @@ app.use(webpackDevMiddleware(compiler, {
 
 routes(app);
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+  res.sendFile(path.join(__dirname, './client/index.html'));
 });
 
 export default app;

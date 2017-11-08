@@ -12,7 +12,11 @@ export default {
     dialect: 'postgres'
   },
   test: {
-    use_env_variable: 'postgres://vrjfhcrl:Bnh3v4OMvhNcDnLqyR09Z2Z0WkKc3Qw1@stampy.db.elephantsql.com:5432/vrjfhcrl',
+    username: 'andela',
+    password: 'andela',
+    database: 'hellobooks-test',
+    host: '127.0.0.1',
+    port: 5432,
     dialect: 'postgres'
   }
 };

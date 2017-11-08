@@ -10,9 +10,9 @@ const checkLogin = (req, res, next) => {
   if (token) {
     jwt.verify(token, config.parsed.SECRET, (error, decoded) => {
       if (error) {
-        res.status(403).send({
+        res.status(401).send({
           success: false,
-          message: 'Oops, user authentication failed!'
+          message: 'User authentication failed'
         });
         return;
       }
@@ -23,7 +23,7 @@ const checkLogin = (req, res, next) => {
       return next();
     });
   } else {
-    return res.status(412).send({
+    return res.status(401).send({
       success: false,
       message: 'User token is not provided'
     });
