@@ -1,76 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>HelloBooks | Register</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>HelloBooks | Signup</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Encode+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro" rel="stylesheet">
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="./css/aos.css">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
 
-  <div class="container">
-    <div class="row login-logo">
-      <div class="col m12">
-        <span class="brand-logo">HelloBooks</span>
-      </div>
-    </div>
-    <div class="row authentication-row">
-      <div class="col m4 offset-m4">
-        <h5 class="center authentication-header">Register Account</h5>
-        
-        <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Email</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Username</label>
-        </div>
-        <div class="input-field col s12 ">
-          <input id="last_name" type="text" class="validate">
-          <label for="last_name">Password</label>
-        </div>
-        <div class="col s12">
-          <a href="dashboard-user.html">
-            <button class="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Register</button>
-          </a>
-        </div>
-        <div class="col s12">
-          <br>
-          <small class="">Already a User?</small>
-          <br/>
-        </div>
-        <div class="col s12">
-          <br>
-          <a href="signin.html">
-            <button class="waves-effect waves-light btn col s12 blue darken-3">Signin</button>
-          </a>
-        </div>
+  <div class="navbar-fixed">
+    <nav class="navigation" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="index.html" class="brand-logo">HB</a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="signin.html">Signin</a>
+          </li>
+          <li>
+            <a href="register.html">Signup</a>
+          </li>
+        </ul>
 
+        <ul id="nav-mobile" class="side-nav">
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">Signin</a>
+          </li>
+          <li>
+            <a href="#">Signup</a>
+          </li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse">
+          <i class="material-icons">menu</i>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="parallax-container">
+    <div class="container">
+      <div class="row authentication-row">
+        <div class="col m4 offset-m4 auth-box" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+
+          <h5 class="center authentication-header">Register Account</h5>
+
+          <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Username</label>
+          </div>
+          <div class="input-field col s12 ">
+            <input id="last_name" type="text" class="validate">
+            <label for="last_name">Password</label>
+          </div>
+          <div class="col s12">
+            <a href="dashboard-user.html">
+              <button class="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Register</button>
+            </a>
+          </div>
+          <div class="col s12">
+            <br>
+            <small class="">
+              <p>Already a User?</p>
+            </small>
+            <br/>
+          </div>
+          <div class="col s12">
+            <br>
+            <a href="signin.html">
+              <button class="waves-effect waves-light btn col s12 blue darken-3">Signin</button>
+            </a>
+          </div>
+
+        </div>
+        <div class="parallax">
+          <img src="background6.jpeg" alt="Unsplashed background img 1">
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
-          
+  <footer class="page-footer blue darken-4">
+    <div class="footer-copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 offset-m3">
+            HelloBooks | Made by
+            <a class="brown-text text-lighten-3" href="http://andela.com">Kelechi Iheanyichukwu, Cohort 31 Andela</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-  <script>
-    $(document).ready(function(){
-      $('.collapsible').collapsible();
-    });
-  </script>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/typewriter.js"></script>
+  <script src="./js/aos.js"></script>
+  <script src="./js/main.js"></script>
 
 </body>
+
+</html>
