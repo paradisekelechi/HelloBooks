@@ -21,12 +21,20 @@ export function authenticatePersist(usertoken) {
  */
 export function authenticateFetch() {
   const storageData = JSON.parse(localStorage.getItem('userdata'));
-  const { token } = storageData;
-  const userData = jwtDecode(storageData.token);
+  if (storageData) {
+    const {
+      token
+    } = storageData;
+    const userData = jwtDecode(storageData.token);
+    return {
+      loggedIn: true,
+      userdata: userData,
+      token
+    };
+  }
   return {
-    loggedIn: true,
-    userdata: userData,
-    token
+    loggedIn: false,
+    userdata: {}
   };
 }
 
