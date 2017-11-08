@@ -1,13 +1,25 @@
 import chai from 'chai';
 import supertest from 'supertest';
-import app from '../app';
-import { username, email } from './server/testdata';
-import routes from '../tools/apiRoutes';
+import app from '../../app';
+import {
+  username,
+  email
+} from './testdata';
+import routes from '../../tools/apiRoutes';
 
 const {
-  signin, signup, getAllUsers, getAdminUsers, getClientUsers, getDeletedUsers, editUser, deleteUser
+  signin,
+  signup,
+  getAllUsers,
+  getAdminUsers,
+  getClientUsers,
+  getDeletedUsers,
+  editUser,
+  deleteUser
 } = routes;
-const { assert } = chai;
+const {
+  assert
+} = chai;
 const request = supertest(app);
 const testUsername = process.env.TEST_USERNAME;
 const password = process.env.TEST_PASSWORD;
