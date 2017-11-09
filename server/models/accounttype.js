@@ -1,8 +1,6 @@
-
-
 export default (sequelize, DataTypes) => {
-  const AccountType = sequelize.define(
-    'AccountType', {
+  const AccountType = sequelize
+    .define('AccountType', {
       name: {
         type: DataTypes.STRING,
         notNull: true,
@@ -19,11 +17,8 @@ export default (sequelize, DataTypes) => {
       deleted: {
         type: DataTypes.BOOLEAN,
       }
-    },
-    {
+    }, {
       freezeTableName: true,
-    }
-  );
-
+    });
   return AccountType;
 };

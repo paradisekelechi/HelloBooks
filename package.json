@@ -10,9 +10,8 @@
     "lint:server": "node_modules/.bin/esw server",
     "lint:watch": "npm run lint -- --watch",
     "start:server": "NODE_ENV=development babel-node  ./server/bin/www.js --exec babel-node --presets env ",
-    "test": "NODE_ENV=test nyc --reporter=text --reporter=html mocha test/server --timeout 15000 --compilers js:babel-register",
-    "initialize:db": "NODE_ENV=test babel-node server/scripts/initialize.js",
-    "seed:db": "NODE_ENV=test babel-node server/scripts/testdb",
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=html mocha test/server --timeout 150000 --compilers js:babel-register",
+    "seed:db": "NODE_ENV=test babel-node server/scripts/initialize.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Paradise Kelechi",

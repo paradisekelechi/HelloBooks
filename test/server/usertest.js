@@ -24,7 +24,7 @@ const request = supertest(app);
 const testUsername = process.env.TEST_USERNAME;
 const password = process.env.TEST_PASSWORD;
 const adminToken = process.env.ADMINTOKEN;
-const userToken = process.env.USERTOKEN;
+let userToken = process.env.USERTOKEN;
 let totalUsers;
 
 describe('Signup Route', () => {
@@ -44,6 +44,7 @@ describe('Signup Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User Account Creation Successful');
+        userToken = res.body.token;
         done();
       });
   });
@@ -108,7 +109,7 @@ describe('Signin Route', () => {
     request
       .post(signin)
       .send({
-        username: testUsername,
+        username,
         password
       })
       .end((err, res) => {

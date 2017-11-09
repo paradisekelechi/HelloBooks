@@ -7,7 +7,9 @@ import bcrypt from 'bcrypt';
 import models from '../models';
 
 //  import  User from '../models';
-const { User } = models;
+const {
+  User
+} = models;
 
 const config = dotenv.config();
 const empty = '';
@@ -18,7 +20,13 @@ const salt = bcrypt.genSaltSync(10);
 
 export default {
   signup(req, res) {
-    let { body: { username, email, password } } = req;
+    let {
+      body: {
+        username,
+        email,
+        password
+      }
+    } = req;
 
     if (validator.isEmpty(`username  ${empty}`) || username == null) {
       res.status(401).send({
@@ -75,7 +83,9 @@ export default {
           username: user.dataValues.username,
           usertype: user.dataValues.user_type_id,
           account_type: user.dataValues.account_type_id
-        }, secret, { expiresIn: 24 * 60 * 60 * 40 });
+        }, secret, {
+          expiresIn: 24 * 60 * 60 * 40
+        });
         if (user) {
           res.status(200).send({
             message: 'User Account Creation Successful',
@@ -112,14 +122,20 @@ export default {
         } else {
           res.status(503).send({
             success: false,
-            message: 'Service unavailable'
+            message: 'Service unavailable',
+            error
           });
         }
       }));
   },
 
   signin(req, res) {
-    const { body: { username, password } } = req;
+    const {
+      body: {
+        username,
+        password
+      }
+    } = req;
 
     if (validator.isEmpty(`${username}`) || username == null) {
       res.status(401).send({
@@ -142,7 +158,11 @@ export default {
         where: {
           username,
         },
-        include: [{ model: models.UserType }, { model: models.AccountType }]
+        include: [{
+          model: models.UserType
+        }, {
+          model: models.AccountType
+        }]
       })
       .then((user) => {
         if (user) {
@@ -154,7 +174,9 @@ export default {
                 username: user.username,
                 usertype: user.user_type_id,
                 accounttype: user.account_type_id
-              }, secret, { expiresIn: 24 * 3600 * 3600 * 40 });
+              }, secret, {
+                expiresIn: 24 * 3600 * 3600 * 40
+              });
 
               // token and user details sent to the user
               res.status(200).send({
@@ -277,7 +299,11 @@ export default {
   },
 
   getUsersByUserType(req, res) {
-    const { params: { userTypeId } } = req;
+    const {
+      params: {
+        userTypeId
+      }
+    } = req;
 
     if (userTypeId == null) {
       res.status(400).send({
@@ -306,7 +332,11 @@ export default {
   },
 
   getUsersByAccountType(req, res) {
-    const { params: { accountTypeId } } = req;
+    const {
+      params: {
+        accountTypeId
+      }
+    } = req;
 
     if (accountTypeId == null) {
       res.status(400).send({
@@ -336,10 +366,17 @@ export default {
   editUser(req, res) {
     const {
       body: {
-        userTypeId, accountTypeId, imageUrl, password
+        userTypeId,
+        accountTypeId,
+        imageUrl,
+        password
       }
     } = req;
-    const { params: { userId } } = req;
+    const {
+      params: {
+        userId
+      }
+    } = req;
 
     if (userId == null) {
       res.status(400).send({
@@ -349,7 +386,7 @@ export default {
       return;
     }
 
-    if(userTypeId == null && accountTypeId == null && imageUrl == null && password == null){
+    if (userTypeId == null && accountTypeId == null && imageUrl == null && password == null) {
       res.status(400).send({
         success: false,
         message: 'No data to edit'
@@ -382,7 +419,11 @@ export default {
   },
 
   deleteUser(req, res) {
-    const { params: { userId } } = req;
+    const {
+      params: {
+        userId
+      }
+    } = req;
     if (userId == null) {
       res.status(400).send({
         success: false,
