@@ -1,7 +1,5 @@
 import http from 'http';
 import dotenv from 'dotenv';
-import open from 'open';
-
 import app from '../../app';
 
 
