@@ -20,28 +20,24 @@ export default (sequelize, DataTypes) => {
       freezeTableName: true,
     });
 
-  BookCategory.sync({
-    force: true
-  }).then(() => {
-    BookCategory.create({
-      name: 'OTHERS',
-      abbreviation: 'OTH',
-      description: 'Other unclassified books',
-      deleted: false
-    });
-    BookCategory.create({
-      name: 'NOVEL',
-      abbreviation: 'NOV',
-      description: 'Novels and prose works',
-      deleted: false
-    });
-    BookCategory.create({
-      name: 'DOCUMENTARIES',
-      abbreviation: 'DOC',
-      description: 'Documentaries and articles',
-      deleted: false
-    });
-  });
+  // BookCategory.create({
+  //   name: 'OTHERS',
+  //   abbreviation: 'OTH',
+  //   description: 'Other unclassified books',
+  //   deleted: false
+  // });
+  // BookCategory.create({
+  //   name: 'NOVEL',
+  //   abbreviation: 'NOV',
+  //   description: 'Novels and prose works',
+  //   deleted: false
+  // });
+  // BookCategory.create({
+  //   name: 'DOCUMENTARIES',
+  //   abbreviation: 'DOC',
+  //   description: 'Documentaries and articles',
+  //   deleted: false
+  // });
 
   return BookCategory;
 };
