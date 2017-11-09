@@ -3,10 +3,14 @@ import supertest from 'supertest';
 import app from '../../app';
 import {
   username,
-  email
+  email,
+  password
 } from './testdata';
 import routes from '../../tools/apiRoutes';
 
+const {
+  assert
+} = chai;
 const {
   signin,
   signup,
@@ -17,14 +21,10 @@ const {
   editUser,
   deleteUser
 } = routes;
-const {
-  assert
-} = chai;
-const request = supertest(app);
-const testUsername = process.env.TEST_USERNAME;
-const password = process.env.TEST_PASSWORD;
 const adminToken = process.env.ADMINTOKEN;
 let userToken = process.env.USERTOKEN;
+const request = supertest(app);
+const testUsername = process.env.TEST_USERNAME;
 let totalUsers;
 
 describe('Signup Route', () => {
@@ -146,7 +146,7 @@ describe('Signin Route', () => {
     request
       .post(signin)
       .send({
-        username: testUsername
+        username
       })
       .end((err, res) => {
         assert.exists(res.status);

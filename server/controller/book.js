@@ -2,24 +2,23 @@ import validator from 'validator';
 
 import models from '../models';
 
-const { Book } = models;
+const {
+  Book
+} = models;
 
 export default {
   // view all books in the library
   getBooks(req, res) {
     return Book
-      .findAndCountAll(
-        {
-          where: {
-            deleted: false,
-          }
-        },
-        {
-          include: [{
-            model: models.BookCategory,
-          }],
+      .findAndCountAll({
+        where: {
+          deleted: false,
         }
-      )
+      }, {
+        include: [{
+          model: models.BookCategory,
+        }],
+      })
       .then(book => res.status(200).send({
         success: true,
         message: 'Books obtained successfully',
@@ -32,7 +31,11 @@ export default {
 
   // view all books in the library by category
   getBookByCategory(req, res) {
-    const { params: { categoryId } } = req;
+    const {
+      params: {
+        categoryId
+      }
+    } = req;
 
     if (categoryId == null) {
       res.status(200).send({
@@ -42,19 +45,16 @@ export default {
       return;
     }
     return Book
-      .findAll(
-        {
-          where: {
-            category_id: categoryId,
-            deleted: false
-          }
-        },
-        {
-          include: [{
-            model: models.BookCategory,
-          }],
+      .findAll({
+        where: {
+          category_id: categoryId,
+          deleted: false
         }
-      )
+      }, {
+        include: [{
+          model: models.BookCategory,
+        }],
+      })
       .then(book => res.status(200).send({
         success: true,
         message: 'Books obtained successfully',
@@ -65,19 +65,16 @@ export default {
 
   getFinishedBooks(req, res) {
     return Book
-      .findAndCountAll(
-        {
-          where: {
-            deleted: false,
-            quantity: 0
-          }
-        },
-        {
-          include: [{
-            model: models.BookCategory,
-          }],
+      .findAndCountAll({
+        where: {
+          deleted: false,
+          quantity: 0
         }
-      )
+      }, {
+        include: [{
+          model: models.BookCategory,
+        }],
+      })
       .then(book => res.status(200).send({
         success: true,
         message: 'Books obtained successfully',
@@ -88,19 +85,18 @@ export default {
 
   getAvailableBooks(req, res) {
     return Book
-      .findAndCountAll(
-        {
-          where: {
-            deleted: false,
-            quantity: { $ne: 0 }
+      .findAndCountAll({
+        where: {
+          deleted: false,
+          quantity: {
+            $ne: 0
           }
-        },
-        {
-          include: [{
-            model: models.BookCategory,
-          }],
         }
-      )
+      }, {
+        include: [{
+          model: models.BookCategory,
+        }],
+      })
       .then(book => res.status(200).send({
         success: true,
         message: 'Books obtained successfully',
@@ -111,18 +107,15 @@ export default {
 
   getDeletedBooks(req, res) {
     return Book
-      .findAndCountAll(
-        {
-          where: {
-            deleted: true
-          }
-        },
-        {
-          include: [{
-            model: models.BookCategory,
-          }],
+      .findAndCountAll({
+        where: {
+          deleted: true
         }
-      )
+      }, {
+        include: [{
+          model: models.BookCategory,
+        }],
+      })
       .then(book => res.status(200).send({
         success: true,
         message: 'Books obtained successfully',
@@ -134,19 +127,16 @@ export default {
   getBooksByBorrowStatus(req, res) {
     const borrowStatus = req.query.borrowed;
     return Book
-      .findAll(
-        {
-          where: {
-            deleted: false,
-            borrowed: borrowStatus
-          }
-        },
-        {
-          include: [{
-            model: models.BookCategory,
-          }],
+      .findAll({
+        where: {
+          deleted: false,
+          borrowed: borrowStatus
         }
-      )
+      }, {
+        include: [{
+          model: models.BookCategory,
+        }],
+      })
       .then(book => res.status(200).send({
         success: true,
         message: 'Books obtained successfully',
@@ -158,7 +148,12 @@ export default {
   addBook(req, res) {
     let {
       body: {
-        name, author, description, categoryId, quantity, image
+        name,
+        author,
+        description,
+        categoryId,
+        quantity,
+        image
       }
     } = req;
 
@@ -235,11 +230,31 @@ export default {
   },
 
   editBook(req, res) {
-    const { body: { description } } = req;
-    const { body: { quantity } } = req;
-    const { body: { categoryId } } = req;
-    const { params: { bookId } } = req;
-    const { body: { bookCover } } = req;
+    const {
+      body: {
+        description
+      }
+    } = req;
+    const {
+      body: {
+        quantity
+      }
+    } = req;
+    const {
+      body: {
+        categoryId
+      }
+    } = req;
+    const {
+      params: {
+        bookId
+      }
+    } = req;
+    const {
+      body: {
+        bookCover
+      }
+    } = req;
 
     if (bookId === null || bookId === 0 || bookId === undefined) {
       res.status(400).send({
@@ -249,20 +264,25 @@ export default {
       return;
     }
 
+    if (description === null && quantity === null && categoryId === null && bookCover === null) {
+      res.status(400).send({
+        success: false,
+        message: 'No data to edit'
+      });
+      return;
+    }
+
     return Book
-      .update(
-        {
-          description,
-          quantity,
-          category_id: categoryId,
-          cover: bookCover
-        },
-        {
-          where: {
-            id: bookId
-          }
+      .update({
+        description,
+        quantity,
+        category_id: categoryId,
+        cover: bookCover
+      }, {
+        where: {
+          id: bookId
         }
-      )
+      })
       .then(() => {
         res.status(200).send({
           message: 'Book edited successfully',
