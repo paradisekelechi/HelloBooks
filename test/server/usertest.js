@@ -1,6 +1,5 @@
 import chai from 'chai';
 import supertest from 'supertest';
-import database from '../../server/models';
 import app from '../../app';
 import {
   username,
@@ -8,11 +7,6 @@ import {
 } from './testdata';
 import routes from '../../tools/apiRoutes';
 
-const {
-  sequelize,
-  UserType,
-  AccountType
-} = database;
 const {
   signin,
   signup,
@@ -32,45 +26,6 @@ const password = process.env.TEST_PASSWORD;
 const adminToken = process.env.ADMINTOKEN;
 let userToken = process.env.USERTOKEN;
 let totalUsers;
-
-sequelize.sync({
-  force: true
-}).then(() => {
-  UserType.create({
-    name: 'USER',
-    description: 'A basic user of the application',
-    level: 1,
-    deleted: false
-  }).then(() => {
-    UserType.create({
-      name: 'ADMIN',
-      description: 'Admin user of the application',
-      level: 2,
-      deleted: false
-    }).then(() => {
-      AccountType.create({
-        name: 'SILVER',
-        description: 'A new user of the application',
-        level: 1,
-        deleted: false
-      }).then(() => {
-        AccountType.create({
-          name: 'GOLD',
-          description: 'An advanced user of the application',
-          level: 2,
-          deleted: false
-        }).then(() => {
-          AccountType.create({
-            name: 'PLATINIUM',
-            description: 'The highest user of the application with the highest priviledges',
-            level: 3,
-            deleted: false
-          });
-        });
-      });
-    });
-  });
-});
 
 describe('Signup Route', () => {
   it('should be able to signup', (done) => {

@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - '8'
 before_script:  
- - npm install -g codeclimate-test-reporter'
+ - npm install -g codeclimate-test-reporter
 script:  
  - npm run test 
 after_success:  
