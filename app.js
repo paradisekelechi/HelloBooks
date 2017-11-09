@@ -8,7 +8,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
 
 import routes from './server/routes';
-import config from './webpack.config.dev';
+import config from './webpack.config.babel';
 
 dotenv.config();
 const app = express();
