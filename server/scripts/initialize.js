@@ -4,12 +4,8 @@ import models from '../models';
 dotenv.config();
 // import all models
 const {
-  UserType
-} = models;
-const {
-  AccountType
-} = models;
-const {
+  UserType,
+  AccountType,
   BookCategory
 } = models;
 
