@@ -1,19 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions';
+import background from '../../assets/img/background6.jpg';
 
-/*eslint-disable no-console */
 /**
- * 
- * 
- * @class Signup
- * @extends {React.Component}
+ * Signup class
  */
 class Signup extends React.Component {
-
   /**
    * Creates an instance of Signup.
-   * @param {any} props 
+   * @param {any} props
    * @memberof Signup
    */
   constructor(props) {
@@ -32,104 +28,112 @@ class Signup extends React.Component {
   }
 
   /**
-   * 
-   * @returns {void} description
-   * @param {any} event 
+   *
+   * @returns {Object} description
+   * @param {Object} event
    * @memberof Signup
    */
   onEmailChange(event) {
     const user = this.state.user;
     user.email = event.target.value;
     this.setState({
-      user: user
+      user
     });
   }
 
   /**
    * 
-   * @returns {void} description
-   * @param {any} event 
+   * @returns {Object} description
+   * @param {Object} event
    * @memberof Signup
    */
   onUsernameChange(event) {
     const user = this.state.user;
     user.username = event.target.value;
     this.setState({
-      user: user
+      user
     });
   }
 
   /**
    * 
-   * @returns {void} description
-   * @param {any} event 
+   * @returns {Object} description
+   * @param {Object} event
    * @memberof Signup
    */
   onPasswordChange(event) {
     const user = this.state.user;
     user.password = event.target.value;
     this.setState({
-      user: user
+      user
     });
   }
 
   /**
-   * 
+   *
    * @returns {void} description
-   * @param {any} event 
+   * @param {any} event
    * @memberof Signup
    */
-  onClickSubmit(event) {
-    event.preventDefault;
-    console.log(this.state);
+  onClickSubmit() {
     this.props.signup(this.state.user);
   }
 
   /**
-   * 
-   * 
-   * @returns 
+   *
+   *
+   * @returns {Object} rendered jsx object
    * @memberof Signup
    */
   render() {
     return (
-      <div className="container">
-        <div className="row authentication-row">
-          <div className="col m4 offset-m4">
-            <h5 className="center authentication-header">Register Account</h5>
-
-            <div className="input-field col s12">
-              <input id="email" type="text" value={this.state.user.email} onChange={this.onEmailChange} className="validate" />
-              <label>Email</label>
+      <div className="parallax-container">
+        <div className="container">
+          <div className="row authentication-row">
+            <div className="col m4 offset-m4 auth-box" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration={2000}>
+              <h5 className="center authentication-header">Register Account</h5>
+              <div className="input-field col s12">
+                <input id="last_name" type="text" className="validate" />
+                <label id="signup_email">Email</label>
+              </div>
+              <div className="input-field col s12">
+                <input id="last_name" type="text" className="validate" />
+                <label id="signup_username">Username</label>
+              </div>
+              <div className="input-field col s12 ">
+                <input id="last_name" type="text" className="validate" />
+                <label id="signup_password">Password</label>
+              </div>
+              <div className="col s12">
+                <a href="dashboard-user.html">
+                  <button className="waves-effect waves-light btn btn-large col s12 blue darken-3">
+                    Register
+                  </button>
+                </a>
+              </div>
+              <div className="col s12">
+                <br />
+                <small className>
+                  <p>Already a User?</p>
+                </small>
+                <br />
+              </div>
+              <div className="col s12">
+                <br />
+                <a href="signin.html">
+                  <button className="waves-effect waves-light btn col s12 blue darken-3">
+                    Signin
+                  </button>
+                </a>
+              </div>
             </div>
-            <div className="input-field col s12">
-              <input id="username" name='username' type="text" value={this.state.user.username} onChange={this.onUsernameChange} className="validate" />
-              <label>Username</label>
+            <div className="parallax">
+              <img src={background} alt="Unsplashed background img 1" />
             </div>
-            <div className="input-field col s12 ">
-              <input id="password" type="text" name='password' value={this.state.user.password} onChange={this.onPasswordChange} className="validate" />
-              <label>Password</label>
-            </div>
-            <div className="col s12">
-              <button type="submit" onClick={this.onClickSubmit} className="waves-effect waves-light btn btn-large col s12 blue darken-3 ">Register</button>
-            </div>
-
-            <div className="col s12">
-              <br />
-              <small className="">Already a User?</small>
-              <br />
-            </div>
-            <div className="col s12">
-              <br />
-              <a href="register.html">
-                <button className="waves-effect waves-light btn col s12 blue darken-3">Signin</button>
-              </a>
-            </div>
-
           </div>
         </div>
-
       </div>
+
     );
   }
 }
@@ -142,10 +146,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     user: state.user
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);
