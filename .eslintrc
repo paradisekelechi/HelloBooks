@@ -42,6 +42,10 @@
     "react/forbid-prop-types": [1, {
       "forbid": ["any"]
     }],
+    "jsx-a11y/anchor-is-valid": ["error", {
+      "components": ["Link"],
+      "specialLink": ["to"]
+    }],
     "react/jsx-boolean-value": 1,
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-curly-spacing": 1,
@@ -74,6 +78,7 @@
   },
   "globals": {
     "AOS": false,
-    "Typewriter": false
+    "Typewriter": false,
+    "$": false
   }
 }

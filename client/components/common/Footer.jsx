@@ -1,15 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Footer = () => {
-    return (
-        <footer className="page-footer blue darken-4">
-            <div className="footer-copyright">
-                <div className="container">
-                    HelloBooks | Made by <a className="brown-text text-lighten-3" href="http://andela.com">Andela</a>
-                </div>
+  return (
+    <footer className="page-footer blue darken-4">
+      <div className="footer-copyright">
+        <div className="container">
+          <div className="row">
+            <div className="col s12 m6 offset-m3">
+              <span>HelloBooks | Made by - </span>
+              <Link className="brown-text text-lighten-3" to="http://andela.com">
+                Kelechi Iheanyichukwu, Cohort 31 Andela
+              </Link>
             </div>
-        </footer>
-    );
-}
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;

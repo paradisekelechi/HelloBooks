@@ -6,7 +6,7 @@ export default {
   entry: [
     'eventsource-polyfill',
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, './client/index.jsx')
+    path.resolve(__dirname, './client/index.jsx'),
   ],
   target: 'web',
   output: {
@@ -27,8 +27,19 @@ export default {
         loaders: ['babel-loader']
       },
       {
-        test: /(\.css)$/,
-        loaders: ['style-loader', 'css-loader']
+        test: /\.css$/,
+        loader: 'style-loader?name=assets/style/[name].[ext]'
+      }, {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]'
+        }
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader'
       },
       {
         test: /\.(jpg|png|jpeg|svg)$/,

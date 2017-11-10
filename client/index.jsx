@@ -2,10 +2,11 @@ import 'babel-polyfill';
 import ReactDOM from 'react-dom';
 import { Route, Router, browserHistory } from 'react-router';
 import React from 'react';
-import 'materialize-css';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import './assets/css/styles.css';
+
+import './assets/sass/materialize.scss';
+import './assets/js/main';
 
 
 // Import the layouts
