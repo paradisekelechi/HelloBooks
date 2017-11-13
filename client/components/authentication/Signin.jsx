@@ -25,8 +25,7 @@ class Signin extends React.Component {
         password: ''
       }
     };
-    this.onUsernameChange = this.onUsernameChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
   }
 
@@ -43,28 +42,14 @@ class Signin extends React.Component {
 
   /**
    *
-   * @returns {void} description
+   * @returns {*} description
    * @param {object} event
    * @memberof Signin
    */
-  onUsernameChange(event) {
-    const { user } = this.state;
-    user.username = event.target.value;
-    this.setState({
-      user
-    });
-  }
-
-  /**
-   *
-   * @returns {void} description
-   * @param {object} event
-   * @memberof Signin
-   */
-  onPasswordChange(event) {
+  onChange(event) {
     event.preventDefault();
     const { user } = this.state;
-    user.password = event.target.value;
+    user[event.target.name] = event.target.value;
     this.setState({
       user
     });
@@ -108,21 +93,35 @@ class Signin extends React.Component {
                 <br />
                 <p className="center">OR</p>
               </div>
-              <div className="input-field col s12">
-                <input id="last_name" type="text" className="validate" />
-                <label htmlFor="last_name">Username</label>
-              </div>
-              <div className="input-field col s12 ">
-                <input id="last_name" type="password" className="validate" />
-                <label htmlFor="last_name">Password</label>
-              </div>
-              <div className="col s12">
-                <a href="dashboard-admin.html">
-                  <button className="waves-effect waves-light btn btn-large col s12 blue darken-3 ">
+              <form onSubmit={this.onClickSubmit} >
+                <div className="input-field col s12">
+                  <input
+                    id="last_name"
+                    name="username"
+                    onChange={this.onChange}
+                    type="text"
+                    className="validate"
+                  />
+                  <label htmlFor="last_name">Username</label>
+                </div>
+                <div className="input-field col s12 ">
+                  <input
+                    id="last_name"
+                    name="password"
+                    onChange={this.onChange}
+                    type="password"
+                    className="validate"
+                  />
+                  <label htmlFor="last_name">Password</label>
+                </div>
+                <div className="col s12">
+                  <button
+                    className="waves-effect waves-light btn btn-large col s12 blue darken-3 "
+                  >
                     Signin
                   </button>
-                </a>
-              </div>
+                </div>
+              </form>
               <div className="col s12">
                 <br />
                 <span className>
