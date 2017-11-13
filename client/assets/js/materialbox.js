@@ -1,44 +1,40 @@
 (function ($) {
-
   $.fn.materialbox = function () {
-
-    return this.each(function() {
-
+    return this.each(function () {
       if ($(this).hasClass('initialized')) {
         return;
       }
 
       $(this).addClass('initialized');
 
-      var overlayActive = false;
-      var doneAnimating = true;
-      var inDuration = 275;
-      var outDuration = 200;
-      var origin = $(this);
-      var placeholder = $('<div></div>').addClass('material-placeholder');
-      var originalWidth = 0;
-      var originalHeight = 0;
-      var ancestorsChanged;
-      var ancestor;
-      var originInlineStyles = origin.attr('style');
+      let overlayActive = false;
+      let doneAnimating = true;
+      const inDuration = 275;
+      const outDuration = 200;
+      const origin = $(this);
+      const placeholder = $('<div></div>').addClass('material-placeholder');
+      const originalWidth = 0;
+      const originalHeight = 0;
+      let ancestorsChanged;
+      let ancestor;
+      const originInlineStyles = origin.attr('style');
       origin.wrap(placeholder);
 
 
       // Start click handler
-      origin.on('click', function() {
-        var placeholder = origin.parent('.material-placeholder');
-        var windowWidth = window.innerWidth;
-        var windowHeight = window.innerHeight;
-        var originalWidth = origin.width();
-        var originalHeight = origin.height();
+      origin.on('click', () => {
+        const placeholder = origin.parent('.material-placeholder');
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const originalWidth = origin.width();
+        const originalHeight = origin.height();
 
 
         // If already modal, return to original
         if (doneAnimating === false) {
           returnToOriginal();
           return false;
-        }
-        else if (overlayActive && doneAnimating===true) {
+        } else if (overlayActive && doneAnimating === true) {
           returnToOriginal();
           return false;
         }
@@ -61,15 +57,14 @@
         // Find ancestor with overflow: hidden; and remove it
         ancestorsChanged = undefined;
         ancestor = placeholder[0].parentNode;
-        var count = 0;
+        const count = 0;
         while (ancestor !== null && !$(ancestor).is(document)) {
-          var curr = $(ancestor);
+          const curr = $(ancestor);
           if (curr.css('overflow') !== 'visible') {
             curr.css('overflow', 'visible');
             if (ancestorsChanged === undefined) {
               ancestorsChanged = curr;
-            }
-            else {
+            } else {
               ancestorsChanged = ancestorsChanged.add(curr);
             }
           }
@@ -82,117 +77,118 @@
           'z-index': 1000,
           'will-change': 'left, top, width, height'
         })
-        .data('width', originalWidth)
-        .data('height', originalHeight);
+          .data('width', originalWidth)
+          .data('height', originalHeight);
 
         // Add overlay
-        var overlay = $('<div id="materialbox-overlay"></div>')
+        const overlay = $('<div id="materialbox-overlay"></div>')
           .css({
             opacity: 0
           })
-          .click(function(){
-            if (doneAnimating === true)
-            returnToOriginal();
+          .click(() => {
+            if (doneAnimating === true) { returnToOriginal(); }
           });
 
         // Put before in origin image to preserve z-index layering.
         origin.before(overlay);
 
         // Set dimensions if needed
-        var overlayOffset = overlay[0].getBoundingClientRect();
+        const overlayOffset = overlay[0].getBoundingClientRect();
         overlay.css({
           width: windowWidth,
           height: windowHeight,
           left: -1 * overlayOffset.left,
           top: -1 * overlayOffset.top
-        })
+        });
 
         // Animate Overlay
-        overlay.velocity({opacity: 1},
-                           {duration: inDuration, queue: false, easing: 'easeOutQuad'} );
+        overlay.velocity(
+          { opacity: 1 },
+          { duration: inDuration, queue: false, easing: 'easeOutQuad' }
+        );
 
         // Add and animate caption if it exists
-        if (origin.data('caption') !== "") {
-          var $photo_caption = $('<div class="materialbox-caption"></div>');
+        if (origin.data('caption') !== '') {
+          const $photo_caption = $('<div class="materialbox-caption"></div>');
           $photo_caption.text(origin.data('caption'));
           $('body').append($photo_caption);
-          $photo_caption.css({ "display": "inline" });
-          $photo_caption.velocity({opacity: 1}, {duration: inDuration, queue: false, easing: 'easeOutQuad'});
+          $photo_caption.css({ display: 'inline' });
+          $photo_caption.velocity({ opacity: 1 }, { duration: inDuration, queue: false, easing: 'easeOutQuad' });
         }
 
         // Resize Image
-        var ratio = 0;
-        var widthPercent = originalWidth / windowWidth;
-        var heightPercent = originalHeight / windowHeight;
-        var newWidth = 0;
-        var newHeight = 0;
+        let ratio = 0;
+        const widthPercent = originalWidth / windowWidth;
+        const heightPercent = originalHeight / windowHeight;
+        let newWidth = 0;
+        let newHeight = 0;
 
         if (widthPercent > heightPercent) {
           ratio = originalHeight / originalWidth;
           newWidth = windowWidth * 0.9;
           newHeight = windowWidth * 0.9 * ratio;
-        }
-        else {
+        } else {
           ratio = originalWidth / originalHeight;
           newWidth = (windowHeight * 0.9) * ratio;
           newHeight = windowHeight * 0.9;
         }
 
         // Animate image + set z-index
-        if(origin.hasClass('responsive-img')) {
-          origin.velocity({'max-width': newWidth, 'width': originalWidth}, {duration: 0, queue: false,
-            complete: function(){
-              origin.css({left: 0, top: 0})
-              .velocity(
-                {
-                  height: newHeight,
-                  width: newWidth,
-                  left: $(document).scrollLeft() + windowWidth/2 - origin.parent('.material-placeholder').offset().left - newWidth/2,
-                  top: $(document).scrollTop() + windowHeight/2 - origin.parent('.material-placeholder').offset().top - newHeight/ 2
-                },
-                {
-                  duration: inDuration,
-                  queue: false,
-                  easing: 'easeOutQuad',
-                  complete: function(){doneAnimating = true;}
-                }
-              );
+        if (origin.hasClass('responsive-img')) {
+          origin.velocity({ 'max-width': newWidth, width: originalWidth }, {
+            duration: 0,
+            queue: false,
+            complete() {
+              origin.css({ left: 0, top: 0 })
+                .velocity(
+                  {
+                    height: newHeight,
+                    width: newWidth,
+                    left: $(document).scrollLeft() + windowWidth / 2 - origin.parent('.material-placeholder').offset().left - newWidth / 2,
+                    top: $(document).scrollTop() + windowHeight / 2 - origin.parent('.material-placeholder').offset().top - newHeight / 2
+                  },
+                  {
+                    duration: inDuration,
+                    queue: false,
+                    easing: 'easeOutQuad',
+                    complete() { doneAnimating = true; }
+                  }
+                );
             } // End Complete
           }); // End Velocity
-        }
-        else {
+        } else {
           origin.css('left', 0)
-          .css('top', 0)
-          .velocity(
-            {
-              height: newHeight,
-              width: newWidth,
-              left: $(document).scrollLeft() + windowWidth/2 - origin.parent('.material-placeholder').offset().left - newWidth/2,
-              top: $(document).scrollTop() + windowHeight/2 - origin.parent('.material-placeholder').offset().top - newHeight/ 2
-            },
-            {
-              duration: inDuration,
-              queue: false,
-              easing: 'easeOutQuad',
-              complete: function(){doneAnimating = true;}
-            }
+            .css('top', 0)
+            .velocity(
+              {
+                height: newHeight,
+                width: newWidth,
+                left: $(document).scrollLeft() + windowWidth / 2 - origin.parent('.material-placeholder').offset().left - newWidth / 2,
+                top: $(document).scrollTop() + windowHeight / 2 - origin.parent('.material-placeholder').offset().top - newHeight / 2
+              },
+              {
+                duration: inDuration,
+                queue: false,
+                easing: 'easeOutQuad',
+                complete() { doneAnimating = true; }
+              }
             ); // End Velocity
         }
 
         // Handle Exit triggers
-        $(window).on('scroll.materialbox', function() {
+        $(window).on('scroll.materialbox', () => {
           if (overlayActive) {
             returnToOriginal();
           }
         });
 
-        $(window).on('resize.materialbox', function() {
+        $(window).on('resize.materialbox', () => {
           if (overlayActive) {
             returnToOriginal();
           }
         });
 
-        $(document).on('keyup.materialbox', function(e) {
+        $(document).on('keyup.materialbox', (e) => {
           // ESC key
           if (e.keyCode === 27 &&
               doneAnimating === true &&
@@ -200,34 +196,33 @@
             returnToOriginal();
           }
         });
-
       }); // End click handler
 
 
       // This function returns the modaled image to the original spot
       function returnToOriginal() {
-
         doneAnimating = false;
 
-        var placeholder = origin.parent('.material-placeholder');
-        var windowWidth = window.innerWidth;
-        var windowHeight = window.innerHeight;
-        var originalWidth = origin.data('width');
-        var originalHeight = origin.data('height');
+        const placeholder = origin.parent('.material-placeholder');
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        const originalWidth = origin.data('width');
+        const originalHeight = origin.data('height');
 
-        origin.velocity("stop", true);
-        $('#materialbox-overlay').velocity("stop", true);
-        $('.materialbox-caption').velocity("stop", true);
+        origin.velocity('stop', true);
+        $('#materialbox-overlay').velocity('stop', true);
+        $('.materialbox-caption').velocity('stop', true);
 
         // disable exit handlers
         $(window).off('scroll.materialbox');
         $(document).off('keyup.materialbox');
         $(window).off('resize.materialbox');
 
-        $('#materialbox-overlay').velocity({opacity: 0}, {
+        $('#materialbox-overlay').velocity({ opacity: 0 }, {
           duration: outDuration, // Delay prevents animation overlapping
-          queue: false, easing: 'easeOutQuad',
-          complete: function(){
+          queue: false,
+          easing: 'easeOutQuad',
+          complete() {
             // Remove Overlay
             overlayActive = false;
             $(this).remove();
@@ -244,8 +239,9 @@
           },
           {
             duration: outDuration,
-            queue: false, easing: 'easeOutQuad',
-            complete: function() {
+            queue: false,
+            easing: 'easeOutQuad',
+            complete() {
               placeholder.css({
                 height: '',
                 width: '',
@@ -270,20 +266,19 @@
         );
 
         // Remove Caption + reset css settings on image
-        $('.materialbox-caption').velocity({opacity: 0}, {
+        $('.materialbox-caption').velocity({ opacity: 0 }, {
           duration: outDuration, // Delay prevents animation overlapping
-          queue: false, easing: 'easeOutQuad',
-          complete: function(){
+          queue: false,
+          easing: 'easeOutQuad',
+          complete() {
             $(this).remove();
           }
         });
-
       }
     });
   };
 
-  $(document).ready(function(){
+  $(document).ready(() => {
     $('.materialboxed').materialbox();
   });
-
-}( jQuery ));
+}(jQuery));

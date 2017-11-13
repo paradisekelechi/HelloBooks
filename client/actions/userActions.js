@@ -1,15 +1,28 @@
 import axios from 'axios';
 import querystring from 'querystring';
-import { browserHistory } from 'react-router';
+import {
+  browserHistory
+} from 'react-router';
 
 import * as userActions from '../utils/actionConstants';
 import routes from '../utils/apiRoutes';
-import { authenticateFetch, authenticatePersist, authenticateClear } from '../utils/authenticate';
+import {
+  authenticateFetch,
+  authenticatePersist,
+  authenticateClear
+} from '../utils/authenticate';
 
-const { token } = authenticateFetch();
+const {
+  SIGNIN_USER,
+  SIGNUP_USER
+} = userActions;
+
+const {
+  token
+} = authenticateFetch();
 
 const signinUserAsync = data => ({
-  type: userActions.SIGNIN_USER,
+  type: SIGNIN_USER,
   payload: data
 });
 /**
@@ -28,15 +41,15 @@ export function signinUser(user) {
         const responseData = response.data;
         authenticatePersist(responseData.token);
         dispatch(signinUserAsync(responseData));
-        browserHistory.push('/dashboard');
+        // browserHistory.push('/dashboard');
       });
   };
 }
 
 
 const signupUserAsync = user => ({
-  type: userActions.SIGNUP_USER,
-  user
+  type: SIGNUP_USER,
+  payload: user
 });
 /**
  *
@@ -52,16 +65,17 @@ export function signupUser(user) {
     email: user.email
   });
   return (dispatch) => {
-    axios
-      .post(`${routes.signup}`, formdata)
-      .then((response) => {
-        const responseData = response.data;
-        if (responseData.success) {
-          authenticatePersist(responseData.token);
-          dispatch(signupUserAsync(response.data));
-          browserHistory.push('/dashboard');
-        }
-      });
+    const request = axios
+      .post(`${routes.signup}`, formdata);
+
+    return request.then((response) => {
+      if (response.data.success) {
+        dispatch(signupUserAsync(response.data));
+        browserHistory.push('/dashboard');
+      }
+    }).catch(() => {
+      browserHistory.push('/');
+    });
   };
 }
 

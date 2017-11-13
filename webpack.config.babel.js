@@ -4,7 +4,6 @@ import path from 'path';
 export default {
   devtool: 'inline-source-map',
   entry: [
-    'eventsource-polyfill',
     'webpack-hot-middleware/client?reload=true',
     path.resolve(__dirname, './client/index.jsx'),
   ],
@@ -24,7 +23,13 @@ export default {
     loaders: [{
         test: /\.js(x)$/,
         include: path.join(__dirname, 'client'),
-        loaders: ['babel-loader']
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react', 'stage-3'],
+          plugins: [
+            ['transform-object-rest-spread'],
+          ],
+        },
       },
       {
         test: /\.css$/,

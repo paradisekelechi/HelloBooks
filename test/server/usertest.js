@@ -24,7 +24,6 @@ const {
 const adminToken = process.env.ADMINTOKEN;
 let userToken = process.env.USERTOKEN;
 const request = supertest(app);
-const testUsername = process.env.TEST_USERNAME;
 let totalUsers;
 
 describe('Signup Route', () => {

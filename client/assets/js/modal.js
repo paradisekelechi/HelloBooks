@@ -1,7 +1,5 @@
-(function($, Vel) {
-  'use strict';
-
-  let _defaults = {
+(function ($, Vel) {
+  const _defaults = {
     opacity: 0.5,
     inDuration: 250,
     outDuration: 250,
@@ -25,9 +23,8 @@
      * @param {Object} options
      */
     constructor($el, options) {
-
       // If exists, destroy and reinitialize
-      if (!!$el[0].M_Modal) {
+      if ($el[0].M_Modal) {
         $el[0].M_Modal.destroy();
       }
 
@@ -74,8 +71,8 @@
     }
 
     static init($els, options) {
-      let arr = [];
-      $els.each(function() {
+      const arr = [];
+      $els.each(function () {
         arr.push(new Modal($(this), options));
       });
       return arr;
@@ -93,8 +90,8 @@
      */
     destroy() {
       this.removeEventHandlers();
-      this.$el[0].removeAttribute('style')
-      if (!!this.$overlay[0].parentNode) {
+      this.$el[0].removeAttribute('style');
+      if (this.$overlay[0].parentNode) {
         this.$overlay[0].parentNode.removeChild(this.$overlay[0]);
       }
       this.$el[0].M_Modal = undefined;
@@ -131,7 +128,7 @@
      * @param {Event} e
      */
     handleTriggerClick(e) {
-      let $trigger =  $(e.target).closest('.modal-trigger');
+      const $trigger = $(e.target).closest('.modal-trigger');
       if (e.target && $trigger.length) {
         let modalId = $trigger[0].getAttribute('href');
         if (modalId) {
@@ -139,7 +136,7 @@
         } else {
           modalId = $trigger[0].getAttribute('data-target');
         }
-        let modalInstance = document.getElementById(modalId).M_Modal;
+        const modalInstance = document.getElementById(modalId).M_Modal;
         if (modalInstance) {
           modalInstance.open($trigger);
         }
@@ -161,7 +158,7 @@
      * @param {Event} e
      */
     handleModalCloseClick(e) {
-      let $closeTrigger =  $(e.target).closest('.modal-close');
+      const $closeTrigger = $(e.target).closest('.modal-close');
       if (e.target && $closeTrigger.length) {
         this.close();
       }
@@ -195,19 +192,19 @@
       // Animate overlay
       Vel(
         this.$overlay[0],
-        {opacity: this.options.opacity},
-        {duration: this.options.inDuration, queue: false, ease: 'easeOutCubic'}
+        { opacity: this.options.opacity },
+        { duration: this.options.inDuration, queue: false, ease: 'easeOutCubic' }
       );
 
 
       // Define modal animation options
-      let enterVelocityOptions = {
+      const enterVelocityOptions = {
         duration: this.options.inDuration,
         queue: false,
         ease: 'easeOutCubic',
         // Handle modal ready callback
         complete: () => {
-          if (typeof(this.options.ready) === 'function') {
+          if (typeof (this.options.ready) === 'function') {
             this.options.ready.call(this, this.$el, this.openingTrigger);
           }
         }
@@ -217,8 +214,9 @@
       if (this.$el[0].classList.contains('bottom-sheet')) {
         Vel(
           this.$el[0],
-          {bottom: 0, opacity: 1},
-          enterVelocityOptions);
+          { bottom: 0, opacity: 1 },
+          enterVelocityOptions
+        );
 
       // Normal modal animation
       } else {
@@ -226,7 +224,7 @@
         this.$el[0].style.top = this.options.startingTop;
         Vel(
           this.$el[0],
-          {top: this.options.endingTop, opacity: 1, scaleX: 1},
+          { top: this.options.endingTop, opacity: 1, scaleX: 1 },
           enterVelocityOptions
         );
       }
@@ -239,12 +237,12 @@
       // Animate overlay
       Vel(
         this.$overlay[0],
-        { opacity: 0},
-        {duration: this.options.outDuration, queue: false, ease: 'easeOutQuart'}
+        { opacity: 0 },
+        { duration: this.options.outDuration, queue: false, ease: 'easeOutQuart' }
       );
 
       // Define modal animation options
-      var exitVelocityOptions = {
+      const exitVelocityOptions = {
         duration: this.options.outDuration,
         queue: false,
         ease: 'easeOutCubic',
@@ -252,7 +250,7 @@
         complete: () => {
           this.$el[0].style.display = 'none';
           // Call complete callback
-          if (typeof(this.options.complete) === 'function') {
+          if (typeof (this.options.complete) === 'function') {
             this.options.complete.call(this, this.$el);
           }
           this.$overlay[0].parentNode.removeChild(this.$overlay[0]);
@@ -263,7 +261,7 @@
       if (this.$el[0].classList.contains('bottom-sheet')) {
         Vel(
           this.$el[0],
-          {bottom: '-100%', opacity: 0},
+          { bottom: '-100%', opacity: 0 },
           exitVelocityOptions
         );
 
@@ -271,7 +269,7 @@
       } else {
         Vel(
           this.$el[0],
-          {top: this.options.startingTop, opacity: 0, scaleX: 0.7},
+          { top: this.options.startingTop, opacity: 0, scaleX: 0.7 },
           exitVelocityOptions
         );
       }
@@ -288,13 +286,13 @@
       }
 
       this.isOpen = true;
-      let body = document.body;
+      const body = document.body;
       body.style.overflow = 'hidden';
       this.$el[0].classList.add('open');
       body.appendChild(this.$overlay[0]);
 
       // Set opening trigger, undefined indicates modal was opened by javascript
-      this.openingTrigger = !!$trigger ? $trigger : undefined;
+      this.openingTrigger = $trigger || undefined;
 
 
       if (this.options.dismissible) {
@@ -343,29 +341,27 @@
 
   Materialize.Modal = Modal;
 
-  $.fn.modal = function(methodOrOptions) {
+  $.fn.modal = function (methodOrOptions) {
     // Call plugin method if valid method name is passed in
     if (Modal.prototype[methodOrOptions]) {
       // Getter methods
-      if (methodOrOptions.slice(0,3) === 'get') {
+      if (methodOrOptions.slice(0, 3) === 'get') {
         return this.first()[0].M_Modal[methodOrOptions]();
 
       // Void methods
-      } else {
-        return this.each(function() {
-          this.M_Modal[methodOrOptions]();
-        });
       }
+      return this.each(function () {
+        this.M_Modal[methodOrOptions]();
+      });
+
 
     // Initialize plugin if options or no argument is passed in
-    } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
+    } else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
       Modal.init(this, arguments[0]);
       return this;
 
     // Return error if an unrecognized  method name is passed in
-    } else {
-      $.error(`Method ${methodOrOptions} does not exist on jQuery.modal`);
     }
+    $.error(`Method ${methodOrOptions} does not exist on jQuery.modal`);
   };
-
-})(jQuery, Materialize.Vel);
+}(jQuery, Materialize.Vel));

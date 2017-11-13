@@ -1,11 +1,11 @@
 // Required for Meteor package, the use of window prevents export by Meteor
-(function(window){
-  if(window.Package){
+(function (window) {
+  if (window.Package) {
     Materialize = {};
   } else {
     window.Materialize = {};
   }
-})(window);
+}(window));
 
 if (typeof exports !== 'undefined' && !exports.nodeType) {
   if (typeof module !== 'undefined' && !module.nodeType && module.exports) {
@@ -24,8 +24,8 @@ if (typeof exports !== 'undefined' && !exports.nodeType) {
  * Copyright (c) 2013 ngryman
  * Licensed under the MIT license.
  */
-(function(window) {
-  var lastTime = 0,
+(function (window) {
+  let lastTime = 0,
     vendors = ['webkit', 'moz'],
     requestAnimationFrame = window.requestAnimationFrame,
     cancelAnimationFrame = window.cancelAnimationFrame,
@@ -33,17 +33,17 @@ if (typeof exports !== 'undefined' && !exports.nodeType) {
 
   // try to un-prefix existing raf
   while (--i >= 0 && !requestAnimationFrame) {
-    requestAnimationFrame = window[vendors[i] + 'RequestAnimationFrame'];
-    cancelAnimationFrame = window[vendors[i] + 'CancelRequestAnimationFrame'];
+    requestAnimationFrame = window[`${vendors[i]}RequestAnimationFrame`];
+    cancelAnimationFrame = window[`${vendors[i]}CancelRequestAnimationFrame`];
   }
 
   // polyfill with setTimeout fallback
   // heavily inspired from @darius gist mod: https://gist.github.com/paulirish/1579671#comment-837945
   if (!requestAnimationFrame || !cancelAnimationFrame) {
-    requestAnimationFrame = function(callback) {
-      var now = +Date.now(),
+    requestAnimationFrame = function (callback) {
+      let now = +Date.now(),
         nextTime = Math.max(lastTime + 16, now);
-      return setTimeout(function() {
+      return setTimeout(() => {
         callback(lastTime = nextTime);
       }, nextTime - now);
     };
@@ -61,47 +61,47 @@ if (typeof exports !== 'undefined' && !exports.nodeType) {
  * @param {jQuery} obj  jQuery object to be parsed
  * @returns {string}
  */
-Materialize.objectSelectorString = function(obj) {
-  var tagStr = obj.prop('tagName') || '';
-  var idStr = obj.attr('id') || '';
-  var classStr = obj.attr('class') || '';
-  return (tagStr + idStr + classStr).replace(/\s/g,'');
+Materialize.objectSelectorString = function (obj) {
+  const tagStr = obj.prop('tagName') || '';
+  const idStr = obj.attr('id') || '';
+  const classStr = obj.attr('class') || '';
+  return (tagStr + idStr + classStr).replace(/\s/g, '');
 };
 
 
 // Unique Random ID
-Materialize.guid = (function() {
+Materialize.guid = (function () {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
       .substring(1);
   }
-  return function() {
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-           s4() + '-' + s4() + s4() + s4();
+  return function () {
+    return `${s4() + s4()}-${s4()}-${s4()}-${
+      s4()}-${s4()}${s4()}${s4()}`;
   };
-})();
+}());
 
 /**
  * Escapes hash from special characters
  * @param {string} hash  String returned from this.hash
  * @returns {string}
  */
-Materialize.escapeHash = function(hash) {
-  return hash.replace( /(:|\.|\[|\]|,|=)/g, "\\$1" );
+Materialize.escapeHash = function (hash) {
+  return hash.replace(/(:|\.|\[|\]|,|=)/g, '\\$1');
 };
 
-Materialize.elementOrParentIsFixed = function(element) {
-    var $element = $(element);
-    var $checkElements = $element.add($element.parents());
-    var isFixed = false;
-    $checkElements.each(function(){
-        if ($(this).css("position") === "fixed") {
-            isFixed = true;
-            return false;
-        }
-    });
-    return isFixed;
+Materialize.elementOrParentIsFixed = function (element) {
+  const $element = $(element);
+  const $checkElements = $element.add($element.parents());
+  let isFixed = false;
+  $checkElements.each(function () {
+    if ($(this).css('position') === 'fixed') {
+      isFixed = true;
+      return false;
+    }
+  });
+  return isFixed;
 };
 
 
@@ -111,7 +111,7 @@ Materialize.elementOrParentIsFixed = function(element) {
  * @type {function}
  * @return {number}
  */
-var getTime = (Date.now || function () {
+const getTime = (Date.now || function () {
   return new Date().getTime();
 });
 
@@ -128,21 +128,21 @@ var getTime = (Date.now || function () {
  * @param {Object=} options
  * @returns {Function}
  */
-Materialize.throttle = function(func, wait, options) {
-  var context, args, result;
-  var timeout = null;
-  var previous = 0;
+Materialize.throttle = function (func, wait, options) {
+  let context, args, result;
+  let timeout = null;
+  let previous = 0;
   options || (options = {});
-  var later = function () {
+  const later = function () {
     previous = options.leading === false ? 0 : getTime();
     timeout = null;
     result = func.apply(context, args);
     context = args = null;
   };
   return function () {
-    var now = getTime();
+    const now = getTime();
     if (!previous && options.leading === false) previous = now;
-    var remaining = wait - (now - previous);
+    const remaining = wait - (now - previous);
     context = this;
     args = arguments;
     if (remaining <= 0) {
@@ -161,7 +161,7 @@ Materialize.throttle = function(func, wait, options) {
 
 // Velocity has conflicts when loaded with jQuery, this will check for it
 // First, check if in noConflict mode
-var Vel;
+let Vel;
 if (jQuery) {
   Vel = jQuery.Velocity;
 } else if ($) {
