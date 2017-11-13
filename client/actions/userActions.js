@@ -41,7 +41,7 @@ export function signinUser(user) {
         const responseData = response.data;
         authenticatePersist(responseData.token);
         dispatch(signinUserAsync(responseData));
-        // browserHistory.push('/dashboard');
+        browserHistory.push('/dashboard');
       });
   };
 }
