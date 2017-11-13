@@ -34,7 +34,6 @@ class Signup extends React.Component {
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
     AOS.init();
-    console.log(this.state);
   }
 
   /**
