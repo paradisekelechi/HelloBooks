@@ -2,18 +2,47 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+/**
+ * 
+ * 
+ * @export
+ * @param {any} Component
+ * @returns  {Function} authenticated component
+ */
 export default function requiresAuth(Component) {
+
+  /**
+   * The authenticated component class
+   *
+   * @class AuthenticatedComponent
+   * @extends {React.Component}
+   */
   class AuthenticatedComponent extends React.Component {
 
+    /**
+     * Component Did mount
+     * @returns {Object} check and redirect function
+     * @memberof AuthenticatedComponent
+     */
     componentDidMount() {
-      this._checkAndRedirect();
+      this.checkAndRedirect();
     }
 
+    /**
+     * Component Did update
+     * @returns {Object} check and redirect function
+     * @memberof AuthenticatedComponent
+     */
     componentDidUpdate() {
-      this._checkAndRedirect();
+      this.checkAndRedirect();
     }
 
-    _checkAndRedirect() {
+    /**
+     * Check and redirect
+     * @returns {Object} check and redirect function
+     * @memberof AuthenticatedComponent
+     */
+    checkAndRedirect() {
       const { dispatch } = this.props;
 
       if (!this.props.user) {
@@ -21,6 +50,11 @@ export default function requiresAuth(Component) {
       }
     }
 
+    /**
+    * Render method
+    * @returns {Object} render function
+    * @memberof AuthenticatedComponent
+    */
     render() {
       return (
         <div className="authenticated">

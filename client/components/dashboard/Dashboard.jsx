@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
    * @memberof Dashboard
    */
   componentWillMount() {
-    console.log(this.state.name);
+    console.log(this.props);
   }
 
   /**
@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  name: state.userReducer
+  userDetails: state.userReducer
 });
 
 export default connect(mapStateToProps)(Dashboard);

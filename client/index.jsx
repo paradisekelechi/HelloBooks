@@ -31,9 +31,9 @@ ReactDOM.render(
         <Route path="/signup" component={Signup} />
       </Route>
       <Route component={MainLayout}>
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/books" component={Books} />
-        <Route path="/profile" component={Profile} />
+        <Route name="dashboard" path="/dashboard" component={Dashboard} />
+        <Route name="books" path="/books" component={Books} />
+        <Route name="profile" path="/profile" component={Profile} />
       </Route>
     </Router>
   </Provider>,
