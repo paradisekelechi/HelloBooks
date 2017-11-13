@@ -1,7 +1,5 @@
-(function($, Vel) {
-  'use strict';
-
-  let _defaults = {
+(function ($, Vel) {
+  const _defaults = {
     displayLength: Infinity,
     inDuration: 300,
     outDuration: 375,
@@ -22,9 +20,9 @@
        * @member Toast#options
        */
       this.options = {
-        displayLength: displayLength,
-        className: className,
-        completeCallback: completeCallback
+        displayLength,
+        className,
+        completeCallback
       };
 
       this.options = $.extend({}, Toast.defaults, this.options);
@@ -47,7 +45,7 @@
 
       // Create new toast
       Toast._toasts.push(this);
-      let toastElement = this.createToast();
+      const toastElement = this.createToast();
       toastElement.M_Toast = this;
       this.el = toastElement;
       this._animateIn();
@@ -62,7 +60,7 @@
      * Append toast container and add event handlers
      */
     static _createContainer() {
-      let container = document.createElement('div');
+      const container = document.createElement('div');
       container.setAttribute('id', 'toast-container');
 
       // Add event handler
@@ -96,8 +94,8 @@
      */
     static _onDragStart(e) {
       if (e.target && $(e.target).closest('.toast').length) {
-        let $toast = $(e.target).closest('.toast');
-        let toast = $toast[0].M_Toast;
+        const $toast = $(e.target).closest('.toast');
+        const toast = $toast[0].M_Toast;
         toast.panning = true;
         Toast._draggedToast = toast;
         toast.el.classList.add('panning');
@@ -113,19 +111,19 @@
      * @param {Event} e
      */
     static _onDragMove(e) {
-      if (!!Toast._draggedToast) {
+      if (Toast._draggedToast) {
         e.preventDefault();
-        let toast = Toast._draggedToast;
+        const toast = Toast._draggedToast;
         toast.deltaX = Math.abs(toast.xPos - Toast._xPos(e));
         toast.xPos = Toast._xPos(e);
         toast.velocityX = toast.deltaX / (Date.now() - toast.time);
         toast.time = Date.now();
 
-        let totalDeltaX = toast.xPos - toast.startingXPos;
-        let activationDistance =
+        const totalDeltaX = toast.xPos - toast.startingXPos;
+        const activationDistance =
             toast.el.offsetWidth * toast.options.activationPercent;
         toast.el.style.transform = `translateX(${totalDeltaX}px)`;
-        toast.el.style.opacity = 1-Math.abs(totalDeltaX / activationDistance);
+        toast.el.style.opacity = 1 - Math.abs(totalDeltaX / activationDistance);
       }
     }
 
@@ -134,15 +132,15 @@
      * @param {Event} e
      */
     static _onDragEnd(e) {
-      if (!!Toast._draggedToast) {
-        let toast = Toast._draggedToast;
+      if (Toast._draggedToast) {
+        const toast = Toast._draggedToast;
         toast.panning = false;
         toast.el.classList.remove('panning');
 
-        let totalDeltaX = toast.xPos - toast.startingXPos;
-        let activationDistance =
+        const totalDeltaX = toast.xPos - toast.startingXPos;
+        const activationDistance =
             toast.el.offsetWidth * toast.options.activationPercent;
-        let shouldBeDismissed = Math.abs(totalDeltaX) > activationDistance ||
+        const shouldBeDismissed = Math.abs(totalDeltaX) > activationDistance ||
             toast.velocityX > 1;
 
         // Remove toast
@@ -176,7 +174,7 @@
      * Remove all toasts
      */
     static removeAll() {
-      for(let toastIndex in Toast._toasts) {
+      for (const toastIndex in Toast._toasts) {
         Toast._toasts[toastIndex].remove();
       }
     }
@@ -186,12 +184,12 @@
      * Create toast and append it to toast container
      */
     createToast() {
-      let toast = document.createElement('div');
+      const toast = document.createElement('div');
       toast.classList.add('toast');
 
       // Add custom classes onto toast
       if (this.options.className) {
-        let classes = this.options.className.split(' ');
+        const classes = this.options.className.split(' ');
         let i, count;
         for (i = 0, count = classes.length; i < count; i++) {
           toast.classList.add(classes[i]);
@@ -199,12 +197,12 @@
       }
 
       // Set content
-      if ( typeof HTMLElement === 'object' ?
-           this.message instanceof HTMLElement :
-           this.message && typeof this.message === 'object' &&
+      if (typeof HTMLElement === 'object' ?
+        this.message instanceof HTMLElement :
+        this.message && typeof this.message === 'object' &&
            this.message !== null && this.message.nodeType === 1 &&
-           typeof this.message.nodeName==='string'
-         ) {
+           typeof this.message.nodeName === 'string'
+      ) {
         toast.appendChild(this.message);
 
       // Check if it is jQuery object
@@ -226,7 +224,7 @@
      */
     _animateIn() {
       // Animate toast in
-      Vel(this.el, {top: 0,  opacity: 1 }, {
+      Vel(this.el, { top: 0, opacity: 1 }, {
         duration: 300,
         easing: 'easeOutCubic',
         queue: false
@@ -239,7 +237,7 @@
      * has been reached
      */
     setTimer() {
-      if (this.timeRemaining !== Infinity)  {
+      if (this.timeRemaining !== Infinity) {
         this.counterInterval = setInterval(() => {
           // If toast is not being dragged, decrease its time remaining
           if (!this.panning) {
@@ -260,10 +258,10 @@
      */
     remove() {
       window.clearInterval(this.counterInterval);
-      let activationDistance =
+      const activationDistance =
           this.el.offsetWidth * this.options.activationPercent;
 
-      if(this.wasSwiped) {
+      if (this.wasSwiped) {
         this.el.style.transition = 'transform .05s, opacity .05s';
         this.el.style.transform = `translateX(${activationDistance}px)`;
         this.el.style.opacity = 0;
@@ -271,14 +269,14 @@
 
       Vel(
         this.el,
-        {opacity: 0, marginTop: '-40px'},
+        { opacity: 0, marginTop: '-40px' },
         {
           duration: this.options.outDuration,
           easing: 'easeOutExpo',
           queue: false,
           complete: () => {
             // Call the optional callback
-            if(typeof(this.options.completeCallback) === 'function') {
+            if (typeof (this.options.completeCallback) === 'function') {
               this.options.completeCallback();
             }
             // Remove toast from DOM
@@ -314,7 +312,7 @@
   Toast._draggedToast = null;
 
   Materialize.Toast = Toast;
-  Materialize.toast = function(message, displayLength, className, completeCallback) {
+  Materialize.toast = function (message, displayLength, className, completeCallback) {
     return new Toast(message, displayLength, className, completeCallback);
   };
-})(jQuery, Materialize.Vel);
+}(jQuery, Materialize.Vel));

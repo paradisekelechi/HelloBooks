@@ -1,17 +1,17 @@
 (function ($) {
   $.fn.pushpin = function (options) {
     // Defaults
-    var defaults = {
+    const defaults = {
       top: 0,
       bottom: Infinity,
       offset: 0
     };
 
     // Remove pushpin event and classes
-    if (options === "remove") {
+    if (options === 'remove') {
       this.each(function () {
         if (id = $(this).data('pushpin-id')) {
-          $(window).off('scroll.' + id);
+          $(window).off(`scroll.${id}`);
           $(this).removeData('pushpin-id').removeClass('pin-top pinned pin-bottom').removeAttr('style');
         }
       });
@@ -22,10 +22,10 @@
 
 
     $index = 0;
-    return this.each(function() {
-      var $uniqueId = Materialize.guid(),
-          $this = $(this),
-          $original_offset = $(this).offset().top;
+    return this.each(function () {
+      let $uniqueId = Materialize.guid(),
+        $this = $(this),
+        $original_offset = $(this).offset().top;
 
       function removePinClasses(object) {
         object.removeClass('pin-top');
@@ -60,12 +60,10 @@
 
       $(this).data('pushpin-id', $uniqueId);
       updateElements($this, $(window).scrollTop());
-      $(window).on('scroll.' + $uniqueId, function () {
-        var $scrolled = $(window).scrollTop() + options.offset;
+      $(window).on(`scroll.${$uniqueId}`, () => {
+        const $scrolled = $(window).scrollTop() + options.offset;
         updateElements($this, $scrolled);
       });
-
     });
-
   };
-}( jQuery ));
+}(jQuery));

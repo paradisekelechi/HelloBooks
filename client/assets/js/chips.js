@@ -1,15 +1,15 @@
 (function ($) {
-  var materialChipsDefaults = {
+  const materialChipsDefaults = {
     data: [],
     placeholder: '',
     secondaryPlaceholder: '',
     autocompleteOptions: {},
   };
 
-  $(document).ready(function() {
+  $(document).ready(() => {
     // Handle removal of static chips.
-    $(document).on('click', '.chip .close', function(e){
-      var $chips = $(this).closest('.chips');
+    $(document).on('click', '.chip .close', function (e) {
+      const $chips = $(this).closest('.chips');
       if ($chips.attr('data-initialized')) {
         return;
       }
@@ -18,7 +18,7 @@
   });
 
   $.fn.material_chip = function (options) {
-    var self = this;
+    const self = this;
     this.$el = $(this);
     this.$document = $(document);
     this.SELS = {
@@ -29,20 +29,20 @@
       SELECTED_CHIP: '.selected',
     };
 
-    if ('data' === options) {
+    if (options === 'data') {
       return this.$el.data('chips');
     }
 
-    var curr_options = $.extend({}, materialChipsDefaults, options);
+    const curr_options = $.extend({}, materialChipsDefaults, options);
     self.hasAutocomplete = !$.isEmptyObject(curr_options.autocompleteOptions.data);
 
     // Initialize
-    this.init = function() {
-      var i = 0;
-      var chips;
-      self.$el.each(function(){
-        var $chips = $(this);
-        var chipId = Materialize.guid();
+    this.init = function () {
+      let i = 0;
+      let chips;
+      self.$el.each(function () {
+        const $chips = $(this);
+        const chipId = Materialize.guid();
         self.chipId = chipId;
 
         if (!curr_options.data || !(curr_options.data instanceof Array)) {
@@ -61,18 +61,18 @@
       });
     };
 
-    this.handleEvents = function() {
-      var SELS = self.SELS;
+    this.handleEvents = function () {
+      const SELS = self.SELS;
 
-      self.$document.off('click.chips-focus', SELS.CHIPS).on('click.chips-focus', SELS.CHIPS, function(e){
+      self.$document.off('click.chips-focus', SELS.CHIPS).on('click.chips-focus', SELS.CHIPS, (e) => {
         $(e.target).find(SELS.INPUT).focus();
       });
 
-      self.$document.off('click.chips-select', SELS.CHIP).on('click.chips-select', SELS.CHIP, function(e){
-        var $chip = $(e.target);
+      self.$document.off('click.chips-select', SELS.CHIP).on('click.chips-select', SELS.CHIP, (e) => {
+        const $chip = $(e.target);
         if ($chip.length) {
-          var wasSelected = $chip.hasClass('selected');
-          var $chips = $chip.closest(SELS.CHIPS);
+          const wasSelected = $chip.hasClass('selected');
+          const $chips = $chip.closest(SELS.CHIPS);
           $(SELS.CHIP).removeClass('selected');
 
           if (!wasSelected) {
@@ -81,16 +81,16 @@
         }
       });
 
-      self.$document.off('keydown.chips').on('keydown.chips', function(e){
+      self.$document.off('keydown.chips').on('keydown.chips', (e) => {
         if ($(e.target).is('input, textarea')) {
           return;
         }
 
         // delete
-        var $chip = self.$document.find(SELS.CHIP + SELS.SELECTED_CHIP);
-        var $chips = $chip.closest(SELS.CHIPS);
-        var length = $chip.siblings(SELS.CHIP).length;
-        var index;
+        const $chip = self.$document.find(SELS.CHIP + SELS.SELECTED_CHIP);
+        const $chips = $chip.closest(SELS.CHIPS);
+        const length = $chip.siblings(SELS.CHIP).length;
+        let index;
 
         if (!$chip.length) {
           return;
@@ -102,7 +102,7 @@
           index = $chip.index();
           self.deleteChip(index, $chips);
 
-          var selectIndex = null;
+          let selectIndex = null;
           if ((index + 1) < length) {
             selectIndex = index;
           } else if (index === length || (index + 1) === length) {
@@ -111,7 +111,7 @@
 
           if (selectIndex < 0) selectIndex = null;
 
-          if (null !== selectIndex) {
+          if (selectIndex !== null) {
             self.selectChip(selectIndex, $chips);
           }
           if (!length) $chips.find('input').focus();
@@ -137,15 +137,15 @@
         }
       });
 
-      self.$document.off('focusin.chips', SELS.CHIPS + ' ' + SELS.INPUT).on('focusin.chips', SELS.CHIPS + ' ' + SELS.INPUT, function(e){
-        var $currChips = $(e.target).closest(SELS.CHIPS);
+      self.$document.off('focusin.chips', `${SELS.CHIPS} ${SELS.INPUT}`).on('focusin.chips', `${SELS.CHIPS} ${SELS.INPUT}`, (e) => {
+        const $currChips = $(e.target).closest(SELS.CHIPS);
         $currChips.addClass('focus');
         $currChips.siblings('label, .prefix').addClass('active');
         $(SELS.CHIP).removeClass('selected');
       });
 
-      self.$document.off('focusout.chips', SELS.CHIPS + ' ' + SELS.INPUT).on('focusout.chips', SELS.CHIPS + ' ' + SELS.INPUT, function(e){
-        var $currChips = $(e.target).closest(SELS.CHIPS);
+      self.$document.off('focusout.chips', `${SELS.CHIPS} ${SELS.INPUT}`).on('focusout.chips', `${SELS.CHIPS} ${SELS.INPUT}`, (e) => {
+        const $currChips = $(e.target).closest(SELS.CHIPS);
         $currChips.removeClass('focus');
 
         // Remove active if empty
@@ -155,13 +155,13 @@
         $currChips.siblings('.prefix').removeClass('active');
       });
 
-      self.$document.off('keydown.chips-add', SELS.CHIPS + ' ' + SELS.INPUT).on('keydown.chips-add', SELS.CHIPS + ' ' + SELS.INPUT, function(e){
-        var $target = $(e.target);
-        var $chips = $target.closest(SELS.CHIPS);
-        var chipsLength = $chips.children(SELS.CHIP).length;
+      self.$document.off('keydown.chips-add', `${SELS.CHIPS} ${SELS.INPUT}`).on('keydown.chips-add', `${SELS.CHIPS} ${SELS.INPUT}`, (e) => {
+        const $target = $(e.target);
+        const $chips = $target.closest(SELS.CHIPS);
+        const chipsLength = $chips.children(SELS.CHIP).length;
 
         // enter
-        if (13 === e.which) {
+        if (e.which === 13) {
           // Override enter if autocompleting.
           if (self.hasAutocomplete &&
               $chips.find('.autocomplete-content.dropdown-content').length &&
@@ -170,57 +170,56 @@
           }
 
           e.preventDefault();
-          self.addChip({tag: $target.val()}, $chips);
+          self.addChip({ tag: $target.val() }, $chips);
           $target.val('');
           return;
         }
 
         // delete or left
-        if ((8 === e.keyCode || 37 === e.keyCode) && '' === $target.val() && chipsLength) {
+        if ((e.keyCode === 8 || e.keyCode === 37) && $target.val() === '' && chipsLength) {
           e.preventDefault();
           self.selectChip(chipsLength - 1, $chips);
           $target.blur();
-          return;
         }
       });
 
       // Click on delete icon in chip.
-      self.$document.off('click.chips-delete', SELS.CHIPS + ' ' + SELS.DELETE).on('click.chips-delete', SELS.CHIPS + ' ' + SELS.DELETE, function(e) {
-        var $target = $(e.target);
-        var $chips = $target.closest(SELS.CHIPS);
-        var $chip = $target.closest(SELS.CHIP);
+      self.$document.off('click.chips-delete', `${SELS.CHIPS} ${SELS.DELETE}`).on('click.chips-delete', `${SELS.CHIPS} ${SELS.DELETE}`, (e) => {
+        const $target = $(e.target);
+        const $chips = $target.closest(SELS.CHIPS);
+        const $chip = $target.closest(SELS.CHIP);
         e.stopPropagation();
         self.deleteChip($chip.index(), $chips);
         $chips.find('input').focus();
       });
     };
 
-    this.chips = function($chips, chipId) {
+    this.chips = function ($chips, chipId) {
       $chips.empty();
-      $chips.data('chips').forEach(function(elem){
+      $chips.data('chips').forEach((elem) => {
         $chips.append(self.renderChip(elem));
       });
-      $chips.append($('<input id="' + chipId +'" class="input" placeholder="">'));
+      $chips.append($(`<input id="${chipId}" class="input" placeholder="">`));
       self.setPlaceholder($chips);
 
       // Set for attribute for label
-      var label = $chips.next('label');
+      const label = $chips.next('label');
       if (label.length) {
         label.attr('for', chipId);
 
-        if ($chips.data('chips')!== undefined && $chips.data('chips').length) {
+        if ($chips.data('chips') !== undefined && $chips.data('chips').length) {
           label.addClass('active');
         }
       }
 
       // Setup autocomplete if needed.
-      var input = $('#' + chipId);
+      const input = $(`#${chipId}`);
       if (self.hasAutocomplete) {
-        curr_options.autocompleteOptions.onAutocomplete = function(val) {
-          self.addChip({tag: val}, $chips);
+        curr_options.autocompleteOptions.onAutocomplete = function (val) {
+          self.addChip({ tag: val }, $chips);
           input.val('');
           input.focus();
-        }
+        };
         input.autocomplete(curr_options.autocompleteOptions);
       }
     };
@@ -230,47 +229,46 @@
      * @param {Object} elem
      * @return {jQuery}
      */
-    this.renderChip = function(elem) {
+    this.renderChip = function (elem) {
       if (!elem.tag) return;
 
-      var $renderedChip = $('<div class="chip"></div>');
+      const $renderedChip = $('<div class="chip"></div>');
       $renderedChip.text(elem.tag);
       if (elem.image) {
-        $renderedChip.prepend($('<img />').attr('src', elem.image))
+        $renderedChip.prepend($('<img />').attr('src', elem.image));
       }
       $renderedChip.append($('<i class="material-icons close">close</i>'));
       return $renderedChip;
     };
 
-    this.setPlaceholder = function($chips) {
+    this.setPlaceholder = function ($chips) {
       if (($chips.data('chips') !== undefined && !$chips.data('chips').length) && curr_options.placeholder) {
         $chips.find('input').prop('placeholder', curr_options.placeholder);
-
       } else if (($chips.data('chips') === undefined || !!$chips.data('chips').length) && curr_options.secondaryPlaceholder) {
         $chips.find('input').prop('placeholder', curr_options.secondaryPlaceholder);
       }
     };
 
-    this.isValid = function($chips, elem) {
-      var chips = $chips.data('chips');
-      var exists = false;
-      for (var i=0; i < chips.length; i++) {
+    this.isValid = function ($chips, elem) {
+      const chips = $chips.data('chips');
+      let exists = false;
+      for (let i = 0; i < chips.length; i++) {
         if (chips[i].tag === elem.tag) {
-            exists = true;
-            return;
+          exists = true;
+          return;
         }
       }
-      return '' !== elem.tag && !exists;
+      return elem.tag !== '' && !exists;
     };
 
-    this.addChip = function(elem, $chips) {
+    this.addChip = function (elem, $chips) {
       if (!self.isValid($chips, elem)) {
         return;
       }
-      var $renderedChip = self.renderChip(elem);
-      var newData = [];
-      var oldData = $chips.data('chips');
-      for (var i = 0; i < oldData.length; i++) {
+      const $renderedChip = self.renderChip(elem);
+      const newData = [];
+      const oldData = $chips.data('chips');
+      for (let i = 0; i < oldData.length; i++) {
         newData.push(oldData[i]);
       }
       newData.push(elem);
@@ -281,13 +279,13 @@
       self.setPlaceholder($chips);
     };
 
-    this.deleteChip = function(chipIndex, $chips) {
-      var chip = $chips.data('chips')[chipIndex];
+    this.deleteChip = function (chipIndex, $chips) {
+      const chip = $chips.data('chips')[chipIndex];
       $chips.find('.chip').eq(chipIndex).remove();
 
-      var newData = [];
-      var oldData = $chips.data('chips');
-      for (var i = 0; i < oldData.length; i++) {
+      const newData = [];
+      const oldData = $chips.data('chips');
+      for (let i = 0; i < oldData.length; i++) {
         if (i !== chipIndex) {
           newData.push(oldData[i]);
         }
@@ -298,15 +296,15 @@
       self.setPlaceholder($chips);
     };
 
-    this.selectChip = function(chipIndex, $chips) {
-      var $chip = $chips.find('.chip').eq(chipIndex);
-      if ($chip && false === $chip.hasClass('selected')) {
+    this.selectChip = function (chipIndex, $chips) {
+      const $chip = $chips.find('.chip').eq(chipIndex);
+      if ($chip && $chip.hasClass('selected') === false) {
         $chip.addClass('selected');
         $chips.trigger('chip.select', $chips.data('chips')[chipIndex]);
       }
     };
 
-    this.getChipsElement = function(index, $chips) {
+    this.getChipsElement = function (index, $chips) {
       return $chips.eq(index);
     };
 
@@ -315,4 +313,4 @@
 
     this.handleEvents();
   };
-}( jQuery ));
+}(jQuery));

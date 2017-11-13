@@ -1,29 +1,28 @@
-(function($) {
-
-  var scrollFireEventsHandled = false;
+(function ($) {
+  let scrollFireEventsHandled = false;
 
   // Input: Array of JSON objects {selector, offset, callback}
-  Materialize.scrollFire = function(options) {
-    var onScroll = function() {
-      var windowScroll = window.pageYOffset + window.innerHeight;
+  Materialize.scrollFire = function (options) {
+    const onScroll = function () {
+      const windowScroll = window.pageYOffset + window.innerHeight;
 
-      for (var i = 0 ; i < options.length; i++) {
+      for (let i = 0; i < options.length; i++) {
         // Get options from each line
-        var value = options[i];
-        var selector = value.selector,
-            offset = value.offset,
-            callback = value.callback;
+        const value = options[i];
+        let selector = value.selector,
+          offset = value.offset,
+          callback = value.callback;
 
-        var currentElement = document.querySelector(selector);
-        if ( currentElement !== null) {
-          var elementOffset = currentElement.getBoundingClientRect().top + window.pageYOffset;
+        const currentElement = document.querySelector(selector);
+        if (currentElement !== null) {
+          const elementOffset = currentElement.getBoundingClientRect().top + window.pageYOffset;
 
           if (windowScroll > (elementOffset + offset)) {
             if (value.done !== true) {
-              if (typeof(callback) === 'function') {
+              if (typeof (callback) === 'function') {
                 callback.call(this, currentElement);
-              } else if (typeof(callback) === 'string') {
-                var callbackFunc = new Function(callback);
+              } else if (typeof (callback) === 'string') {
+                const callbackFunc = new Function(callback);
                 callbackFunc(currentElement);
               }
               value.done = true;
@@ -34,18 +33,17 @@
     };
 
 
-    var throttledScroll = Materialize.throttle(function() {
+    const throttledScroll = Materialize.throttle(() => {
       onScroll();
     }, options.throttle || 100);
 
     if (!scrollFireEventsHandled) {
-      window.addEventListener("scroll", throttledScroll);
-      window.addEventListener("resize", throttledScroll);
+      window.addEventListener('scroll', throttledScroll);
+      window.addEventListener('resize', throttledScroll);
       scrollFireEventsHandled = true;
     }
 
     // perform a scan once, after current execution context, and after dom is ready
     setTimeout(throttledScroll, 0);
   };
-
-})(jQuery);
+}(jQuery));

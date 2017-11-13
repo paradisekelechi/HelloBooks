@@ -3,14 +3,19 @@ import jwtDecode from 'jwt-decode';
 
 /**
  *
- * @returns {void} description
+ * @returns {boolean} the set status of the token
  * @export
- * @param {any} usertoken
+ * @param {string} usertoken
  */
 export function authenticatePersist(usertoken) {
-  localStorage.setItem('userdata', JSON.stringify({
-    token: usertoken
-  }));
+  let isTokenSet = false;
+  if (usertoken) {
+    localStorage.setItem('userdata', JSON.stringify({
+      token: usertoken
+    }));
+    isTokenSet = true;
+  }
+  return isTokenSet;
 }
 
 /**
