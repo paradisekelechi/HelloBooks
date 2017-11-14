@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import PageBar from '../common/main/PageBar';
 import AdminDashboard from './AdminDashboard';
 import ClientDashboard from './ClientDashboard';
 
@@ -7,6 +8,7 @@ const DashboardSync = (props) => {
     return (
       <div className="col m12">
         <div className="col m8 offset-m4 main-content">
+          <PageBar pageName="Admin Dashboard" />
           <AdminDashboard />
         </div>
       </div>
@@ -15,6 +17,7 @@ const DashboardSync = (props) => {
   return (
     <div className="col m12">
       <div className="col m8 offset-m4 main-content">
+        <PageBar pageName="Client Dashboard" />
         <ClientDashboard />
       </div>
     </div>
