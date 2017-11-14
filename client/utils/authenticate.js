@@ -44,9 +44,15 @@ export function authenticateFetch() {
 
 /**
  *
- * @returns {void} description
+ * @returns {Boolean} logout status
  * @export
  */
 export function authenticateClear() {
-  localStorage.removeItem('userdata');
+  const storageData = JSON.parse(localStorage.getItem('userdata'));
+  let isLoggedOut = false;
+  if (storageData) {
+    localStorage.removeItem('userdata');
+    isLoggedOut = true;
+  }
+  return isLoggedOut;
 }

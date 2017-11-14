@@ -1,8 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux'; import {
+import React from 'react'; import {
   browserHistory
 } from 'react-router';
-import checkLogin from '../../actions/AuthenticationActions';
 import { authenticateFetch } from '../Authenticate';
 
 /**
@@ -20,21 +18,6 @@ const AuthorizeUser = (Component) => {
    * @extends {React.Component}
    */
   class Authorize extends React.Component {
-
-    /**
-     * Creates an instance of Authorize.
-     * @param {any} props
-     * @memberof Authorize
-     * @returns {*} Creates the state
-     */
-    constructor(props) {
-      super(props);
-      this.state = {
-        loggedIn: false,
-        user: {}
-      };
-    }
-
     /**
      *
      * Checks the login status before rendering
@@ -61,21 +44,8 @@ const AuthorizeUser = (Component) => {
       );
     }
   }
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      getLoginStatus: () => {
-        dispatch(checkLogin());
-      }
-    };
-  };
 
-  const mapStateToProps = (state) => {
-    return {
-      userCredentials: state.userReducer[0]
-    };
-  };
-
-  return connect(mapStateToProps, mapDispatchToProps)(Authorize);
+  return Authorize;
 };
 
 export default AuthorizeUser;
