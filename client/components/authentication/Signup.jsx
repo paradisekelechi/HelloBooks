@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/UserActions';
 import background from '../../assets/img/background6.jpg';
@@ -72,7 +73,7 @@ class Signup extends React.Component {
         <div className="container">
           <div className="row authentication-row">
             <div
-              className="col m4 offset-m4 auth-box"
+              className="col m4 offset-m4 auth-box dark-blue-text"
               data-aos="flip-left"
               data-aos-easing="ease-out-cubic"
               data-aos-duration={2000}
@@ -112,7 +113,7 @@ class Signup extends React.Component {
                 <div className="col s12">
                   <button
                     type="submit"
-                    className="waves-effect waves-light btn btn-large col s12 blue darken-3"
+                    className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
                   >
                     Register
                   </button>
@@ -128,11 +129,11 @@ class Signup extends React.Component {
               </div>
               <div className="col s12">
                 <br />
-                <a href="signin.html">
-                  <button className="waves-effect waves-light btn col s12 blue darken-3">
+                <Link to="/signin">
+                  <button className="waves-effect waves-light btn col s12 dark-blue-background">
                     Signin
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="parallax">

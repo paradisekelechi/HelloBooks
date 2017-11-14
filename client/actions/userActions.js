@@ -115,6 +115,7 @@ export function getAllUsers() {
       'user-token': token
     }
   };
+  console.log(token);
   return (dispatch) => {
     axios
       .get(routes.getAllUsers, config)

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as bookActions from '../../actions/BookActions';
 import * as userActions from '../../actions/UserActions';
 
 /**
  * The component for the admin user's dashboard
- * 
+ *
  * @class AdminDashboard
  * @extends {React.Component}
  * @returns {Object} Admin class
@@ -34,7 +34,6 @@ class AdminDashboard extends React.Component {
    * @memberof AdminDashboard
    */
   render() {
-
     return (
       <div>
         <div className="row">
@@ -46,7 +45,6 @@ class AdminDashboard extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="col m3 s12">
             <div className="card white">
               <div className="card-content ">
@@ -55,7 +53,6 @@ class AdminDashboard extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="col m3 s12">
             <div className="card white">
               <div className="card-content ">
@@ -64,7 +61,6 @@ class AdminDashboard extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="col m3 s12">
             <div className="card white">
               <div className="card-content">
@@ -76,7 +72,6 @@ class AdminDashboard extends React.Component {
         </div>
 
         <div className="row">
-
           <div className="col m3 s12">
             <div className="card white">
               <div className="card-content">
@@ -85,7 +80,6 @@ class AdminDashboard extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="col m3 s12">
             <div className="card blue white">
               <div className="card-content ">
@@ -94,7 +88,6 @@ class AdminDashboard extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="col m3 s12">
             <div className="card white">
               <div className="card-content">
@@ -103,7 +96,6 @@ class AdminDashboard extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="col m3 s12">
             <div className="card white">
               <div className="card-content ">
@@ -114,42 +106,6 @@ class AdminDashboard extends React.Component {
           </div>
         </div>
 
-        <div className="row">
-          <div className="col m6 s12">
-            <ul className="collapsible popout" data-collapsible="accordion">
-              <li>
-                <div className="collapsible-header"><i className="material-icons">person_pin</i>Admin User</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-              <li>
-                <div className="collapsible-header"><i className="material-icons">person_outline</i>Client User</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-              <li>
-                <div className="collapsible-header"><i className="material-icons">person_outline</i>Temporary User</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="col m6 s12">
-            <ul className="collapsible popout" data-collapsible="accordion">
-              <li>
-                <div className="collapsible-header"><i className="material-icons">person_outline</i>Platinium Client Account</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-              <li>
-                <div className="collapsible-header"><i className="material-icons">person_outline</i>Gold Client Account</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-              <li>
-                <div className="collapsible-header"><i className="material-icons">person_outline</i>Silver Client Account</div>
-                <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-              </li>
-            </ul>
-          </div>
-
-        </div>
       </div>
     );
   }
@@ -189,6 +145,19 @@ const mapStateToProps = (state) => {
     users: state.userListReducer,
     books: state.bookListReducer
   };
+};
+
+AdminDashboard.propTypes = {
+  getAllBooks: PropTypes.func.isRequired,
+  getBooksAvailable: PropTypes.func.isRequired,
+  getBooksDeleted: PropTypes.func.isRequired,
+  getBooksFinished: PropTypes.func.isRequired,
+  getAdminUsers: PropTypes.func.isRequired,
+  getAllUsers: PropTypes.func.isRequired,
+  getClientUsers: PropTypes.func.isRequired,
+  getDeletedUsers: PropTypes.func.isRequired,
+  books: PropTypes.object.isRequired,
+  users: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);
