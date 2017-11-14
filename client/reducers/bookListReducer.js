@@ -1,4 +1,4 @@
-import * as actionConstants from '../utils/actionConstants';
+import * as actionConstants from '../utils/Constants';
 
 const initialState = {
   total: {
@@ -32,8 +32,7 @@ export default (state = initialState, action) => {
   case actionConstants.GET_BOOKS_AVAILABLE:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         available: {
           isLoading: false,
           error: '',
@@ -45,8 +44,7 @@ export default (state = initialState, action) => {
   case actionConstants.GET_BOOKS_DELETED:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         deleted: {
           isLoading: false,
           error: '',
@@ -58,8 +56,7 @@ export default (state = initialState, action) => {
   case actionConstants.GET_BOOKS:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         total: {
           isLoading: false,
           error: '',
@@ -71,8 +68,7 @@ export default (state = initialState, action) => {
   case actionConstants.GET_BOOKS_FINISHED:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         finished: {
           isLoading: false,
           error: '',

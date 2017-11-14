@@ -1,4 +1,4 @@
-import * as actionConstants from '../utils/actionConstants';
+import * as actionConstants from '../utils/Constants';
 
 const initialState = {
   isLoading: true,
@@ -13,8 +13,7 @@ export default (state = initialState, action) => {
   case actionConstants.ADD_BOOK:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         isLoading: false,
         error: '',
         isSuccessful: true

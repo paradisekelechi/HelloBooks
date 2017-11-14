@@ -1,10 +1,22 @@
 import querystring from 'querystring';
 import axios from 'axios';
-import { ADD_BOOK, EDIT_BOOK, DELETE_BOOK, GET_BOOKS, GET_BOOKS_AVAILABLE, GET_BOOKS_DELETED, GET_BOOKS_FINISHED } from '../utils/actionConstants';
-import { authenticateFetch } from '../utils/authenticate';
-import routes from '../utils/apiRoutes';
+import {
+  ADD_BOOK,
+  EDIT_BOOK,
+  DELETE_BOOK,
+  GET_BOOKS,
+  GET_BOOKS_AVAILABLE,
+  GET_BOOKS_DELETED,
+  GET_BOOKS_FINISHED
+} from '../utils/Constants';
+import {
+  authenticateFetch
+} from '../utils/Authenticate';
+import routes from '../utils/Routes';
 
-const { token } = authenticateFetch();
+const {
+  token
+} = authenticateFetch();
 
 
 const addBookSync = bookDetails => ({
@@ -199,4 +211,3 @@ export function getBooksDeleted() {
       });
   };
 }
-

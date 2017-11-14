@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import AdminDashboard from './AdminDashboard';
-import PageBar from '../common/main/PageBar';
+import DashboardSync from './DashboardSync';
 
 
 /**
@@ -19,38 +18,44 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'kelechi'
+      userType: 'CLIENT',
+      accountType: 'SILVER'
     };
   }
 
   /**
-   * Will mount
+   * Will mount method
    * @returns {*} value
    * @memberof Dashboard
    */
   componentWillMount() {
-    console.log(this.props);
+    const userData = this.props.userDetails;
+    const { state } = this;
+    state.userType = userData.userType;
+    state.accountType = userData.accountType;
+    this.setState(state);
   }
 
   /**
- * Will mount
+ * render method
  * @returns {*} value
  * @memberof Dashboard
  */
   render() {
     return (
-      <div className="col m12">
-        <div className="col m8 offset-m4 main-content">
-          <PageBar pageName="Admin Dashboard" />
-          <AdminDashboard />
-        </div>
+      <div>
+        <DashboardSync userType={this.state.userType} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  userDetails: state.userReducer
+  userDetails: state.userReducer[0]
 });
+
+Dashboard.propTypes = {
+  userDetails: PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps)(Dashboard);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/userActions';
+import * as userActions from '../../actions/UserActions';
 import background from '../../assets/img/background6.jpg';
 
 /**

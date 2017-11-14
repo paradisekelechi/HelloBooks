@@ -4,17 +4,18 @@ import {
   browserHistory
 } from 'react-router';
 
-import * as userActions from '../utils/actionConstants';
-import routes from '../utils/apiRoutes';
+import * as userActions from '../utils/Constants';
+import routes from '../utils/Routes';
 import {
   authenticateFetch,
   authenticatePersist,
   authenticateClear
-} from '../utils/authenticate';
+} from '../utils/Authenticate';
 
 const {
   SIGNIN_USER,
-  SIGNUP_USER
+  SIGNUP_USER,
+  LOGOUT_USER
 } = userActions;
 
 const {
@@ -70,6 +71,7 @@ export function signupUser(user) {
 
     return request.then((response) => {
       if (response.data.success) {
+        authenticatePersist(response.data.token);
         dispatch(signupUserAsync(response.data));
         browserHistory.push('/dashboard');
       }
@@ -81,7 +83,7 @@ export function signupUser(user) {
 
 
 const logoutUserAsync = user => ({
-  type: userActions.LOGOUT_USER,
+  type: LOGOUT_USER,
   user
 });
 /**
@@ -98,7 +100,6 @@ export function logoutUser(user) {
     browserHistory.push('/signin');
   };
 }
-
 
 const getAllUsersSync = payload => ({
   type: userActions.GET_ALL_USERS,
