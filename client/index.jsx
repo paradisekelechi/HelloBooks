@@ -19,6 +19,7 @@ import Home from './components/home/Home';
 import Signin from './components/authentication/Signin';
 import Signup from './components/authentication/Signup';
 import Dashboard from './components/dashboard/Dashboard';
+import authorize from './utils/helpers/AuthorizeUser';
 
 const store = configureStore();
 
@@ -30,10 +31,10 @@ ReactDOM.render(
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
       </Route>
-      <Route component={MainLayout}>
-        <Route name="dashboard" path="/dashboard" component={Dashboard} />
-        <Route name="books" path="/books" component={Books} />
-        <Route name="profile" path="/profile" component={Profile} />
+      <Route component={authorize(MainLayout)}>
+        <Route name="dashboard" path="dashboard" component={Dashboard} />
+        <Route name="books" path="books" component={Books} />
+        <Route name="profile" path="profile" component={Profile} />
       </Route>
     </Router>
   </Provider>,
