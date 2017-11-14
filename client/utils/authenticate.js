@@ -1,4 +1,3 @@
-// import jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
 
 /**
@@ -30,7 +29,7 @@ export function authenticateFetch() {
     const {
       token
     } = storageData;
-    const userData = jwtDecode(storageData.token);
+    const userData = jwtDecode(token);
     return {
       loggedIn: true,
       userdata: userData,

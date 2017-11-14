@@ -1,12 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import * as bookActions from '../../actions/bookActions';
-import * as userActions from '../../actions/userActions';
+import { connect } from 'react-redux';
+import * as bookActions from '../../actions/BookActions';
+import * as userActions from '../../actions/UserActions';
 
 
-class  AdminDashboard extends React.Component{
+class AdminDashboard extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             books: {
@@ -70,7 +70,7 @@ class  AdminDashboard extends React.Component{
      * @returns {type} description
      * @memberof AdminDashboard
      */
-    componentWillMount(){
+    componentWillMount() {
         this.props.getAllBooks();
         this.props.getBooksAvailable();
         this.props.getBooksDeleted();
@@ -81,7 +81,7 @@ class  AdminDashboard extends React.Component{
         this.props.getDeletedUsers();
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props);
     }
 
@@ -91,7 +91,7 @@ class  AdminDashboard extends React.Component{
      * @returns 
      * @memberof AdminDashboard
      */
-    render(){
+    render() {
 
         return (
             <div>
@@ -99,79 +99,79 @@ class  AdminDashboard extends React.Component{
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content ">
-                            <span className="card-title center">Total Books</span>
-                            <h4 className="center counter">{this.props.books.total.count}</h4>
+                                <span className="card-title center">Total Books</span>
+                                <h4 className="center counter">{this.props.books.total.count}</h4>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content ">
-                            <span className="card-title center">Books Deleted</span>
-                            <h4 className="center counter">{this.props.books.deleted.count}</h4>
+                                <span className="card-title center">Books Deleted</span>
+                                <h4 className="center counter">{this.props.books.deleted.count}</h4>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content ">
-                            <span className="card-title center">Books Finished</span>
-                            <h4 className="center counter">{this.props.books.finished.count}</h4>
+                                <span className="card-title center">Books Finished</span>
+                                <h4 className="center counter">{this.props.books.finished.count}</h4>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content">
-                            <span className="card-title center">Books Available</span>
-                            <h4 className="center counter">{this.props.books.available.count}</h4>
+                                <span className="card-title center">Books Available</span>
+                                <h4 className="center counter">{this.props.books.available.count}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
-    
+
                 <div className="row">
-    
+
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content">
-                            <span className="card-title center">Total Users</span>
-                            <h4 className="center counter">{this.props.users.total.count}</h4>
+                                <span className="card-title center">Total Users</span>
+                                <h4 className="center counter">{this.props.users.total.count}</h4>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col m3 s12">
                         <div className="card blue white">
                             <div className="card-content ">
-                            <span className="card-title center">Deleted Users</span>
-                            <h4 className="center counter">{this.props.users.deleted.count}</h4>
+                                <span className="card-title center">Deleted Users</span>
+                                <h4 className="center counter">{this.props.users.deleted.count}</h4>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content">
-                            <span className="card-title center">Client Users</span>
-                            <h4 className="center counter">{this.props.users.client.count}</h4>
+                                <span className="card-title center">Client Users</span>
+                                <h4 className="center counter">{this.props.users.client.count}</h4>
                             </div>
                         </div>
                     </div>
-    
+
                     <div className="col m3 s12">
                         <div className="card white">
                             <div className="card-content ">
-                            <span className="card-title center">Admin Users</span>
-                            <h4 className="center counter">{this.props.users.admin.count}</h4>
+                                <span className="card-title center">Admin Users</span>
+                                <h4 className="center counter">{this.props.users.admin.count}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
-    
+
                 <div className="row">
                     <div className="col m6 s12">
                         <ul className="collapsible popout" data-collapsible="accordion">
@@ -189,7 +189,7 @@ class  AdminDashboard extends React.Component{
                             </li>
                         </ul>
                     </div>
-    
+
                     <div className="col m6 s12">
                         <ul className="collapsible popout" data-collapsible="accordion">
                             <li>
@@ -206,7 +206,7 @@ class  AdminDashboard extends React.Component{
                             </li>
                         </ul>
                     </div>
-    
+
                 </div>
             </div>
         );
@@ -242,7 +242,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = (state, props) =>{
+const mapStateToProps = (state, props) => {
     return {
         users: state.userListReducer,
         books: state.bookListReducer

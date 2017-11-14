@@ -1,14 +1,18 @@
-import { combineReducers } from 'redux';
-import UserReducer from './userReducer';
-import UserListReducer from './userListReducer';
-import BookReducer from './bookReducer';
-import BookListReducer from './bookListReducer';
+import {
+  combineReducers
+} from 'redux';
+import UserReducer from './UserReducer';
+import UserListReducer from './UserListReducer';
+import BookReducer from './BookReducer';
+import BookListReducer from './BookListReducer';
+import AuthenticationReducer from './AuthenticationReducer';
 
 const rootReducer = combineReducers({
   userReducer: UserReducer,
   userListReducer: UserListReducer,
   bookReducer: BookReducer,
-  bookListReducer: BookListReducer
+  bookListReducer: BookListReducer,
+  authenticationReducer: AuthenticationReducer
 });
 
 export default rootReducer;

@@ -1,4 +1,4 @@
-import * as actionConstants from '../utils/actionConstants';
+import * as actionConstants from '../utils/Constants';
 
 const initialState = [{
   token: '',
@@ -52,11 +52,8 @@ const userReducer = (state = initialState, action) => {
       username: action.payload.username,
       email: action.payload.email,
       usertype: getUserType(action.payload.usertype),
-      accounttype: getAccountType(action.payload.accounttype),
-    },
-    ...state
-    ];
-  case actionConstants.LOGOUT_USER:
+      accounttype: getAccountType(action.payload.accounttype)
+    }, ...state];
   default:
     return state;
   }

@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { GET_ALL_USERS } from '../utils/actionConstants';
+import {
+  GET_ALL_USERS
+} from '../utils/Constants';
 
 const getUsersSync = users => ({
   type: GET_ALL_USERS,
@@ -43,4 +45,3 @@ export function getAdminUsers(users) {
       });
   };
 }
-

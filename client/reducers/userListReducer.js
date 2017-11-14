@@ -1,4 +1,4 @@
-import * as actionConstants from '../utils/actionConstants';
+import * as actionConstants from '../utils/Constants';
 
 const initialState = {
   total: {
@@ -40,8 +40,7 @@ const userReducer = (state = initialState, action) => {
   case actionConstants.GET_ALL_USERS:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         total: {
           isLoading: false,
           error: '',
@@ -53,8 +52,7 @@ const userReducer = (state = initialState, action) => {
   case actionConstants.GET_ADMIN_USERS:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         admin: {
           isLoading: false,
           error: '',
@@ -66,8 +64,7 @@ const userReducer = (state = initialState, action) => {
   case actionConstants.GET_CLIENT_USERS:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         client: {
           isLoading: false,
           error: '',
@@ -79,8 +76,7 @@ const userReducer = (state = initialState, action) => {
   case actionConstants.GET_DELETED_USERS:
     return Object.assign(
       {},
-      state,
-      {
+      state, {
         deleted: {
           isLoading: false,
           error: '',

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import background from '../../assets/img/background6.jpg';
-import * as userActions from '../../actions/userActions';
+import * as userActions from '../../actions/UserActions';
 
 /**
  *
