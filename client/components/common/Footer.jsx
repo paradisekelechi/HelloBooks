@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const Footer = () => {
   return (
-    <footer className="page-footer blue darken-4">
+    <footer className="page-footer footer-color">
       <div className="footer-copyright">
         <div className="container">
           <div className="row">

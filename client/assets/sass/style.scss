@@ -29,8 +29,8 @@
 }
 
 .side-nav {
-  padding-top: 30px;
-  background-color: rgba(0, 0, 0, 0.75);
+  padding-top: 30px !important;
+  background-color: rgba(6, 2, 39, 0.98) !important;
 }
 
 .side-nav li a,
@@ -66,15 +66,16 @@ html {
   position: absolute;
   left: 312px;
   right: 10px;
-  background-color: #fff;
+  background-color: #fff !important;
   height: 100%;
 }
 
 .card {
-  -moz-box-shadow: 0px 0px 1px 1px #75737d;
-  -webkit-box-shadow: 0px 0px 1px 1px #75737d;
-  box-shadow: 0px 0px 1px 1px #75737d;
-  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 1px 1px #75737d !important;
+  -webkit-box-shadow: 0px 0px 1px 1px #75737d !important;
+  box-shadow: 0px 0px 1px 1px #75737d !important;
+  border-radius: 7px !important;
+  padding: 10px !important;
 }
 
 .account-details-bar {}
@@ -102,9 +103,21 @@ html {
   font-size: 26px
 }
 
+.dark-blue-text {
+  color: rgba(6, 2, 39, 0.98) !important;
+}
+
+.dark-blue-background {
+  background-color: rgba(6, 2, 39, 0.98) !important;
+}
+
 nav ul a,
 nav .brand-logo {
   color: #fff;
+}
+
+.footer-color {
+  background-color: rgba(6, 2, 39, 0.98) !important;
 }
 
 p {
@@ -146,7 +159,7 @@ p {
 
 .navigation {
   box-shadow: none;
-  background-color: #0c48a0;
+  background-color: rgba(6, 2, 39, 0.98) !important;
 }
 
 .navigation li {

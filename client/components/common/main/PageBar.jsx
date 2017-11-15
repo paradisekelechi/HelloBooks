@@ -42,7 +42,7 @@ class PageBar extends React.Component {
     return (
       <div className="row account-info account-details-bar">
         <span>{this.props.pageName}</span>
-        <a role="logout" className="cursor-hand"><i onClick={this.logoutUser} className="material-icons option right">power_settings_new</i></a>
+        <i role="logout" onClick={this.logoutUser} className="material-icons option right">power_settings_new</i>
       </div>
     );
   }

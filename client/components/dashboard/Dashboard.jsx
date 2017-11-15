@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import DashboardSync from './DashboardSync';
+import { authenticateFetch } from '../../utils/Authenticate';
+import { getUserType, getAccountType } from '../../utils/TypeSync';
 
 
 /**
@@ -22,17 +23,17 @@ class Dashboard extends React.Component {
       accountType: 'SILVER'
     };
   }
-
   /**
-   * Will mount method
-   * @returns {*} value
+   * Check usertype and determine what to display
+   * @returns {*} sets state
    * @memberof Dashboard
    */
   componentWillMount() {
-    const userData = this.props.userDetails;
+    const loginPayload = authenticateFetch();
+    const { userdata } = loginPayload;
     const { state } = this;
-    state.userType = userData.userType;
-    state.accountType = userData.accountType;
+    state.userType = getUserType(userdata.usertype);
+    state.accountType = getAccountType(userdata.accounttype);
     this.setState(state);
   }
 
@@ -50,12 +51,4 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userDetails: state.userReducer[0]
-});
-
-Dashboard.propTypes = {
-  userDetails: PropTypes.object.isRequired
-};
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

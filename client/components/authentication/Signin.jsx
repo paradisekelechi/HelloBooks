@@ -116,7 +116,7 @@ class Signin extends React.Component {
                 </div>
                 <div className="col s12">
                   <button
-                    className="waves-effect waves-light btn btn-large col s12 blue darken-3 "
+                    className="waves-effect waves-light btn btn-large col s12 dark-blue-background "
                   >
                     Signin
                   </button>
@@ -132,7 +132,7 @@ class Signin extends React.Component {
               <div className="col s12">
                 <br />
                 <a href="register.html">
-                  <button className="waves-effect waves-light btn col s12 blue darken-3" >
+                  <button className="waves-effect waves-light btn col s12 dark-blue-background" >
                     Register
                   </button>
                 </a>

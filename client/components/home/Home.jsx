@@ -49,13 +49,13 @@ class Home extends React.Component {
             <div className="container">
               <br />
               <br />
-              <h1 className="header center blue-text text-darken-4">HelloBooks Online Library</h1>
+              <h1 className="header center dark-blue-text">HelloBooks Online Library</h1>
               <div className="row center">
-                <h5 id="header-text" className="header col s12 light blue-text text-darken-4"></h5>
+                <h5 id="header-text" className="header col s12 light dark-blue-text"></h5>
               </div>
               <div className="row center">
                 <Link to="/signup">
-                  <button className="waves-effect waves-light btn btn-large col s4 offset-s4  blue darken-3 " data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration={2000}>Get Started</button>
+                  <button className="waves-effect waves-light btn btn-large col s4 offset-s4  dark-blue-background " data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration={2000}>Get Started</button>
                 </Link>
               </div>
             </div>
