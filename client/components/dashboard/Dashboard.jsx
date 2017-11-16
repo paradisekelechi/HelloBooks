@@ -1,6 +1,6 @@
 import React from 'react';
 import DashboardSync from './DashboardSync';
-import { authenticateFetch } from '../../utils/Authenticate';
+import { authenticateFetch } from '../../utils/authenticate';
 import { getUserType, getAccountType } from '../../utils/TypeSync';
 
 

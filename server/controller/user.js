@@ -79,10 +79,12 @@ export default {
       .then((user) => {
         // token generated
         const token = jwt.sign({
+          userid: user.dataValues.id,
           email: user.dataValues.email,
           username: user.dataValues.username,
           usertype: user.dataValues.user_type_id,
-          account_type: user.dataValues.account_type_id
+          account_type: user.dataValues.account_type_id,
+          image: user.dataValues.image
         }, secret, {
           expiresIn: 24 * 60 * 60 * 40
         });
@@ -170,10 +172,12 @@ export default {
             if (success) {
               // token generated
               const token = jwt.sign({
+                userid: user.id,
                 email: user.email,
                 username: user.username,
                 usertype: user.user_type_id,
-                accounttype: user.account_type_id
+                accounttype: user.account_type_id,
+                image: user.image
               }, secret, {
                 expiresIn: 24 * 3600 * 3600 * 40
               });
@@ -407,7 +411,8 @@ export default {
       .then(() => {
         res.status(200).send({
           success: true,
-          message: 'User successfully updated'
+          message: 'User successfully updated',
+          image: imageUrl
         });
       })
       .catch(() => {

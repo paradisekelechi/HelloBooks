@@ -2,7 +2,7 @@ import React from 'react';
 import {
   browserHistory
 } from 'react-router';
-import { authenticateFetch } from '../Authenticate';
+import { authenticateFetch } from '../authenticate';
 
 /**
  * Export HOC

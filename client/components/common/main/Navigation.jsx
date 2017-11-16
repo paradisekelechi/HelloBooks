@@ -13,7 +13,6 @@ const Navigation = () => {
         </div>
         <div className="row hbk-row">
           <div className="col m6 offset-m3 col s8 offset-s2">
-            <img alt="profile" src={profileImage} className="responsive-img circle" width="100%" />
             <span>user@user.com</span>
           </div>
         </div>

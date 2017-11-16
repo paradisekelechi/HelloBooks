@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as bookActions from '../../actions/BookActions';
-import * as userActions from '../../actions/UserActions';
+import * as bookActions from '../../actions/bookActions';
+import * as userActions from '../../actions/userActions';
 
 /**
  * The component for the admin user's dashboard

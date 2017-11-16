@@ -7,7 +7,7 @@ import app from '../../app';
 /* eslint-disable no-console */
 
 // Set the default port the application listens to
-let port = 5000;
+let port = process.env.PORT || 5000;
 
 // Define the port configuration based on the environment
 if (process.env.NODE_ENV === 'production' || 'development') {

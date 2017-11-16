@@ -58,6 +58,7 @@
   "globals": {
     "AOS": false,
     "Typewriter": false,
-    "$": false
+    "$": false,
+    "cloudinary": false
   }
 }

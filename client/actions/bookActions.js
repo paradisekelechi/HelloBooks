@@ -11,7 +11,7 @@ import {
 } from '../utils/Constants';
 import {
   authenticateFetch
-} from '../utils/Authenticate';
+} from '../utils/authenticate';
 import routes from '../utils/Routes';
 
 const {

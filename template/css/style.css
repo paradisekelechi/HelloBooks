@@ -210,3 +210,20 @@ p {
 .navbar-fixed {
   z-index: 999;
 }
+
+.profile-strip {
+  padding: 20px;
+}
+
+.profile-image {
+  border-radius: 50%;
+}
+
+.profile-details h5 {
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.profile-details {
+  margin-top: 14%;
+}

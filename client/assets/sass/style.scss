@@ -201,3 +201,12 @@ p {
 .navbar-fixed {
   z-index: 999;
 }
+
+.logoutButton {
+  border-radius: 19px;
+  padding: 10px;
+}
+
+.logoutButton:hover {
+  cursor: pointer;
+}
