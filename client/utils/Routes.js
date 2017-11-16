@@ -8,11 +8,13 @@ const getBooksAvailable = `${baseRoute}books/available`;
 const addBooks = `${baseRoute}books`;
 
 const getAllUsers = `${baseRoute}users`;
+const user = `${baseRoute}users`;
 const getAdminUsers = `${baseRoute}users/admin`;
 const getClientUsers = `${baseRoute}users/client`;
 const getDeletedUsers = `${baseRoute}users/deleted`;
 
 const routes = {
+  user,
   signup,
   signin,
   addBooks,

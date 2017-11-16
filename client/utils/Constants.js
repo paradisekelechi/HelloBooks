@@ -14,6 +14,8 @@ export const SIGNUP_USER = 'sign up user';
 export const LOGOUT_USER = 'log out user';
 export const CHECK_LOGIN_STATUS = 'check login status';
 export const CHECK_USER_TYPE = 'check user type';
+export const EDIT_USER = 'edit user details';
+export const EDIT_USER_PROFILE = 'edit user profile image';
 
 export const GET_ALL_USERS = 'get all users';
 export const GET_ADMIN_USERS = 'get admin users';

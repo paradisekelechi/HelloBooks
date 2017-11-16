@@ -15,11 +15,13 @@ import {
 const {
   SIGNIN_USER,
   SIGNUP_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  EDIT_USER_PROFILE
 } = userActions;
 
 const {
-  token
+  token,
+  userdata
 } = authenticateFetch();
 
 const signinUserAsync = data => ({
@@ -203,4 +205,39 @@ export function getDeletedUsers() {
         }
       });
   };
+}
+
+const editUserProfileImageSync = (data) => {
+  return {
+    type: EDIT_USER_PROFILE,
+    payload: data
+  };
+};
+
+/**
+ * Edit User Profile Image
+ *
+ * @export
+ * @param {any} imageUrl
+ * @returns {Object} dispatch object
+ */
+export function editUserProfileImage(imageUrl) {
+  const config = {
+    headers: {
+      'user-token': token
+    }
+  };
+  const formdata = querystring.stringify({
+    imageUrl
+  });
+  return (dispatch) => {
+    axios
+      .put(`${routes.user}/${userdata.userid}`, formdata, config)
+      .then((response) => {
+        if (response.data.success) {
+          dispatch(editUserProfileImageSync(response.data));
+        }
+      });
+  };
+
 }
