@@ -1,6 +1,6 @@
 import {
   authenticateFetch
-} from '../utils/Authenticate';
+} from '../utils/authenticate';
 import {
   CHECK_LOGIN_STATUS
 } from '../utils/Constants';

@@ -5,7 +5,7 @@ import UserReducer from './userReducer';
 import UserListReducer from './userListReducer';
 import BookReducer from './bookReducer';
 import BookListReducer from './bookListReducer';
-import AuthorizeReducer from './AuthorizeReducer';
+import AuthorizeReducer from './authorizeReducer';
 import ProfileImageReducer from './ProfileImageReducer';
 
 const rootReducer = combineReducers({

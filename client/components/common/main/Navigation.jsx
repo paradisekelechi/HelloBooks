@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import profileImage from '../../../assets/img/profile.jpg';
-
 const Navigation = () => {
   return (
     <div className="custom-nav">

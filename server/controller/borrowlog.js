@@ -1,4 +1,3 @@
-// Import modules
 import validator from 'validator';
 
 import models from '../models';
@@ -20,6 +19,13 @@ const {
 } = models;
 
 export default {
+  /**
+   * Borrow book
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} borrow book
+   */
   borrowBook(req, res) {
     const today = new Date();
     const borrowDate = today;
@@ -70,16 +76,16 @@ export default {
         }
       })
       .then((book) => {
-        // If the book exists
         if (book) {
-          // Check if the book still available for borrow
           if (book.quantity === 0) {
             res.status(400).send({
               success: false,
               message: 'Oops! This book is no longer available for borrow'
             });
           } else {
-            // Check if the user had already borrowed that book
+            /**
+             * Check if the user had already borrowed that book
+             */
             return BorrowLog
               .findAll({
                 include: [{
@@ -101,7 +107,9 @@ export default {
                     success: false
                   });
                 } else {
-                  // Borrow book by user
+                  /**
+                   * Borrow book by user
+                   */
                   return BorrowLog
                     .create({
                       borrow_date: borrowDate,
@@ -113,26 +121,28 @@ export default {
                     })
                     .then(() =>
 
-                      // Update book quantity
+                      /**
+                       * Update book quantity
+                       */
                       Book
-                      .update({
-                        quantity: models.sequelize.literal('quantity - 1')
-                      }, {
-                        where: {
-                          id: bookId
-                        }
-                      })
-                      .then(
-                        res.status(200).send({
-                          success: true,
-                          message: 'Book borrowed successfully'
-                        }),
-                        notification('Book borrowed successfully', userEmail, 'Hello Books')
-                      )
-                      .catch(() => res.status(400).send({
-                        success: false,
-                        message: 'Oops! Book not borrowed successfully! Contact Support'
-                      })))
+                        .update({
+                          quantity: models.sequelize.literal('quantity - 1')
+                        }, {
+                          where: {
+                            id: bookId
+                          }
+                        })
+                        .then(
+                          res.status(200).send({
+                            success: true,
+                            message: 'Book borrowed successfully'
+                          }),
+                          notification('Book borrowed successfully', userEmail, 'Hello Books')
+                        )
+                        .catch(() => res.status(400).send({
+                          success: false,
+                          message: 'Oops! Book not borrowed successfully! Contact Support'
+                        })))
                     .catch(() => res.status(400).send({
                       success: false,
                       message: 'Oops! Book not borrowed successfully!'
@@ -161,9 +171,9 @@ export default {
   /**
    *
    *
-   * @param {any} req
-   * @param {any} res
-   * @returns {type} description
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Book response object
    */
   returnBook(req, res) {
     const today = new Date();
@@ -195,7 +205,9 @@ export default {
       return;
     }
 
-    // Check if a user borrowed a book he/she is trying to return
+    /**
+     * Check if a user borrowed a book he/she is trying to return
+     */
     return BorrowLog
       .findAll({
         where: {
@@ -220,7 +232,9 @@ export default {
               },
             }).then((borrowhistory) => {
               if (borrowhistory.length !== 0) {
-                // Return Borrowed book
+                /**
+                 * Return Borrowed book
+                 */
                 return BorrowLog
                   .update({
                     return_date: returnDate,
@@ -235,47 +249,53 @@ export default {
                   })
                   .then(() =>
 
-                    // Update book quantity accordingly
+                    /**
+                     * Update book quantity accordingly
+                     */
                     Book
-                    .update({
-                      quantity: models.sequelize.literal('quantity + 1')
-                    }, {
-                      where: {
-                        id: bookId
-                      }
-                    })
-                    .then(() =>
-
-                      // Update user use count for user account type profiling
-                      User
                       .update({
-                        use_count: models.sequelize.literal('use_count + 1')
+                        quantity: models.sequelize.literal('quantity + 1')
                       }, {
                         where: {
-                          id: userId
+                          id: bookId
                         }
                       })
-                      .then(() => {
-                        res.status(200).send({
-                          success: true,
-                          message: 'Book returned successfully'
-                        });
-                        notification('Book returned successfully', userEmail, 'Hello Books');
-                      })
-                      .catch((error) => {
-                        res.status(400).send(error);
-                      }))
-                    .catch(() =>
-                      res.status(400).send({
-                        success: false,
-                        message: 'Oops! Book not returned successfully! Contact Support'
-                      })))
+                      .then(() =>
+
+                      /**
+                       * Update user use count for user account type profiling
+                       */
+                        User
+                          .update({
+                            use_count: models.sequelize.literal('use_count + 1')
+                          }, {
+                            where: {
+                              id: userId
+                            }
+                          })
+                          .then(() => {
+                            res.status(200).send({
+                              success: true,
+                              message: 'Book returned successfully'
+                            });
+                            notification('Book returned successfully', userEmail, 'Hello Books');
+                          })
+                          .catch((error) => {
+                            res.status(400).send(error);
+                          }))
+                      .catch(() =>
+                        res.status(400).send({
+                          success: false,
+                          message: 'Oops! Book not returned successfully! Contact Support'
+                        })))
                   .catch(() => res.status(400).send({
                     success: false,
                     message: 'Oops! Book not borrowed successfully! Contact Support'
                   }));
               }
-              // Check if user had borrowed the book and had already returned it
+              /**
+               * Check if user had borrowed the book and had already returned it
+               */
               return BorrowLog
                 .findAll({
                   where: {
@@ -313,9 +333,9 @@ export default {
   },
 
   /**
-   * @returns {type} description
-   * @param {Request} req
-   * @param {Response} res
+   * @returns {Object} Response object
+   * @param {Object} req
+   * @param {Object} res
    */
   getBorrowedBooks(req, res) {
     const {
@@ -341,11 +361,11 @@ export default {
       return BorrowLog
         .findAll({
           include: [{
-              model: models.User
-            },
-            {
-              model: models.Book
-            }
+            model: models.User
+          },
+          {
+            model: models.Book
+          }
           ],
           where: {
             user_id: userId
@@ -371,11 +391,11 @@ export default {
     return BorrowLog
       .findAll({
         include: [{
-            model: models.User
-          },
-          {
-            model: models.Book
-          }
+          model: models.User
+        },
+        {
+          model: models.Book
+        }
         ],
         where: {
           returned: isReturned,

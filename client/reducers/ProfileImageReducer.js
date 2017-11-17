@@ -10,14 +10,13 @@ const initialState = [{
 
 const profileImageReducer = (state = initialState, action) => {
   switch (action) {
-    case EDIT_USER_PROFILE:
-      console.log(action.payload);
-      return [{
-        isEdited: true,
-        imageUrl: action.payload.imageUrl
-      }, ...state];
-    default:
-      return state;
+  case EDIT_USER_PROFILE:
+    return [{
+      isEdited: true,
+      imageUrl: action.payload.imageUrl
+    }, ...state];
+  default:
+    return state;
   }
 };
 

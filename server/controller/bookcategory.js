@@ -1,9 +1,17 @@
 import models from '../models';
 
-const { BookCategory } = models;
+const {
+  BookCategory
+} = models;
 
 export default {
-  // view all books in the library
+  /**
+   * view all books in the library
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} categories object
+   */
   getCategories(req, res) {
     return BookCategory
       .findAll()
@@ -23,10 +31,29 @@ export default {
       });
   },
 
+  /**
+   * Add category
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Response object
+   */
   addCategory(req, res) {
-    const { body: { name } } = req;
-    const { body: { description } } = req;
-    const { body: { abbreviation } } = req;
+    const {
+      body: {
+        name
+      }
+    } = req;
+    const {
+      body: {
+        description
+      }
+    } = req;
+    const {
+      body: {
+        abbreviation
+      }
+    } = req;
     return BookCategory
       .create({
         name,

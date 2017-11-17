@@ -1,5 +1,8 @@
 /* Custom Stylesheet */
 
+$dark-color: rgba(6, 2, 39, 0.98);
+$font-stack-styled: 'Berkshire Swash',
+cursive;
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro');
 .icon-block {
   padding: 0 15px;
@@ -13,7 +16,7 @@
 /* Customised styles */
 
 .brand-logo {
-  font-family: 'Berkshire Swash', cursive;
+  font-family: $font-stack-styled;
 }
 
 .login-logo {
@@ -30,7 +33,7 @@
 
 .side-nav {
   padding-top: 30px !important;
-  background-color: rgba(6, 2, 39, 0.98) !important;
+  background-color: $dark-color !important;
 }
 
 .side-nav li a,
@@ -104,11 +107,11 @@ html {
 }
 
 .dark-blue-text {
-  color: rgba(6, 2, 39, 0.98) !important;
+  color: $dark-color !important;
 }
 
 .dark-blue-background {
-  background-color: rgba(6, 2, 39, 0.98) !important;
+  background-color: $dark-color !important;
 }
 
 nav ul a,
@@ -117,7 +120,7 @@ nav .brand-logo {
 }
 
 .footer-color {
-  background-color: rgba(6, 2, 39, 0.98) !important;
+  background-color: $dark-color !important;
 }
 
 p {
@@ -159,7 +162,7 @@ p {
 
 .navigation {
   box-shadow: none;
-  background-color: rgba(6, 2, 39, 0.98) !important;
+  background-color: $dark-color !important;
 }
 
 .navigation li {
@@ -169,7 +172,7 @@ p {
 .header,
 .thumbnail-hb h5,
 .contribution h3 {
-  font-family: 'Berkshire Swash', cursive;
+  font-family: $font-stack-styled;
 }
 
 .image-wrapper {

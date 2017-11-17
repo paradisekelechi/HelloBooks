@@ -1,14 +1,10 @@
 export default {
   development: {
-    use_env_variable: 'postgres://pcyausvn:Y7vc35xlYsNal2T2v1H2WspFoq8NZkUY@pellefant.db.elephantsql.com:5432/pcyausvn',
+    use_env_variable: 'postgres://vrjfhcrl:Bnh3v4OMvhNcDnLqyR09Z2Z0WkKc3Qw1@stampy.db.elephantsql.com:5432/vrjfhcrl',
     dialect: 'postgres'
   },
   production: {
-    username: 'andela',
-    password: 'andela',
-    database: 'hellobooks',
-    host: '127.0.0.1',
-    port: 5432,
+    use_env_variable: 'postgres://vrjfhcrl:Bnh3v4OMvhNcDnLqyR09Z2Z0WkKc3Qw1@stampy.db.elephantsql.com:5432/vrjfhcrl',
     dialect: 'postgres'
   },
   test: {

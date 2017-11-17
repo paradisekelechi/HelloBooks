@@ -6,6 +6,14 @@ const config = dotenv.config();
 /* eslint-disable no-console */
 
 export default {
+  /**
+   * Notification object
+   *
+   * @param {String} text
+   * @param {String} destination
+   * @param {String} subject
+   * @returns {undefined}
+   */
   notification(text, destination, subject) {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',

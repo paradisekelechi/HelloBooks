@@ -1,33 +1,21 @@
-import React, {PropTypes} from 'react';
-
-//Import the common layout components
-import Footer from '../common/authentication/Footer';
+import React, { PropTypes } from 'react';
 
 /**
- * 
- * 
- * @class Authentication
- * @extends {React.Component}
+ * Import the common layout components
  */
-class Authentication extends React.Component{
-    /**
-     * 
-     * 
-     * @returns 
-     * @memberof Authentication
-     */
-    render(){
-        return(
-            <div>
-                {this.props.children}
-                <Footer />
-            </div>
-        );
-    }
-}
+import Footer from '../common/authentication/Footer';
 
-Authentication.propTypes =  {
-    children: PropTypes.object.isRequired
-}
+const Authentication = (props) => {
+  return (
+    <div>
+      {props.children}
+      <Footer />
+    </div>
+  );
+};
+
+Authentication.propTypes = {
+  children: PropTypes.object.isRequired
+};
 
 export default Authentication;
