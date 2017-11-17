@@ -10,7 +10,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       level: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         unique: true,
       },
       deleted: {

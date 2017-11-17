@@ -231,40 +231,24 @@ export default {
 
   editBook(req, res) {
     const {
-      body: {
-        description
-      }
-    } = req;
+      description,
+      quantity,
+      categoryId,
+      bookUrl
+    } = req.body;
     const {
-      body: {
-        quantity
-      }
-    } = req;
-    const {
-      body: {
-        categoryId
-      }
-    } = req;
-    const {
-      params: {
-        bookId
-      }
-    } = req;
-    const {
-      body: {
-        bookCover
-      }
-    } = req;
+      bookId
+    } = req.params;
 
-    if (bookId === null || bookId === 0 || bookId === undefined) {
+    if (bookId == null || bookId === 0 || bookId === undefined) {
       res.status(400).send({
         success: false,
-        message: `Oops!! BookId cannot be ${bookId}`
+        message: 'Oops!! BookId is required'
       });
       return;
     }
 
-    if (description === null && quantity === null && categoryId === null && bookCover === null) {
+    if (description == null && quantity == null && categoryId == null && bookUrl == null) {
       res.status(400).send({
         success: false,
         message: 'No data to edit'
@@ -277,7 +261,7 @@ export default {
         description,
         quantity,
         category_id: categoryId,
-        cover: bookCover
+        cover: bookUrl
       }, {
         where: {
           id: bookId

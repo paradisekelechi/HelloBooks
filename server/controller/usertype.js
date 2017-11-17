@@ -2,7 +2,9 @@ import validator from 'validator';
 
 import models from '../models';
 
-const { UserType } = models;
+const {
+  UserType
+} = models;
 
 /**
  * Export usertype controller methods
@@ -10,11 +12,11 @@ const { UserType } = models;
 export default {
 
   /**
-     * Get all the usertypes
-     * @returns {null} description
-     * @param {Request} req
-     * @param {Response} res
-     */
+   * Get all the usertypes
+   * @returns {null} description
+   * @param {Request} req
+   * @param {Response} res
+   */
   getUserTypes(req, res) {
     return UserType
       .findAll({
@@ -35,17 +37,29 @@ export default {
   },
 
   /**
-     * Add a new usertype
-     * @returns {null} description
-     * @param {Request} req
-     * @param {Response} res
-     */
+   * Add a new usertype
+   * @returns {null} description
+   * @param {Request} req
+   * @param {Response} res
+   */
   addUserType(req, res) {
-    const { body: { name } } = req;
-    const { body: { description } } = req;
-    const { body: { level } } = req;
+    const {
+      body: {
+        name
+      }
+    } = req;
+    const {
+      body: {
+        description
+      }
+    } = req;
+    const {
+      body: {
+        level
+      }
+    } = req;
 
-    if (validator.isEmpty(`${name}`)) {
+    if (validator.isEmpty(`${name}`) || name === '' || name == null) {
       res.status(400).send({
         success: false,
         message: 'Oops! Name cannot be empty'
@@ -53,7 +67,7 @@ export default {
       return;
     }
 
-    if (validator.isEmpty(`${description}`)) {
+    if (validator.isEmpty(`${description}`) || description === '' || description == null) {
       res.status(400).send({
         success: false,
         message: 'Oops! Description cannot be empty'
@@ -61,7 +75,7 @@ export default {
       return;
     }
 
-    if (validator.isEmpty(`${level}`)) {
+    if (validator.isEmpty(`${level}`) || level === '' || level == null) {
       res.status(400).send({
         success: false,
         message: 'Oops! Level cannot be empty'

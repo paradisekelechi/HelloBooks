@@ -1,10 +1,14 @@
 export default {
-  production: {
+  development: {
     use_env_variable: 'postgres://pcyausvn:Y7vc35xlYsNal2T2v1H2WspFoq8NZkUY@pellefant.db.elephantsql.com:5432/pcyausvn',
     dialect: 'postgres'
   },
-  development: {
-    use_env_variable: 'postgres://pcyausvn:Y7vc35xlYsNal2T2v1H2WspFoq8NZkUY@pellefant.db.elephantsql.com:5432/pcyausvn',
+  production: {
+    username: 'andela',
+    password: 'andela',
+    database: 'hellobooks',
+    host: '127.0.0.1',
+    port: 5432,
     dialect: 'postgres'
   },
   test: {

@@ -94,6 +94,7 @@ export default {
             token,
             success: true,
             email: user.dataValues.email,
+            userid: user.dataValues.id,
             username: user.dataValues.username,
             usertype: user.dataValues.user_type_id,
             account_type: user.dataValues.account_type_id

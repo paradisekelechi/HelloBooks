@@ -1,17 +1,18 @@
-
 import validator from 'validator';
 
 import models from '../models';
 
-const { AccountType } = models;
+const {
+  AccountType
+} = models;
 
 export default {
 
   /**
-     * Get all the account types
-     * @param {Request} req
-     * @param {Response} res
-     */
+   * Get all the account types
+   * @param {Request} req
+   * @param {Response} res
+   */
 
   getAccountTypes(req, res) {
     return AccountType
@@ -33,17 +34,29 @@ export default {
   },
 
   /**
-     * Add a new Account type
-     * @returns {null} description
-     * @param {Request} req
-     * @param {Response} res
-     */
+   * Add a new Account type
+   * @returns {null} description
+   * @param {Request} req
+   * @param {Response} res
+   */
   addAccountType(req, res) {
-    const { body: { name } } = req;
-    const { body: { description } } = req;
-    const { body: { level } } = req;
+    const {
+      body: {
+        name
+      }
+    } = req;
+    const {
+      body: {
+        description
+      }
+    } = req;
+    const {
+      body: {
+        level
+      }
+    } = req;
 
-    if (validator.isEmpty(`${name}`)) {
+    if (validator.isEmpty(`${name}`) || name === '' || name == null) {
       res.status(400).send({
         success: false,
         message: 'Oops! Name cannot be empty'
@@ -51,7 +64,7 @@ export default {
       return;
     }
 
-    if (validator.isEmpty(`${description}`)) {
+    if (validator.isEmpty(`${description}`) || description === '' || description == null) {
       res.status(400).send({
         success: false,
         message: 'Oops! Description cannot be empty'
@@ -59,7 +72,7 @@ export default {
       return;
     }
 
-    if (validator.isEmpty(`${level}`)) {
+    if (validator.isEmpty(`${level}`) || level === '' || level == null) {
       res.status(400).send({
         success: false,
         message: 'Oops! Level cannot be empty'

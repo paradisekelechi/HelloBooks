@@ -15,17 +15,138 @@ const accountTypeController = controllers.accounttype;
 const bookCategoryController = controllers.bookcategory;
 
 const routes = (app) => {
+  /**
+   * @swagger
+   * definition:
+   *   Authentication:
+   *     properties:
+   *       message:
+   *         type: string
+   *       token:
+   *         type: string
+   *       success:
+   *         type: boolean
+   *       email:
+   *         type: string
+   *       username:
+   *         type: string
+   *       usertype:
+   *         type: integer
+   *       accounttype:
+   *         type: integer
+   */
+
+  /**
+   * @swagger
+   * definition:
+   *   General:
+   *     properties:
+   *       message:
+   *         type: string
+   *       success:
+   *         type: boolean
+   */
+
+  /**
+   * @swagger
+   * definition:
+   *   Books:
+   *     properties:
+   *       message:
+   *         type: string
+   *       success:
+   *         type: boolean
+   *       books:
+   *         type: object
+   */
+
+  /**
+   * @swagger
+   * /api/v1/users/signup:
+   *   post:
+   *     tags:
+   *       - Signup
+   *     description: Signs up a user
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:
+   *         description: An object of response messages and status
+   *         schema:
+   *           $ref: '#/definitions/Authentication'
+   */
   app.post('/api/v1/users/signup', userController.signup);
 
+  /**
+   * @swagger
+   * /api/v1/users/signin:
+   *   post:
+   *     tags:
+   *       - Signin
+   *     description: Signs in a user
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:
+   *         description: An object of response messages and status
+   *         schema:
+   *           $ref: '#/definitions/Authentication'
+   */
   app.post('/api/v1/users/signin', userController.signin);
 
+  /**
+   * @swagger
+   * /api/v1/books:
+   *   post:
+   *     tags:
+   *       - Add Book
+   *     description: Add a book
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:
+   *         description: An object of response messages and status
+   *         schema:
+   *           $ref: '#/definitions/Books'
+   */
   app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
+
+  /**
+   * @swagger
+   * /api/v1/books/:bookId:
+   *   put:
+   *     tags:
+   *       - Edit Book
+   *     description: Edit a book
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:
+   *         description: An object of response messages and status
+   *         schema:
+   *           $ref: '#/definitions/Books'
+   */
   app.put('/api/v1/books/:bookId', checkLogin, checkUser, bookController.editBook);
+
+  /**
+   * @swagger
+   * /api/v1/books:
+   *   get:
+   *     tags:
+   *       - Get Books
+   *     description: Get all book
+   *     produces:
+   *       - application/json
+   *     responses:
+   *       200:
+   *         description: An object of response messages, status and books
+   *         schema:
+   *           $ref: '#/definitions/Books'
+   */
   app.get('/api/v1/books/', checkLogin, bookController.getBooks);
   app.get('/api/v1/books/finished', checkLogin, bookController.getFinishedBooks);
   app.get('/api/v1/books/deleted', checkLogin, bookController.getDeletedBooks);
   app.get('/api/v1/books/available', checkLogin, bookController.getAvailableBooks);
-
   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
   app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);

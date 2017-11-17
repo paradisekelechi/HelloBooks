@@ -1,4 +1,5 @@
 const baseRoute = '/api/v1/';
+const users = `${baseRoute}users`;
 const signin = `${baseRoute}users/signin`;
 const signup = `${baseRoute}users/signup`;
 const getBooks = `${baseRoute}books`;
@@ -15,7 +16,16 @@ const getDeletedUsers = `${baseRoute}users/deleted`;
 const editUser = `${baseRoute}users`;
 const deleteUser = `${baseRoute}users/delete`;
 
+const bookCategory = `${baseRoute}category`;
+const userType = `${baseRoute}usertype`;
+const accountType = `${baseRoute}accounttype`;
+
+
 const routes = {
+  accountType,
+  userType,
+  bookCategory,
+  users,
   signup,
   signin,
   editUser,

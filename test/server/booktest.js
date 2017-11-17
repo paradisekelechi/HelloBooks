@@ -163,27 +163,7 @@ describe('Add book Route', () => {
         done();
       });
   });
-
-  it('should not be able to signup', (done) => {
-    request
-      .post(signup)
-      .send({
-        password,
-        email
-      })
-      .end((err, res) => {
-        assert.exists(res.status);
-        assert.exists(res.body.success);
-        assert.exists(res.body.message);
-        assert.equal(res.status, 401);
-        assert.equal(res.body.success, false);
-        assert.equal(res.body.message, 'Username is required');
-        done();
-      });
-  });
 });
-
-
 describe('Get Books ', () => {
   it('should get all books', (done) => {
     request
@@ -339,6 +319,20 @@ describe('Edit Book Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Book edited successfully');
+        done();
+      });
+  });
+  it('should not edit book', (done) => {
+    request
+      .put(`${addBooks}/1`)
+      .set('user-token', adminToken)
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'No data to edit');
         done();
       });
   });
