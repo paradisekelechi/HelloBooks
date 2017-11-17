@@ -100,7 +100,7 @@ class Home extends React.Component {
                   <h5 className="center">View Books</h5>
                   <p className="light">
                     Take a good look at the book catalog.
-                  View books that are available based on the book categoriesI
+                  View books that are available based on the book categories!
                   </p>
                 </div>
               </div>

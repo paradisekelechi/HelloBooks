@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/paradiskelechi/HelloBooks.svg?branch=development)](https://travis-ci.org/paradiskelechi/HelloBooks)
+[![Build Status](https://travis-ci.org/paradisekelechi/HelloBooks.svg?branch=chore%2F152720529%2Fhost-application)](https://travis-ci.org/paradisekelechi/HelloBooks)
 [![Coverage Status](https://coveralls.io/repos/github/paradiskelechi/HelloBooks/badge.svg?branch=development)](https://coveralls.io/github/paradiskelechi/HelloBooks?branch=development)
 # HelloBooks
 

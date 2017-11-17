@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import background from '../../assets/img/background6.jpg';
@@ -131,11 +132,11 @@ class Signin extends React.Component {
               </div>
               <div className="col s12">
                 <br />
-                <a href="register.html">
+                <Link to="/signup">
                   <button className="waves-effect waves-light btn col s12 dark-blue-background" >
                     Register
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="parallax">

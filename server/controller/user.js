@@ -35,7 +35,7 @@ export default {
       }
     } = req;
 
-    if (validator.isEmpty(`username  ${empty}`) || username == null) {
+    if (validator.isEmpty(`${username}${empty}`) || username == null) {
       res.status(401).send({
         success: false,
         message: 'Username is required'

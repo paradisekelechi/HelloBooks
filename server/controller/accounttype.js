@@ -12,6 +12,7 @@ export default {
    * Get all the account types
    * @param {Object} req
    * @param {Object} res
+   *
    * @returns {Object} description
    */
   getAccountTypes(req, res) {
@@ -42,7 +43,7 @@ export default {
   addAccountType(req, res) {
     const {
       body: {
-        name
+        name,
       }
     } = req;
     const {
