@@ -10,7 +10,6 @@ import background from '../../assets/img/background6.jpg';
  * @returns {Object} jsx component
  */
 class Home extends React.Component {
-
   /**
    *
    * @returns {void} Nothing
@@ -55,7 +54,14 @@ class Home extends React.Component {
               </div>
               <div className="row center">
                 <Link to="/signup">
-                  <button className="waves-effect waves-light btn btn-large col s4 offset-s4  dark-blue-background " data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration={2000}>Get Started</button>
+                  <button
+                    className="waves-effect btn btn-large col s4 offset-s4  dark-blue-background "
+                    data-aos="flip-left"
+                    data-aos-easing="ease-out-cubic"
+                    data-aos-duration={2000}
+                  >
+                    Get Started
+                  </button>
                 </Link>
               </div>
             </div>
@@ -73,35 +79,45 @@ class Home extends React.Component {
                   <div className="image-block-borrow">
                   </div>
                   <h5 className="center">Borrow Books</h5>
-                  <p className="light"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.
-                  Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies
-                  eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi
+                  <p className="light">
+                    In HelloBooks, You can borrow books and keep track of books borrowed.
+                  Search through the book catalog and borrow books accordingly based
+                  on what you desire.
                   </p>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col s12 m6 offset-m6 thumbnail-hb" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration={2000}>
+              <div
+                className="col s12 m6 offset-m6 thumbnail-hb"
+                data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration={2000}
+              >
                 <div className="icon-block">
                   <div className="image-block-see">
                   </div>
                   <h5 className="center">View Books</h5>
-                  <p className="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.
-                  Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies
-                  eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi
+                  <p className="light">
+                    Take a good look at the book catalog.
+                  View books that are available based on the book categoriesI
                   </p>
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col s12 m6 thumbnail-hb" data-aos="fade-right" data-aos-offset={300} data-aos-easing="ease-in-sine">
+              <div
+                className="col s12 m6 thumbnail-hb"
+                data-aos="fade-right"
+                data-aos-offset={300}
+                data-aos-easing="ease-in-sine"
+              >
                 <div className="icon-block">
                   <div className="image-block-read">
                   </div>
                   <h5 className="center">Read Books</h5>
-                  <p className="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat.
-                  Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies
-                  eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi
+                  <p className="light">Read books that are available in the
+                  application and build your knowledge base.
                   </p>
                 </div>
               </div>
@@ -112,6 +128,6 @@ class Home extends React.Component {
 
     );
   }
-};
+}
 
 export default Home;

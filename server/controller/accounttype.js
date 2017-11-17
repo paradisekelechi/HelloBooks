@@ -10,10 +10,10 @@ export default {
 
   /**
    * Get all the account types
-   * @param {Request} req
-   * @param {Response} res
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} description
    */
-
   getAccountTypes(req, res) {
     return AccountType
       .findAll({
@@ -35,7 +35,7 @@ export default {
 
   /**
    * Add a new Account type
-   * @returns {null} description
+   * @returns {Object} description
    * @param {Request} req
    * @param {Response} res
    */

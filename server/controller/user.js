@@ -1,4 +1,3 @@
-// Import User  model
 import dotenv from 'dotenv';
 import validator from 'validator';
 import jwt from 'jsonwebtoken';
@@ -6,7 +5,6 @@ import bcrypt from 'bcrypt';
 
 import models from '../models';
 
-//  import  User from '../models';
 const {
   User
 } = models;
@@ -14,11 +12,20 @@ const {
 const config = dotenv.config();
 const empty = '';
 
-//  Secret for authentication -- to be added to the environment as a variable
+/**
+ * Secret for authentication -- to be added to the environment as a variable
+ */
 const secret = config.parsed.SECRET;
 const salt = bcrypt.genSaltSync(10);
 
 export default {
+  /**
+   * Sign up user
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   signup(req, res) {
     let {
       body: {
@@ -132,6 +139,13 @@ export default {
       }));
   },
 
+  /**
+   * Sign in user
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   signin(req, res) {
     const {
       body: {
@@ -213,6 +227,13 @@ export default {
       }));
   },
 
+  /**
+   * Get all users
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   getUsers(req, res) {
     return User
       .findAndCountAll({
@@ -235,6 +256,13 @@ export default {
       });
   },
 
+  /**
+   * Get admin users
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   getAdminUsers(req, res) {
     return User
       .findAndCountAll({
@@ -258,6 +286,13 @@ export default {
       });
   },
 
+  /**
+   * Get Client Users
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   getClientUsers(req, res) {
     return User
       .findAndCountAll({
@@ -281,6 +316,13 @@ export default {
       });
   },
 
+  /**
+   * Get Deleted Users
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   getDeletedUsers(req, res) {
     return User
       .findAndCountAll({
@@ -303,71 +345,13 @@ export default {
       });
   },
 
-  getUsersByUserType(req, res) {
-    const {
-      params: {
-        userTypeId
-      }
-    } = req;
-
-    if (userTypeId == null) {
-      res.status(400).send({
-        success: false,
-        message: 'Usertypeid is required'
-      });
-      return;
-    }
-
-    return User
-      .findAll({
-        where: {
-          deleted: false,
-          user_type_id: userTypeId
-        }
-      })
-      .then((users) => {
-        res.status(200).send(users);
-      })
-      .catch(() => {
-        res.status(400).send({
-          success: false,
-          message: 'Users list not obtained'
-        });
-      });
-  },
-
-  getUsersByAccountType(req, res) {
-    const {
-      params: {
-        accountTypeId
-      }
-    } = req;
-
-    if (accountTypeId == null) {
-      res.status(400).send({
-        success: false,
-        message: 'Accounttypeid is required'
-      });
-    }
-
-    return User
-      .findAll({
-        where: {
-          deleted: false,
-          account_type_id: accountTypeId
-        }
-      })
-      .then((users) => {
-        res.status(200).send(users);
-      })
-      .catch(() => {
-        res.status.send({
-          success: false,
-          message: 'Users list not obtained'
-        });
-      });
-  },
-
+  /**
+   * Edit User
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   editUser(req, res) {
     const {
       body: {
@@ -424,6 +408,13 @@ export default {
       });
   },
 
+  /**
+   * DeleteUser
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} response object
+   */
   deleteUser(req, res) {
     const {
       params: {

@@ -12,7 +12,7 @@ import * as userActions from '../../../actions/userActions';
 class PageBar extends React.Component {
   /**
    * Creates an instance of PageBar.
-   * @param {any} props
+   * @param {Object} props
    * @memberof PageBar
    */
   constructor(props) {

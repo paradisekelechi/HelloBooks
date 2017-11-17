@@ -1,8 +1,5 @@
 import randomstring from 'just.randomstring';
 import dotenv from 'dotenv';
-import {
-  parse
-} from 'path';
 
 dotenv.config();
 
@@ -44,6 +41,3 @@ export const userTypeLevel = Math.floor(Math.random() * 10000);
 export const accountTypeName = randomText;
 export const accountTypeDescription = randomText;
 export const accountTypeLevel = Math.floor(Math.random() * 10000);
-
-
-console.log(userTypeLevel);

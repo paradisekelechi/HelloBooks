@@ -2,14 +2,18 @@ import dotenv from 'dotenv';
 import models from '../models';
 
 dotenv.config();
-// import all models
+/**
+ * import all models
+ */
 const {
   UserType,
   AccountType,
   BookCategory
 } = models;
 
-// Initialize Account type db data
+/**
+ * Initialize Account type db data
+ */
 AccountType.create({
   name: 'SILVER',
   description: 'A new user of the application',
@@ -30,7 +34,9 @@ AccountType.create({
 });
 
 
-// Initialize Usertype database data
+/**
+ * Initialize Usertype database data
+ */
 UserType.create({
   name: 'USER',
   description: 'A basic user of the application',
@@ -44,7 +50,9 @@ UserType.create({
   deleted: false
 });
 
-// Initialize Book Category database data
+/**
+ * Initialize Book Category database data
+ */
 BookCategory.create({
   name: 'OTHERS',
   abbreviation: 'OTH',

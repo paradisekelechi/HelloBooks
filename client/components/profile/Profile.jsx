@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import profileImage from '../../assets/img/profile.jpg';
 import { authenticateFetch } from '../../utils/authenticate';
@@ -82,7 +82,10 @@ class Profile extends React.Component {
           <div className="row profile-strip">
             <div className="col m12 ">
               <div className="col m5 offset-m1 s12">
-                <button onClick={this.uploadWidget} className="btn-floating btn-large waves-effect waves-light dark-blue-background right">
+                <button
+                  onClick={this.uploadWidget}
+                  className="btn-floating btn-large waves-effect dark-blue-background right"
+                >
                   <i className="material-icons">mode_edit</i>
                 </button>
                 <img className="profile-image" alt="profile" src={this.state.imageUrl === '' || this.state.imageUrl === null ? profileImage : this.state.imageUrl} height="300px" width="100%" />
@@ -124,4 +127,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+Profile.propTypes = {
+  updateImageUrl: PropTypes.func.isRequired
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

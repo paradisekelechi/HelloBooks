@@ -16,10 +16,16 @@ class ClientDashboard extends React.Component {
    * @memberof AdminDashboard
    */
   componentWillMount() {
-    this.props.getAllBooks();
-    this.props.getBooksAvailable();
-    this.props.getBooksDeleted();
-    this.props.getBooksFinished();
+    const {
+      getAllBooks,
+      getBooksAvailable,
+      getBooksDeleted,
+      getBooksFinished
+    } = this.props;
+    getAllBooks();
+    getBooksAvailable();
+    getBooksDeleted();
+    getBooksFinished();
   }
 
   /**

@@ -155,8 +155,6 @@ const routes = (app) => {
   app.get('/api/v1/users/client', checkLogin, checkUser, userController.getClientUsers);
   app.get('/api/v1/users/deleted', checkLogin, checkUser, userController.getDeletedUsers);
 
-  app.get('/api/v1/users/accounttype/:accountTypeId', checkLogin, checkUser, userController.getUsersByAccountType);
-  app.get('/api/v1/users/usertype/:userTypeId', checkLogin, checkUser, userController.getUsersByUserType);
   app.put('/api/v1/users/:userId/', checkLogin, userController.editUser);
   app.put('/api/v1/users/delete/:userId/', checkLogin, checkUser, userController.deleteUser);
 

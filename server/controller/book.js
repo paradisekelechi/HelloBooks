@@ -7,7 +7,13 @@ const {
 } = models;
 
 export default {
-  // view all books in the library
+  /**
+   * view all books in the library
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} get books object
+   */
   getBooks(req, res) {
     return Book
       .findAndCountAll({
@@ -29,7 +35,13 @@ export default {
       }));
   },
 
-  // view all books in the library by category
+  /**
+   * View all books in the library by category
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Create book response object
+   */
   getBookByCategory(req, res) {
     const {
       params: {
@@ -63,6 +75,13 @@ export default {
       .catch(error => res.status(400).send(error));
   },
 
+  /**
+   * Get all finished books
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Finished books response object
+   */
   getFinishedBooks(req, res) {
     return Book
       .findAndCountAll({
@@ -83,6 +102,13 @@ export default {
       .catch(error => res.status(400).send(error));
   },
 
+  /**
+   * Get available books
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Available books object
+   */
   getAvailableBooks(req, res) {
     return Book
       .findAndCountAll({
@@ -105,6 +131,13 @@ export default {
       .catch(error => res.status(400).send(error));
   },
 
+  /**
+   * Get deleted books
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Deleted books object
+   */
   getDeletedBooks(req, res) {
     return Book
       .findAndCountAll({
@@ -124,6 +157,13 @@ export default {
       .catch(error => res.status(400).send(error));
   },
 
+  /**
+   * Get books by borrow status
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Book Object
+   */
   getBooksByBorrowStatus(req, res) {
     const borrowStatus = req.query.borrowed;
     return Book
@@ -158,7 +198,9 @@ export default {
     } = req;
 
 
-    // checks if the name is undefined or null and insists on it
+    /**
+     * checks if the name is undefined or null and insists on it
+     */
     if (validator.isEmpty(`${name}`) || name == null) {
       res.status(400).send({
         success: false,
@@ -169,7 +211,9 @@ export default {
     name = validator.trim(`${name}`);
 
 
-    // checks if the author is undefined or null and insists on it
+    /**
+     * checks if the author is undefined or null and insists on it
+     */
     if (validator.isEmpty(`${author}`) || author == null) {
       res.status(400).send({
         success: false,
@@ -180,7 +224,9 @@ export default {
     author = validator.trim(`${author}`);
 
 
-    // checks if the quantity is empty or null and insists on it
+    /**
+     * checks if the quantity is empty or null and insists on it
+     */
     if (validator.isEmpty(`${quantity}`) || quantity == null) {
       res.status(400).send({
         success: false,
@@ -191,7 +237,9 @@ export default {
     quantity = parseInt(quantity, 10);
 
 
-    // checks if the categoryId is empty or null and insists on it
+    /**
+     * checks if the categoryId is empty or null and insists on it
+     */
     if (validator.isEmpty(`${categoryId}`) || categoryId == null) {
       res.status(400).send({
         success: false,
@@ -229,6 +277,13 @@ export default {
       }));
   },
 
+  /**
+   * Edit Book
+   *
+   * @param {Object} req
+   * @param {Object} res
+   * @returns {Object} Book object
+   */
   editBook(req, res) {
     const {
       description,

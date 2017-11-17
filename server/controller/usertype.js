@@ -13,9 +13,9 @@ export default {
 
   /**
    * Get all the usertypes
-   * @returns {null} description
-   * @param {Request} req
-   * @param {Response} res
+   * @returns {Object} description
+   * @param {Object} req
+   * @param {Object} res
    */
   getUserTypes(req, res) {
     return UserType
@@ -38,9 +38,9 @@ export default {
 
   /**
    * Add a new usertype
-   * @returns {null} description
-   * @param {Request} req
-   * @param {Response} res
+   * @returns {Object} description
+   * @param {Object} req
+   * @param {Object} res
    */
   addUserType(req, res) {
     const {

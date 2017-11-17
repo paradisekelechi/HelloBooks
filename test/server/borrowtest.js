@@ -96,8 +96,10 @@ describe('Return book', () => {
         assert.exists(res.body.message);
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
-        assert.equal(res.body.message,
-          'Oops! You are trying to return a  book you did not borrow!');
+        assert.equal(
+          res.body.message,
+          'Oops! You are trying to return a  book you did not borrow!'
+        );
         done();
       });
   });

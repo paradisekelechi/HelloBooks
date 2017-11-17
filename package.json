@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Hello Books Application",
   "scripts": {
-    "start": "NODE_ENV='production' webpack && babel-node  ./server/bin/www.js",
-    "start:dev": "NODE_ENV=development webpack -d && npm run copy:assets && babel-node  ./server/bin/www.js",
-    "start:server": "NODE_ENV=development babel-node  ./server/bin/www.js",
+    "start": "NODE_ENV='production' webpack && babel-node  app.js",
+    "start:dev": "NODE_ENV=development webpack -d && npm run copy:assets && babel-node  app.js",
+    "start:server": "NODE_ENV=development babel-node  app.js",
     "test:stuffs": "babel-node ./client/actions/test.js",
     "test": "NODE_ENV=test nyc --reporter=text --reporter=html mocha test/server --timeout 150000 --compilers js:babel-register",
     "copy:assets": "cp -r ./client/assets ./dist/. && cp ./client/index.html ./dist/index.html",

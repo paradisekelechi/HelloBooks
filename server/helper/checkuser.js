@@ -1,8 +1,13 @@
-
 const checkUser = (req, res, next) => {
-  const { userType } = req;
-  const { username } = req;
-  const { email } = req;
+  const {
+    userType
+  } = req;
+  const {
+    username
+  } = req;
+  const {
+    email
+  } = req;
   // Check if usertype exists
   if (userType) {
     if (userType !== 2) {

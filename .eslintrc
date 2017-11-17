@@ -42,7 +42,7 @@
     "react/forbid-prop-types": [1, {
       "forbid": ["any"]
     }],
-    "jsx-a11y/anchor-is-valid": ["error", {
+    "jsx-a11y/anchor-is-valid": ["warn", {
       "components": ["Link"],
       "specialLink": ["to"]
     }],
@@ -53,7 +53,9 @@
       },
       "allowChildren": false
     }],
-    "arrow-body-style": ["off", "as-needed"]
+    "arrow-body-style": ["off", "as-needed"],
+    "react/self-closing-comp": 0,
+    "jsx-a11y/heading-has-content": 0,
   },
   "globals": {
     "AOS": false,
