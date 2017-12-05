@@ -5,6 +5,23 @@ const config = dotenv.config();
 
 /* eslint-disable no-console */
 
+/**
+ *
+ * @param {String} transactionMessage
+ * @returns {String} formatted email message
+ */
+const mailFormat = (transactionMessage) => {
+  return `<div style="font-family: 'Trebuchet MS'; margin-left: 5px;">
+  <h4>HelloBooks Notifications</h4>
+  <p>Dear user, you just completed a transaction!</p>
+  <p >${transactionMessage}</p>
+  <p>It has been a pleasure working with you. Visit
+  <a href="www.hellobooks.com">HelloBooks Page</a>
+  for more pleasure!</p>
+  <p>Thanks.</p>
+  </div>`;
+};
+
 export default {
   /**
    * Notification object
@@ -22,18 +39,15 @@ export default {
         pass: config.parsed.ADMIN_EMAIL_PASSWORD
       }
     });
-
     const message = text;
     const destinationEmail = destination;
     const emailSubject = subject;
-
     const mailOptions = {
       from: 'paradisekelechi@gmail.com',
       to: destinationEmail,
       subject: emailSubject,
-      html: `<h1><b>${message}</b></h1>`
+      html: mailFormat(message)
     };
-
     transporter.sendMail(mailOptions, (error) => {
       if (error) {
         console.log('Error encountered when sending mail');
