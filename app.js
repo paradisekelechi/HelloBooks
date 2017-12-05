@@ -1,9 +1,10 @@
 import express from 'express';
-import logger from 'morgan';
+import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import path from 'path';
 import http from 'http';
+import fs from 'fs';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
@@ -11,6 +12,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 
 import routes from './server/routes';
 import config from './webpack.config.babel';
+import logger from './tools/logger';
 
 dotenv.config();
 
@@ -18,7 +20,7 @@ dotenv.config();
  * Create application using express
  */
 const app = express();
-
+logger('info', 'Application created')
 /*  eslint-disable no-console */
 
 /**
@@ -56,11 +58,22 @@ const compiler = webpack(config);
  */
 const server = http.createServer(app);
 
+/**
+ * Create stream for logging transactions to the application
+ */
+if (!fs.existsSync(path.join(__dirname, 'logs'))) {
+  fs.mkdirSync(path.join(__dirname, 'logs'));
+  const accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), {
+    flags: 'a'
+  });
+  app.use(morgan('combined', {
+    stream: accessLogStream
+  }));
+}
 
 /**
  * Implement and use middlewares
  */
-app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: false
 }));

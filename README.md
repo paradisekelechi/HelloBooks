@@ -1,8 +1,10 @@
-[![Build Status](https://travis-ci.org/paradisekelechi/HelloBooks.svg?branch=chore%2F152720529%2Fhost-application)](https://travis-ci.org/paradisekelechi/HelloBooks)
-[![Coverage Status](https://coveralls.io/repos/github/paradiskelechi/HelloBooks/badge.svg?branch=development)](https://coveralls.io/github/paradiskelechi/HelloBooks?branch=development)
+[![Build Status](https://travis-ci.org/paradisekelechi/HelloBooks.svg?branch=development)](https://travis-ci.org/paradisekelechi/HelloBooks)
+[![Coverage Status](https://coveralls.io/repos/github/paradisekelechi/HelloBooks/badge.svg?branch=development)](https://coveralls.io/github/paradisekelechi/HelloBooks?branch=development)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9fc290d018cbb3c1041c/test_coverage)](https://codeclimate.com/github/paradisekelechi/HelloBooks/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9fc290d018cbb3c1041c/maintainability)](https://codeclimate.com/github/paradisekelechi/HelloBooks/maintainability)
 # HelloBooks
 
-HelloBooks is an online book library and management application. Hello Books is aimed at handling the individual processes that take place in the library, from the borrowing of books to the return of books. This in turn handles inventory management of the book stock in the library effectively. 
+HelloBooks is an online book library and management application. Hello Books is aimed at handling the individual processes that take place in the library, from the borrowing of books to the return of books. This in turn handles inventory management of the book stock in the library effectively.
 
 
 ## Getting Started
@@ -29,11 +31,11 @@ Postgres database manager – PgAdmin, Elephant SQL
 
 ### Installing
 
-Take the following steps to get a development environment of HelloBooks application running on you machine or server 
+Take the following steps to get a development environment of HelloBooks application running on you machine or server
 
-Clone HelloBooks application 
+Clone HelloBooks application
 
-On the root folder of the cloned application, add a .env file with required credentials following the .sample-env file pattern. This should contain the following 
+On the root folder of the cloned application, add a .env file with required credentials following the .sample-env file pattern. This should contain the following
 
 ```
 DB_NAME=''

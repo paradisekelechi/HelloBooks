@@ -1,5 +1,17 @@
-## other configuration excluded from example...
+version: "2"
 exclude_paths:
 - "client/assets/"
 - "test/"
 - "template"
+- "coverage"
+- "logs"
+- "dist"
+checks:
+  return-statements:
+    enabled: false
+  similar-code:
+    enabled: false
+  identical-code:
+    enabled: false
+  file-lines:
+    enabled: false

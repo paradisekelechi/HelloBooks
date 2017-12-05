@@ -6,14 +6,13 @@
     "start": "NODE_ENV='production' webpack && babel-node  app.js",
     "start:dev": "NODE_ENV=development webpack -d && npm run copy:assets && babel-node  app.js",
     "start:server": "NODE_ENV=development babel-node  app.js",
-    "test:stuffs": "babel-node ./client/actions/test.js",
-    "test": "NODE_ENV=test nyc --reporter=text --reporter=html mocha test/server --timeout 150000 --compilers js:babel-register",
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=html --reporter=lcov mocha test/server --timeout 150000 --compilers js:babel-register",
     "copy:assets": "cp -r ./client/assets ./dist/. && cp ./client/index.html ./dist/index.html",
     "lint": "node_modules/.bin/esw webpack.config.* client tools server",
     "lint:watch": "npm run lint -- --watch",
     "test:watch": "npm run test -- --watch",
     "seed:db": "NODE_ENV=test babel-node server/scripts/initialize.js",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text --reporter=lcov --reporter=html | coveralls"
   },
   "author": "Paradise Kelechi",
   "license": "MIT",
@@ -40,7 +39,6 @@
     "chai": "^4.1.1",
     "cheerio": "0.22.0",
     "cloudinary-react": "^1.0.4",
-    "codeclimate-test-reporter": "^0.5.0",
     "colors": "1.1.2",
     "compression": "1.6.1",
     "coveralls": "^2.13.1",
@@ -101,7 +99,8 @@
     "validator": "^8.0.0",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "1.6.1",
-    "webpack-hot-middleware": "2.10.0"
+    "webpack-hot-middleware": "2.10.0",
+    "winston": "^3.0.0-rc1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
