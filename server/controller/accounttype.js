@@ -44,20 +44,12 @@ export default {
     const {
       body: {
         name,
-      }
-    } = req;
-    const {
-      body: {
-        description
-      }
-    } = req;
-    const {
-      body: {
+        description,
         level
       }
     } = req;
 
-    if (validator.isEmpty(`${name}`) || name === '' || name == null) {
+    if (!name) {
       res.status(400).send({
         success: false,
         message: 'Oops! Name cannot be empty'
@@ -65,7 +57,7 @@ export default {
       return;
     }
 
-    if (validator.isEmpty(`${description}`) || description === '' || description == null) {
+    if (!description) {
       res.status(400).send({
         success: false,
         message: 'Oops! Description cannot be empty'
@@ -73,10 +65,18 @@ export default {
       return;
     }
 
-    if (validator.isEmpty(`${level}`) || level === '' || level == null) {
+    if (!level) {
       res.status(400).send({
         success: false,
         message: 'Oops! Level cannot be empty'
+      });
+      return;
+    }
+
+    if (Number.isNaN(Number(level))) {
+      res.status(400).send({
+        success: false,
+        message: 'Level should be a valid number'
       });
       return;
     }
