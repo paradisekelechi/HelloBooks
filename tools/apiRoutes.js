@@ -3,22 +3,22 @@ const users = `${baseRoute}users`;
 const signin = `${baseRoute}users/signin`;
 const signup = `${baseRoute}users/signup`;
 const getBooks = `${baseRoute}books`;
-const getBooksFinished = `${baseRoute}books/finished`;
-const getBooksDeleted = `${baseRoute}books/deleted`;
-const getBooksAvailable = `${baseRoute}books/available`;
+const getBooksFinished = `${baseRoute}books?finished=true`;
+const getBooksDeleted = `${baseRoute}books?deleted=true`;
+const getBooksAvailable = `${baseRoute}books?available=true`;
 const addBooks = `${baseRoute}books`;
 
 const getAllUsers = `${baseRoute}users`;
-const getAdminUsers = `${baseRoute}users/admin`;
-const getClientUsers = `${baseRoute}users/client`;
-const getDeletedUsers = `${baseRoute}users/deleted`;
+const getAdminUsers = `${baseRoute}users?admin=true`;
+const getClientUsers = `${baseRoute}users?client=true`;
+const getDeletedUsers = `${baseRoute}users?deleted=true`;
 
 const editUser = `${baseRoute}users`;
 const deleteUser = `${baseRoute}users/delete`;
 
-const bookCategory = `${baseRoute}category`;
-const userType = `${baseRoute}usertype`;
-const accountType = `${baseRoute}accounttype`;
+const bookCategory = `${baseRoute}categories`;
+const userType = `${baseRoute}usertypes`;
+const accountType = `${baseRoute}accounttypes`;
 
 
 const routes = {

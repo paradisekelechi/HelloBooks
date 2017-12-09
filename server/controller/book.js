@@ -15,6 +15,66 @@ export default {
    * @returns {Object} get books object
    */
   getBooks(req, res) {
+    if (req.query.finished === 'true') {
+      return Book
+        .findAndCountAll({
+          where: {
+            deleted: false,
+            quantity: 0
+          }
+        }, {
+          include: [{
+            model: models.BookCategory,
+          }],
+        })
+        .then(book => res.status(200).send({
+          success: true,
+          message: 'Books obtained successfully',
+          book
+        }))
+        .catch(error => res.status(400).send(error));
+    }
+
+    if (req.query.available === 'true') {
+      return Book
+        .findAndCountAll({
+          where: {
+            deleted: false,
+            quantity: {
+              $ne: 0
+            }
+          }
+        }, {
+          include: [{
+            model: models.BookCategory,
+          }],
+        })
+        .then(book => res.status(200).send({
+          success: true,
+          message: 'Books obtained successfully',
+          book
+        }))
+        .catch(error => res.status(400).send(error));
+    }
+
+    if (req.query.deleted === 'true') {
+      return Book
+        .findAndCountAll({
+          where: {
+            deleted: true
+          }
+        }, {
+          include: [{
+            model: models.BookCategory,
+          }],
+        })
+        .then(book => res.status(200).send({
+          success: true,
+          message: 'Books obtained successfully',
+          book
+        }))
+        .catch(error => res.status(400).send(error));
+    }
     return Book
       .findAndCountAll({
         where: {
@@ -61,88 +121,6 @@ export default {
         where: {
           category_id: categoryId,
           deleted: false
-        }
-      }, {
-        include: [{
-          model: models.BookCategory,
-        }],
-      })
-      .then(book => res.status(200).send({
-        success: true,
-        message: 'Books obtained successfully',
-        book
-      }))
-      .catch(error => res.status(400).send(error));
-  },
-
-  /**
-   * Get all finished books
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} Finished books response object
-   */
-  getFinishedBooks(req, res) {
-    return Book
-      .findAndCountAll({
-        where: {
-          deleted: false,
-          quantity: 0
-        }
-      }, {
-        include: [{
-          model: models.BookCategory,
-        }],
-      })
-      .then(book => res.status(200).send({
-        success: true,
-        message: 'Books obtained successfully',
-        book
-      }))
-      .catch(error => res.status(400).send(error));
-  },
-
-  /**
-   * Get available books
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} Available books object
-   */
-  getAvailableBooks(req, res) {
-    return Book
-      .findAndCountAll({
-        where: {
-          deleted: false,
-          quantity: {
-            $ne: 0
-          }
-        }
-      }, {
-        include: [{
-          model: models.BookCategory,
-        }],
-      })
-      .then(book => res.status(200).send({
-        success: true,
-        message: 'Books obtained successfully',
-        book
-      }))
-      .catch(error => res.status(400).send(error));
-  },
-
-  /**
-   * Get deleted books
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} Deleted books object
-   */
-  getDeletedBooks(req, res) {
-    return Book
-      .findAndCountAll({
-        where: {
-          deleted: true
         }
       }, {
         include: [{
