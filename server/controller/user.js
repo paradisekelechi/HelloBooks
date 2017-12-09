@@ -235,99 +235,75 @@ export default {
    * @returns {Object} response object
    */
   getUsers(req, res) {
+    if (req.query.client === 'true') {
+      return User
+        .findAndCountAll({
+          where: {
+            deleted: false,
+            user_type_id: 1
+          }
+        })
+        .then((users) => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+          });
+        })
+        .catch(() => {
+          res.status.send({
+            success: false,
+            message: 'Users list not obtained'
+          });
+        });
+    }
+    if (req.query.admin === 'true') {
+      return User
+        .findAndCountAll({
+          where: {
+            deleted: false,
+            user_type_id: 2
+          }
+        })
+        .then((users) => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+          });
+        })
+        .catch(() => {
+          res.status.send({
+            success: false,
+            message: 'Users list not obtained'
+          });
+        });
+    }
+    if (req.query.deleted === 'true') {
+      return User
+        .findAndCountAll({
+          where: {
+            deleted: true,
+          }
+        })
+        .then((users) => {
+          res.status(200).send({
+            success: true,
+            message: 'Users list successfully gotten ',
+            users
+          });
+        })
+        .catch(() => {
+          res.status.send({
+            success: false,
+            message: 'Users list not obtained'
+          });
+        });
+    }
     return User
       .findAndCountAll({
         where: {
           deleted: false,
-        }
-      })
-      .then((users) => {
-        res.status(200).send({
-          success: true,
-          message: 'Users list successfully gotten ',
-          users
-        });
-      })
-      .catch(() => {
-        res.status.send({
-          success: false,
-          message: 'Users list not obtained'
-        });
-      });
-  },
-
-  /**
-   * Get admin users
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} response object
-   */
-  getAdminUsers(req, res) {
-    return User
-      .findAndCountAll({
-        where: {
-          deleted: false,
-          user_type_id: 2
-        }
-      })
-      .then((users) => {
-        res.status(200).send({
-          success: true,
-          message: 'Users list successfully gotten ',
-          users
-        });
-      })
-      .catch(() => {
-        res.status.send({
-          success: false,
-          message: 'Users list not obtained'
-        });
-      });
-  },
-
-  /**
-   * Get Client Users
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} response object
-   */
-  getClientUsers(req, res) {
-    return User
-      .findAndCountAll({
-        where: {
-          deleted: false,
-          user_type_id: 1
-        }
-      })
-      .then((users) => {
-        res.status(200).send({
-          success: true,
-          message: 'Users list successfully gotten ',
-          users
-        });
-      })
-      .catch(() => {
-        res.status.send({
-          success: false,
-          message: 'Users list not obtained'
-        });
-      });
-  },
-
-  /**
-   * Get Deleted Users
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} response object
-   */
-  getDeletedUsers(req, res) {
-    return User
-      .findAndCountAll({
-        where: {
-          deleted: true,
         }
       })
       .then((users) => {

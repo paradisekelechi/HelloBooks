@@ -41,19 +41,35 @@ export default {
   addCategory(req, res) {
     const {
       body: {
-        name
-      }
-    } = req;
-    const {
-      body: {
-        description
-      }
-    } = req;
-    const {
-      body: {
+        name,
+        description,
         abbreviation
       }
     } = req;
+    if (!name) {
+      res.status(400).send({
+        success: false,
+        message: 'Oops! Name cannot be empty'
+      });
+      return;
+    }
+
+    if (!description) {
+      res.status(400).send({
+        success: false,
+        message: 'Oops! Description cannot be empty'
+      });
+      return;
+    }
+
+    if (!abbreviation) {
+      res.status(400).send({
+        success: false,
+        message: 'Oops! Abbreviation cannot be empty'
+      });
+      return;
+    }
+
     return BookCategory
       .create({
         name,

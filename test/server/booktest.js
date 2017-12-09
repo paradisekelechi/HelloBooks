@@ -13,7 +13,6 @@ import {
 
 const {
   signin,
-  signup,
   getBooks,
   getBooksAvailable,
   getBooksDeleted,
