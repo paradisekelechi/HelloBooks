@@ -5,9 +5,10 @@
 @import "components/variables";
 // Reset
 @import "components/normalize";
-@import "./style.scss";
-@import "./authentication.scss";
-@import "./profile.scss";
+@import "./style";
+@import "./authentication";
+@import "./profile";
+@import "./landing";
 // components
 @import "components/global";
 @import "components/badges";

@@ -1,37 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router';
+
+import NavigationCard from '../components/NavigationCard';
 
 const Navigation = () => {
   return (
-    <nav className="navigation">
-      <div className="nav-wrapper container">
-        <Link to="/" id="logo-container" className="brand-logo">HelloBooks</Link>
-        <ul className="right hide-on-med-and-down">
-          <li>
-            <Link to="/" >Home</Link>
-          </li>
-          <li>
-            <Link to="/signin" >Signin</Link>
-          </li>
-          <li>
-            <Link to="/signup" >Signup</Link>
-          </li>
-        </ul>
+    <nav className="navigation app-navigation">
+      <div className="nav-wrapper container-fluid">
+        <div className="row">
+          <div className="col m1">
 
-        <ul id="nav-mobile" className="side-nav">
-          <li>
-            <Link to="/" >Home</Link>
-          </li>
-          <li>
-            <Link to="/signin" >Signin</Link>
-          </li>
-          <li>
-            <Link to="/signup" >Signup</Link>
-          </li>
-        </ul>
-        <Link to="/" data-activates="nav-mobile" className="button-collapse">
-          <i className="material-icons">menu</i>
-        </Link>
+          </div>
+          <NavigationCard
+            title="Home"
+            description="Welcome and Landing page"
+            link="/"
+          />
+          <NavigationCard
+            title="Books"
+            description="Collection of Books"
+            link="/books"
+          />
+          <NavigationCard
+            title="About"
+            description="Description of the application"
+            link="/about"
+          />
+          <NavigationCard
+            title="Register"
+            description="Signup into the application"
+            link="/signup"
+          />
+          <NavigationCard
+            title="Login"
+            description="Signin to application"
+            link="/signin"
+          />
+
+        </div>
       </div>
     </nav>
   );

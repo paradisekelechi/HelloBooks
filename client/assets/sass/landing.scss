@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Playball|Berkshire+Swash');
+$black: #000;
+$white: #fff;
+$navigation-font: 'Berkshire Swash',
+sans-serif;
+.app-navigation {
+  height: 100%;
+  min-height: 200px;
+  padding: 2%;
+}
+
+.nav-card {
+  font-family: $navigation-font;
+  margin-top: 3%;
+  text-align: center;
+  h4 {
+    font-size: 24px;
+    line-height: 4px;
+  }
+  p {
+    font-family: $navigation-font;
+    font-size: 12px;
+  }
+}
+
+.card-link:hover {
+  color: $black;
+}
+
+.active {
+  color: $black;
+}
