@@ -3,7 +3,13 @@
 $dark-color: rgba(12, 72, 160, 1);
 $font-stack-styled: 'Berkshire Swash',
 cursive;
-@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro');
+$base-font: 'Quattrocento Sans',
+'Maven Pro',
+'Titillium Web',
+'Ubuntu',
+'Encode Sans',
+sans-serif;
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans');
 .icon-block {
   padding: 0 15px;
 }
@@ -52,7 +58,7 @@ cursive;
 
 body,
 html {
-  font-family: 'Maven Pro', 'Titillium Web', 'Ubuntu', 'Encode Sans', sans-serif;
+  font-family: $base-font;
 }
 
 .dashboard-body {
