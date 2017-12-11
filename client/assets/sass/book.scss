@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans');
+$header-font: 'Berkshire Swash',
+sans-serif;
+$background-color: rgba(12, 72, 160, 1);
+
+.card-content {
+  padding: 5px !important;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 20px !important;
+  line-height: 22px !important;
+}
+
+.page-info {
+  font-family: $header-font;
+  margin-top: 2%;
+}
+
+.pagination {
+  .active {
+    background-color: $background-color !important;
+    border-radius: 100% !important;
+  }
+}
+
+.books-wrapper {
+  padding: 0;
+}

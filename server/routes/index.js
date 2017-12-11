@@ -18,7 +18,7 @@ const routes = (app) => {
   app.post('/api/v1/users/signup', userController.signup);
   app.post('/api/v1/users/signin', userController.signin);
   app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
-  app.get('/api/v1/books/', checkLogin, bookController.getBooks);
+  app.get('/api/v1/books/', bookController.getBooks);
   app.put('/api/v1/books/:bookId', bookController.editBook);
   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
@@ -29,13 +29,13 @@ const routes = (app) => {
   app.put('/api/v1/users/delete/:userId/', checkLogin, checkUser, userController.deleteUser);
 
   app.post('/api/v1/categories/', checkLogin, checkUser, bookCategoryController.addCategory);
-  app.get('/api/v1/categories/', checkLogin, checkUser, bookCategoryController.getCategories);
+  app.get('/api/v1/categories/', bookCategoryController.getCategories);
 
   app.post('/api/v1/usertypes/', checkLogin, checkUser, userTypeController.addUserType);
-  app.get('/api/v1/usertypes/', checkLogin, checkUser, userTypeController.getUserTypes);
+  app.get('/api/v1/usertypes/', userTypeController.getUserTypes);
 
   app.post('/api/v1/accounttypes/', checkLogin, checkUser, accountTypeController.addAccountType);
-  app.get('/api/v1/accounttypes/', checkLogin, checkUser, accountTypeController.getAccountTypes);
+  app.get('/api/v1/accounttypes/', accountTypeController.getAccountTypes);
 };
 
 export default routes;

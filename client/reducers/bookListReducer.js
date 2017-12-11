@@ -29,18 +29,6 @@ const initialState = {
 
 const BookListReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_BOOKS_AVAILABLE:
-    return Object.assign(
-      {},
-      state, {
-        available: {
-          isLoading: false,
-          error: '',
-          count: action.payload.book.count,
-          list: action.payload.book.rows
-        }
-      }
-    );
   case actionConstants.GET_BOOKS_DELETED:
     return Object.assign(
       {},

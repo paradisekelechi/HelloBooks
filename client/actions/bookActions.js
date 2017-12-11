@@ -12,7 +12,7 @@ import {
 import {
   authenticateFetch
 } from '../utils/authenticate';
-import routes from '../utils/Routes';
+import routes from '../../tools/apiRoutes';
 
 const {
   token
@@ -114,14 +114,9 @@ const getBooksSync = payload => ({
  * @returns {object} dispatch object
  */
 export function getBooks() {
-  const config = {
-    headers: {
-      'user-token': token
-    }
-  };
   return (dispatch) => {
     axios
-      .get(routes.getBooks, config)
+      .get(routes.getBooks)
       .then((response) => {
         if (response.data.success) {
           dispatch(getBooksSync(response.data));
@@ -164,18 +159,19 @@ const getBooksAvailableSync = payload => ({
 });
 
 /**
+ *
+ *
  * @export
+ * @param {String} category
  * @returns {object} dispatch object
  */
-export function getBooksAvailable() {
-  const config = {
-    headers: {
-      'user-token': token
-    }
-  };
+export function getBooksAvailable(category) {
+  console.log(category);
+  const getBooksUrl = routes.getBooksAvailable;
+  const url = `${getBooksUrl}&category=${category}`;
   return (dispatch) => {
     axios
-      .get(routes.getBooksAvailable, config)
+      .get(url)
       .then((response) => {
         if (response.data.success) {
           dispatch(getBooksAvailableSync(response.data));

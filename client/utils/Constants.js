@@ -30,3 +30,5 @@ export const RETURN_BOOK = 'return book';
 export const GET_BORROW_HISTORY = 'get borrow history';
 export const GET_PENDING_BOOKS = 'get pending books';
 export const GET_BORROWED_BOOKS = 'get borrowed books';
+
+export const GET_BOOK_CATEGORIES = 'get book categories';
