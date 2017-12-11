@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 const BookCard = (props) => {
   return (
-    <div className="col m2 s12">
+    <div className="col m3 s12">
       <div className="card  sticky-action small">
         <div className="card-image waves-effect waves-block waves-light">
           <img className="activator" src={props.image} alt="book" />
@@ -19,7 +19,7 @@ const BookCard = (props) => {
             {props.name}
             <i className="material-icons right">close</i>
           </span>
-          <p>{props.description}</p>
+          <p>{props.description === 'undefined' ? 'No book description' : props.description}</p>
         </div>
       </div>
     </div>
