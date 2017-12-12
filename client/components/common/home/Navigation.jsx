@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { authenticateFetch } from '../../../utils/authenticate';
 import NavigationCard from '../components/NavigationCard';
+import * as userActions from '../../../actions/userActions';
 
 /**
  *
@@ -19,6 +21,7 @@ class Navigation extends React.Component {
     this.state = {
       loggedIn: false
     };
+    this.logoutUser = this.logoutUser.bind(this);
   }
   /**
    *
@@ -31,6 +34,18 @@ class Navigation extends React.Component {
       loggedIn
     });
   }
+
+  /**
+   * @returns {void} description
+   * @param {any} event
+   * @memberof PageBar
+   */
+  logoutUser(event) {
+    event.preventDefault();
+    this.props.logout(this.state.user);
+    window.location.reload();
+  }
+
   /**
    *
    *
@@ -92,11 +107,15 @@ class Navigation extends React.Component {
                     description="User's Profile Page"
                     link="/profile"
                   />
-                  <NavigationCard
-                    title="Logout"
-                    description="Signin to application"
-                    link="/signin"
-                  />
+                  <div className="col m2 xs12 s12 nav-card" >
+                    <div
+                      className="card-link logout-link"
+                      onClick={this.logoutUser}
+                    >
+                      <h4>Logout</h4>
+                      <p>Leave the application</p>
+                    </div>
+                  </div>
                 </div>
               )
             }
@@ -109,4 +128,23 @@ class Navigation extends React.Component {
   }
 }
 
-export default Navigation;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => {
+      dispatch(userActions.logoutUser());
+    }
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    userDetails: state.userReducer
+  };
+};
+
+Navigation.propTypes = {
+  logout: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
