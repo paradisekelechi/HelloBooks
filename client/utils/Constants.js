@@ -1,4 +1,5 @@
 export const GET_BOOKS = 'get books';
+export const GET_SINGLE_BOOK = 'get a single book';
 export const GET_BOOKS_DELETED = 'get books that have been deleted';
 export const GET_BOOKS_FINISHED = 'get all books that have finished';
 export const GET_BOOKS_AVAILABLE = 'get books that are available for borrow';

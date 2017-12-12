@@ -8,7 +8,8 @@ import {
   GET_BOOKS_AVAILABLE,
   GET_BOOKS_DELETED,
   GET_BOOKS_FINISHED,
-  GET_PENDING_BOOKS
+  GET_PENDING_BOOKS,
+  GET_SINGLE_BOOK
 } from '../utils/Constants';
 import {
   authenticateFetch
@@ -98,6 +99,35 @@ export function deleteBook() {
       .then((response) => {
         if (response) {
           dispatch(deleteBookSync());
+        }
+      });
+  };
+}
+
+const getSingleBookSync = payload => ({
+  type: GET_SINGLE_BOOK,
+  payload
+});
+
+/**
+ *
+ *
+ * @export
+ * @param {any} bookId
+ * @returns {Object} config object
+ */
+export function getSingleBook(bookId) {
+  const config = {
+    headers: {
+      'user-token': token
+    }
+  };
+  return (dispatch) => {
+    axios
+      .get(`${routes.getSingleBook}?id=${bookId}`, config)
+      .then((response) => {
+        if (response.data.success) {
+          dispatch(getSingleBookSync(response.data));
         }
       });
   };

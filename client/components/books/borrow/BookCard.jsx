@@ -86,14 +86,24 @@ class BookCard extends React.Component {
             {
               this.props.loggedIn ?
                 (
-                  <p>
-                    <button
-                      value={this.id}
-                      className="btn btn-book"
-                      onClick={this.borrowButtonOnClick.bind(this, this.props.id)}
-                    >
-                      Borrow
-                    </button>
+                  <p >
+                    {this.props.userdata.usertype === 1 ?
+                      (
+                        <button
+                          value={this.id}
+                          className="btn btn-book"
+                          onClick={this.borrowButtonOnClick.bind(this, this.props.id)}
+                        >
+                          Borrow
+                        </button>
+                      ) :
+                      (
+                        <Link to={`/viewbook?id=${this.props.id}`}>
+                          <p><button className="btn">View</button></p>
+                        </Link>
+                      )
+                    }
+
                   </p>
                 ) :
                 (
@@ -137,6 +147,7 @@ BookCard.propTypes = {
   image: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  userdata: PropTypes.object.isRequired,
   borrow: PropTypes.object.isRequired,
   borrowBook: PropTypes.func.isRequired
 };

@@ -24,7 +24,8 @@ class BooksCatalog extends React.Component {
       category: 0,
       booksList: [],
       categoryList: [],
-      loggedIn: true
+      loggedIn: true,
+      userdata: {}
     };
     this.selectOnChange = this.selectOnChange.bind(this);
   }
@@ -35,9 +36,10 @@ class BooksCatalog extends React.Component {
    * @memberof Books
    */
   componentWillMount() {
-    const loginPayload = authenticateFetch();
+    const { loggedIn, userdata } = authenticateFetch();
     this.setState({
-      loggedIn: loginPayload.loggedIn
+      loggedIn,
+      userdata
     });
     this.props.getAvailableBooks(this.state.category);
     this.props.getCategories();
@@ -98,7 +100,11 @@ class BooksCatalog extends React.Component {
         <div className="row">
           <div className="col m1"></div>
           <div className=" col m10 books-wrapper">
-            <BookIterator bookList={this.state.booksList} loggedIn={this.state.loggedIn} />
+            <BookIterator
+              bookList={this.state.booksList}
+              loggedIn={this.state.loggedIn}
+              userdata={this.state.userdata}
+            />
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ import {
 const {
   signin,
   getBooks,
+  getSingleBook,
   getBooksAvailable,
   getBooksDeleted,
   getBooksFinished,
@@ -241,6 +242,24 @@ describe('Get Finished Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
+        done();
+      });
+  });
+});
+
+describe('Get Single Book ', () => {
+  it('should get a single book', (done) => {
+    request
+      .get(`${getSingleBook}?id=84`)
+      .set('user-token', adminToken)
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.message);
+        assert.exists(res.body.success);
+        assert.exists(res.body.book);
+        assert.equal(res.status, 200);
+        assert.equal(res.body.message, 'Book obtained successfully');
+        assert.equal(res.body.success, true);
         done();
       });
   });
