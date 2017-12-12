@@ -25,7 +25,6 @@ const {
 const request = supertest(app);
 
 const username = process.env.ADMIN_USERNAME;
-const email = process.env.ADMIN_EMAIL_ACCOUNT;
 const password = process.env.ADMIN_PASSWORD;
 
 let adminToken;
@@ -182,20 +181,6 @@ describe('Get Books ', () => {
         done();
       });
   });
-
-  it('should not get all books', (done) => {
-    request
-      .get(getBooks)
-      .end((err, res) => {
-        assert.exists(res.status);
-        assert.exists(res.body.message);
-        assert.exists(res.body.success);
-        assert.equal(res.status, 401);
-        assert.equal(res.body.message, 'User token is not provided');
-        assert.equal(res.body.success, false);
-        done();
-      });
-  });
 });
 
 describe('Get Available Books ', () => {
@@ -214,20 +199,6 @@ describe('Get Available Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
-        done();
-      });
-  });
-
-  it('should not get all available books', (done) => {
-    request
-      .get(getBooksAvailable)
-      .end((err, res) => {
-        assert.exists(res.status);
-        assert.exists(res.body.message);
-        assert.exists(res.body.success);
-        assert.equal(res.status, 401);
-        assert.equal(res.body.message, 'User token is not provided');
-        assert.equal(res.body.success, false);
         done();
       });
   });
@@ -252,20 +223,6 @@ describe('Get Deleted Books ', () => {
         done();
       });
   });
-
-  it('should not get all deleted books', (done) => {
-    request
-      .get(getBooksDeleted)
-      .end((err, res) => {
-        assert.exists(res.status);
-        assert.exists(res.body.message);
-        assert.exists(res.body.success);
-        assert.equal(res.status, 401);
-        assert.equal(res.body.message, 'User token is not provided');
-        assert.equal(res.body.success, false);
-        done();
-      });
-  });
 });
 
 describe('Get Finished Books ', () => {
@@ -284,20 +241,6 @@ describe('Get Finished Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
-        done();
-      });
-  });
-
-  it('should not get all finished books', (done) => {
-    request
-      .get(getBooksFinished)
-      .end((err, res) => {
-        assert.exists(res.status);
-        assert.exists(res.body.message);
-        assert.exists(res.body.success);
-        assert.equal(res.status, 401);
-        assert.equal(res.body.message, 'User token is not provided');
-        assert.equal(res.body.success, false);
         done();
       });
   });

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import BookCard from '../common/components/BookCard';
+import BookCard from './BookCard';
 
 const BookIterator = (props) => {
   let bookList = () => {
@@ -11,10 +11,13 @@ const BookIterator = (props) => {
     bookList = (props.bookList).map((book) => {
       return (
         <BookCard
+          key={book.id}
           name={book.name}
           author={book.author}
           description={book.description}
           image={book.cover}
+          id={book.id}
+          loggedIn={props.loggedIn}
         />
       );
     });
@@ -28,6 +31,7 @@ const BookIterator = (props) => {
 };
 
 BookIterator.propTypes = {
-  bookList: PropTypes.array.isRequired
+  bookList: PropTypes.array.isRequired,
+  loggedIn: PropTypes.bool.isRequired
 };
 export default BookIterator;

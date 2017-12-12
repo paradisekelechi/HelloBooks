@@ -7,7 +7,8 @@ import {
   GET_BOOKS,
   GET_BOOKS_AVAILABLE,
   GET_BOOKS_DELETED,
-  GET_BOOKS_FINISHED
+  GET_BOOKS_FINISHED,
+  GET_PENDING_BOOKS
 } from '../utils/Constants';
 import {
   authenticateFetch
@@ -15,7 +16,8 @@ import {
 import routes from '../../tools/apiRoutes';
 
 const {
-  token
+  token,
+  userdata
 } = authenticateFetch();
 
 
@@ -166,7 +168,6 @@ const getBooksAvailableSync = payload => ({
  * @returns {object} dispatch object
  */
 export function getBooksAvailable(category) {
-  console.log(category);
   const getBooksUrl = routes.getBooksAvailable;
   const url = `${getBooksUrl}&category=${category}`;
   return (dispatch) => {
@@ -176,6 +177,38 @@ export function getBooksAvailable(category) {
         if (response.data.success) {
           dispatch(getBooksAvailableSync(response.data));
         }
+      });
+  };
+}
+
+const getPendingBooksSync = payload => ({
+  type: GET_PENDING_BOOKS,
+  payload
+});
+
+/**
+ *
+ *
+ * @export
+ * @param {String} category
+ * @returns {object} dispatch object
+ */
+export function getPendingBooks() {
+  const url = `${routes.users}/${userdata.userid}/books`;
+  const config = {
+    headers: {
+      'user-token': token
+    }
+  };
+  return (dispatch) => {
+    axios
+      .get(url, config)
+      .then((response) => {
+        if (response.data.success) {
+          dispatch(getPendingBooksSync(response.data));
+        }
+      }).catch((error) => {
+        dispatch(getPendingBooksSync(error.data));
       });
   };
 }

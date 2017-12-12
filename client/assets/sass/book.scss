@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans');
 $header-font: 'Berkshire Swash',
 sans-serif;
-$background-color: rgba(12, 72, 160, 1);
-
+$background-color: rgba(12,
+72,
+160,
+1);
 .card-content {
   padding: 5px !important;
   text-align: center;
@@ -27,4 +29,15 @@ $background-color: rgba(12, 72, 160, 1);
 
 .books-wrapper {
   padding: 0;
+}
+
+.btn {
+  background-color: $background-color !important;
+}
+
+#toast-container {
+  position: fixed !important;
+  top: 0px !important;
+  left: 0px !important;
+  width: 320px;
 }

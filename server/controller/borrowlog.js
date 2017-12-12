@@ -78,7 +78,7 @@ export default {
       .then((book) => {
         if (book) {
           if (book.quantity === 0) {
-            res.status(400).send({
+            res.status(200).send({
               success: false,
               message: 'Oops! This book is no longer available for borrow'
             });
@@ -102,7 +102,7 @@ export default {
               })
               .then((borrowlog) => {
                 if (borrowlog.length !== 0) {
-                  res.status(400).send({
+                  res.status(200).send({
                     message: 'Oops! Book has already been borrowed by you!',
                     success: false
                   });
@@ -218,7 +218,7 @@ export default {
       })
       .then((booklogger) => {
         if (booklogger.length === 0) {
-          res.status(400).send({
+          res.status(200).send({
             success: false,
             message: 'Oops! You are trying to return a  book you did not borrow!'
           });
@@ -368,7 +368,8 @@ export default {
           }
           ],
           where: {
-            user_id: userId
+            user_id: userId,
+            returned: false
           }
         })
         .then((booklog) => {
