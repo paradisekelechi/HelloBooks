@@ -35,7 +35,7 @@ class AdminDashboard extends React.Component {
    */
   render() {
     return (
-      <div>
+      <div className="container-fluid">
         <div className="row">
           <div className="col m3 s12">
             <div className="card white">

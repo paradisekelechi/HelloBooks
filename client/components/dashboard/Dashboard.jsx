@@ -1,7 +1,7 @@
 import React from 'react';
-import DashboardSync from './DashboardSync';
 import { authenticateFetch } from '../../utils/authenticate';
 import { getUserType, getAccountType } from '../../utils/TypeSync';
+import AdminDashboard from './AdminDashboard';
 
 
 /**
@@ -43,11 +43,24 @@ class Dashboard extends React.Component {
  * @memberof Dashboard
  */
   render() {
-    return (
-      <div>
-        <DashboardSync userType={this.state.userType} />
-      </div>
-    );
+    if (this.state.userType === 'ADMIN') {
+      return (
+        <div className="container-fluid main-wrapper">
+          <div className="row page-info">
+            <div className="col m1"></div>
+            <div className="col m10">
+              <h5>Dashboard</h5>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col m1"></div>
+            <div className="col m10 s12">
+              <AdminDashboard />
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

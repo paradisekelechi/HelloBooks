@@ -44,7 +44,8 @@ export function signinUser(user) {
         const responseData = response.data;
         authenticatePersist(responseData.token);
         dispatch(signinUserAsync(responseData));
-        browserHistory.push('/dashboard');
+        browserHistory.push('/books');
+        window.location.reload();
       });
   };
 }
@@ -75,7 +76,8 @@ export function signupUser(user) {
       if (response.data.success) {
         authenticatePersist(response.data.token);
         dispatch(signupUserAsync(response.data));
-        browserHistory.push('/dashboard');
+        browserHistory.push('/books');
+        window.location.reload();
       }
     }).catch(() => {
       browserHistory.push('/');
@@ -100,6 +102,7 @@ export function logoutUser(user) {
     authenticateClear();
     dispatch(logoutUserAsync(user));
     browserHistory.push('/signin');
+    window.location.reload();
   };
 }
 
