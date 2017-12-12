@@ -15,7 +15,7 @@
     "no-param-reassign": 0,
     "comma-dangle": 0,
     "curly": ["error", "multi-line"],
-    "import/no-unresolved": [2, {
+    "import/no-unresolved": [0, {
       "commonjs": true
     }],
     "indent": ["error", 2],
@@ -59,6 +59,16 @@
     "react/jsx-no-bind": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    }
   },
   "globals": {
     "AOS": false,

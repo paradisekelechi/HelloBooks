@@ -4,7 +4,6 @@ import profileImage from '../../assets/img/profile.jpg';
 import { authenticateFetch } from '../../utils/authenticate';
 import { getUserType, getAccountType } from '../../utils/TypeSync';
 import { editUserProfileImage } from '../../actions/userActions';
-import PageBar from '../common/main/PageBar';
 
 /**
  *

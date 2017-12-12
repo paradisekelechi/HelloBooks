@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { authenticateFetch } from '../../../utils/authenticate';
-import NavigationCard from '../components/NavigationCard';
-import * as userActions from '../../../actions/userActions';
+import { authenticateFetch } from '../../utils/authenticate';
+import { getUserType } from '../../utils/TypeSync';
+import NavigationCard from './components/NavigationCard';
+import * as userActions from '../../actions/userActions';
 
 /**
  *
@@ -19,7 +20,8 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      userdata: {}
     };
     this.logoutUser = this.logoutUser.bind(this);
   }
@@ -29,11 +31,13 @@ class Navigation extends React.Component {
    * @memberof Navigation
    */
   componentWillMount() {
-    const { loggedIn } = authenticateFetch();
+    const { loggedIn, userdata } = authenticateFetch();
     this.setState({
-      loggedIn
+      loggedIn,
+      userdata
     });
   }
+
 
   /**
    * @returns {void} description
@@ -43,7 +47,6 @@ class Navigation extends React.Component {
   logoutUser(event) {
     event.preventDefault();
     this.props.logout(this.state.user);
-    window.location.reload();
   }
 
   /**
@@ -92,6 +95,18 @@ class Navigation extends React.Component {
               ) :
               (
                 <div>
+                  {getUserType(this.state.userdata.usertype) === 'ADMIN' ?
+                    (
+                      <NavigationCard
+                        title="Dashboard"
+                        description="Application Dashboard"
+                        link="/dashboard"
+                      />
+                    ) :
+                    (
+                      <div></div>
+                    )
+                  }
                   <NavigationCard
                     title="Books"
                     description="Collection of Books"
@@ -107,6 +122,7 @@ class Navigation extends React.Component {
                     description="User's Profile Page"
                     link="/profile"
                   />
+
                   <div className="col m2 xs12 s12 nav-card" >
                     <div
                       className="card-link logout-link"

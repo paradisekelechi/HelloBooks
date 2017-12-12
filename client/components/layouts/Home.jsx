@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import Navigation from '../common/home/Navigation';
+import Navigation from '../common/Navigation';
 import Footer from '../common/Footer';
 
 

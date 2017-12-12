@@ -9,11 +9,9 @@ import './assets/js/main';
 
 
 // Import the layouts
-import MainLayout from './components/layouts/Main';
 import HomeLayout from './components/layouts/Home';
 
 // Import components
-import Books from './components/books/Books';
 import BooksBorrowCatalog from './components/books/borrow/BooksCatalog';
 import BooksReturnCatalog from './components/books/return/BooksCatalog';
 import Profile from './components/profile/Profile';
@@ -34,11 +32,8 @@ ReactDOM.render(
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/history" component={authorize(BooksReturnCatalog)} />
-        <Route name="profile" path="profile" component={Profile} />
-      </Route>
-      <Route component={authorize(MainLayout)}>
-        <Route name="dashboard" path="dashboard" component={Dashboard} />
-
+        <Route name="profile" path="/profile" component={authorize(Profile)} />
+        <Route name="dashboard" path="/dashboard" component={authorize(Dashboard)} />
       </Route>
     </Router>
   </Provider>,

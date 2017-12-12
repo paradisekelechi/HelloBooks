@@ -1,7 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Playball|Berkshire+Swash');
-$black: #000;
+@import url('https://fonts.googleapis.com/css?family=Playball|Quattrocento+Sans|Berkshire+Swash');
+$dark: rgba(255,
+255,
+255,
+0.6);
 $white: #fff;
-$navigation-font: 'Berkshire Swash',
+$navigation-font: 'Quattrocento Sans',
+'Berkshire Swash',
+sans-serif;
+$navigation-font-stylish: 'Berkshire Swash',
+'Quattrocento Sans',
 sans-serif;
 .app-navigation {
   height: 100%;
@@ -18,15 +25,15 @@ sans-serif;
     line-height: 4px;
   }
   p {
-    font-family: $navigation-font;
+    font-family: $navigation-font-stylish;
     font-size: 12px;
   }
 }
 
 .card-link:hover {
-  color: $black;
+  color: $dark;
 }
 
 .active {
-  color: $black;
+  color: $dark;
 }
