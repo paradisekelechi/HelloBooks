@@ -76,39 +76,51 @@ class Profile extends React.Component {
    */
   render() {
     return (
-      <div className="col m12">
-        <div className="col m8 offset-m4 main-content">
-          <PageBar pageName="User Profile" />
-          <div className="row profile-strip">
-            <div className="col m12 ">
-              <div className="col m5 offset-m1 s12">
-                <button
-                  onClick={this.uploadWidget}
-                  className="btn-floating btn-large waves-effect dark-blue-background right"
-                >
-                  <i className="material-icons">mode_edit</i>
-                </button>
-                <img className="profile-image" alt="profile" src={this.state.imageUrl === '' || this.state.imageUrl === null ? profileImage : this.state.imageUrl} height="300px" width="100%" />
+      <div className="container-fluid main-wrapper">
+        <div className="row page-info">
+          <div className="col m1"></div>
+          <div className="col m10">
+            <h5>HelloBooks Profile</h5>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col m1"></div>
+          <div className="col s12 m10">
+            <div className="card medium">
+              <div className="card-image">
+                <img src="http://res.cloudinary.com/skiposki/image/upload/v1513072462/user-profile-bg_gghcqw.jpg" alt="profile" className=" responsive-img" />
               </div>
-              <div className="col s12 m6 profile-details dark-blue-text">
-                <h5>
-                  <b>Username: </b>{this.state.username}
-                </h5>
-                <h5>
-                  <b>Email: </b>{this.state.email}
-                </h5>
-                <h5>
-                  <b>Usertype: </b>{this.state.userType}
-                </h5>
-                <h5>
-                  <b>Account Type: </b>{this.state.accountType}
-                </h5>
+              <div className="card-content">
+                <div className="row">
+                  <div className="col m2 s12">
+                    <button
+                      onClick={this.uploadWidget}
+                      className="btn-floating waves-effect dark-blue-background right"
+                    >
+                      <i className="material-icons">mode_edit</i>
+                    </button>
+                    <img className="circle responsive-img" alt="profile" src={this.state.imageUrl === '' || this.state.imageUrl === null ? profileImage : this.state.imageUrl} width="75%" />
+                  </div>
+                  <div className="col m1"></div>
+                  <div className="col m3 s12">
+                    <p>{this.state.username}</p>
+                    <span>Username</span>
+                  </div>
+                  <div className="col m3 s12">
+                    <p>{this.state.email}</p>
+                    <span>Email</span>
+                  </div>
+                  <div className="col m3 s12">
+                    <p>{this.state.userType}</p>
+                    <span>Usertype</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
     );
   }
 }

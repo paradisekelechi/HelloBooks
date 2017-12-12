@@ -54,7 +54,7 @@ class BooksCatalog extends React.Component {
    */
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container-fluid main-wrapper">
         <div className="row page-info">
           <div className="col m1"></div>
           <div className="col m8">
