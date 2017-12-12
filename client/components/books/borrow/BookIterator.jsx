@@ -18,6 +18,7 @@ const BookIterator = (props) => {
           image={book.cover}
           id={book.id}
           loggedIn={props.loggedIn}
+          userdata={props.userdata}
         />
       );
     });
@@ -32,6 +33,7 @@ const BookIterator = (props) => {
 
 BookIterator.propTypes = {
   bookList: PropTypes.array.isRequired,
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
+  userdata: PropTypes.object.isRequired
 };
 export default BookIterator;

@@ -98,7 +98,15 @@ class Profile extends React.Component {
                     >
                       <i className="material-icons">mode_edit</i>
                     </button>
-                    <img className="circle responsive-img" alt="profile" src={this.state.imageUrl === '' || this.state.imageUrl === null ? profileImage : this.state.imageUrl} width="75%" />
+                    <img
+                      className="circle responsive-img"
+                      alt="profile"
+                      src={
+                        this.state.imageUrl === '' || this.state.imageUrl === null ?
+                          profileImage :
+                          this.state.imageUrl}
+                      width="85%"
+                    />
                   </div>
                   <div className="col m1"></div>
                   <div className="col m3 s12">

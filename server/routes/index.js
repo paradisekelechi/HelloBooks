@@ -19,6 +19,7 @@ const routes = (app) => {
   app.post('/api/v1/users/signin', userController.signin);
   app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
   app.get('/api/v1/books/', bookController.getBooks);
+  app.get('/api/v1/book', checkLogin, checkUser, bookController.getSingleBook);
   app.put('/api/v1/books/:bookId', bookController.editBook);
   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);

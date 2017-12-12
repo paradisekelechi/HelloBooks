@@ -3,6 +3,7 @@ const users = `${baseRoute}users`;
 const signin = `${baseRoute}users/signin`;
 const signup = `${baseRoute}users/signup`;
 const getBooks = `${baseRoute}books`;
+const getSingleBook = `${baseRoute}book`;
 const getBooksFinished = `${baseRoute}books?finished=true`;
 const getBooksDeleted = `${baseRoute}books?deleted=true`;
 const getBooksAvailable = `${baseRoute}books?available=true`;
@@ -32,6 +33,7 @@ const routes = {
   deleteUser,
   addBooks,
   getBooks,
+  getSingleBook,
   getBooksFinished,
   getBooksDeleted,
   getBooksAvailable,

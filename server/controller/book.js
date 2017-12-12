@@ -95,73 +95,41 @@ export default {
       }));
   },
 
-  /**
-   * View all books in the library by category
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} Create book response object
-   */
-  getBookByCategory(req, res) {
+  getSingleBook(req, res) {
     const {
-      params: {
-        categoryId
-      }
-    } = req;
-
-    if (categoryId == null) {
-      res.status(200).send({
+      id
+    } = req.query;
+    if (!id) {
+      res.status(400).send({
         success: false,
-        message: 'Book category Id is required'
+        message: 'Book Id is required'
       });
       return;
     }
+    const bookId = Number(id);
     return Book
-      .findAll({
-        where: {
-          category_id: categoryId,
-          deleted: false
-        }
-      }, {
-        include: [{
-          model: models.BookCategory,
-        }],
-      })
-      .then(book => res.status(200).send({
-        success: true,
-        message: 'Books obtained successfully',
-        book
-      }))
-      .catch(error => res.status(400).send(error));
-  },
-
-  /**
-   * Get books by borrow status
-   *
-   * @param {Object} req
-   * @param {Object} res
-   * @returns {Object} Book Object
-   */
-  getBooksByBorrowStatus(req, res) {
-    const borrowStatus = req.query.borrowed;
-    return Book
-      .findAll({
+      .find({
         where: {
           deleted: false,
-          borrowed: borrowStatus
+          id: bookId
         }
       }, {
         include: [{
           model: models.BookCategory,
         }],
       })
-      .then(book => res.status(200).send({
-        success: true,
-        message: 'Books obtained successfully',
-        book
-      }))
-      .catch(error => res.status(400).send(error));
+      .then((book) => {
+        res.status(200).send({
+          success: true,
+          message: 'Book obtained successfully',
+          book
+        });
+      })
+      .catch(() => res.status(400).send({
+        message: 'Error getting book'
+      }));
   },
+
 
   addBook(req, res) {
     let {
@@ -179,7 +147,7 @@ export default {
     /**
      * checks if the name is undefined or null and insists on it
      */
-    if (validator.isEmpty(`${name}`) || name == null) {
+    if (!name) {
       res.status(400).send({
         success: false,
         message: 'Book name is required'
@@ -192,7 +160,7 @@ export default {
     /**
      * checks if the author is undefined or null and insists on it
      */
-    if (validator.isEmpty(`${author}`) || author == null) {
+    if (!author) {
       res.status(400).send({
         success: false,
         message: 'Book author is required'
@@ -205,7 +173,7 @@ export default {
     /**
      * checks if the quantity is empty or null and insists on it
      */
-    if (validator.isEmpty(`${quantity}`) || quantity == null) {
+    if (!quantity) {
       res.status(400).send({
         success: false,
         message: 'Quantity is required'
@@ -218,7 +186,7 @@ export default {
     /**
      * checks if the categoryId is empty or null and insists on it
      */
-    if (validator.isEmpty(`${categoryId}`) || categoryId == null) {
+    if (!categoryId) {
       res.status(400).send({
         success: false,
         message: 'Category is required'
