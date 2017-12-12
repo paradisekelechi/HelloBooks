@@ -94,7 +94,7 @@ describe('Return book', () => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
-        assert.equal(res.status, 400);
+        assert.equal(res.status, 200);
         assert.equal(res.body.success, false);
         assert.equal(
           res.body.message,

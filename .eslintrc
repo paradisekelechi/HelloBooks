@@ -56,11 +56,13 @@
     "arrow-body-style": ["off", "as-needed"],
     "react/self-closing-comp": 0,
     "jsx-a11y/heading-has-content": 0,
+    "react/jsx-no-bind": 0
   },
   "globals": {
     "AOS": false,
     "Typewriter": false,
     "$": false,
-    "cloudinary": false
+    "cloudinary": false,
+    "Materialize": false
   }
 }
