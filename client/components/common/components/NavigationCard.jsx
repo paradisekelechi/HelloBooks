@@ -17,7 +17,7 @@ const NavigationCard = (props) => {
 NavigationCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired
+  link: PropTypes.string.isRequired,
 };
 
 
