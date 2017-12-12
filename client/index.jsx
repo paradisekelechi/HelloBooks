@@ -34,10 +34,11 @@ ReactDOM.render(
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/history" component={authorize(BooksReturnCatalog)} />
+        <Route name="profile" path="profile" component={Profile} />
       </Route>
       <Route component={authorize(MainLayout)}>
         <Route name="dashboard" path="dashboard" component={Dashboard} />
-        <Route name="profile" path="profile" component={Profile} />
+
       </Route>
     </Router>
   </Provider>,
