@@ -8,7 +8,6 @@ import fs from 'fs';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import dotenv from 'dotenv';
-import swaggerJSDoc from 'swagger-jsdoc';
 
 import routes from './server/routes';
 import config from './webpack.config.babel';
@@ -28,24 +27,6 @@ logger('info', 'Application created')
  */
 const port = process.env.PORT || 5000;
 app.set('port', port);
-
-/**
- * Swagger definition for api documentation
- */
-const swaggerDefinition = {
-  info: {
-    title: 'HelloBooks Application',
-    version: '1.0.0',
-    description: 'Book management and Library application'
-  },
-  host: `localhost:${port}`,
-  basePath: '/'
-};
-const options = {
-  swaggerDefinition,
-  apis: ['./server/routes/index.js']
-};
-const swaggerSpec = swaggerJSDoc(options);
 
 
 /**
@@ -85,6 +66,11 @@ app.use(bodyParser.json({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 app.use(webpackHotMiddleware(compiler));
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,

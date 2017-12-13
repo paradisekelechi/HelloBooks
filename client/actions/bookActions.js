@@ -22,57 +22,63 @@ const {
 } = authenticateFetch();
 
 
-const addBookSync = bookDetails => ({
+const addBookSync = payload => ({
   type: ADD_BOOK,
-  bookDetails
+  payload
 });
+
 /**
+ *
+ *
  * @export
- * @param {any} bookDetails
- * @returns {object} addBook object and dispatch
+ * @param {String} addBookId
+ * @param {Object} bookdata
+ * @returns {Object}  dispatch object
  */
-export function addBook(bookDetails) {
-  const postData = querystring.stringify({
-    name: bookDetails.name,
-    author: bookDetails.author,
-    category: bookDetails.category
-  });
+export function addBook(addBookId, bookdata) {
   const config = {
     headers: {
       'user-token': token
     }
   };
+  const url = routes.addBooks;
   return (dispatch) => {
     axios
-      .post(routes.addBooks, postData, config)
+      .post(url, bookdata, config)
       .then((response) => {
-        if (response) {
-          dispatch(addBookSync(response.data));
-        }
+        response.data.editBookId = addBookId;
+        dispatch(addBookSync(response.data));
       });
   };
 }
 
 
-const editBookSync = bookDetails => ({
+const editBookSync = payload => ({
   type: EDIT_BOOK,
-  bookDetails
+  payload
 });
+
 /**
  *
  *
  * @export
- * @param {any} bookDetails
- * @returns {Object} book object
+ * @param {String} editBookId
+ * @param {Object} bookdata
+ * @returns {Object}  dispatch object
  */
-export function editBook() {
+export function editBook(editBookId, bookdata) {
+  const config = {
+    headers: {
+      'user-token': token
+    }
+  };
+  const url = `${routes.getBooks}/${editBookId}`;
   return (dispatch) => {
     axios
-      .put()
+      .put(url, bookdata, config)
       .then((response) => {
-        if (response) {
-          dispatch(editBookSync(response.data));
-        }
+        response.data.editBookId = editBookId;
+        dispatch(editBookSync(response.data));
       });
   };
 }

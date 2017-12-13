@@ -271,7 +271,7 @@ describe('Edit Book Route', () => {
       .put(`${addBooks}/1`)
       .set('user-token', adminToken)
       .send({
-        categoryId: 2
+        category_id: 2
       })
       .end((err, res) => {
         assert.exists(res.status);
@@ -291,7 +291,7 @@ describe('Edit Book Route', () => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
-        assert.equal(res.status, 400);
+        assert.equal(res.status, 200);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'No data to edit');
         done();
