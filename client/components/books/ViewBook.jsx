@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import swal from 'sweetalert2';
 import * as categoryActions from '../../actions/CategoryActions';
 import { getSingleBook, editBook } from '../../actions/bookActions';
 import notFoundImage from '../../assets/img/not-found.png';
@@ -46,20 +45,8 @@ class ViewBook extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     if (
-      (nextProps.editBookResponse.editBookId === this.state.bookData.id) &&
-      nextProps.editBookResponse.message
+      nextProps.categories || nextProps.bookDetails
     ) {
-      Materialize.toast(
-        nextProps.editBookResponse.message,
-        3000,
-        `${nextProps.editBookResponse.success ? 'blue' : 'red'} rounded`
-      );
-      swal(
-        'Edit Book!',
-        nextProps.editBookResponse.message,
-        nextProps.editBookResponse.success ? 'success' : 'error'
-      );
-    } else {
       this.setState({
         categoryList: nextProps.categories.list,
         bookData: nextProps.bookDetails.book
@@ -252,8 +239,7 @@ ViewBook.propTypes = {
   bookDetails: PropTypes.object.isRequired,
   getBook: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-  editBook: PropTypes.func.isRequired,
-  editBookResponse: PropTypes.object.isRequired
+  editBook: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewBook);

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans');
 $header-font: 'Berkshire Swash',
 sans-serif;
+$application-font: 'Quattrocento Sans',
+sans-serif;
 $background-color: rgba(12,
 72,
 160,
@@ -18,6 +20,9 @@ $background-color: rgba(12,
 .page-info {
   font-family: $header-font;
   margin-top: 2%;
+  .btn {
+    font-family: $application-font;
+  }
 }
 
 .pagination {

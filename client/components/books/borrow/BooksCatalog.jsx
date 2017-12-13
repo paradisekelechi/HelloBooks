@@ -89,7 +89,14 @@ class BooksCatalog extends React.Component {
           </div>
           <div className="col m2 s12">
             {(this.state.userdata.usertype === 2) ?
-              (<Link to={`/addbook?id=${this.state.userdata.id}`}><button className="btn btn-responsive">Add Book</button></Link>) : (<div></div>)}
+              (
+                <Link to="/addbook">
+                  <button className="btn btn-floating btn-large waves-effect waves-light right">
+                    <i className="material-icons">add</i>
+                  </button>
+                </Link>
+              ) :
+              (<div></div>)}
           </div>
         </div>
         <div className="row">

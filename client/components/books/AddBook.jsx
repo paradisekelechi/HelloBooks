@@ -118,6 +118,8 @@ class AddBook extends React.Component {
                     id="book_name"
                     type="text"
                     className="validate"
+                    name="name"
+                    onChange={this.onChange}
                   />
                   <label className="active" htmlFor="book_name">Book Name</label>
                 </div>
@@ -128,7 +130,9 @@ class AddBook extends React.Component {
                   <input
                     id="book_author"
                     type="text"
+                    name="author"
                     className="validate"
+                    onChange={this.onChange}
                   />
                   <label className="active" htmlFor="book_name">Book Author</label>
                 </div>
@@ -165,7 +169,7 @@ class AddBook extends React.Component {
               <div className="row">
                 <div className="col m12 s12">
                   <label htmlFor="bookCategory">Category</label>
-                  <select name="category_id" onChange={this.onChange} className="browser-default">
+                  <select name="categoryId" onChange={this.onChange} className="browser-default">
                     <option>Choose Category</option>
                     {(this.state.categoryList).map((category) => {
                       return (
@@ -223,8 +227,6 @@ AddBook.propTypes = {
   categories: PropTypes.object.isRequired,
   getCategories: PropTypes.func.isRequired,
   bookDetails: PropTypes.object.isRequired,
-  getBook: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
   addBook: PropTypes.func.isRequired,
   addBookResponse: PropTypes.object.isRequired
 };
