@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import swal from 'sweetalert2';
 import * as categoryActions from '../../actions/CategoryActions';
-import { getSingleBook } from '../../actions/bookActions';
+import { getSingleBook, editBook } from '../../actions/bookActions';
 import notFoundImage from '../../assets/img/not-found.png';
 
 /**
@@ -20,10 +21,12 @@ class ViewBook extends React.Component {
     super(props);
     this.state = {
       bookData: {},
-      categoryList: []
+      categoryList: [],
+      formdata: {}
     };
+    this.onChange = this.onChange.bind(this);
+    this.onClickSubmit = this.onClickSubmit.bind(this);
   }
-
 
   /**
    *
@@ -42,10 +45,51 @@ class ViewBook extends React.Component {
    * @memberof ViewBook
    */
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      categoryList: nextProps.categories.list,
-      bookData: nextProps.bookDetails.book
-    });
+    if (
+      (nextProps.editBookResponse.editBookId === this.state.bookData.id) &&
+      nextProps.editBookResponse.message
+    ) {
+      Materialize.toast(
+        nextProps.editBookResponse.message,
+        3000,
+        `${nextProps.editBookResponse.success ? 'blue' : 'red'} rounded`
+      );
+      swal(
+        'Edit Book!',
+        nextProps.editBookResponse.message,
+        nextProps.editBookResponse.success ? 'success' : 'error'
+      );
+    } else {
+      this.setState({
+        categoryList: nextProps.categories.list,
+        bookData: nextProps.bookDetails.book
+      });
+    }
+  }
+
+  /**
+   * Generic onChange function
+   * @returns {void} returns nothing
+   * @param {Object} event
+   * @memberof ViewBook
+   */
+  onChange(event) {
+    event.preventDefault();
+    const { formdata, bookData } = this.state;
+    formdata[event.target.name] = event.target.value;
+    Object.assign(bookData, { [event.target.name]: event.target.value });
+    this.setState({ formdata, bookData });
+  }
+
+  /**
+   *
+   * @returns {void} description
+   * @param {any} event
+   * @memberof ViewBook
+   */
+  onClickSubmit(event) {
+    event.preventDefault();
+    this.props.editBook(this.state.bookData.id, this.state.formdata);
   }
 
   /**
@@ -87,81 +131,93 @@ class ViewBook extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col m3 s12">
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  value={this.state.bookData.name !== 'undefined' ? this.state.bookData.name : ''}
-                  id="book_name"
-                  type="text"
-                  className="validate"
-                />
-                <label className="active" htmlFor="book_name">Book Name</label>
+          <form onSubmit={this.onClickSubmit}>
+            <div className="col m3 s12">
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    value={this.state.bookData.name !== 'undefined' ? this.state.bookData.name : ''}
+                    id="book_name"
+                    type="text"
+                    className="validate"
+                    disabled
+                  />
+                  <label className="active" htmlFor="book_name">Book Name</label>
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  value={this.state.bookData.author !== 'undefined' ? this.state.bookData.author : ''}
-                  id="book_author"
-                  type="text"
-                  className="validate"
-                />
-                <label className="active" htmlFor="book_name">Book Author</label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  value={this.state.bookData.description !== 'undefined' ? this.state.bookData.description : ''}
-                  id="book_description"
-                  type="text"
-                  className="validate"
-                />
-                <label className="active" htmlFor="book_name">Book Description</label>
-              </div>
-            </div>
 
-          </div>
-          <div className="col m3 s12">
-            <div className="row">
-              <div className="input-field col s12">
-                <input
-                  value={this.state.bookData.quantity}
-                  id="quantity"
-                  type="text"
-                  className="validate"
-                />
-                <label className="active" htmlFor="quantity">Quantity</label>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    value={this.state.bookData.author !== 'undefined' ? this.state.bookData.author : ''}
+                    id="book_author"
+                    type="text"
+                    className="validate"
+                    disabled
+                  />
+                  <label className="active" htmlFor="book_name">Book Author</label>
+                </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col m12 s12">
-                <label htmlFor="bookCategory">Category</label>
-                <select className="browser-default">
-                  {(this.state.categoryList).map((category) => {
-                    const selector = this.state.bookData.category_id === category.id;
-                    return (
-                      <option selected={selector} value={category.id}>
-                        {category.name}
-                      </option>);
-                  })}
-                </select>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <button
-                  className="btn btn-large btn-edit col s12 waves-effect waves-light"
-                  type="submit"
-                >
-                  Edit Book
-                  <i className="material-icons right">send</i>
-                </button>
-              </div>
-            </div>
 
-          </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    value={this.state.bookData.description !== 'undefined' ? this.state.bookData.description : ''}
+                    id="book_description"
+                    type="text"
+                    className="validate"
+                    name="description"
+                    onChange={this.onChange}
+                  />
+                  <label className="active" htmlFor="book_name">Book Description</label>
+                </div>
+              </div>
+
+            </div>
+            <div className="col m3 s12">
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    value={this.state.bookData.quantity}
+                    id="quantity"
+                    type="text"
+                    className="validate"
+                    name="quantity"
+                    onChange={this.onChange}
+                  />
+                  <label className="active" htmlFor="quantity">Quantity</label>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col m12 s12">
+                  <label htmlFor="bookCategory">Category</label>
+                  <select name="category_id" onChange={this.onChange} className="browser-default">
+                    {(this.state.categoryList).map((category) => {
+                      const selector = this.state.bookData.category_id === category.id;
+                      return (
+                        <option selected={selector} value={category.id}>
+                          {category.name}
+                        </option>);
+                    })}
+                  </select>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="input-field col s12">
+                  <button
+                    className="btn btn-large btn-edit col s12 waves-effect waves-light"
+                    type="submit"
+                  >
+                    Edit Book
+                    <i className="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </form>
         </div>
       </div>
     );
@@ -175,6 +231,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     getCategories: () => {
       dispatch(categoryActions.getCategories());
+    },
+    editBook: (bookId, formdata) => {
+      dispatch(editBook(bookId, formdata));
     }
   };
 };
@@ -182,7 +241,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     bookDetails: state.getSingleBookReducer[0],
-    categories: state.getCategoriesReducer[0]
+    categories: state.getCategoriesReducer[0],
+    editBookResponse: state.editBookReducer[0]
   };
 };
 
@@ -191,7 +251,9 @@ ViewBook.propTypes = {
   getCategories: PropTypes.func.isRequired,
   bookDetails: PropTypes.object.isRequired,
   getBook: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
+  editBook: PropTypes.func.isRequired,
+  editBookResponse: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewBook);

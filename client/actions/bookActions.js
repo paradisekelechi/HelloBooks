@@ -54,25 +54,32 @@ export function addBook(bookDetails) {
 }
 
 
-const editBookSync = bookDetails => ({
+const editBookSync = payload => ({
   type: EDIT_BOOK,
-  bookDetails
+  payload
 });
+
 /**
  *
  *
  * @export
- * @param {any} bookDetails
- * @returns {Object} book object
+ * @param {String} editBookId
+ * @param {Object} bookdata
+ * @returns {Object}  dispatch object
  */
-export function editBook() {
+export function editBook(editBookId, bookdata) {
+  const config = {
+    headers: {
+      'user-token': token
+    }
+  };
+  const url = `${routes.getBooks}/${editBookId}`;
   return (dispatch) => {
     axios
-      .put()
+      .put(url, bookdata, config)
       .then((response) => {
-        if (response) {
-          dispatch(editBookSync(response.data));
-        }
+        response.data.editBookId = editBookId;
+        dispatch(editBookSync(response.data));
       });
   };
 }

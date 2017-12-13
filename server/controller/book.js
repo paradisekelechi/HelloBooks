@@ -234,13 +234,12 @@ export default {
     const {
       description,
       quantity,
-      categoryId,
+      category_id: categoryId,
       bookUrl
     } = req.body;
     const {
       bookId
     } = req.params;
-
     if (bookId == null || bookId === 0 || bookId === undefined) {
       res.status(400).send({
         success: false,
@@ -250,7 +249,7 @@ export default {
     }
 
     if (description == null && quantity == null && categoryId == null && bookUrl == null) {
-      res.status(400).send({
+      res.status(200).send({
         success: false,
         message: 'No data to edit'
       });
@@ -265,7 +264,7 @@ export default {
         cover: bookUrl
       }, {
         where: {
-          id: bookId
+          id: Number(bookId)
         }
       })
       .then(() => {
