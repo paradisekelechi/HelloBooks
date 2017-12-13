@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as bookActions from '../../../actions/bookActions';
 import * as categoryActions from '../../../actions/CategoryActions';
@@ -87,14 +88,15 @@ class BooksCatalog extends React.Component {
             <h5>HelloBooks Book Catalog</h5>
           </div>
           <div className="col m2 s12">
-            <label htmlFor="bookCategory">Category</label>
-            <select onChange={this.selectOnChange} className="browser-default">
-              <option value="" disabled selected>Choose Book Category</option>
-              <option value="">All</option>
-              {(this.state.categoryList).map((category) => {
-                return (<option value={category.id}>{category.name}</option>);
-              })}
-            </select>
+            {(this.state.userdata.usertype === 2) ?
+              (
+                <Link to="/addbook">
+                  <button className="btn btn-floating btn-large waves-effect waves-light right">
+                    <i className="material-icons">add</i>
+                  </button>
+                </Link>
+              ) :
+              (<div></div>)}
           </div>
         </div>
         <div className="row">

@@ -1,4 +1,4 @@
-import querystring from 'querystring';
+import swal from 'sweetalert2';
 import axios from 'axios';
 import {
   ADD_BOOK,
@@ -22,33 +22,37 @@ const {
 } = authenticateFetch();
 
 
-const addBookSync = bookDetails => ({
+const addBookSync = payload => ({
   type: ADD_BOOK,
-  bookDetails
+  payload
 });
+
 /**
+ *
+ *
  * @export
- * @param {any} bookDetails
- * @returns {object} addBook object and dispatch
+ * @param {String} addBookId
+ * @param {Object} bookdata
+ * @returns {Object}  dispatch object
  */
-export function addBook(bookDetails) {
-  const postData = querystring.stringify({
-    name: bookDetails.name,
-    author: bookDetails.author,
-    category: bookDetails.category
-  });
+export function addBook(addBookId, bookdata) {
   const config = {
     headers: {
       'user-token': token
     }
   };
+  const url = routes.addBooks;
   return (dispatch) => {
     axios
-      .post(routes.addBooks, postData, config)
+      .post(url, bookdata, config)
       .then((response) => {
-        if (response) {
-          dispatch(addBookSync(response.data));
-        }
+        response.data.editBookId = addBookId;
+        dispatch(addBookSync(response.data));
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
@@ -80,6 +84,16 @@ export function editBook(editBookId, bookdata) {
       .then((response) => {
         response.data.editBookId = editBookId;
         dispatch(editBookSync(response.data));
+        swal(
+          'Edit Book!',
+          response.data.message,
+          response.data.success ? 'success' : 'error'
+        );
+        Materialize.toast(
+          response.data.message,
+          5000,
+          `${response.data.success ? 'blue' : 'red'} rounded`
+        );
       });
   };
 }

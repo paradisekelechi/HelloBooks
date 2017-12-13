@@ -1,20 +1,21 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import swal from 'sweetalert2';
 import * as categoryActions from '../../actions/CategoryActions';
-import { getSingleBook, editBook } from '../../actions/bookActions';
+import { getSingleBook, addBook } from '../../actions/bookActions';
 import notFoundImage from '../../assets/img/not-found.png';
 
 /**
  *
  *
- * @class ViewBook
+ * @class AddBook
  * @extends {React.Component}
  */
-class ViewBook extends React.Component {
+class AddBook extends React.Component {
   /**
-   * Creates an instance of ViewBook.
+   * Creates an instance of AddBook.
    * @param {any} props
-   * @memberof ViewBook
+   * @memberof AddBook
    */
   constructor(props) {
     super(props);
@@ -30,23 +31,33 @@ class ViewBook extends React.Component {
   /**
    *
    *@returns{Object} dispatches actions
-   * @memberof ViewBook
+   * @memberof AddBook
    */
   componentWillMount() {
-    const bookId = this.props.location.query.id;
-    this.props.getBook(bookId);
     this.props.getCategories();
   }
   /**
    *
    *@returns {Object} set state
    * @param {any} nextProps
-   * @memberof ViewBook
+   * @memberof AddBook
    */
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.categories || nextProps.bookDetails
+      (nextProps.addBookResponse.addBookId === this.state.bookData.id) &&
+      nextProps.addBookResponse.message
     ) {
+      Materialize.toast(
+        nextProps.addBookResponse.message,
+        3000,
+        `${nextProps.addBookResponse.success ? 'blue' : 'red'} rounded`
+      );
+      swal(
+        'Add Book!',
+        nextProps.addBookResponse.message,
+        nextProps.addBookResponse.success ? 'success' : 'error'
+      );
+    } else {
       this.setState({
         categoryList: nextProps.categories.list,
         bookData: nextProps.bookDetails.book
@@ -76,7 +87,7 @@ class ViewBook extends React.Component {
    */
   onClickSubmit(event) {
     event.preventDefault();
-    this.props.editBook(this.state.bookData.id, this.state.formdata);
+    this.props.addBook(this.state.bookData.id, this.state.formdata);
   }
 
   /**
@@ -91,43 +102,24 @@ class ViewBook extends React.Component {
         <div className="row page-info">
           <div className="col m1"></div>
           <div className="col m10">
-            <h5>View Book</h5>
+            <h5>Add Book</h5>
           </div>
         </div>
         <div className="row">
           <div className="col m1"></div>
           <div className="col s12 m3">
-            <div className="card">
-              <div className="card-image">
-                <img
-                  alt="bookimage"
-                  src={`${
-                    this.state.bookData.cover !== 'undefined' ?
-                      this.state.bookData.cover :
-                      notFoundImage}`}
-                />
-                <span className="card-title">
-                  {this.state.bookData.name ? this.state.bookData.name : 'Book'}
-                </span>
-                <div className="btn-floating btn halfway-fab waves-effect waves-light red">
-                  <i className="material-icons">edit</i>
-                </div>
-              </div>
-              <div className="card-content">
-                <p>{this.state.bookData.description !== 'undefined' ? this.state.bookData.description : 'No Book description'}</p>
-              </div>
-            </div>
+            <button className="btn btn-large">Upload Book Cover</button>
           </div>
           <form onSubmit={this.onClickSubmit}>
             <div className="col m3 s12">
               <div className="row">
                 <div className="input-field col s12">
                   <input
-                    value={this.state.bookData.name !== 'undefined' ? this.state.bookData.name : ''}
                     id="book_name"
                     type="text"
                     className="validate"
-                    disabled
+                    name="name"
+                    onChange={this.onChange}
                   />
                   <label className="active" htmlFor="book_name">Book Name</label>
                 </div>
@@ -136,11 +128,11 @@ class ViewBook extends React.Component {
               <div className="row">
                 <div className="input-field col s12">
                   <input
-                    value={this.state.bookData.author !== 'undefined' ? this.state.bookData.author : ''}
                     id="book_author"
                     type="text"
+                    name="author"
                     className="validate"
-                    disabled
+                    onChange={this.onChange}
                   />
                   <label className="active" htmlFor="book_name">Book Author</label>
                 </div>
@@ -149,7 +141,6 @@ class ViewBook extends React.Component {
               <div className="row">
                 <div className="input-field col s12">
                   <input
-                    value={this.state.bookData.description !== 'undefined' ? this.state.bookData.description : ''}
                     id="book_description"
                     type="text"
                     className="validate"
@@ -165,7 +156,6 @@ class ViewBook extends React.Component {
               <div className="row">
                 <div className="input-field col s12">
                   <input
-                    value={this.state.bookData.quantity}
                     id="quantity"
                     type="text"
                     className="validate"
@@ -179,11 +169,11 @@ class ViewBook extends React.Component {
               <div className="row">
                 <div className="col m12 s12">
                   <label htmlFor="bookCategory">Category</label>
-                  <select name="category_id" onChange={this.onChange} className="browser-default">
+                  <select name="categoryId" onChange={this.onChange} className="browser-default">
+                    <option>Choose Category</option>
                     {(this.state.categoryList).map((category) => {
-                      const selector = this.state.bookData.category_id === category.id;
                       return (
-                        <option selected={selector} value={category.id}>
+                        <option value={category.id}>
                           {category.name}
                         </option>);
                     })}
@@ -197,7 +187,7 @@ class ViewBook extends React.Component {
                     className="btn btn-large btn-edit col s12 waves-effect waves-light"
                     type="submit"
                   >
-                    Edit Book
+                    Add Book
                     <i className="material-icons right">send</i>
                   </button>
                 </div>
@@ -219,8 +209,8 @@ const mapDispatchToProps = (dispatch) => {
     getCategories: () => {
       dispatch(categoryActions.getCategories());
     },
-    editBook: (bookId, formdata) => {
-      dispatch(editBook(bookId, formdata));
+    addBook: (bookId, formdata) => {
+      dispatch(addBook(bookId, formdata));
     }
   };
 };
@@ -229,17 +219,16 @@ const mapStateToProps = (state) => {
   return {
     bookDetails: state.getSingleBookReducer[0],
     categories: state.getCategoriesReducer[0],
-    editBookResponse: state.editBookReducer[0]
+    addBookResponse: state.addBookReducer[0]
   };
 };
 
-ViewBook.propTypes = {
+AddBook.propTypes = {
   categories: PropTypes.object.isRequired,
   getCategories: PropTypes.func.isRequired,
   bookDetails: PropTypes.object.isRequired,
-  getBook: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  editBook: PropTypes.func.isRequired
+  addBook: PropTypes.func.isRequired,
+  addBookResponse: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewBook);
+export default connect(mapStateToProps, mapDispatchToProps)(AddBook);

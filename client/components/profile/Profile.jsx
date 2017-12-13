@@ -87,7 +87,7 @@ class Profile extends React.Component {
           <div className="col s12 m10">
             <div className="card medium">
               <div className="card-image">
-                <img src="http://res.cloudinary.com/skiposki/image/upload/v1513072462/user-profile-bg_gghcqw.jpg" alt="profile" className=" responsive-img" />
+                <img src="https://res.cloudinary.com/skiposki/image/upload/v1513072462/user-profile-bg_gghcqw.jpg" alt="profile" className=" responsive-img" />
               </div>
               <div className="card-content">
                 <div className="row">

@@ -5,7 +5,7 @@ import {
 } from 'react-router';
 
 import * as userActions from '../utils/Constants';
-import routes from '../utils/Routes';
+import routes from '../../tools/apiRoutes';
 import {
   authenticateFetch,
   authenticatePersist,
@@ -46,6 +46,11 @@ export function signinUser(user) {
         dispatch(signinUserAsync(responseData));
         browserHistory.push('/books');
         window.location.reload();
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
@@ -79,8 +84,11 @@ export function signupUser(user) {
         browserHistory.push('/books');
         window.location.reload();
       }
-    }).catch(() => {
-      browserHistory.push('/');
+    }).catch((error) => {
+      const {
+        data
+      } = error.response;
+      Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
     });
   };
 }
@@ -127,6 +135,11 @@ export function getAllUsers() {
         if (response.data.success) {
           dispatch(getAllUsersSync(response.data));
         }
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
@@ -153,6 +166,11 @@ export function getAdminUsers() {
         if (response.data.success) {
           dispatch(getAdminUsersSync(response.data));
         }
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
@@ -179,6 +197,11 @@ export function getClientUsers() {
         if (response.data.success) {
           dispatch(getClientUsersSync(response.data));
         }
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
@@ -205,6 +228,11 @@ export function getDeletedUsers() {
         if (response.data.success) {
           dispatch(getDeletedUsersSync(response.data));
         }
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
@@ -239,6 +267,11 @@ export function editUserProfileImage(imageUrl) {
         if (response.data.success) {
           dispatch(editUserProfileImageSync(response.data));
         }
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }

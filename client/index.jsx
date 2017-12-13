@@ -15,6 +15,7 @@ import HomeLayout from './components/layouts/Home';
 import BooksBorrowCatalog from './components/books/borrow/BooksCatalog';
 import BooksReturnCatalog from './components/books/return/BooksCatalog';
 import ViewBook from './components/books/ViewBook';
+import AddBook from './components/books/AddBook';
 import Profile from './components/profile/Profile';
 import Home from './components/home/Home';
 import Signin from './components/authentication/Signin';
@@ -31,6 +32,7 @@ ReactDOM.render(
         <Route path="/" component={Home} />
         <Route path="/books" component={BooksBorrowCatalog} />
         <Route path="/viewbook" component={ViewBook} />
+        <Route path="/addbook" component={AddBook} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/history" component={authorize(BooksReturnCatalog)} />

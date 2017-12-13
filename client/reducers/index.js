@@ -15,6 +15,7 @@ import BorrowBookReducer from './borrow/BorrowBookReducer';
 import ReturnBookReducer from './borrow/ReturnBookReducer';
 import GetSingleBookReducer from './books/GetSingleBookReducer';
 import EditBookReducer from './books/EditBookReducer';
+import AddBookReducer from './books/AddBookReducer';
 
 const rootReducer = combineReducers({
   userReducer: UserReducer,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   returnBookReducer: ReturnBookReducer,
   pendingBooksReducer: PendingBooksReducer,
   getSingleBookReducer: GetSingleBookReducer,
-  editBookReducer: EditBookReducer
+  editBookReducer: EditBookReducer,
+  addBookReducer: AddBookReducer
 });
 
 export default rootReducer;
