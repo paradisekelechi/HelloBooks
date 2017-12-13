@@ -30,7 +30,7 @@ class BookCard extends React.Component {
    * @memberof BookCard
    */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.borrow.bookId === this.state.bookId) {
+    if ((nextProps.borrow.bookId === this.state.bookId) && nextProps.borrow.message) {
       Materialize.toast(nextProps.borrow.message, 3000, `${nextProps.borrow.success ? 'blue' : 'red'} rounded`);
       swal(
         'Borrow Book!',
