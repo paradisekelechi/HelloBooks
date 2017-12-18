@@ -7,6 +7,7 @@ $background-color: rgba(12,
 72,
 160,
 1);
+$red: #ab1414;
 .card-content {
   padding: 5px !important;
   text-align: center;
@@ -38,6 +39,11 @@ $background-color: rgba(12,
 
 .btn {
   background-color: $background-color !important;
+}
+
+.btn-red {
+  background-color: $red !important;
+  margin-left: 3px !important;
 }
 
 #toast-container {

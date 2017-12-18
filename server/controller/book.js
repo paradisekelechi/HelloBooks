@@ -279,4 +279,36 @@ export default {
       }));
   },
 
+  deleteBook(req, res) {
+    const {
+      bookId
+    } = req.params;
+    if (!bookId) {
+      res.status(400).send({
+        success: false,
+        message: 'Oops!! BookId is required'
+      });
+      return;
+    }
+
+    return Book
+      .update({
+        deleted: true
+      }, {
+        where: {
+          id: Number(bookId)
+        }
+      })
+      .then(() => {
+        res.status(200).send({
+          message: 'Book deleted successfully',
+          success: true
+        });
+      })
+      .catch(() => res.status(400).send({
+        success: false,
+        message: 'Oops! Book not deleted successfully'
+      }));
+  },
+
 };

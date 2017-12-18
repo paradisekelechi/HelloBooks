@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import * as borrowActions from '../../../actions/BorrowActions';
+import * as bookActions from '../../../actions/bookActions';
 
 /**
  *
@@ -66,6 +67,30 @@ class BookCard extends React.Component {
 
   /**
    *
+   * @returns{Object} dispatch object
+   * @param {String} id
+   * @memberof BookCard
+   */
+  deleteButtonOnClick(id) {
+    this.setState({
+      bookId: id
+    });
+    swal({
+      title: 'Do you really want to delete this book?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.props.deleteBook(id);
+      }
+    });
+  }
+
+  /**
+   *
    *
    * @returns {Object} render object
    * @memberof BookCard
@@ -98,9 +123,19 @@ class BookCard extends React.Component {
                         </button>
                       ) :
                       (
-                        <Link to={`/viewbook?id=${this.props.id}`}>
-                          <p><button className="btn">View</button></p>
-                        </Link>
+                        <div>
+                          <Link to={`/viewbook?id=${this.props.id}`}>
+                            <button className="btn">
+                              <i className=" action-buttons material-icons">pageview</i>
+                            </button>
+                          </Link>
+                          <button
+                            className="btn btn-red"
+                            onClick={this.deleteButtonOnClick.bind(this, this.props.id)}
+                          >
+                            <i className=" action-buttons material-icons">delete</i>
+                          </button>
+                        </div>
                       )
                     }
 
@@ -130,6 +165,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     borrowBook: (bookId) => {
       dispatch(borrowActions.borrowBook(bookId));
+    },
+    deleteBook: (bookId) => {
+      dispatch(bookActions.deleteBook(bookId));
     }
   };
 };
@@ -149,7 +187,8 @@ BookCard.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   userdata: PropTypes.object.isRequired,
   borrow: PropTypes.object.isRequired,
-  borrowBook: PropTypes.func.isRequired
+  borrowBook: PropTypes.func.isRequired,
+  deleteBook: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookCard);
