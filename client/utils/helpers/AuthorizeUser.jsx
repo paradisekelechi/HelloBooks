@@ -30,6 +30,7 @@ const AuthorizeUser = (Component) => {
       const { loggedIn } = loginPayload;
       if (!loggedIn) {
         browserHistory.push('/signin');
+        window.location.reload();
       }
     }
 

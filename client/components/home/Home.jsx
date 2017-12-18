@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import background from '../../assets/img/background6.jpg';
+import { authenticateClear } from '../../utils/authenticate';
 
 /**
  *
@@ -10,13 +11,21 @@ import background from '../../assets/img/background6.jpg';
  * @returns {Object} jsx component
  */
 class Home extends React.Component {
+
+  /**
+   *
+   * @returns {*} Clear token
+   * @memberof Home
+   */
+  componentWillMount() {
+    authenticateClear();
+  }
   /**
    *
    * @returns {void} Nothing
    * @memberof Home
    */
   componentDidMount() {
-    $('.button-collapse').sideNav();
     $('.parallax').parallax();
     AOS.init();
     const header = document.getElementById('header-text');
@@ -56,9 +65,6 @@ class Home extends React.Component {
                 <Link to="/signup">
                   <button
                     className="waves-effect btn btn-large col s4 offset-s4  dark-blue-background "
-                    data-aos="flip-left"
-                    data-aos-easing="ease-out-cubic"
-                    data-aos-duration={2000}
                   >
                     Get Started
                   </button>
@@ -129,5 +135,6 @@ class Home extends React.Component {
     );
   }
 }
+
 
 export default Home;
