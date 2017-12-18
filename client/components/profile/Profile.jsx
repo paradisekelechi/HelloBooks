@@ -27,7 +27,7 @@ class Profile extends React.Component {
       imageUrl: ''
     };
 
-    this.uploadWidget = this.uploadWidget.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
   }
 
   /**
@@ -52,7 +52,7 @@ class Profile extends React.Component {
    * @returns {*} upload image
    * @memberof Profile
    */
-  uploadWidget() {
+  uploadImage() {
     cloudinary.openUploadWidget(
       { cloud_name: 'skiposki', upload_preset: 'xr19z3b3', tags: ['profile'] },
       (error, result) => {
@@ -93,7 +93,7 @@ class Profile extends React.Component {
                 <div className="row">
                   <div className="col m2 s12">
                     <button
-                      onClick={this.uploadWidget}
+                      onClick={this.uploadImage}
                       className="btn-floating waves-effect dark-blue-background right"
                     >
                       <i className="material-icons">mode_edit</i>

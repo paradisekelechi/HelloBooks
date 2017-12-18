@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import swal from 'sweetalert2';
 import * as categoryActions from '../../actions/CategoryActions';
 import { getSingleBook, addBook } from '../../actions/bookActions';
-import notFoundImage from '../../assets/img/not-found.png';
 
 /**
  *
@@ -26,6 +25,7 @@ class AddBook extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.uploadWidget = this.uploadWidget.bind(this);
   }
 
   /**
@@ -65,6 +65,7 @@ class AddBook extends React.Component {
     }
   }
 
+
   /**
    * Generic onChange function
    * @returns {void} returns nothing
@@ -91,6 +92,23 @@ class AddBook extends React.Component {
   }
 
   /**
+   * Upload image
+   * @returns {*} upload image
+   * @memberof AddBook
+   */
+  uploadWidget() {
+    cloudinary.openUploadWidget(
+      { cloud_name: 'skiposki', upload_preset: 'xr19z3b3', tags: ['profile'] },
+      (error, result) => {
+        if (result) {
+          const { formdata } = this.state;
+          formdata.image = result[0].secure_url;
+        }
+      }
+    );
+  }
+
+  /**
    *
    *
    * @returns {Object} render object
@@ -108,7 +126,7 @@ class AddBook extends React.Component {
         <div className="row">
           <div className="col m1"></div>
           <div className="col s12 m3">
-            <button className="btn btn-large">Upload Book Cover</button>
+            <button onClick={this.uploadWidget} className="btn btn-large">Upload Book Cover</button>
           </div>
           <form onSubmit={this.onClickSubmit}>
             <div className="col m3 s12">
