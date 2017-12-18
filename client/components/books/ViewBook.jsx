@@ -25,6 +25,7 @@ class ViewBook extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.uploadWidget = this.uploadWidget.bind(this);
   }
 
   /**
@@ -80,6 +81,23 @@ class ViewBook extends React.Component {
   }
 
   /**
+   * Upload image
+   * @returns {*} upload image
+   * @memberof AddBook
+   */
+  uploadWidget() {
+    cloudinary.openUploadWidget(
+      { cloud_name: 'skiposki', upload_preset: 'xr19z3b3', tags: ['profile'] },
+      (error, result) => {
+        if (result) {
+          const { formdata } = this.state;
+          formdata.bookUrl = result[0].secure_url;
+        }
+      }
+    );
+  }
+
+  /**
    *
    *
    * @returns {Object} render object
@@ -109,12 +127,20 @@ class ViewBook extends React.Component {
                 <span className="card-title">
                   {this.state.bookData.name ? this.state.bookData.name : 'Book'}
                 </span>
-                <div className="btn-floating btn halfway-fab waves-effect waves-light red">
+                <div
+                  onClick={this.uploadWidget}
+                  className="btn-floating btn halfway-fab waves-effect waves-light red"
+                >
                   <i className="material-icons">edit</i>
                 </div>
               </div>
               <div className="card-content">
-                <p>{this.state.bookData.description !== 'undefined' ? this.state.bookData.description : 'No Book description'}</p>
+                <p>{
+                  this.state.bookData.description !== 'undefined' ?
+                    this.state.bookData.description :
+                    'No Book description'
+                }
+                </p>
               </div>
             </div>
           </div>

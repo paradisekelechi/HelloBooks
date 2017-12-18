@@ -21,6 +21,8 @@ const routes = (app) => {
   app.get('/api/v1/books/', bookController.getBooks);
   app.get('/api/v1/book', checkLogin, checkUser, bookController.getSingleBook);
   app.put('/api/v1/books/:bookId', checkLogin, checkUser, bookController.editBook);
+  app.delete('/api/v1/books/:bookId', checkLogin, checkUser, bookController.deleteBook);
+
   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
   app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);

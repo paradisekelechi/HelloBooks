@@ -98,32 +98,51 @@ export function editBook(editBookId, bookdata) {
   };
 }
 
-
-const deleteBookSync = () => ({
-  type: DELETE_BOOK
+const deleteBookSync = payload => ({
+  type: DELETE_BOOK,
+  payload
 });
+
 /**
  *
  *
  * @export
- * @returns {object} delete response object
+ * @param {String} bookId
+ * @returns {Object}  dispatch object
  */
-export function deleteBook() {
+export function deleteBook(bookId) {
   const config = {
     headers: {
       'user-token': token
     }
   };
+  const url = `${routes.getBooks}/${bookId}`;
   return (dispatch) => {
     axios
-      .delete(config)
+      .delete(url, config)
       .then((response) => {
-        if (response) {
-          dispatch(deleteBookSync());
-        }
+        dispatch(deleteBookSync(response.data));
+        Materialize.toast(
+          response.data.message,
+          5000,
+          `${response.data.success ? 'blue' : 'red'} rounded`
+        );
+        swal(
+          'Delete Book!',
+          response.data.message,
+          response.data.success ? 'success' : 'error'
+        ).then(() => {
+          window.location.reload();
+        });
+      }).catch((error) => {
+        const {
+          data
+        } = error.response;
+        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
 }
+
 
 const getSingleBookSync = payload => ({
   type: GET_SINGLE_BOOK,

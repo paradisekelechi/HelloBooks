@@ -20,6 +20,8 @@ const {
   getBooksFinished,
   addBooks
 } = routes;
+
+let newBookId;
 const {
   assert
 } = chai;
@@ -65,6 +67,7 @@ describe('Add book Route', () => {
         image
       })
       .end((err, res) => {
+        newBookId = res.body.book.id;
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
@@ -294,6 +297,23 @@ describe('Edit Book Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'No data to edit');
+        done();
+      });
+  });
+});
+
+describe('Delete Book Route', () => {
+  it('should delete book', (done) => {
+    request
+      .delete(`${addBooks}/${newBookId}`)
+      .set('user-token', adminToken)
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 200);
+        assert.equal(res.body.success, true);
+        assert.equal(res.body.message, 'Book deleted successfully');
         done();
       });
   });
