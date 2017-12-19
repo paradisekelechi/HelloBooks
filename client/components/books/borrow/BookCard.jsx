@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
@@ -111,7 +112,7 @@ class BookCard extends React.Component {
             {
               this.props.loggedIn ?
                 (
-                  <p >
+                  <div>
                     {this.props.userdata.usertype === 1 ?
                       (
                         <button
@@ -139,11 +140,11 @@ class BookCard extends React.Component {
                       )
                     }
 
-                  </p>
+                  </div>
                 ) :
                 (
                   <Link to="/signin">
-                    <p><button className="btn">Sign In to Borrow</button></p>
+                    <p><button className="btn">Sign In</button></p>
                   </Link>
                 )
             }
@@ -183,7 +184,7 @@ BookCard.propTypes = {
   author: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   userdata: PropTypes.object.isRequired,
   borrow: PropTypes.object.isRequired,

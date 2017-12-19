@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import profileImage from '../../assets/img/profile.jpg';
 import { authenticateFetch } from '../../utils/authenticate';
@@ -79,7 +80,7 @@ class Profile extends React.Component {
         <div className="row page-info">
           <div className="col m1"></div>
           <div className="col m10">
-            <h5>HelloBooks Profile</h5>
+            <h5>Profile</h5>
           </div>
         </div>
         <div className="row">

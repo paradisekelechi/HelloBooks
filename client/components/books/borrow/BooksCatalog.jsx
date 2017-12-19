@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import * as bookActions from '../../../actions/bookActions';
@@ -85,7 +86,7 @@ class BooksCatalog extends React.Component {
         <div className="row page-info">
           <div className="col m1"></div>
           <div className="col m8">
-            <h5>HelloBooks Book Catalog</h5>
+            <h5>Book Catalog</h5>
           </div>
           <div className="col m2 s12">
             {(this.state.userdata.usertype === 2) ?
@@ -101,13 +102,24 @@ class BooksCatalog extends React.Component {
         </div>
         <div className="row">
           <div className="col m1"></div>
-          <div className=" col m10 books-wrapper">
-            <BookIterator
-              bookList={this.state.booksList}
-              loggedIn={this.state.loggedIn}
-              userdata={this.state.userdata}
-            />
-          </div>
+          {this.state.booksList.length === 0 ?
+            (
+              <div
+                className="col m6 offset-m2 page-info not-found"
+              >
+                <h5>No Books Available</h5>
+              </div>
+            ) :
+            (
+              <div className=" col m10 books-wrapper">
+                <BookIterator
+                  bookList={this.state.booksList}
+                  loggedIn={this.state.loggedIn}
+                  userdata={this.state.userdata}
+                />
+              </div>
+            )
+          }
         </div>
       </div>
     );

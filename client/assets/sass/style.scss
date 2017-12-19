@@ -1,7 +1,8 @@
 /* Custom Stylesheet */
 
 $dark-color: rgba(12, 72, 160, 1);
-$font-stack-styled: 'Berkshire Swash',
+$font-stack-styled: 'Aclonica',
+'Berkshire Swash',
 cursive;
 $base-font: 'Quattrocento Sans',
 'Maven Pro',
@@ -9,7 +10,7 @@ $base-font: 'Quattrocento Sans',
 'Ubuntu',
 'Encode Sans',
 sans-serif;
-@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans');
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans|Aclonica');
 .icon-block {
   padding: 0 15px;
 }
@@ -86,8 +87,6 @@ html {
   border-radius: 7px !important;
   padding: 10px !important;
 }
-
-.account-details-bar {}
 
 .option-icon {
   font-size: 26px;
@@ -227,9 +226,24 @@ p {
 }
 
 .main-wrapper {
-  min-height: 50vh;
+  min-height: 60vh;
 }
 
 .card-content {
   max-height: 100% !important;
+}
+
+.not-found {
+  text-align: center;
+  font-family: $font-stack-styled;
+  margin-top: 9% !important;
+}
+
+.about {
+  h5 {
+    font-family: $font-stack-styled;
+  }
+  ul {
+    list-style: square !important;
+  }
 }

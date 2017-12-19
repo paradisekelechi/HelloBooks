@@ -18,9 +18,11 @@ import ViewBook from './components/books/ViewBook';
 import AddBook from './components/books/AddBook';
 import Profile from './components/profile/Profile';
 import Home from './components/home/Home';
+import About from './components/home/About';
 import Signin from './components/authentication/Signin';
 import Signup from './components/authentication/Signup';
 import Dashboard from './components/dashboard/Dashboard';
+import Settings from './components/settings/Settings';
 import authorize from './utils/helpers/AuthorizeUser';
 
 const store = configureStore();
@@ -33,11 +35,13 @@ ReactDOM.render(
         <Route path="/books" component={BooksBorrowCatalog} />
         <Route path="/viewbook" component={ViewBook} />
         <Route path="/addbook" component={AddBook} />
+        <Route path="/about" component={About} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
         <Route path="/history" component={authorize(BooksReturnCatalog)} />
         <Route name="profile" path="/profile" component={authorize(Profile)} />
         <Route name="dashboard" path="/dashboard" component={authorize(Dashboard)} />
+        <Route name="settings" path="/settings" component={authorize(Settings)} />
       </Route>
     </Router>
   </Provider>,

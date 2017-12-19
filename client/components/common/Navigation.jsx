@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { authenticateFetch } from '../../utils/authenticate';
 import { getUserType } from '../../utils/TypeSync';
@@ -103,20 +104,29 @@ class Navigation extends React.Component {
                         link="/dashboard"
                       />
                     ) :
-                    (
-                      <div></div>
-                    )
+                    ''
                   }
                   <NavigationCard
                     title="Books"
                     description="Collection of Books"
                     link="/books"
                   />
-                  <NavigationCard
-                    title="Borrow History"
-                    description="Book Borrow History"
-                    link="/history"
-                  />
+                  {getUserType(this.state.userdata.usertype) === 'ADMIN' ?
+                    (
+                      <NavigationCard
+                        title="Setting"
+                        description="Application Settings"
+                        link="/settings"
+                      />
+                    ) :
+                    (
+                      <NavigationCard
+                        title="Borrow History"
+                        description="Book Borrow History"
+                        link="/history"
+                      />
+                    )
+                  }
                   <NavigationCard
                     title="Profile"
                     description="User's Profile Page"
