@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { authenticateFetch } from '../../utils/authenticate';
+import { authenticateFetch } from '../../utils/Authentication';
 import { getUserType } from '../../utils/TypeSync';
 import NavigationCard from './components/NavigationCard';
-import * as userActions from '../../actions/userActions';
+import * as userActions from '../../actions/User';
 
 /**
  *

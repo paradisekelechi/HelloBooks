@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as bookActions from '../../../actions/bookActions';
-import * as categoryActions from '../../../actions/CategoryActions';
-import { authenticateFetch } from '../../../utils/authenticate';
+import * as bookActions from '../../../actions/Book';
+import * as categoryActions from '../../../actions/Category';
+import { authenticateFetch } from '../../../utils/Authentication';
 import BookIterator from './BookIterator';
 
 /**

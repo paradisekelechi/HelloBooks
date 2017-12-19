@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/userActions';
-import * as categoryActions from '../../actions/CategoryActions';
+import * as userActions from '../../actions/User';
+import * as categoryActions from '../../actions/Category';
 import Users from './users/Users';
 import Categories from './categories/Categories';
 
@@ -112,5 +112,5 @@ Settings.propTypes = {
   categories: PropTypes.array.isRequired,
   getAllUsers: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

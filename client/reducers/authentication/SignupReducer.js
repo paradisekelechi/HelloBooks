@@ -1,8 +1,10 @@
-import * as actionConstants from '../utils/Constants';
+import {
+  SIGNUP_USER
+} from '../../utils/Constants';
 import {
   getUserType,
   getAccountType
-} from '../utils/TypeSync';
+} from '../../utils/TypeSync';
 
 const initialState = [{
   token: '',
@@ -20,10 +22,9 @@ const initialState = [{
  * @param {any} action
  * @returns {object} State object
  */
-const userReducer = (state = initialState, action) => {
+const SignupReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.SIGNUP_USER:
-  case actionConstants.SIGNIN_USER:
+  case SIGNUP_USER:
     return [{
       token: action.payload.token,
       username: action.payload.username,
@@ -36,4 +37,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default SignupReducer;

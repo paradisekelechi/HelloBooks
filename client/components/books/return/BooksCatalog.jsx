@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as bookActions from '../../../actions/bookActions';
+import * as bookActions from '../../../actions/Book';
 import BookIterator from './BookIterator';
 
 /**

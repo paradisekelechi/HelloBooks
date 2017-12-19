@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import profileImage from '../../assets/img/profile.jpg';
-import { authenticateFetch } from '../../utils/authenticate';
+import { authenticateFetch } from '../../utils/Authentication';
 import { getUserType, getAccountType } from '../../utils/TypeSync';
-import { editUserProfileImage } from '../../actions/userActions';
+import { editUserProfileImage } from '../../actions/User';
 
 /**
  *

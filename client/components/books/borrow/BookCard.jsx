@@ -3,8 +3,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
-import * as borrowActions from '../../../actions/BorrowActions';
-import * as bookActions from '../../../actions/bookActions';
+import * as borrowActions from '../../../actions/Borrow';
+import * as bookActions from '../../../actions/Book';
 
 /**
  *

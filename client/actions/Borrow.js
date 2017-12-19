@@ -3,7 +3,7 @@ import * as actionConstants from '../utils/Constants';
 import routes from '../../tools/apiRoutes';
 import {
   authenticateFetch
-} from '../utils/authenticate';
+} from '../utils/Authentication';
 
 const {
   token,

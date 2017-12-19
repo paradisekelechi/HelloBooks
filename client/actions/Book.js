@@ -13,7 +13,7 @@ import {
 } from '../utils/Constants';
 import {
   authenticateFetch
-} from '../utils/authenticate';
+} from '../utils/Authentication';
 import routes from '../../tools/apiRoutes';
 
 const {
@@ -237,13 +237,13 @@ const getBooksAvailableSync = payload => ({
  * @param {String} category
  * @returns {object} dispatch object
  */
-export function getBooksAvailable(category) {
+export function getBooksAvailable() {
   const getBooksUrl = routes.getBooksAvailable;
-  const url = `${getBooksUrl}&category=${category}`;
   return (dispatch) => {
     axios
-      .get(url)
+      .get(getBooksUrl)
       .then((response) => {
+        //console.log(response);
         if (response.data.success) {
           dispatch(getBooksAvailableSync(response.data));
         }

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import swal from 'sweetalert2';
-import * as categoryActions from '../../actions/CategoryActions';
-import { getSingleBook, addBook } from '../../actions/bookActions';
+import * as categoryActions from '../../actions/Category';
+import { getSingleBook, addBook } from '../../actions/Book';
 
 /**
  *

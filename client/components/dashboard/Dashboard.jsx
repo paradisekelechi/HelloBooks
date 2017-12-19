@@ -1,5 +1,5 @@
 import React from 'react';
-import { authenticateFetch } from '../../utils/authenticate';
+import { authenticateFetch } from '../../utils/Authentication';
 import { getUserType, getAccountType } from '../../utils/TypeSync';
 import AdminDashboard from './AdminDashboard';
 

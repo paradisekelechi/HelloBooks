@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import background from '../../assets/img/background6.jpg';
-import * as userActions from '../../actions/userActions';
+import * as userActions from '../../actions/User';
 
 /**
  *
@@ -160,7 +160,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    userState: state.users
+    signinState: state.signinReducer[0]
   };
 };
 

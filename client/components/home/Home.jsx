@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import background from '../../assets/img/background6.jpg';
-import { authenticateClear } from '../../utils/authenticate';
+import { authenticateClear } from '../../utils/Authentication';
 
 /**
  *
@@ -11,7 +11,6 @@ import { authenticateClear } from '../../utils/authenticate';
  * @returns {Object} jsx component
  */
 class Home extends React.Component {
-
   /**
    *
    * @returns {*} Clear token

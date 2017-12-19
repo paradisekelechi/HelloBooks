@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
-import * as borrowActions from '../../../actions/BorrowActions';
+import * as borrowActions from '../../../actions/Borrow';
 
 /**
  *

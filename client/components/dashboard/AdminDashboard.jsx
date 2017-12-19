@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as bookActions from '../../actions/bookActions';
-import * as userActions from '../../actions/userActions';
+import * as bookActions from '../../actions/Book';
+import * as userActions from '../../actions/User';
 
 /**
  * The component for the admin user's dashboard
@@ -28,6 +28,7 @@ class AdminDashboard extends React.Component {
     this.props.getDeletedUsers();
   }
 
+
   /**
    *
    *
@@ -42,7 +43,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content ">
                 <span className="card-title center">Total Books</span>
-                <h4 className="center counter">{this.props.books.total.count}</h4>
+                <h4 className="center counter">{this.props.allBooks.count}</h4>
               </div>
             </div>
           </div>
@@ -50,7 +51,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content ">
                 <span className="card-title center">Books Deleted</span>
-                <h4 className="center counter">{this.props.books.deleted.count}</h4>
+                <h4 className="center counter">{this.props.deletedBooks.count}</h4>
               </div>
             </div>
           </div>
@@ -58,7 +59,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content ">
                 <span className="card-title center">Books Finished</span>
-                <h4 className="center counter">{this.props.books.finished.count}</h4>
+                <h4 className="center counter">{this.props.finishedBooks.count}</h4>
               </div>
             </div>
           </div>
@@ -66,7 +67,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content">
                 <span className="card-title center">Books Available</span>
-                <h4 className="center counter">{this.props.books.available.count}</h4>
+                <h4 className="center counter">{this.props.availableBooks.count}</h4>
               </div>
             </div>
           </div>
@@ -77,7 +78,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content">
                 <span className="card-title center">Total Users</span>
-                <h4 className="center counter">{this.props.users.total.count}</h4>
+                <h4 className="center counter">{this.props.allUsers.count}</h4>
               </div>
             </div>
           </div>
@@ -85,7 +86,7 @@ class AdminDashboard extends React.Component {
             <div className="card blue white">
               <div className="card-content ">
                 <span className="card-title center">Deleted Users</span>
-                <h4 className="center counter">{this.props.users.deleted.count}</h4>
+                <h4 className="center counter">{this.props.deletedUsers.count}</h4>
               </div>
             </div>
           </div>
@@ -93,7 +94,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content">
                 <span className="card-title center">Client Users</span>
-                <h4 className="center counter">{this.props.users.client.count}</h4>
+                <h4 className="center counter">{this.props.clientUsers.count}</h4>
               </div>
             </div>
           </div>
@@ -101,7 +102,7 @@ class AdminDashboard extends React.Component {
             <div className="card white">
               <div className="card-content ">
                 <span className="card-title center">Admin Users</span>
-                <h4 className="center counter">{this.props.users.admin.count}</h4>
+                <h4 className="center counter">{this.props.adminUsers.count}</h4>
               </div>
             </div>
           </div>
@@ -143,22 +144,35 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.userListReducer,
-    books: state.bookListReducer
+    deletedBooks: state.getDeletedBooksReducer[0],
+    finishedBooks: state.getFinishedBooksReducer[0],
+    availableBooks: state.getAvailableBooksReducer[0],
+    allBooks: state.getBooksReducer[0],
+    allUsers: state.getAllUsersReducer[0],
+    adminUsers: state.getAdminUsersReducer[0],
+    clientUsers: state.getClientUsersReducer[0],
+    deletedUsers: state.getDeletedUsersReducer[0],
   };
 };
 
 AdminDashboard.propTypes = {
   getAllBooks: PropTypes.func.isRequired,
+  allBooks: PropTypes.object.isRequired,
   getBooksAvailable: PropTypes.func.isRequired,
+  availableBooks: PropTypes.object.isRequired,
   getBooksDeleted: PropTypes.func.isRequired,
+  deletedBooks: PropTypes.object.isRequired,
   getBooksFinished: PropTypes.func.isRequired,
+  finishedBooks: PropTypes.object.isRequired,
+
   getAdminUsers: PropTypes.func.isRequired,
+  adminUsers: PropTypes.object.isRequired,
   getAllUsers: PropTypes.func.isRequired,
+  allUsers: PropTypes.object.isRequired,
   getClientUsers: PropTypes.func.isRequired,
+  clientUsers: PropTypes.object.isRequired,
   getDeletedUsers: PropTypes.func.isRequired,
-  books: PropTypes.object.isRequired,
-  users: PropTypes.object.isRequired,
+  deletedUsers: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);

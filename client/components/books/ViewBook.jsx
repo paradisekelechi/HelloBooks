@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as categoryActions from '../../actions/CategoryActions';
-import { getSingleBook, editBook } from '../../actions/bookActions';
+import * as categoryActions from '../../actions/Category';
+import { getSingleBook, editBook } from '../../actions/Book';
 import notFoundImage from '../../assets/img/not-found.png';
 
 /**

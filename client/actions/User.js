@@ -10,7 +10,7 @@ import {
   authenticateFetch,
   authenticatePersist,
   authenticateClear
-} from '../utils/authenticate';
+} from '../utils/Authentication';
 
 const {
   SIGNIN_USER,

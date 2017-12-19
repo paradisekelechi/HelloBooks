@@ -1,6 +1,6 @@
 import {
   EDIT_USER_PROFILE
-} from '../utils/Constants';
+} from '../../utils/Constants';
 
 
 const initialState = [{

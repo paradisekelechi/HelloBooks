@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/userActions';
+import * as userActions from '../../actions/User';
 import background from '../../assets/img/background6.jpg';
 
 /**
@@ -158,7 +158,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    userReducer: state.user
+    signupState: state.signupReducer[0]
   };
 };
 

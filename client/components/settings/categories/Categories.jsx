@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Categories = (props) => {
   let categoryList = '';
   if ((props.list).length > 0) {
-    categoryList = (props.list).map((category, i) => {
+    categoryList = (props.list).map((category) => {
       return (
         <tr key={category.id}>
           <td>{category.name}</td>
