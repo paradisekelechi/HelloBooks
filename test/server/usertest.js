@@ -6,7 +6,7 @@ import {
   email,
   password
 } from './testdata';
-import routes from '../../tools/apiRoutes';
+import routes from '../../tools/Routes';
 
 const {
   assert

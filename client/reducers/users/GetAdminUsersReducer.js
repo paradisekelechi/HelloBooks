@@ -1,4 +1,6 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  GET_ADMIN_USERS
+} from '../../helpers/Constants';
 
 const initialState = [{
   count: 0,
@@ -15,7 +17,7 @@ const initialState = [{
  */
 const GetAdminUsersReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_ADMIN_USERS:
+  case GET_ADMIN_USERS:
     return [{
       count: action.payload.users.count,
       list: action.payload.users.rows

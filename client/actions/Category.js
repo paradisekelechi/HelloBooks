@@ -1,10 +1,8 @@
 import axios from 'axios';
-import * as categoryActions from '../utils/Constants';
-import routes from '../../tools/apiRoutes';
-
-const {
+import {
   GET_BOOK_CATEGORIES
-} = categoryActions;
+} from '../helpers/Constants';
+import routes from '../../tools/Routes';
 
 export const getCategoriesSync = payload => ({
   type: GET_BOOK_CATEGORIES,
@@ -15,7 +13,7 @@ export const getCategoriesSync = payload => ({
  * @export
  * @returns {object} dispatch object
  */
-export function getCategories() {
+export const getCategories = () => {
   return (dispatch) => {
     axios
       .get(routes.bookCategory)
@@ -25,4 +23,4 @@ export function getCategories() {
         }
       });
   };
-}
+};

@@ -1,10 +1,10 @@
 import {
   SIGNUP_USER
-} from '../../utils/Constants';
+} from '../../helpers/Constants';
 import {
   getUserType,
   getAccountType
-} from '../../utils/TypeSync';
+} from '../../helpers/TypeSync';
 
 const initialState = [{
   token: '',

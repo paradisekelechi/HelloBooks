@@ -1,4 +1,6 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  GET_BOOKS_AVAILABLE
+} from '../../helpers/Constants';
 
 const initialState = [{
   isLoading: true,
@@ -9,7 +11,7 @@ const initialState = [{
 
 const AvailableBooksReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_BOOKS_AVAILABLE:
+  case GET_BOOKS_AVAILABLE:
     return [{
       isLoading: false,
       error: '',

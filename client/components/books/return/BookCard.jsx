@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
-import * as borrowActions from '../../../actions/Borrow';
+import { returnBook } from '../../../actions/Borrow';
 
 /**
  *
@@ -122,7 +122,7 @@ class BookCard extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     returnBook: (bookId) => {
-      dispatch(borrowActions.returnBook(bookId));
+      dispatch(returnBook(bookId));
     }
   };
 };
@@ -138,7 +138,7 @@ BookCard.propTypes = {
   author: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   return: PropTypes.object.isRequired,
   returnBook: PropTypes.func.isRequired

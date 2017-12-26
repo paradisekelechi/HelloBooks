@@ -1,4 +1,6 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  GET_BOOKS_FINISHED
+} from '../../helpers/Constants';
 
 const initialState = [{
   count: 0,
@@ -7,7 +9,7 @@ const initialState = [{
 
 const GetFinishedBooksReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_BOOKS_FINISHED:
+  case GET_BOOKS_FINISHED:
     return [{
       count: action.payload.book.count,
       list: action.payload.book.rows

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import profileImage from '../../assets/img/profile.jpg';
-import { authenticateFetch } from '../../utils/Authentication';
-import { getUserType, getAccountType } from '../../utils/TypeSync';
+import { authenticateFetch } from '../../helpers/Authentication';
+import { getUserType, getAccountType } from '../../helpers/TypeSync';
 import { editUserProfileImage } from '../../actions/User';
 
 /**

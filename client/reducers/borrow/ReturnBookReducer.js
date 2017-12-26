@@ -1,4 +1,6 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  RETURN_BOOK
+} from '../../helpers/Constants';
 
 const initialState = [{
   success: false,
@@ -9,7 +11,7 @@ const initialState = [{
 
 const ReturnBookReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.RETURN_BOOK:
+  case RETURN_BOOK:
     return [{
       success: action.payload.success,
       message: action.payload.message,

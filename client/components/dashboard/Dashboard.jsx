@@ -1,6 +1,6 @@
 import React from 'react';
-import { authenticateFetch } from '../../utils/Authentication';
-import { getUserType, getAccountType } from '../../utils/TypeSync';
+import { authenticateFetch } from '../../helpers/Authentication';
+import { getUserType, getAccountType } from '../../helpers/TypeSync';
 import AdminDashboard from './AdminDashboard';
 
 
@@ -35,6 +35,15 @@ class Dashboard extends React.Component {
     state.userType = getUserType(userdata.usertype);
     state.accountType = getAccountType(userdata.accounttype);
     this.setState(state);
+  }
+
+  /**
+   *
+   * @returns {*} nothing
+   * @memberof Dashboard
+   */
+  componentDidMount() {
+    document.title = 'HelloBooks | Dashboard';
   }
 
   /**

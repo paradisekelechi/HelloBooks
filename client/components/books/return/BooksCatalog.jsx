@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as bookActions from '../../../actions/Book';
+import { getPendingBooks } from '../../../actions/Book';
 import BookIterator from './BookIterator';
 
 /**
@@ -33,7 +33,14 @@ class BooksCatalog extends React.Component {
   componentWillMount() {
     this.props.getPendingBooks();
   }
-
+  /**
+     *
+     *@returns {*} set title
+     * @memberof BookCatalog
+     */
+  componentDidMount() {
+    document.title = 'HelloBooks | Books';
+  }
   /**
    *
    * @returns {*} executes an action
@@ -87,7 +94,7 @@ class BooksCatalog extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getPendingBooks: () => {
-      dispatch(bookActions.getPendingBooks());
+      dispatch(getPendingBooks());
     }
   };
 };

@@ -1,128 +1,33 @@
 import axios from 'axios';
 import querystring from 'querystring';
-import {
-  browserHistory
-} from 'react-router';
 
-import * as userActions from '../utils/Constants';
-import routes from '../../tools/apiRoutes';
+import {
+  EDIT_USER_PROFILE,
+  GET_DELETED_USERS,
+  GET_ADMIN_USERS,
+  GET_CLIENT_USERS,
+  GET_ALL_USERS
+} from '../helpers/Constants';
+import routes from '../../tools/Routes';
 import {
   authenticateFetch,
-  authenticatePersist,
-  authenticateClear
-} from '../utils/Authentication';
-
-const {
-  SIGNIN_USER,
-  SIGNUP_USER,
-  LOGOUT_USER,
-  EDIT_USER_PROFILE
-} = userActions;
+} from '../helpers/Authentication';
 
 const {
   token,
   userdata
 } = authenticateFetch();
 
-const signinUserAsync = data => ({
-  type: SIGNIN_USER,
-  payload: data
-});
-/**
- * @export
- * @param {any} user
- * @returns {void}
- */
-export function signinUser(user) {
-  const formdata = querystring.stringify({
-    username: user.username,
-    password: user.password
-  });
-  return (dispatch) => {
-    axios.post(`${routes.signin}`, formdata)
-      .then((response) => {
-        const responseData = response.data;
-        authenticatePersist(responseData.token);
-        dispatch(signinUserAsync(responseData));
-        browserHistory.push('/books');
-        window.location.reload();
-      }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
-      });
-  };
-}
-
-
-const signupUserAsync = user => ({
-  type: SIGNUP_USER,
-  payload: user
-});
-/**
- *
- *
- * @export
- * @param {any} user
- * @returns {void}
- */
-export function signupUser(user) {
-  const formdata = querystring.stringify({
-    username: user.username,
-    password: user.password,
-    email: user.email
-  });
-  return (dispatch) => {
-    const request = axios
-      .post(`${routes.signup}`, formdata);
-
-    return request.then((response) => {
-      if (response.data.success) {
-        authenticatePersist(response.data.token);
-        dispatch(signupUserAsync(response.data));
-        browserHistory.push('/books');
-        window.location.reload();
-      }
-    }).catch((error) => {
-      const {
-        data
-      } = error.response;
-      Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
-    });
-  };
-}
-
-
-const logoutUserAsync = user => ({
-  type: LOGOUT_USER,
-  user
-});
-/**
- *
- *
- * @export
- * @param {any} user
- * @returns {Object} logout dispatch
- */
-export function logoutUser(user) {
-  return (dispatch) => {
-    authenticateClear();
-    dispatch(logoutUserAsync(user));
-    browserHistory.push('/signin');
-    window.location.reload();
-  };
-}
 
 const getAllUsersSync = payload => ({
-  type: userActions.GET_ALL_USERS,
+  type: GET_ALL_USERS,
   payload
 });
 /**
  * @export
  * @returns {object} dispatch object
  */
-export function getAllUsers() {
+export const getAllUsers = () => {
   const config = {
     headers: {
       'user-token': token
@@ -142,18 +47,18 @@ export function getAllUsers() {
         Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
-}
+};
 
 
 const getAdminUsersSync = payload => ({
-  type: userActions.GET_ADMIN_USERS,
+  type: GET_ADMIN_USERS,
   payload
 });
 /**
  * @export
  * @returns {object} dispatch object
  */
-export function getAdminUsers() {
+export const getAdminUsers = () => {
   const config = {
     headers: {
       'user-token': token
@@ -173,18 +78,18 @@ export function getAdminUsers() {
         Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
-}
+};
 
 
 const getClientUsersSync = payload => ({
-  type: userActions.GET_CLIENT_USERS,
+  type: GET_CLIENT_USERS,
   payload
 });
 /**
  * @export
  * @returns {object} dispatch object
  */
-export function getClientUsers() {
+export const getClientUsers = () => {
   const config = {
     headers: {
       'user-token': token
@@ -204,18 +109,18 @@ export function getClientUsers() {
         Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
-}
+};
 
 
 const getDeletedUsersSync = payload => ({
-  type: userActions.GET_DELETED_USERS,
+  type: GET_DELETED_USERS,
   payload
 });
 /**
  * @export
  * @returns {object} dispatch object
  */
-export function getDeletedUsers() {
+export const getDeletedUsers = () => {
   const config = {
     headers: {
       'user-token': token
@@ -235,7 +140,7 @@ export function getDeletedUsers() {
         Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
-}
+};
 
 const editUserProfileImageSync = (data) => {
   return {
@@ -251,7 +156,7 @@ const editUserProfileImageSync = (data) => {
  * @param {any} imageUrl
  * @returns {Object} dispatch object
  */
-export function editUserProfileImage(imageUrl) {
+export const editUserProfileImage = (imageUrl) => {
   const config = {
     headers: {
       'user-token': token
@@ -274,4 +179,4 @@ export function editUserProfileImage(imageUrl) {
         Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
       });
   };
-}
+};

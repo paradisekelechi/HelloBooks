@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as bookActions from '../../actions/Book';
-import * as userActions from '../../actions/User';
+import { getBooks, getBooksAvailable, getBooksDeleted, getBooksFinished } from '../../actions/Book';
+import { getAdminUsers, getAllUsers, getClientUsers, getDeletedUsers } from '../../actions/User';
 
 /**
  * The component for the admin user's dashboard
@@ -116,28 +116,28 @@ class AdminDashboard extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllBooks: () => {
-      dispatch(bookActions.getBooks());
+      dispatch(getBooks());
     },
     getBooksFinished: () => {
-      dispatch(bookActions.getBooksFinished());
+      dispatch(getBooksFinished());
     },
     getBooksDeleted: () => {
-      dispatch(bookActions.getBooksDeleted());
+      dispatch(getBooksDeleted());
     },
     getBooksAvailable: () => {
-      dispatch(bookActions.getBooksAvailable());
+      dispatch(getBooksAvailable());
     },
     getAllUsers: () => {
-      dispatch(userActions.getAllUsers());
+      dispatch(getAllUsers());
     },
     getAdminUsers: () => {
-      dispatch(userActions.getAdminUsers());
+      dispatch(getAdminUsers());
     },
     getClientUsers: () => {
-      dispatch(userActions.getClientUsers());
+      dispatch(getClientUsers());
     },
     getDeletedUsers: () => {
-      dispatch(userActions.getDeletedUsers());
+      dispatch(getDeletedUsers());
     }
   };
 };

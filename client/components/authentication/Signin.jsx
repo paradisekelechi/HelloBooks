@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import background from '../../assets/img/background6.jpg';
-import * as userActions from '../../actions/User';
+import { signinUser } from '../../actions/Authentication';
 
 /**
  *
@@ -37,6 +37,7 @@ class Signin extends React.Component {
  * @memberof Signin
  */
   componentDidMount() {
+    document.title = 'HelloBooks | Signin';
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
     AOS.init();
@@ -98,23 +99,23 @@ class Signin extends React.Component {
               <form onSubmit={this.onClickSubmit} >
                 <div className="input-field col s12">
                   <input
-                    id="last_name"
+                    id="username"
                     name="username"
                     onChange={this.onChange}
                     type="text"
                     className="validate"
                   />
-                  <label htmlFor="last_name">Username</label>
+                  <label htmlFor="username">Username</label>
                 </div>
                 <div className="input-field col s12 ">
                   <input
-                    id="last_name"
+                    id="password"
                     name="password"
                     onChange={this.onChange}
                     type="password"
                     className="validate"
                   />
-                  <label htmlFor="last_name">Password</label>
+                  <label htmlFor="password">Password</label>
                 </div>
                 <div className="col s12">
                   <button
@@ -126,7 +127,7 @@ class Signin extends React.Component {
               </form>
               <div className="col s12">
                 <br />
-                <span className>
+                <span>
                   <p>Not yet a User?</p>
                 </span>
                 <br />
@@ -154,7 +155,7 @@ class Signin extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     signin: userData =>
-      dispatch(userActions.signinUser(userData)),
+      dispatch(signinUser(userData)),
   };
 };
 

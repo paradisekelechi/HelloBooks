@@ -1,19 +1,17 @@
 import axios from 'axios';
-import * as actionConstants from '../utils/Constants';
-import routes from '../../tools/apiRoutes';
+import {
+  BORROW_BOOK,
+  RETURN_BOOK
+} from '../helpers/Constants';
+import routes from '../../tools/Routes';
 import {
   authenticateFetch
-} from '../utils/Authentication';
+} from '../helpers/Authentication';
 
 const {
   token,
   userdata
 } = authenticateFetch();
-
-const {
-  BORROW_BOOK,
-  RETURN_BOOK
-} = actionConstants;
 
 export const borrowBookSync = payload => ({
   type: BORROW_BOOK,
@@ -27,7 +25,7 @@ export const borrowBookSync = payload => ({
  * @param {any} bookId
  * @returns {object} dispatch object
  */
-export function borrowBook(bookId) {
+export const borrowBook = (bookId) => {
   const config = {
     headers: {
       'user-token': token
@@ -49,7 +47,7 @@ export function borrowBook(bookId) {
         dispatch(borrowBookSync(error.data));
       });
   };
-}
+};
 
 export const returnBookSync = payload => ({
   type: RETURN_BOOK,
@@ -63,7 +61,7 @@ export const returnBookSync = payload => ({
  * @param {string} bookId
  * @returns {object} dispatch object
  */
-export function returnBook(bookId) {
+export const returnBook = (bookId) => {
   const config = {
     headers: {
       'user-token': token
@@ -85,4 +83,4 @@ export function returnBook(bookId) {
         dispatch(returnBookSync(error.data));
       });
   };
-}
+};

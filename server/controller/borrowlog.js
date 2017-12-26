@@ -1,7 +1,7 @@
 import validator from 'validator';
 
 import models from '../models';
-import emailController from './email';
+import emailController from './Email';
 
 const {
   notification
@@ -125,24 +125,24 @@ export default {
                        * Update book quantity
                        */
                       Book
-                        .update({
-                          quantity: models.sequelize.literal('quantity - 1')
-                        }, {
-                          where: {
-                            id: bookId
-                          }
-                        })
-                        .then(
-                          res.status(200).send({
-                            success: true,
-                            message: 'Book borrowed successfully'
-                          }),
-                          notification('Book borrowed successfully', userEmail, 'Hello Books')
-                        )
-                        .catch(() => res.status(400).send({
-                          success: false,
-                          message: 'Oops! Book not borrowed successfully! Contact Support'
-                        })))
+                      .update({
+                        quantity: models.sequelize.literal('quantity - 1')
+                      }, {
+                        where: {
+                          id: bookId
+                        }
+                      })
+                      .then(
+                        res.status(200).send({
+                          success: true,
+                          message: 'Book borrowed successfully'
+                        }),
+                        notification('Book borrowed successfully', userEmail, 'Hello Books')
+                      )
+                      .catch(() => res.status(400).send({
+                        success: false,
+                        message: 'Oops! Book not borrowed successfully! Contact Support'
+                      })))
                     .catch(() => res.status(400).send({
                       success: false,
                       message: 'Oops! Book not borrowed successfully!'
@@ -253,41 +253,41 @@ export default {
                      * Update book quantity accordingly
                      */
                     Book
-                      .update({
-                        quantity: models.sequelize.literal('quantity + 1')
-                      }, {
-                        where: {
-                          id: bookId
-                        }
-                      })
-                      .then(() =>
+                    .update({
+                      quantity: models.sequelize.literal('quantity + 1')
+                    }, {
+                      where: {
+                        id: bookId
+                      }
+                    })
+                    .then(() =>
 
                       /**
                        * Update user use count for user account type profiling
                        */
-                        User
-                          .update({
-                            use_count: models.sequelize.literal('use_count + 1')
-                          }, {
-                            where: {
-                              id: userId
-                            }
-                          })
-                          .then(() => {
-                            res.status(200).send({
-                              success: true,
-                              message: 'Book returned successfully'
-                            });
-                            notification('Book returned successfully', userEmail, 'Hello Books');
-                          })
-                          .catch((error) => {
-                            res.status(400).send(error);
-                          }))
-                      .catch(() =>
-                        res.status(400).send({
-                          success: false,
-                          message: 'Oops! Book not returned successfully! Contact Support'
-                        })))
+                      User
+                      .update({
+                        use_count: models.sequelize.literal('use_count + 1')
+                      }, {
+                        where: {
+                          id: userId
+                        }
+                      })
+                      .then(() => {
+                        res.status(200).send({
+                          success: true,
+                          message: 'Book returned successfully'
+                        });
+                        notification('Book returned successfully', userEmail, 'Hello Books');
+                      })
+                      .catch((error) => {
+                        res.status(400).send(error);
+                      }))
+                    .catch(() =>
+                      res.status(400).send({
+                        success: false,
+                        message: 'Oops! Book not returned successfully! Contact Support'
+                      })))
                   .catch(() => res.status(400).send({
                     success: false,
                     message: 'Oops! Book not borrowed successfully! Contact Support'
@@ -361,11 +361,11 @@ export default {
       return BorrowLog
         .findAll({
           include: [{
-            model: models.User
-          },
-          {
-            model: models.Book
-          }
+              model: models.User
+            },
+            {
+              model: models.Book
+            }
           ],
           where: {
             user_id: userId,
@@ -392,11 +392,11 @@ export default {
     return BorrowLog
       .findAll({
         include: [{
-          model: models.User
-        },
-        {
-          model: models.Book
-        }
+            model: models.User
+          },
+          {
+            model: models.Book
+          }
         ],
         where: {
           returned: isReturned,

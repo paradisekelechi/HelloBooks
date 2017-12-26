@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/User';
-import * as categoryActions from '../../actions/Category';
+import { getAllUsers } from '../../actions/User';
+import { getCategories } from '../../actions/Category';
 import Users from './users/Users';
 import Categories from './categories/Categories';
 
@@ -38,13 +38,22 @@ class Settings extends React.Component {
 
   /**
    *
+   *@returns {*} Add page title
+   * @memberof Settings
+   */
+  componentDidMount() {
+    document.title = 'HelloBooks | Settings';
+  }
+
+  /**
+   *
    *@returns {Object} set state
    * @param {any} nextProps
    * @memberof Settings
    */
   componentWillReceiveProps(nextProps) {
     this.setState({
-      usersList: nextProps.userList.total.list,
+      usersList: nextProps.userList.list,
       categories: nextProps.categories.list
     });
   }
@@ -92,24 +101,24 @@ class Settings extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllUsers: () => {
-      dispatch(userActions.getAllUsers());
+      dispatch(getAllUsers());
     },
     getCategories: () => {
-      dispatch(categoryActions.getCategories());
+      dispatch(getCategories());
     },
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    userList: state.userListReducer,
+    userList: state.getAllUsersReducer[0],
     categories: state.getCategoriesReducer[0],
   };
 };
 
 Settings.propTypes = {
-  userList: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired,
+  userList: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
   getAllUsers: PropTypes.func.isRequired,
   getCategories: PropTypes.func.isRequired
 };

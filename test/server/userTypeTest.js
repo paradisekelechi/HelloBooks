@@ -1,7 +1,7 @@
 import chai from 'chai';
 import supertest from 'supertest';
 import app from '../../app';
-import routes from '../../tools/apiRoutes';
+import routes from '../../tools/Routes';
 import {
   userTypeName,
   userTypeDescription,

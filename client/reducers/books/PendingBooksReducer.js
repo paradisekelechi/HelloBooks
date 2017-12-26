@@ -1,4 +1,6 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  GET_PENDING_BOOKS
+} from '../../helpers/Constants';
 
 const initialState = [{
   list: []
@@ -6,7 +8,7 @@ const initialState = [{
 
 const PendingBooksReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_PENDING_BOOKS:
+  case GET_PENDING_BOOKS:
     return [{
       list: action.payload.booklog
     }, ...state];

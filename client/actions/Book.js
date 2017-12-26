@@ -10,11 +10,11 @@ import {
   GET_BOOKS_FINISHED,
   GET_PENDING_BOOKS,
   GET_SINGLE_BOOK
-} from '../utils/Constants';
+} from '../helpers/Constants';
 import {
   authenticateFetch
-} from '../utils/Authentication';
-import routes from '../../tools/apiRoutes';
+} from '../helpers/Authentication';
+import routes from '../../tools/Routes';
 
 const {
   token,
@@ -243,7 +243,6 @@ export function getBooksAvailable() {
     axios
       .get(getBooksUrl)
       .then((response) => {
-        //console.log(response);
         if (response.data.success) {
           dispatch(getBooksAvailableSync(response.data));
         }
