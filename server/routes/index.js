@@ -11,12 +11,14 @@ const {
   borrowlog: borrowLogController,
   usertype: userTypeController,
   accounttype: accountTypeController,
-  bookcategory: bookCategoryController
+  bookcategory: bookCategoryController,
+  authentication: authenticationController
 } = controllers;
 
 const routes = (app) => {
-  app.post('/api/v1/users/signup', userController.signup);
-  app.post('/api/v1/users/signin', userController.signin);
+  app.post('/api/v1/users/signup', authenticationController.signup);
+  app.post('/api/v1/users/signin', authenticationController.signin);
+
   app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
   app.get('/api/v1/books/', bookController.getBooks);
   app.get('/api/v1/book', checkLogin, checkUser, bookController.getSingleBook);
@@ -26,8 +28,8 @@ const routes = (app) => {
   app.post('/api/v1/users/:userId/books/', checkLogin, borrowLogController.borrowBook);
   app.get('/api/v1/users/:userId/books/', checkLogin, borrowLogController.getBorrowedBooks);
   app.put('/api/v1/users/:userId/books/', checkLogin, borrowLogController.returnBook);
-  app.get('/api/v1/users', checkLogin, checkUser, userController.getUsers);
 
+  app.get('/api/v1/users', checkLogin, checkUser, userController.getUsers);
   app.put('/api/v1/users/:userId/', checkLogin, userController.editUser);
   app.put('/api/v1/users/delete/:userId/', checkLogin, checkUser, userController.deleteUser);
 

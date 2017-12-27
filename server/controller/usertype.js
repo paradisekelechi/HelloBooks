@@ -1,5 +1,3 @@
-import validator from 'validator';
-
 import models from '../models';
 
 const {
