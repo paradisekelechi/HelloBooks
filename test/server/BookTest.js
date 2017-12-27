@@ -74,6 +74,10 @@ describe('Add book Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Book successfully added');
+        assert.equal(res.body.book.name, name);
+        assert.equal(res.body.book.author, author);
+        assert.equal(res.body.book.quantity, quantity);
+        assert.equal(res.body.book.category_id, categoryId);
         done();
       });
   });

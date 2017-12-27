@@ -85,12 +85,17 @@ export default {
         description,
         deleted: false,
       })
-      .then(() => {
+      .then((accounttype) => {
         res.status(200).send({
           message: 'Accounttype added successfully',
-          success: true
+          success: true,
+          accounttype
         });
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send({
+        success: false,
+        message: 'Account Type not  added',
+        error
+      }));
   },
 };

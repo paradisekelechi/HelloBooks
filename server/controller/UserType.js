@@ -89,10 +89,11 @@ export default {
         description,
         deleted: false,
       })
-      .then(() => {
-        res.send({
+      .then((usertype) => {
+        res.status(200).send({
           message: 'Usertype added successfully',
-          success: true
+          success: true,
+          usertype
         });
       })
       .catch(error => res.status(400).send(error));

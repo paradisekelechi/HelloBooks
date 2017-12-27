@@ -34,6 +34,9 @@ describe('Add Account type', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Accounttype added successfully');
+        assert.equal(res.body.accounttype.name, accountTypeName);
+        assert.equal(res.body.accounttype.description, accountTypeDescription);
+        assert.equal(res.body.accounttype.level, accountTypeLevel);
         done();
       });
   });

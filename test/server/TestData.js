@@ -24,8 +24,8 @@ export const bookId = 9;
 export const userId = 9;
 export const deleteUserId = 2;
 
-export const bookIdFinished = 1;
-export const bookIdUnborrowed = 80;
+export const bookIdFinished = 22;
+export const bookIdUnborrowed = 22;
 
 // Test data for book category
 export const categoryName = randomText;

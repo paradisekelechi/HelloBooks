@@ -34,6 +34,9 @@ describe('Add Usertype', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Usertype added successfully');
+        assert.equal(res.body.usertype.name, userTypeName);
+        assert.equal(res.body.usertype.description, userTypeDescription);
+        assert.equal(res.body.usertype.level, userTypeLevel);
         done();
       });
   });

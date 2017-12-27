@@ -77,10 +77,11 @@ export default {
         description,
         deleted: false,
       })
-      .then(() => {
+      .then((category) => {
         res.status(200).send({
           message: 'Book category added',
-          success: true
+          success: true,
+          category
         });
       })
       .catch((error) => {

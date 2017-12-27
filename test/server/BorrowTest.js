@@ -4,7 +4,8 @@ import app from '../../app';
 import routes from '../../tools/Routes';
 import {
   bookId,
-  userId
+  userId,
+  bookIdFinished,
 } from './TestData';
 
 const clientToken = process.env.USERTOKEN;
@@ -34,7 +35,41 @@ describe('Borrow book', () => {
         done();
       });
   });
-  it('should not be able to borrow a book', (done) => {
+  it('should not be able to borrow a book that has already been borrowed by the user', (done) => {
+    request
+      .post(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .send({
+        bookId
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 200);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Oops! Book has already been borrowed by you!');
+        done();
+      });
+  });
+  it('should not be able to borrow a book that has finished', (done) => {
+    request
+      .post(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .send({
+        bookId: bookIdFinished
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 200);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Oops! This book is no longer available for borrow');
+        done();
+      });
+  });
+  it('should not be able to borrow a book with missing bookId', (done) => {
     request
       .post(`${users}/${userId}/books`)
       .set('user-token', clientToken)
@@ -83,23 +118,20 @@ describe('Return book', () => {
         done();
       });
   });
-  it('should not be able to return a book', (done) => {
+  it('should not be able to return a book that was not borrowed by the user', (done) => {
     request
       .put(`${users}/${userId}/books`)
       .set('user-token', clientToken)
       .send({
-        bookId
+        bookId: 1000
       })
       .end((err, res) => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
-        assert.equal(res.status, 200);
+        assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
-        assert.equal(
-          res.body.message,
-          'Oops! You are trying to return a  book you did not borrow!'
-        );
+        assert.equal(res.body.message, 'Oops! You are trying to return a  book you did not borrow!');
         done();
       });
   });

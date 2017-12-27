@@ -50,7 +50,7 @@ export default {
     /**
      * Check if userid
      */
-    if (userId == null || userId === '' || userId === undefined) {
+    if (!userId) {
       res.status(400).send({
         success: false,
         message: 'Oops! Userid is required!'
@@ -60,7 +60,7 @@ export default {
     /**
      * Check if the bookId is null and insist on it
      */
-    if (bookId == null || bookId === '' || bookId === undefined) {
+    if (!bookId) {
       res.status(400).send({
         success: false,
         message: 'Oops! BookId is required!'
@@ -218,7 +218,7 @@ export default {
       })
       .then((booklogger) => {
         if (booklogger.length === 0) {
-          res.status(200).send({
+          res.status(400).send({
             success: false,
             message: 'Oops! You are trying to return a  book you did not borrow!'
           });

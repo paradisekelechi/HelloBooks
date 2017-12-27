@@ -43,12 +43,14 @@ describe('Signup Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User Account Creation Successful');
+        assert.equal(res.body.username, username);
+        assert.equal(res.body.email, email);
         userToken = res.body.token;
         done();
       });
   });
 
-  it('should not be able to signup', (done) => {
+  it('should not be able to signup: missing username', (done) => {
     request
       .post(signup)
       .send({
@@ -66,7 +68,7 @@ describe('Signup Route', () => {
       });
   });
 
-  it('should not be able to signup', (done) => {
+  it('should not be able to signup: missing password', (done) => {
     request
       .post(signup)
       .send({
@@ -84,7 +86,7 @@ describe('Signup Route', () => {
       });
   });
 
-  it('should not be able to signup', (done) => {
+  it('should not be able to signup: missing email', (done) => {
     request
       .post(signup)
       .send({
@@ -119,12 +121,13 @@ describe('Signin Route', () => {
         assert.exists(res.body.accounttype);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User successfully signed in ');
+        assert.equal(res.body.username, username);
         assert.equal(res.status, 200);
         done();
       });
   });
 
-  it('should not be able to signin', (done) => {
+  it('should not be able to signin: missing username', (done) => {
     request
       .post(signin)
       .send({
@@ -141,7 +144,7 @@ describe('Signin Route', () => {
       });
   });
 
-  it('should not be able to signin', (done) => {
+  it('should not be able to signin: missing password', (done) => {
     request
       .post(signin)
       .send({
