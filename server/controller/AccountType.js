@@ -70,7 +70,6 @@ export default {
       });
       return;
     }
-
     if (Number.isNaN(Number(level))) {
       res.status(400).send({
         success: false,

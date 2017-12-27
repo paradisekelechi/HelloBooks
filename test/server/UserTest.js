@@ -5,7 +5,7 @@ import {
   username,
   email,
   password
-} from './testdata';
+} from './TestData';
 import routes from '../../tools/Routes';
 
 const {

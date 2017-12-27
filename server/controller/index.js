@@ -1,6 +1,6 @@
 import user from './User';
 import book from './Book';
-import borrowlog from './Borrowlog';
+import borrowlog from './BorrowLog';
 import bookcategory from './Category';
 import usertype from './UserType';
 import accounttype from './AccountType';

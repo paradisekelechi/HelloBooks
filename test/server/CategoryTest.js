@@ -6,7 +6,7 @@ import {
   categoryName,
   categoryDescription,
   abbreviation
-} from './testdata';
+} from './TestData';
 
 const adminToken = process.env.ADMINTOKEN;
 const {

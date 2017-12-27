@@ -5,7 +5,7 @@ import routes from '../../tools/Routes';
 import {
   bookId,
   userId
-} from './testdata';
+} from './TestData';
 
 const clientToken = process.env.USERTOKEN;
 const {

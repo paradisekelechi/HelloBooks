@@ -6,7 +6,7 @@ import {
   accountTypeName,
   accountTypeDescription,
   accountTypeLevel
-} from './testdata';
+} from './TestData';
 
 const adminToken = process.env.ADMINTOKEN;
 const {

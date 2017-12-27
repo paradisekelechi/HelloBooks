@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import validator from 'validator';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -9,13 +8,12 @@ const {
   User
 } = models;
 
-const config = dotenv.config();
 const empty = '';
 
 /**
  * Secret for authentication -- to be added to the environment as a variable
  */
-const secret = config.parsed.SECRET;
+const secret = process.env.SECRET;
 const salt = bcrypt.genSaltSync(10);
 
 export default {

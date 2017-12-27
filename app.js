@@ -7,7 +7,7 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 
 import routes from './server/routes';
-import logger from './tools/logger';
+import logger from './tools/Logger';
 
 dotenv.config();
 

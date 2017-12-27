@@ -1,6 +1,6 @@
 import controllers from '../controller';
-import userHelper from '../helper/checkuser';
-import loginHelper from '../helper/checklogin';
+import userHelper from '../helper/CheckUser';
+import loginHelper from '../helper/CheckLogin';
 
 const checkUser = userHelper;
 const checkLogin = loginHelper;

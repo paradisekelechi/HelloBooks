@@ -9,7 +9,7 @@ import {
   categoryId,
   image,
   quantity
-} from './testdata';
+} from './TestData';
 
 const {
   signin,
