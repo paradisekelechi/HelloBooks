@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '8'
 script:
-- npm run test
+- travis_wait 30 npm run test
 after_success:
-- travis_wait CODECLIMATE_REPO_TOKEN=$CODECLIMATE_TOKEN codeclimate-test-reporter < coverage/lcov.info
-- travis_wait npm run coverage
+- CODECLIMATE_REPO_TOKEN=$CODECLIMATE_TOKEN codeclimate-test-reporter < coverage/lcov.info
+- npm run coverage

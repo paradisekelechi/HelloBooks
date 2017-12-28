@@ -35,6 +35,54 @@ describe('Borrow book', () => {
         done();
       });
   });
+  it('should not be able to borrow a book that this user has already borrowed', (done) => {
+    request
+      .post(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .send({
+        bookId
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'You have already borrowed this book');
+        done();
+      });
+  });
+  it('should not be able to borrow a book that does not exist', (done) => {
+    request
+      .post(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .send({
+        bookId: 10000
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 404);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Book does not exist');
+        done();
+      });
+  });
+  it('should not be able to borrow a book: missing bookId', (done) => {
+    request
+      .post(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Oops! BookId is required!');
+        done();
+      });
+  });
   it('should not be able to borrow a book that has already been borrowed by the user', (done) => {
     request
       .post(`${users}/${userId}/books`)
@@ -46,9 +94,9 @@ describe('Borrow book', () => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
-        assert.equal(res.status, 200);
+        assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
-        assert.equal(res.body.message, 'Oops! Book has already been borrowed by you!');
+        assert.equal(res.body.message, 'You have already borrowed this book');
         done();
       });
   });
@@ -63,9 +111,9 @@ describe('Borrow book', () => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
-        assert.equal(res.status, 200);
+        assert.equal(res.status, 404);
         assert.equal(res.body.success, false);
-        assert.equal(res.body.message, 'Oops! This book is no longer available for borrow');
+        assert.equal(res.body.message, 'Book is no longer available');
         done();
       });
   });
@@ -118,7 +166,38 @@ describe('Return book', () => {
         done();
       });
   });
-  it('should not be able to return a book that was not borrowed by the user', (done) => {
+  it('should not be able to return a book that has already been returned', (done) => {
+    request
+      .put(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .send({
+        bookId
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Oops! You have already returned this book!');
+        done();
+      });
+  });
+  it('should  not be able to return a book: missing bookId', (done) => {
+    request
+      .put(`${users}/${userId}/books`)
+      .set('user-token', clientToken)
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'BookId is required!');
+        done();
+      });
+  });
+  it('should not be able to return a book that does not exist', (done) => {
     request
       .put(`${users}/${userId}/books`)
       .set('user-token', clientToken)
@@ -129,9 +208,9 @@ describe('Return book', () => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
-        assert.equal(res.status, 400);
+        assert.equal(res.status, 404);
         assert.equal(res.body.success, false);
-        assert.equal(res.body.message, 'Oops! You are trying to return a  book you did not borrow!');
+        assert.equal(res.body.message, 'Book does not exist');
         done();
       });
   });

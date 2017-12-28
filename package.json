@@ -8,10 +8,8 @@
     "start:webpack-dev": "webpack-dev-server",
     "start:server": "babel-node  app.js",
     "test": "NODE_ENV=test nyc --reporter=text --reporter=html --reporter=lcov mocha test/server --timeout 150000 --compilers js:babel-register",
-    "copy:assets": "cp -r ./client/assets ./dist/. && cp ./client/index.html ./dist/index.html",
+    "test:client": "mocha --reporter spec test/client",
     "lint": "node_modules/.bin/esw webpack.config.* client tools server",
-    "lint:watch": "npm run lint -- --watch",
-    "test:watch": "npm run test -- --watch",
     "seed:db": "NODE_ENV=test babel-node server/scripts/initialize.js",
     "coverage": "nyc report --reporter=text --reporter=lcov --reporter=html | coveralls"
   },
@@ -107,8 +105,7 @@
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0",
-    "webpack-merge": "^4.1.1",
-    "winston": "^3.0.0-rc1"
+    "webpack-merge": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -162,7 +159,8 @@
     "sass-loader": "^6.0.6",
     "strip-loader": "^0.1.2",
     "style-loader": "0.13.1",
-    "url-loader": "0.5.7"
+    "url-loader": "0.5.7",
+    "winston": "^3.0.0-rc1"
   },
   "repository": {
     "type": "git",

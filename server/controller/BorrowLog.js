@@ -76,95 +76,68 @@ export default {
         }
       })
       .then((book) => {
-        if (book) {
-          if (book.quantity === 0) {
-            res.status(200).send({
-              success: false,
-              message: 'Oops! This book is no longer available for borrow'
-            });
-          } else {
-            /**
-             * Check if the user had already borrowed that book
-             */
-            return BorrowLog
-              .findAll({
-                include: [{
-                  model: models.User
-                }, {
-                  model: models.Book
-                }],
-                where: {
-                  returned: false,
-                  user_id: userId,
-                  book_id: bookId
-                },
-
-              })
-              .then((borrowlog) => {
-                if (borrowlog.length !== 0) {
-                  res.status(200).send({
-                    message: 'Oops! Book has already been borrowed by you!',
-                    success: false
-                  });
-                } else {
-                  /**
-                   * Borrow book by user
-                   */
-                  return BorrowLog
-                    .create({
-                      borrow_date: borrowDate,
-                      return_date: returnDate,
-                      returned: false,
-                      deleted: false,
-                      user_id: userId,
-                      book_id: bookId,
-                    })
-                    .then(() =>
-
-                      /**
-                       * Update book quantity
-                       */
-                      Book
-                        .update({
-                          quantity: models.sequelize.literal('quantity - 1')
-                        }, {
-                          where: {
-                            id: bookId
-                          }
-                        })
-                        .then(
-                          res.status(200).send({
-                            success: true,
-                            message: 'Book borrowed successfully'
-                          }),
-                          notification('Book borrowed successfully', userEmail, 'Hello Books')
-                        )
-                        .catch(() => res.status(400).send({
-                          success: false,
-                          message: 'Oops! Book not borrowed successfully! Contact Support'
-                        })))
-                    .catch(() => res.status(400).send({
-                      success: false,
-                      message: 'Oops! Book not borrowed successfully!'
-                    }));
-                }
-              })
-              .catch(() => res.status(400).send({
-                success: false,
-                message: 'Oops! Book not available!'
-              }));
-          }
-        } else {
-          res.status(400).send({
+        if (!book) {
+          res.status(404).send({
             success: false,
-            message: 'Oops! Book is not available in the library'
+            message: 'Book does not exist'
           });
+        } else if (book.quantity === 0) {
+          res.status(404).send({
+            success: false,
+            message: 'Book is no longer available'
+          });
+        } else {
+          return BorrowLog
+            .findAll({
+              where: {
+                returned: false,
+                user_id: userId,
+                book_id: bookId
+              },
+            })
+            .then((log) => {
+              if (log.length > 0 && !log[0].returned) {
+                res.status(400).send({
+                  success: false,
+                  message: 'You have already borrowed this book'
+                });
+              } else {
+                /**
+                 * Borrow book by user
+                 */
+                return BorrowLog
+                  .create({
+                    borrow_date: borrowDate,
+                    return_date: returnDate,
+                    returned: false,
+                    deleted: false,
+                    user_id: userId,
+                    book_id: bookId,
+                  })
+                  .then(borrowDetails =>
+                    /**
+                     * Update book quantity
+                     */
+                    Book
+                      .update({
+                        quantity: models.sequelize.literal('quantity - 1')
+                      }, {
+                        where: {
+                          id: bookId
+                        }
+                      })
+                      .then(
+                        res.status(200).send({
+                          success: true,
+                          message: 'Book borrowed successfully',
+                          borrowDetails
+                        }),
+                        notification('Book borrowed successfully', userEmail, 'Hello Books')
+                      ));
+              }
+            });
         }
-      })
-      .catch(() => res.status(400).send({
-        success: false,
-        message: 'Oops! Book not available!'
-      }));
+      });
   },
 
 
@@ -188,7 +161,7 @@ export default {
       email: userEmail
     } = req;
 
-    if (userId == null || userId === 0 || userId === undefined) {
+    if (!userId) {
       res.status(400).send({
         success: false,
         message: 'Userid is required!'
@@ -197,7 +170,7 @@ export default {
     }
 
 
-    if (bookId == null || bookId === '' || bookId === undefined) {
+    if (!bookId) {
       res.status(400).send({
         success: false,
         message: 'BookId is required!'
@@ -205,33 +178,37 @@ export default {
       return;
     }
 
-    /**
-     * Check if a user borrowed a book he/she is trying to return
-     */
-    return BorrowLog
-      .findAll({
+    return Book
+      .find({
         where: {
-          user_id: userId,
-          book_id: bookId,
-          returned: false,
+          id: bookId
         }
       })
-      .then((booklogger) => {
-        if (booklogger.length === 0) {
-          res.status(400).send({
+      .then((book) => {
+        if (!book) {
+          res.status(404).send({
             success: false,
-            message: 'Oops! You are trying to return a  book you did not borrow!'
+            message: 'Book does not exist'
           });
         } else {
           return BorrowLog
             .findAll({
               where: {
                 user_id: userId,
-                book_id: bookId,
-                returned: false,
+                book_id: bookId
               },
-            }).then((borrowhistory) => {
-              if (borrowhistory.length !== 0) {
+              order: [
+                ['borrow_date', 'DESC'],
+              ]
+            })
+            .then((borrowLogs) => {
+              const lastTransaction = borrowLogs[0];
+              if (lastTransaction.returned) {
+                res.status(400).send({
+                  success: false,
+                  message: 'Oops! You have already returned this book!',
+                });
+              } else {
                 /**
                  * Return Borrowed book
                  */
@@ -247,8 +224,7 @@ export default {
                       returned: false
                     }
                   })
-                  .then(() =>
-
+                  .then((returnLog) => {
                     /**
                      * Update book quantity accordingly
                      */
@@ -260,11 +236,10 @@ export default {
                           id: bookId
                         }
                       })
-                      .then(() =>
-
-                      /**
-                       * Update user use count for user account type profiling
-                       */
+                      .then((bookUpdate) => {
+                        /**
+                         * Update user use count for user account type profiling
+                         */
                         User
                           .update({
                             use_count: models.sequelize.literal('use_count + 1')
@@ -273,63 +248,25 @@ export default {
                               id: userId
                             }
                           })
-                          .then(() => {
+                          .then((userUpdate) => {
                             res.status(200).send({
                               success: true,
-                              message: 'Book returned successfully'
+                              message: 'Book returned successfully',
+                              returnLog,
+                              bookUpdate,
+                              userUpdate
                             });
-                            notification('Book returned successfully', userEmail, 'Hello Books');
-                          })
-                          .catch((error) => {
-                            res.status(400).send(error);
-                          }))
-                      .catch(() =>
-                        res.status(400).send({
-                          success: false,
-                          message: 'Oops! Book not returned successfully! Contact Support'
-                        })))
-                  .catch(() => res.status(400).send({
-                    success: false,
-                    message: 'Oops! Book not borrowed successfully! Contact Support'
-                  }));
+                            notification(
+                              'Book returned successfully', userEmail,
+                              'Hello Books'
+                            );
+                          });
+                      });
+                  });
               }
-              /**
-               * Check if user had borrowed the book and had already returned it
-               */
-              return BorrowLog
-                .findAll({
-                  where: {
-                    user_id: userId,
-                    book_id: bookId,
-                    returned: true,
-                  },
-                })
-                .then((booklogobj) => {
-                  if (booklogobj.length !== 0) {
-                    res.status(400).send({
-                      success: false,
-                      message: 'Oops! You have already returned this book!',
-                      booklogobj
-                    });
-                  } else {
-                    res.status(400).send({
-                      success: false,
-                      message: 'You have borrowed this book!',
-                      booklogobj
-                    });
-                  }
-                })
-                .catch(() => res.status(400).send({
-                  success: false,
-                  message: 'Oops! Borrow log data unavailable! Contact Support'
-                }));
             });
         }
-      })
-      .catch(() => res.status(400).send({
-        success: false,
-        message: 'Oops! Borrow log data unavailable! Contact Support'
-      }));
+      });
   },
 
   /**
