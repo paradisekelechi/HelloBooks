@@ -30,7 +30,7 @@ const request = supertest(app);
 const username = process.env.ADMIN_USERNAME;
 const password = process.env.ADMIN_PASSWORD;
 
-let adminToken;
+const adminToken = process.env.ADMINTOKEN;
 
 describe('Add book Route', () => {
   it('should be able to signin', (done) => {
@@ -49,9 +49,8 @@ describe('Add book Route', () => {
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User successfully signed in ');
         assert.equal(res.status, 200);
-        adminToken = res.body.token;
-        done();
       });
+    done();
   });
 
   it('should be able to add a book', (done) => {
@@ -78,8 +77,8 @@ describe('Add book Route', () => {
         assert.equal(res.body.book.author, author);
         assert.equal(res.body.book.quantity, quantity);
         assert.equal(res.body.book.category_id, categoryId);
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book', (done) => {
@@ -100,8 +99,8 @@ describe('Add book Route', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'User token is not provided');
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book', (done) => {
@@ -122,8 +121,8 @@ describe('Add book Route', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Book name is required');
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book', (done) => {
@@ -144,8 +143,8 @@ describe('Add book Route', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Book author is required');
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book', (done) => {
@@ -166,8 +165,8 @@ describe('Add book Route', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Category is required');
-        done();
       });
+    done();
   });
 });
 describe('Get Books ', () => {
@@ -186,8 +185,8 @@ describe('Get Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
-        done();
       });
+    done();
   });
 });
 
@@ -207,8 +206,8 @@ describe('Get Available Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
-        done();
       });
+    done();
   });
 });
 
@@ -228,8 +227,8 @@ describe('Get Deleted Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
-        done();
       });
+    done();
   });
 });
 
@@ -249,8 +248,8 @@ describe('Get Finished Books ', () => {
         assert.equal(res.body.message, 'Books obtained successfully');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.book.rows);
-        done();
       });
+    done();
   });
 });
 
@@ -267,8 +266,8 @@ describe('Get Single Book ', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.message, 'Book obtained successfully');
         assert.equal(res.body.success, true);
-        done();
       });
+    done();
   });
 });
 
@@ -287,8 +286,8 @@ describe('Edit Book Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Book edited successfully');
-        done();
       });
+    done();
   });
   it('should not edit book', (done) => {
     request
@@ -301,8 +300,8 @@ describe('Edit Book Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'No data to edit');
-        done();
       });
+    done();
   });
 });
 
@@ -318,7 +317,7 @@ describe('Delete Book Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Book deleted successfully');
-        done();
       });
+    done();
   });
 });

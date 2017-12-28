@@ -1,9 +1,6 @@
 import controllers from '../controller';
-import userHelper from '../helper/CheckUser';
-import loginHelper from '../helper/CheckLogin';
-
-const checkUser = userHelper;
-const checkLogin = loginHelper;
+import checkUser from '../helper/CheckUser';
+import checkLogin from '../helper/CheckLogin';
 
 const {
   user: userController,

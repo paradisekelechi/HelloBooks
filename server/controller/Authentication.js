@@ -89,7 +89,8 @@ export default {
           username: user.dataValues.username,
           usertype: user.dataValues.user_type_id,
           account_type: user.dataValues.account_type_id,
-          image: user.dataValues.image
+          image: user.dataValues.image,
+          useCount: user.dataValues.use_count
         }, secret, {
           expiresIn: 24 * 60 * 60 * 40
         });
@@ -190,9 +191,10 @@ export default {
                 username: user.username,
                 usertype: user.user_type_id,
                 accounttype: user.account_type_id,
-                image: user.image
+                image: user.image,
+                useCount: user.use_count
               }, secret, {
-                expiresIn: 24 * 3600 * 3600 * 40
+                expiresIn: 24 * 3600 * 3600 * 10
               });
 
               // token and user details sent to the user

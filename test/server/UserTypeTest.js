@@ -37,8 +37,8 @@ describe('Add Usertype', () => {
         assert.equal(res.body.usertype.name, userTypeName);
         assert.equal(res.body.usertype.description, userTypeDescription);
         assert.equal(res.body.usertype.level, userTypeLevel);
-        done();
       });
+    done();
   });
   it('should not be able to add a user type', (done) => {
     request
@@ -55,8 +55,8 @@ describe('Add Usertype', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Name cannot be empty');
-        done();
       });
+    done();
   });
   it('should not be able to add a user type', (done) => {
     request
@@ -73,8 +73,8 @@ describe('Add Usertype', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Description cannot be empty');
-        done();
       });
+    done();
   });
   it('should not be able to add a user type', (done) => {
     request
@@ -91,8 +91,8 @@ describe('Add Usertype', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Level cannot be empty');
-        done();
       });
+    done();
   });
   it('should not be able to add a user type: level as not a number', (done) => {
     request
@@ -110,8 +110,8 @@ describe('Add Usertype', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Level should be a valid number');
-        done();
       });
+    done();
   });
 });
 
@@ -128,7 +128,7 @@ describe('Get Usertypes', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Usertypes gotten successfully');
-        done();
       });
+    done();
   });
 });

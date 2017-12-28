@@ -37,8 +37,8 @@ describe('Add Book category', () => {
         assert.equal(res.body.category.name, categoryName);
         assert.equal(res.body.category.abbreviation, abbreviation);
         assert.equal(res.body.category.description, categoryDescription);
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book category: missing name', (done) => {
@@ -56,8 +56,8 @@ describe('Add Book category', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Name cannot be empty');
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book category: missing abbreviation', (done) => {
@@ -75,8 +75,8 @@ describe('Add Book category', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Abbreviation cannot be empty');
-        done();
       });
+    done();
   });
 
   it('should not be able to add a book category: missing description', (done) => {
@@ -94,8 +94,8 @@ describe('Add Book category', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Description cannot be empty');
-        done();
       });
+    done();
   });
 });
 
@@ -112,7 +112,7 @@ describe('Get Book categories', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Book category successfully gotten');
-        done();
       });
+    done();
   });
 });

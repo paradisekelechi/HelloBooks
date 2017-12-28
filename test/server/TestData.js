@@ -20,7 +20,7 @@ export const quantity = 2;
 export const image = 'image.png';
 
 // Test data for book borrow and return processes
-export const bookId = 9;
+export const bookId = 10;
 export const userId = 9;
 export const deleteUserId = 2;
 

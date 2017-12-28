@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
-const config = dotenv.config();
+dotenv.config();
 
 /* eslint-disable no-console */
 
@@ -35,8 +35,8 @@ export default {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: config.parsed.ADMIN_EMAIL_ACCOUNT,
-        pass: config.parsed.ADMIN_EMAIL_PASSWORD
+        user: process.env.ADMIN_EMAIL_ACCOUNT,
+        pass: process.env.ADMIN_EMAIL_PASSWORD
       }
     });
     const message = text;

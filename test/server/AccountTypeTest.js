@@ -37,8 +37,8 @@ describe('Add Account type', () => {
         assert.equal(res.body.accounttype.name, accountTypeName);
         assert.equal(res.body.accounttype.description, accountTypeDescription);
         assert.equal(res.body.accounttype.level, accountTypeLevel);
-        done();
       });
+    done();
   });
   it('should not be able to add account type: missing name', (done) => {
     request
@@ -55,8 +55,8 @@ describe('Add Account type', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Name cannot be empty');
-        done();
       });
+    done();
   });
   it('should not be able to add a account type: missing description', (done) => {
     request
@@ -73,8 +73,8 @@ describe('Add Account type', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Description cannot be empty');
-        done();
       });
+    done();
   });
   it('should not be able to add a account type: missing level', (done) => {
     request
@@ -91,8 +91,8 @@ describe('Add Account type', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Oops! Level cannot be empty');
-        done();
       });
+    done();
   });
   it('should not be able to add a account type: level as not a number', (done) => {
     request
@@ -110,8 +110,8 @@ describe('Add Account type', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Level should be a valid number');
-        done();
       });
+    done();
   });
 });
 
@@ -128,7 +128,7 @@ describe('Get Account types', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'Account types gotten');
-        done();
       });
+    done();
   });
 });

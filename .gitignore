@@ -1,7 +1,6 @@
 node_modules/
 .env
 .nyc_output/
-package-lock.json
-coverage
+coverage/
 dist/
 logs/

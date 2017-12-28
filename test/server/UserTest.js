@@ -46,8 +46,8 @@ describe('Signup Route', () => {
         assert.equal(res.body.username, username);
         assert.equal(res.body.email, email);
         userToken = res.body.token;
-        done();
       });
+    done();
   });
 
   it('should not be able to signup: missing username', (done) => {
@@ -64,8 +64,8 @@ describe('Signup Route', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Username is required');
-        done();
       });
+    done();
   });
 
   it('should not be able to signup: missing password', (done) => {
@@ -82,8 +82,8 @@ describe('Signup Route', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Password is required');
-        done();
       });
+    done();
   });
 
   it('should not be able to signup: missing email', (done) => {
@@ -100,8 +100,8 @@ describe('Signup Route', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Email is required');
-        done();
       });
+    done();
   });
 });
 
@@ -123,8 +123,8 @@ describe('Signin Route', () => {
         assert.equal(res.body.message, 'User successfully signed in ');
         assert.equal(res.body.username, username);
         assert.equal(res.status, 200);
-        done();
       });
+    done();
   });
 
   it('should not be able to signin: missing username', (done) => {
@@ -140,8 +140,8 @@ describe('Signin Route', () => {
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Username is required');
         assert.equal(res.status, 401);
-        done();
       });
+    done();
   });
 
   it('should not be able to signin: missing password', (done) => {
@@ -157,8 +157,8 @@ describe('Signin Route', () => {
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'Password is required');
         assert.equal(res.status, 401);
-        done();
       });
+    done();
   });
 });
 
@@ -180,8 +180,8 @@ describe('Get Users', () => {
         assert.equal(res.body.success, true);
         assert.isArray(res.body.users.rows);
         totalUsers = res.body.users.count;
-        done();
       });
+    done();
   });
 
   it('should not get all users', (done) => {
@@ -194,8 +194,8 @@ describe('Get Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User token is not provided');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 
   it('should not get all users', (done) => {
@@ -209,8 +209,8 @@ describe('Get Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User not authorized');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 });
 
@@ -231,8 +231,8 @@ describe('Get Admin Users', () => {
         assert.equal(res.body.message, 'Users list successfully gotten ');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.users.rows);
-        done();
       });
+    done();
   });
 
   it('should not get admin users', (done) => {
@@ -245,8 +245,8 @@ describe('Get Admin Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User token is not provided');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 
   it('should not get admin users', (done) => {
@@ -260,8 +260,8 @@ describe('Get Admin Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User not authorized');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 });
 
@@ -282,8 +282,8 @@ describe('Get Client Users', () => {
         assert.equal(res.body.message, 'Users list successfully gotten ');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.users.rows);
-        done();
       });
+    done();
   });
 
   it('should not get client users', (done) => {
@@ -296,8 +296,8 @@ describe('Get Client Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User token is not provided');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 
   it('should not get client users', (done) => {
@@ -311,8 +311,8 @@ describe('Get Client Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User not authorized');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 });
 
@@ -332,8 +332,8 @@ describe('Get Deleted Users', () => {
         assert.equal(res.body.message, 'Users list successfully gotten ');
         assert.equal(res.body.success, true);
         assert.isArray(res.body.users.rows);
-        done();
       });
+    done();
   });
 
   it('should not get deleted users', (done) => {
@@ -346,8 +346,8 @@ describe('Get Deleted Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User token is not provided');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 
   it('should not get deleted users', (done) => {
@@ -361,8 +361,8 @@ describe('Get Deleted Users', () => {
         assert.equal(res.status, 401);
         assert.equal(res.body.message, 'User not authorized');
         assert.equal(res.body.success, false);
-        done();
       });
+    done();
   });
 });
 
@@ -381,8 +381,8 @@ describe('Edit User Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User successfully updated');
-        done();
       });
+    done();
   });
 
   it('should not edit user', (done) => {
@@ -396,8 +396,8 @@ describe('Edit User Route', () => {
         assert.equal(res.status, 400);
         assert.equal(res.body.success, false);
         assert.equal(res.body.message, 'No data to edit');
-        done();
       });
+    done();
   });
 });
 
@@ -414,7 +414,7 @@ describe('Delete User Route', () => {
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User successfully deleted');
-        done();
       });
+    done();
   });
 });

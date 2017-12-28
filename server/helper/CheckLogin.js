@@ -18,6 +18,7 @@ const checkLogin = (req, res, next) => {
       req.accountType = decoded.accounttype;
       req.email = decoded.email;
       req.username = decoded.username;
+      req.userPayload = decoded;
       return next();
     });
   } else {
