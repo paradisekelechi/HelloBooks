@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as categoryActions from '../../actions/CategoryActions';
-import { getSingleBook, editBook } from '../../actions/bookActions';
+import { getCategories } from '../../actions/Category';
+import { getSingleBook, editBook } from '../../actions/Book';
 import notFoundImage from '../../assets/img/not-found.png';
 
 /**
@@ -38,6 +38,14 @@ class ViewBook extends React.Component {
     const bookId = this.props.location.query.id;
     this.props.getBook(bookId);
     this.props.getCategories();
+  }
+  /**
+   *
+   *@returns {*} set title
+   * @memberof ViewBook
+   */
+  componentDidMount() {
+    document.title = 'HelloBooks | Book';
   }
   /**
    *
@@ -210,7 +218,7 @@ class ViewBook extends React.Component {
                     {(this.state.categoryList).map((category) => {
                       const selector = this.state.bookData.category_id === category.id;
                       return (
-                        <option selected={selector} value={category.id}>
+                        <option key={category.id} selected={selector} value={category.id}>
                           {category.name}
                         </option>);
                     })}
@@ -244,7 +252,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getSingleBook(bookId));
     },
     getCategories: () => {
-      dispatch(categoryActions.getCategories());
+      dispatch(getCategories());
     },
     editBook: (bookId, formdata) => {
       dispatch(editBook(bookId, formdata));
@@ -264,7 +272,7 @@ ViewBook.propTypes = {
   categories: PropTypes.object.isRequired,
   getCategories: PropTypes.func.isRequired,
   bookDetails: PropTypes.object.isRequired,
-  getBook: PropTypes.object.isRequired,
+  getBook: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
   editBook: PropTypes.func.isRequired
 };

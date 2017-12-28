@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import swal from 'sweetalert2';
-import * as categoryActions from '../../actions/CategoryActions';
-import { getSingleBook, addBook } from '../../actions/bookActions';
+import { getCategories } from '../../actions/Category';
+import { getSingleBook, addBook } from '../../actions/Book';
 
 /**
  *
@@ -36,6 +36,14 @@ class AddBook extends React.Component {
    */
   componentWillMount() {
     this.props.getCategories();
+  }
+  /**
+  *
+  *@returns {*} set title
+  * @memberof AddBook
+  */
+  componentDidMount() {
+    document.title = 'HelloBooks | Book';
   }
   /**
    *
@@ -192,7 +200,7 @@ class AddBook extends React.Component {
                     <option>Choose Category</option>
                     {(this.state.categoryList).map((category) => {
                       return (
-                        <option value={category.id}>
+                        <option key={category.id} value={category.id}>
                           {category.name}
                         </option>);
                     })}
@@ -226,7 +234,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(getSingleBook(bookId));
     },
     getCategories: () => {
-      dispatch(categoryActions.getCategories());
+      dispatch(getCategories());
     },
     addBook: (bookId, formdata) => {
       dispatch(addBook(bookId, formdata));

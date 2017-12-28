@@ -1,4 +1,6 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  GET_BOOK_CATEGORIES
+} from '../../helpers/Constants';
 
 const initialState = [{
   message: '',
@@ -7,7 +9,7 @@ const initialState = [{
 
 const GetCategoriesReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_BOOK_CATEGORIES:
+  case GET_BOOK_CATEGORIES:
     return [{
       message: action.payload.message,
       list: action.payload.bookcategory

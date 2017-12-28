@@ -1,10 +1,10 @@
 import React from 'react';
- import PropTypes from 'prop-types';
-import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import swal from 'sweetalert2';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as borrowActions from '../../../actions/BorrowActions';
-import * as bookActions from '../../../actions/bookActions';
+import { borrowBook } from '../../../actions/Borrow';
+import { deleteBook } from '../../../actions/Book';
 
 /**
  *
@@ -27,31 +27,11 @@ class BookCard extends React.Component {
 
   /**
    *
-   *@returns {*} sweet alert function
-   * @param {any} nextProps
-   * @memberof BookCard
-   */
-  componentWillReceiveProps(nextProps) {
-    if ((nextProps.borrow.bookId === this.state.bookId) && nextProps.borrow.message) {
-      Materialize.toast(nextProps.borrow.message, 3000, `${nextProps.borrow.success ? 'blue' : 'red'} rounded`);
-      swal(
-        'Borrow Book!',
-        nextProps.borrow.message,
-        nextProps.borrow.success ? 'success' : 'error'
-      );
-    }
-  }
-
-  /**
-   *
    * @returns{Object} dispatch object
    * @param {String} id
    * @memberof BookCard
    */
   borrowButtonOnClick(id) {
-    this.setState({
-      bookId: id
-    });
     swal({
       title: 'Do you want to borrow this book?',
       type: 'warning',
@@ -73,9 +53,6 @@ class BookCard extends React.Component {
    * @memberof BookCard
    */
   deleteButtonOnClick(id) {
-    this.setState({
-      bookId: id
-    });
     swal({
       title: 'Do you really want to delete this book?',
       type: 'warning',
@@ -165,10 +142,10 @@ class BookCard extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     borrowBook: (bookId) => {
-      dispatch(borrowActions.borrowBook(bookId));
+      dispatch(borrowBook(bookId));
     },
     deleteBook: (bookId) => {
-      dispatch(bookActions.deleteBook(bookId));
+      dispatch(deleteBook(bookId));
     }
   };
 };

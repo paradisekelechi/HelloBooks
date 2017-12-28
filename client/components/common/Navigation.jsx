@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { authenticateFetch } from '../../utils/authenticate';
-import { getUserType } from '../../utils/TypeSync';
+import { authenticateFetch } from '../../helpers/Authentication';
+import { getUserType } from '../../helpers/TypeSync';
 import NavigationCard from './components/NavigationCard';
-import * as userActions from '../../actions/userActions';
+import { logoutUser } from '../../actions/Authentication';
 
 /**
  *
@@ -158,7 +158,7 @@ class Navigation extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => {
-      dispatch(userActions.logoutUser());
+      dispatch(logoutUser());
     }
   };
 };

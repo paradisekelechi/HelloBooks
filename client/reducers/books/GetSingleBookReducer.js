@@ -1,12 +1,15 @@
-import * as actionConstants from '../../utils/Constants';
+import {
+  GET_SINGLE_BOOK
+} from '../../helpers/Constants';
 
 const initialState = [{
-  book: {}
+  book: {},
+  isLoading: false
 }];
 
 const GetSingleBookReducer = (state = initialState, action) => {
   switch (action.type) {
-  case actionConstants.GET_SINGLE_BOOK:
+  case GET_SINGLE_BOOK:
     return [{
       book: action.payload.book
     }, ...state];
