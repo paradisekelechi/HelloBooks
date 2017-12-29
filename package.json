@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Hello Books Application",
   "scripts": {
-    "start": "NODE_ENV=production webpack --config webpack.prod.js && babel-node  app.js",
+    "build": "NODE_ENV=production webpack --config webpack.prod.js",
+    "heroku-postbuild": "npm run build",
+    "start": "NODE_ENV=production babel-node  app.js",
     "start:dev": "NODE_ENV=development npm-run-all --parallel start:webpack-dev start:server",
     "start:webpack-dev": "webpack-dev-server",
     "start:server": "babel-node  app.js",
