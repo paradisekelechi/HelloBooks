@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const About = () => {
+  document.title = 'HelloBooks | About';
   return (
     <div className="container-fluid main-wrapper">
       <div className="row about">

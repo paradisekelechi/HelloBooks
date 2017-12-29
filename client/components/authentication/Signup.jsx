@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/userActions';
+import { signupUser } from '../../actions/Authentication';
 import background from '../../assets/img/background6.jpg';
 
 /**
@@ -33,6 +33,7 @@ class Signup extends React.Component {
    * @memberof Signup
    */
   componentDidMount() {
+    document.title = 'HelloBooks | Signup';
     $('.button-collapse').sideNav();
     $('.parallax').parallax();
     AOS.init();
@@ -85,31 +86,31 @@ class Signup extends React.Component {
                   <input
                     onChange={this.onChange}
                     name="email"
-                    id="last_name"
+                    id="email"
                     type="text"
                     className="validate"
                   />
-                  <label htmlFor="email" id="signup_email">Email</label>
+                  <label htmlFor="email" id="email">Email</label>
                 </div>
                 <div className="input-field col s12">
                   <input
                     onChange={this.onChange}
                     name="username"
-                    id="last_name"
+                    id="username"
                     type="text"
                     className="validate"
                   />
-                  <label htmlFor="username" id="signup_username">Username</label>
+                  <label htmlFor="username" id="username">Username</label>
                 </div>
                 <div className="input-field col s12 ">
                   <input
                     onChange={this.onChange}
                     name="password"
-                    id="last_name"
+                    id="password"
                     type="password"
                     className="validate"
                   />
-                  <label htmlFor="password" id="signup_password">Password</label>
+                  <label htmlFor="password" id="password">Password</label>
                 </div>
                 <div className="col s12">
                   <button
@@ -123,7 +124,7 @@ class Signup extends React.Component {
 
               <div className="col s12">
                 <br />
-                <small className>
+                <small>
                   <p>Already a User?</p>
                 </small>
                 <br />
@@ -151,14 +152,14 @@ class Signup extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     signup: (userData) => {
-      dispatch(userActions.signupUser(userData));
+      dispatch(signupUser(userData));
     }
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    userReducer: state.user
+    signupState: state.signupReducer[0]
   };
 };
 

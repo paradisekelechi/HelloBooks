@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import * as bookActions from '../../../actions/bookActions';
-import * as categoryActions from '../../../actions/CategoryActions';
-import { authenticateFetch } from '../../../utils/authenticate';
+import { getBooksAvailable } from '../../../actions/Book';
+import { getCategories } from '../../../actions/Category';
+import { authenticateFetch } from '../../../helpers/Authentication';
 import BookIterator from './BookIterator';
 
 /**
@@ -27,7 +27,8 @@ class BooksCatalog extends React.Component {
       booksList: [],
       categoryList: [],
       loggedIn: true,
-      userdata: {}
+      userdata: {},
+      isLoading: true
     };
     this.selectOnChange = this.selectOnChange.bind(this);
   }
@@ -46,7 +47,14 @@ class BooksCatalog extends React.Component {
     this.props.getAvailableBooks(this.state.category);
     this.props.getCategories();
   }
-
+  /**
+    *
+    *@returns {*} set title
+    * @memberof BookCatalog
+    */
+  componentDidMount() {
+    document.title = 'HelloBooks | Books';
+  }
   /**
    *
    * @returns {*} executes an action
@@ -55,6 +63,7 @@ class BooksCatalog extends React.Component {
    */
   componentWillReceiveProps(nextProps) {
     const { state } = this;
+    state.isLoading = nextProps.isLoading;
     state.booksList = nextProps.books.list;
     state.categoryList = nextProps.categories.list;
     this.setState(state);
@@ -102,21 +111,33 @@ class BooksCatalog extends React.Component {
         </div>
         <div className="row">
           <div className="col m1"></div>
-          {this.state.booksList.length === 0 ?
+          {this.state.isLoading ?
             (
-              <div
-                className="col m6 offset-m2 page-info not-found"
-              >
-                <h5>No Books Available</h5>
+              <div>
+                <div id="img4" className="loader img"></div>
+                <div id="img5" className="loader img"></div>
               </div>
             ) :
             (
-              <div className=" col m10 books-wrapper">
-                <BookIterator
-                  bookList={this.state.booksList}
-                  loggedIn={this.state.loggedIn}
-                  userdata={this.state.userdata}
-                />
+              <div>
+                {this.state.booksList.length === 0 ?
+                  (
+                    <div
+                      className="col m6 offset-m2 page-info not-found"
+                    >
+                      <h5>No Books Available</h5>
+                    </div>
+                  ) :
+                  (
+                    <div className=" col m10 books-wrapper">
+                      <BookIterator
+                        bookList={this.state.booksList}
+                        loggedIn={this.state.loggedIn}
+                        userdata={this.state.userdata}
+                      />
+                    </div>
+                  )
+                }
               </div>
             )
           }
@@ -129,10 +150,10 @@ class BooksCatalog extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAvailableBooks: () => {
-      dispatch(bookActions.getBooksAvailable());
+      dispatch(getBooksAvailable());
     },
     getCategories: () => {
-      dispatch(categoryActions.getCategories());
+      dispatch(getCategories());
     }
   };
 };
@@ -149,6 +170,7 @@ BooksCatalog.propTypes = {
   getAvailableBooks: PropTypes.func.isRequired,
   categories: PropTypes.object.isRequired,
   getCategories: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BooksCatalog);
