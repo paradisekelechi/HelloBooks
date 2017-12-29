@@ -34,6 +34,11 @@ const logger = (level, message) => {
     level,
     message
   });
+  return {
+    isLogged: true,
+    message,
+    level
+  };
 };
 
 export default logger;

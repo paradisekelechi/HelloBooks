@@ -7,7 +7,7 @@
     "start:dev": "NODE_ENV=development npm-run-all --parallel start:webpack-dev start:server",
     "start:webpack-dev": "webpack-dev-server",
     "start:server": "babel-node  app.js",
-    "test": "NODE_ENV=test nyc --reporter=text --reporter=html --reporter=lcov mocha test/server --timeout 150000 --compilers js:babel-register",
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=html --reporter=lcov mocha test/* --timeout 150000 --compilers js:babel-register",
     "test:client": "mocha --reporter spec test/client",
     "lint": "node_modules/.bin/esw webpack.config.* client tools server",
     "seed:db": "NODE_ENV=test babel-node server/scripts/initialize.js",
@@ -105,7 +105,8 @@
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.10.0",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "winston": "^3.0.0-rc1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

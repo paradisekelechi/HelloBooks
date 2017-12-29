@@ -1,9 +1,8 @@
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
+import logger from './Logger';
 
 dotenv.config();
-
-/* eslint-disable no-console */
 
 /**
  *
@@ -50,11 +49,17 @@ export default {
     };
     transporter.sendMail(mailOptions, (error) => {
       if (error) {
-        console.log('Error encountered when sending mail');
-        console.log(error);
-      } else {
-        console.log(`Email sent to ${destinationEmail} successfully`);
+        logger('error', `Error encountered when sending mail: ${error}`);
+        return {
+          isSent: false,
+          message: error
+        };
       }
+      logger('info', `Email sent to ${destinationEmail} successfully`);
+      return {
+        isSent: true,
+        message: `Email sent to ${destinationEmail} successfully`
+      };
     });
   }
 };

@@ -1,7 +1,7 @@
 import validator from 'validator';
 
 import models from '../models';
-import emailController from './Email';
+import emailController from '../../tools/Email';
 
 const {
   notification
