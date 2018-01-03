@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash|Cairo|Maven+Pro|Quattrocento+Sans|Aclonica');
+$header-font: 'Aclonica',
+'Berkshire Swash',
+cursive;
+.modal {
+  border-radius: 13px !important;
+  max-width: 530px !important;
+}
+
+.modal-content {
+  text-align: center !important;
+  h5 {
+    font-family: $header-font !important;
+    text-transform: capitalize;
+  }
+  button {
+    margin-top: 5px !important;
+  }
+}
