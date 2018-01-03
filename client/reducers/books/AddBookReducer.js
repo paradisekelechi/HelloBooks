@@ -6,7 +6,6 @@ const initialState = [{
   success: false,
   message: '',
   isProcessing: true,
-  addBookId: ''
 }];
 
 const AddBookReducer = (state = initialState, action) => {
@@ -16,7 +15,6 @@ const AddBookReducer = (state = initialState, action) => {
       success: action.payload.success,
       message: action.payload.message,
       isProcessing: false,
-      addBookId: action.payload.editBookId
     }, ...state];
 
   default:

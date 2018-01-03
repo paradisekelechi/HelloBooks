@@ -66,6 +66,11 @@ app.use((req, res, next) => {
 });
 
 /**
+ * Set up application route
+ */
+routes(app);
+
+/**
  * Default route
  */
 if (process.env.NODE_ENV === 'production') {
@@ -76,11 +81,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(filePath);
   });
 }
-
-/**
- * Set up application route
- */
-routes(app);
 
 /**
  * Start server

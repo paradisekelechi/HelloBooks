@@ -12,6 +12,7 @@ import routes from '../../tools/Routes';
 import {
   authenticateFetch,
 } from '../helpers/Authentication';
+import Alert from '../helpers/Alert';
 
 const {
   token,
@@ -41,10 +42,7 @@ export const getAllUsers = () => {
           dispatch(getAllUsersSync(response.data));
         }
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 };
@@ -72,10 +70,7 @@ export const getAdminUsers = () => {
           dispatch(getAdminUsersSync(response.data));
         }
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 };
@@ -103,10 +98,7 @@ export const getClientUsers = () => {
           dispatch(getClientUsersSync(response.data));
         }
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 };
@@ -134,10 +126,7 @@ export const getDeletedUsers = () => {
           dispatch(getDeletedUsersSync(response.data));
         }
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 };
@@ -173,10 +162,7 @@ export const editUserProfileImage = (imageUrl) => {
           dispatch(editUserProfileImageSync(response.data));
         }
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 };

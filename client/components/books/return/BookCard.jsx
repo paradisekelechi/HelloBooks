@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import { returnBook } from '../../../actions/Borrow';
+import Modal from '../../modals/Modal';
 
 /**
  *
@@ -13,58 +13,21 @@ import { returnBook } from '../../../actions/Borrow';
  */
 class BookCard extends React.Component {
   /**
-   * Creates an instance of BookCard.
-   * @param {any} props
-   * @memberof BookCard
-   */
-  constructor(props) {
-    super(props);
-    this.state = {
-      bookId: ''
-    };
-  }
-
-  /**
-   *
-   *@returns {*} sweet alert function
-   * @param {any} nextProps
-   * @memberof BookCard
-   */
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.return.bookId === this.state.bookId) {
-      Materialize.toast(nextProps.return.message, 3000, `${nextProps.return.success ? 'blue' : 'red'} rounded`);
-      swal(
-        'Return Book!',
-        nextProps.return.message,
-        nextProps.return.success ? 'success' : 'error'
-      ).then(() => {
-        window.location.reload();
-      });
-    }
-  }
-
-  /**
    *
    * @returns{Object} dispatch object
-   * @param {String} id
    * @memberof BookCard
    */
-  returnButtonOnClick(id) {
-    this.setState({
-      bookId: id
-    });
-    swal({
-      title: 'Do you want to return this book?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, return it!'
-    }).then((result) => {
-      if (result.value) {
-        this.props.returnBook(id);
-      }
-    });
+  returnButtonOnClick() {
+    $('#returnBook').modal('open');
+  }
+  /**
+ *
+ *@returns {void} opens modal
+ * @memberof BookCard
+ */
+  returnSelectedBook() {
+    this.props.returnBook(this.props.id);
+    $('#returnBook').modal('close');
   }
 
   /**
@@ -93,7 +56,7 @@ class BookCard extends React.Component {
                     <button
                       value={this.id}
                       className="btn btn-book"
-                      onClick={this.returnButtonOnClick.bind(this, this.props.id)}
+                      onClick={this.returnButtonOnClick.bind(this)}
                     >
                       Return
                     </button>
@@ -114,6 +77,13 @@ class BookCard extends React.Component {
             <p>{this.props.description === 'undefined' ? 'No book description' : this.props.description}</p>
           </div>
         </div>
+        <Modal
+          modaIId="returnBook"
+          modalTitle="return book"
+          actionTitle="return"
+          prompt="Do you really want to return this book?"
+          action={this.returnSelectedBook.bind(this)}
+        />
       </div>
     );
   }
@@ -140,7 +110,6 @@ BookCard.propTypes = {
   image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  return: PropTypes.object.isRequired,
   returnBook: PropTypes.func.isRequired
 };
 

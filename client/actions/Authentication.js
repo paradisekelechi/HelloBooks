@@ -3,8 +3,6 @@ import querystring from 'querystring';
 import {
   browserHistory
 } from 'react-router';
-import swal from 'sweetalert2';
-
 import {
   SIGNIN_USER,
   SIGNUP_USER,
@@ -15,6 +13,7 @@ import {
   authenticatePersist,
   authenticateClear
 } from '../helpers/Authentication';
+import Alert from '../helpers/Alert';
 
 
 const signinUserAsync = data => ({
@@ -40,17 +39,7 @@ export const signinUser = (user) => {
         browserHistory.push('/books');
         window.location.reload();
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        swal({
-          showConfirmButton: false,
-          type: 'error',
-          title: 'User Signin',
-          text: data.message,
-          timer: 2000,
-        });
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'}`);
+        Alert('error', error.response.data.message, null);
       });
   };
 };
@@ -77,19 +66,15 @@ export const signupUser = (user) => {
     const request = axios
       .post(`${routes.signup}`, formdata);
 
-    return request.then((response) => {
-      if (response.data.success) {
+    return request
+      .then((response) => {
         authenticatePersist(response.data.token);
         dispatch(signupUserAsync(response.data));
         browserHistory.push('/books');
-        window.location.reload();
-      }
-    }).catch((error) => {
-      const {
-        data
-      } = error.response;
-      Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
-    });
+        Alert('success', response.data.message, window.location.reload());
+      }).catch((error) => {
+        Alert('error', error.response.data.message, null);
+      });
   };
 };
 
@@ -110,6 +95,6 @@ export const logoutUser = (user) => {
     authenticateClear();
     dispatch(logoutUserAsync(user));
     browserHistory.push('/signin');
-    window.location.reload();
+    Alert('success', 'User successfully signed out', window.location.reload());
   };
 };

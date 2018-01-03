@@ -1,5 +1,7 @@
-import swal from 'sweetalert2';
 import axios from 'axios';
+import {
+  browserHistory
+} from 'react-router';
 import {
   ADD_BOOK,
   EDIT_BOOK,
@@ -15,12 +17,12 @@ import {
   authenticateFetch
 } from '../helpers/Authentication';
 import routes from '../../tools/Routes';
+import Alert from '../helpers/Alert';
 
 const {
   token,
   userdata
 } = authenticateFetch();
-
 
 const addBookSync = payload => ({
   type: ADD_BOOK,
@@ -46,13 +48,10 @@ export function addBook(addBookId, bookdata) {
     axios
       .post(url, bookdata, config)
       .then((response) => {
-        response.data.editBookId = addBookId;
         dispatch(addBookSync(response.data));
+        Alert('success', response.data.message, browserHistory.push('/books'));
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 }
@@ -84,16 +83,9 @@ export function editBook(editBookId, bookdata) {
       .then((response) => {
         response.data.editBookId = editBookId;
         dispatch(editBookSync(response.data));
-        swal(
-          'Edit Book!',
-          response.data.message,
-          response.data.success ? 'success' : 'error'
-        );
-        Materialize.toast(
-          response.data.message,
-          5000,
-          `${response.data.success ? 'blue' : 'red'} rounded`
-        );
+        Alert('success', response.data.message, null);
+      }).catch((error) => {
+        Alert('error', error.response.data.message, null);
       });
   };
 }
@@ -122,23 +114,9 @@ export function deleteBook(bookId) {
       .delete(url, config)
       .then((response) => {
         dispatch(deleteBookSync(response.data));
-        Materialize.toast(
-          response.data.message,
-          5000,
-          `${response.data.success ? 'blue' : 'red'} rounded`
-        );
-        swal(
-          'Delete Book!',
-          response.data.message,
-          response.data.success ? 'success' : 'error'
-        ).then(() => {
-          window.location.reload();
-        });
+        Alert('success', response.data.message, window.location.reload());
       }).catch((error) => {
-        const {
-          data
-        } = error.response;
-        Materialize.toast(data.message, 3000, `${data.success ? 'blue' : 'red'} rounded`);
+        Alert('error', error.response.data.message, null);
       });
   };
 }
