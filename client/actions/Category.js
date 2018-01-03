@@ -3,6 +3,7 @@ import {
   GET_BOOK_CATEGORIES
 } from '../helpers/Constants';
 import routes from '../../tools/Routes';
+import Alert from '../helpers/Alert';
 
 export const getCategoriesSync = payload => ({
   type: GET_BOOK_CATEGORIES,
@@ -18,9 +19,9 @@ export const getCategories = () => {
     axios
       .get(routes.bookCategory)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getCategoriesSync(response.data));
-        }
+        dispatch(getCategoriesSync(response.data));
+      }).catch((error) => {
+        Alert('error', error.response.data.message, null);
       });
   };
 };

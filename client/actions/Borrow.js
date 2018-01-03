@@ -7,6 +7,7 @@ import routes from '../../tools/Routes';
 import {
   authenticateFetch
 } from '../helpers/Authentication';
+import Alert from '../helpers/Alert';
 
 const {
   token,
@@ -25,7 +26,7 @@ export const borrowBookSync = payload => ({
  * @param {any} bookId
  * @returns {object} dispatch object
  */
-export const borrowBook = (bookId) => {
+export function borrowBook(bookId) {
   const config = {
     headers: {
       'user-token': token
@@ -36,18 +37,17 @@ export const borrowBook = (bookId) => {
   };
   const url = `${routes.users}/${userdata.userid}/books`;
   return (dispatch) => {
-    return axios
+    axios
       .post(url, formdata, config)
       .then((response) => {
         response.data.bookId = bookId;
         dispatch(borrowBookSync(response.data));
-        return response;
+        Alert('success', response.data.message, window.location.reload());
       }).catch((error) => {
-        error.data.bookId = bookId;
-        dispatch(borrowBookSync(error.data));
+        Alert('error', error.response.data.message, null);
       });
   };
-};
+}
 
 export const returnBookSync = payload => ({
   type: RETURN_BOOK,
@@ -72,15 +72,14 @@ export const returnBook = (bookId) => {
   };
   const url = `${routes.users}/${userdata.userid}/books`;
   return (dispatch) => {
-    return axios
+    axios
       .put(url, formdata, config)
       .then((response) => {
         response.data.bookId = bookId;
         dispatch(returnBookSync(response.data));
-        return response;
+        Alert('success', response.data.message, window.location.reload());
       }).catch((error) => {
-        error.data.bookId = bookId;
-        dispatch(returnBookSync(error.data));
+        Alert('error', error.response.data.message, null);
       });
   };
 };

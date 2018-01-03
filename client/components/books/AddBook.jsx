@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import swal from 'sweetalert2';
 import { getCategories } from '../../actions/Category';
-import { getSingleBook, addBook } from '../../actions/Book';
+import {addBook } from '../../actions/Book';
 
 /**
  *
@@ -52,26 +51,9 @@ class AddBook extends React.Component {
    * @memberof AddBook
    */
   componentWillReceiveProps(nextProps) {
-    if (
-      (nextProps.addBookResponse.addBookId === this.state.bookData.id) &&
-      nextProps.addBookResponse.message
-    ) {
-      Materialize.toast(
-        nextProps.addBookResponse.message,
-        3000,
-        `${nextProps.addBookResponse.success ? 'blue' : 'red'} rounded`
-      );
-      swal(
-        'Add Book!',
-        nextProps.addBookResponse.message,
-        nextProps.addBookResponse.success ? 'success' : 'error'
-      );
-    } else {
-      this.setState({
-        categoryList: nextProps.categories.list,
-        bookData: nextProps.bookDetails.book
-      });
-    }
+    this.setState({
+      categoryList: nextProps.categories.list,
+    });
   }
 
 
@@ -230,9 +212,6 @@ class AddBook extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBook: (bookId) => {
-      dispatch(getSingleBook(bookId));
-    },
     getCategories: () => {
       dispatch(getCategories());
     },
@@ -244,7 +223,6 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    bookDetails: state.getSingleBookReducer[0],
     categories: state.getCategoriesReducer[0],
     addBookResponse: state.addBookReducer[0]
   };
@@ -253,9 +231,7 @@ const mapStateToProps = (state) => {
 AddBook.propTypes = {
   categories: PropTypes.object.isRequired,
   getCategories: PropTypes.func.isRequired,
-  bookDetails: PropTypes.object.isRequired,
   addBook: PropTypes.func.isRequired,
-  addBookResponse: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddBook);
