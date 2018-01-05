@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCategories } from '../../actions/Category';
-import {addBook } from '../../actions/Book';
+import { addBook } from '../../actions/Book';
 
 /**
  *

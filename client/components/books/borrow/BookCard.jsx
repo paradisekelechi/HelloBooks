@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import swal from 'sweetalert2';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { borrowBook } from '../../../actions/Borrow';
 import { deleteBook } from '../../../actions/Book';
-import Modal from '../../modals/Modal';
 
 /**
  *
@@ -15,39 +15,44 @@ import Modal from '../../modals/Modal';
 class BookCard extends React.Component {
   /**
    *
-   * @returns {void} opens modal
+   * @returns{Object} dispatch object
+   * @param {String} id
    * @memberof BookCard
    */
-  borrowButtonOnClick() {
-    $('#borrowBook').modal('open');
-  }
-
-  /**
-   *
-   *@returns {void} triggers book borrow
-   * @memberof BookCard
-   */
-  borrowBook() {
-    this.props.borrowBook(this.props.id);
-    $('#borrowBook').modal('close');
+  borrowButtonOnClick(id) {
+    swal({
+      title: 'Do you want to borrow this book?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, borrow it!'
+    }).then((result) => {
+      if (result.value) {
+        this.props.borrowBook(id);
+      }
+    });
   }
 
   /**
    *
    * @returns{Object} dispatch object
+   * @param {String} id
    * @memberof BookCard
    */
-  deleteButtonOnClick() {
-    $('#deleteBook').modal('open');
-  }
-
-  /**
-   *
-   * @returns {void} dispatches action to delete book
-   * @memberof BookCard
-   */
-  deleteBook() {
-    this.props.deleteBook(this.props.id);
+  deleteButtonOnClick(id) {
+    swal({
+      title: 'Do you really want to delete this book?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.props.deleteBook(id);
+      }
+    });
   }
 
   /**
@@ -78,7 +83,7 @@ class BookCard extends React.Component {
                         <button
                           value={this.id}
                           className="btn btn-book"
-                          onClick={this.borrowButtonOnClick.bind(this)}
+                          onClick={this.borrowButtonOnClick.bind(this, this.props.id)}
                         >
                           Borrow
                         </button>
@@ -92,14 +97,13 @@ class BookCard extends React.Component {
                           </Link>
                           <button
                             className="btn btn-red"
-                            onClick={this.deleteButtonOnClick.bind(this)}
+                            onClick={this.deleteButtonOnClick.bind(this, this.props.id)}
                           >
                             <i className=" action-buttons material-icons">delete</i>
                           </button>
                         </div>
                       )
                     }
-
                   </div>
                 ) :
                 (
@@ -117,20 +121,6 @@ class BookCard extends React.Component {
             <p>{this.props.description === 'undefined' ? 'No book description' : this.props.description}</p>
           </div>
         </div>
-        <Modal
-          modaIId="deleteBook"
-          modalTitle="delete book"
-          actionTitle="delete"
-          prompt="Do you really want to delete this book?"
-          action={this.deleteBook.bind(this)}
-        />
-        <Modal
-          modaIId="borrowBook"
-          modalTitle="borrow book"
-          actionTitle="borrow"
-          prompt="Do you really want to borrow this book?"
-          action={this.borrowBook.bind(this)}
-        />
       </div>
     );
   }

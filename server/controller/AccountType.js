@@ -15,7 +15,7 @@ export default {
    */
   getAccountTypes(req, res) {
     return AccountType
-      .findAll({
+      .findAndCountAll({
         where: {
           deleted: false
         }

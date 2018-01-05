@@ -4,7 +4,9 @@ import {
 
 const initialState = [{
   message: '',
-  list: []
+  list: [],
+  count: 0,
+  isLoading: true
 }];
 
 const GetCategoriesReducer = (state = initialState, action) => {
@@ -12,7 +14,9 @@ const GetCategoriesReducer = (state = initialState, action) => {
   case GET_BOOK_CATEGORIES:
     return [{
       message: action.payload.message,
-      list: action.payload.bookcategory
+      list: action.payload.bookcategory.rows,
+      count: action.payload.bookcategory.count,
+      isLoading: false
     }, ...state];
 
   default:

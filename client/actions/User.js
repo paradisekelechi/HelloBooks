@@ -156,7 +156,7 @@ export const editUserProfileImage = (imageUrl) => {
   });
   return (dispatch) => {
     axios
-      .put(`${routes.user}/${userdata.userid}`, formdata, config)
+      .put(`${routes.editUser}/${userdata.userid}`, formdata, config)
       .then((response) => {
         if (response.data.success) {
           dispatch(editUserProfileImageSync(response.data));

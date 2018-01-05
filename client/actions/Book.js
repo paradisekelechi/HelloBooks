@@ -221,9 +221,9 @@ export function getBooksAvailable() {
     axios
       .get(getBooksUrl)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksAvailableSync(response.data));
-        }
+        dispatch(getBooksAvailableSync(response.data));
+      }).catch((error) => {
+        Alert('error', error.response.data.message, null);
       });
   };
 }

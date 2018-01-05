@@ -4,7 +4,8 @@ import {
 
 const initialState = [{
   count: 0,
-  list: []
+  list: [],
+  isLoading: true
 }];
 
 /**
@@ -20,7 +21,8 @@ const GetAllUsersReducer = (state = initialState, action) => {
   case GET_ALL_USERS:
     return [{
       count: action.payload.users.count,
-      list: action.payload.users.rows
+      list: action.payload.users.rows,
+      isLoading: false
     }, ...state];
   default:
     return state;

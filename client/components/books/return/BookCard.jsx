@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
+import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import { returnBook } from '../../../actions/Borrow';
-import Modal from '../../modals/Modal';
 
 /**
  *
@@ -15,19 +15,22 @@ class BookCard extends React.Component {
   /**
    *
    * @returns{Object} dispatch object
+   * @param {String} id
    * @memberof BookCard
    */
-  returnButtonOnClick() {
-    $('#returnBook').modal('open');
-  }
-  /**
- *
- *@returns {void} opens modal
- * @memberof BookCard
- */
-  returnSelectedBook() {
-    this.props.returnBook(this.props.id);
-    $('#returnBook').modal('close');
+  returnButtonOnClick(id) {
+    swal({
+      title: 'Do you want to return this book?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, return it!'
+    }).then((result) => {
+      if (result.value) {
+        this.props.returnBook(id);
+      }
+    });
   }
 
   /**
@@ -56,7 +59,7 @@ class BookCard extends React.Component {
                     <button
                       value={this.id}
                       className="btn btn-book"
-                      onClick={this.returnButtonOnClick.bind(this)}
+                      onClick={this.returnButtonOnClick.bind(this, this.props.id)}
                     >
                       Return
                     </button>
@@ -77,13 +80,6 @@ class BookCard extends React.Component {
             <p>{this.props.description === 'undefined' ? 'No book description' : this.props.description}</p>
           </div>
         </div>
-        <Modal
-          modaIId="returnBook"
-          modalTitle="return book"
-          actionTitle="return"
-          prompt="Do you really want to return this book?"
-          action={this.returnSelectedBook.bind(this)}
-        />
       </div>
     );
   }

@@ -21,6 +21,9 @@ import GetFinishedBooksReducer from './books/GetFinishedBooksReducer';
 import EditBookReducer from './books/EditBookReducer';
 import AddBookReducer from './books/AddBookReducer';
 import DeleteBookReducer from './books/DeleteBookReducer';
+import GetUsertypesReducer from './usertypes/GetUsertypesReducer';
+import GetAccountTypesReducer from './accounttypes/GetAccountTypesReducer';
+import AddCategoryReducer from './categories/AddCategoryReducer';
 
 const rootReducer = combineReducers({
   signupReducer: SignupReducer,
@@ -48,6 +51,9 @@ const rootReducer = combineReducers({
   profileImageReducer: ProfileImageReducer,
   availableBooksReducer: AvailableBooksReducer,
   getCategoriesReducer: GetCategoriesReducer,
+  getUsertypesReducer: GetUsertypesReducer,
+  getAccountTypesReducer: GetAccountTypesReducer,
+  addCategoryReducer: AddCategoryReducer
 });
 
 export default rootReducer;

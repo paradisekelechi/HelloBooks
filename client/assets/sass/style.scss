@@ -4,6 +4,7 @@ $dark-color: rgba(12, 72, 160, 1);
 $font-stack-styled: 'Aclonica',
 'Berkshire Swash',
 cursive;
+$white: #fff;
 $base-font: 'Quattrocento Sans',
 'Maven Pro',
 'Titillium Web',
@@ -81,10 +82,7 @@ html {
 }
 
 .card {
-  -moz-box-shadow: 0px 0px 1px 1px #75737d !important;
-  -webkit-box-shadow: 0px 0px 1px 1px #75737d !important;
-  box-shadow: 0px 0px 1px 1px #75737d !important;
-  border-radius: 7px !important;
+  border-radius: 0px !important;
   padding: 10px !important;
 }
 
@@ -180,6 +178,10 @@ p {
   font-family: $font-stack-styled;
 }
 
+h1 {
+  font-size: 3.0rem !important;
+}
+
 .image-wrapper {
   height: 150px;
 }
@@ -233,10 +235,15 @@ p {
   max-height: 100% !important;
 }
 
-.not-found {
+.not-found,
+{
   text-align: center;
   font-family: $font-stack-styled;
   margin-top: 9% !important;
+}
+
+.loader-wrapper {
+  margin-top: 8% !important;
 }
 
 .about {
@@ -248,44 +255,45 @@ p {
   }
 }
 
-.loader{
-
-  width:100px;
-  height:100px;
-border-radius:100%;
-  position:absolute;
-  border: 1px solid blue;
+.loader {
   animation: up 1s;
-animation-iteration-count: infinite;
-  transition:2s;
- border-bottom:none;
-  border-right:none;
-  animation-timing-function:linear;
-    	 margin-left: -70px;
-	margin-top: -70px;
-	left:50%;
-	top:50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  border: 7px solid $dark-color;
+  border-bottom: 0;
+  border-radius: 100%;
+  border-right: 0;
+  height: 100px;
+  left: 50%;
+  margin-left: -70px;
+  margin-top: -70px;
+  position: relative;
+  top: 50%;
+  transition: 1s;
+  width: 100px;
+}
 
+@keyframes up {
+  from {
+    transform: rotate(0deg);
   }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-  @keyframes up{
-   from{transform:rotate(0deg); }
-   50%{transform:rotate(180deg);}
-   100%{transform:rotate(360deg);}
-  }
-    #img4{
-   width:70px;
-  height:70px;
-     left:51.05%;
-  top:52.1%;
-  animation-delay:.6s;
+#img4 {
+  animation-delay: 0.1s;
+  height: 60px;
+  left: 51.05%;
+  top: 52.1%;
+  width: 60px;
+}
 
-  }
-    #img5{
-    width:60px;
-  height:60px;
-      left:51.40%;
-  top:52.8%;
-  animation-delay:.8s;
-
-  }
+.toggler {
+  color: $white;
+  float: right;
+}

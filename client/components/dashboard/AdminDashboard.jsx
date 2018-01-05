@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getBooks, getBooksAvailable, getBooksDeleted, getBooksFinished } from '../../actions/Book';
 import { getAdminUsers, getAllUsers, getClientUsers, getDeletedUsers } from '../../actions/User';
+import { getCategories } from '../../actions/Category';
+import DashboardCard from './DashboardCard';
+import { getUsertypes } from '../../actions/UserType';
+import { getAccountTypes } from '../../actions/AccountType';
 
 /**
  * The component for the admin user's dashboard
@@ -26,6 +30,9 @@ class AdminDashboard extends React.Component {
     this.props.getAdminUsers();
     this.props.getClientUsers();
     this.props.getDeletedUsers();
+    this.props.getCategories();
+    this.props.getUsertypes();
+    this.props.getAccountTypes();
   }
 
 
@@ -39,75 +46,22 @@ class AdminDashboard extends React.Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content ">
-                <span className="card-title center">Total Books</span>
-                <h4 className="center counter">{this.props.allBooks.count}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content ">
-                <span className="card-title center">Books Deleted</span>
-                <h4 className="center counter">{this.props.deletedBooks.count}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content ">
-                <span className="card-title center">Books Finished</span>
-                <h4 className="center counter">{this.props.finishedBooks.count}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content">
-                <span className="card-title center">Books Available</span>
-                <h4 className="center counter">{this.props.availableBooks.count}</h4>
-              </div>
-            </div>
-          </div>
+          <DashboardCard count={this.props.allBooks.count} title="Total Books" />
+          <DashboardCard count={this.props.deletedBooks.count} title="Books Deleted" />
+          <DashboardCard count={this.props.finishedBooks.count} title="Books Finished" />
+          <DashboardCard count={this.props.availableBooks.count} title="Books Available" />
         </div>
-
         <div className="row">
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content">
-                <span className="card-title center">Total Users</span>
-                <h4 className="center counter">{this.props.allUsers.count}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="col m3 s12">
-            <div className="card blue white">
-              <div className="card-content ">
-                <span className="card-title center">Deleted Users</span>
-                <h4 className="center counter">{this.props.deletedUsers.count}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content">
-                <span className="card-title center">Client Users</span>
-                <h4 className="center counter">{this.props.clientUsers.count}</h4>
-              </div>
-            </div>
-          </div>
-          <div className="col m3 s12">
-            <div className="card white">
-              <div className="card-content ">
-                <span className="card-title center">Admin Users</span>
-                <h4 className="center counter">{this.props.adminUsers.count}</h4>
-              </div>
-            </div>
-          </div>
+          <DashboardCard count={this.props.allUsers.count} title="Total Users" />
+          <DashboardCard count={this.props.deletedUsers.count} title="Deleted Users" />
+          <DashboardCard count={this.props.clientUsers.count} title="Client Users" />
+          <DashboardCard count={this.props.adminUsers.count} title="Admin Users" />
         </div>
-
+        <div className="row">
+          <DashboardCard count={this.props.categories.count} title="Book Categories" />
+          <DashboardCard count={this.props.usertypes.count} title="Application User Types" />
+          <DashboardCard count={this.props.accountTypes.count} title="Application Account Types" />
+        </div>
       </div>
     );
   }
@@ -138,7 +92,16 @@ const mapDispatchToProps = (dispatch) => {
     },
     getDeletedUsers: () => {
       dispatch(getDeletedUsers());
-    }
+    },
+    getCategories: () => {
+      dispatch(getCategories());
+    },
+    getUsertypes: () => {
+      dispatch(getUsertypes());
+    },
+    getAccountTypes: () => {
+      dispatch(getAccountTypes());
+    },
   };
 };
 
@@ -152,6 +115,9 @@ const mapStateToProps = (state) => {
     adminUsers: state.getAdminUsersReducer[0],
     clientUsers: state.getClientUsersReducer[0],
     deletedUsers: state.getDeletedUsersReducer[0],
+    categories: state.getCategoriesReducer[0],
+    usertypes: state.getUsertypesReducer[0],
+    accountTypes: state.getAccountTypesReducer[0],
   };
 };
 
@@ -173,6 +139,15 @@ AdminDashboard.propTypes = {
   clientUsers: PropTypes.object.isRequired,
   getDeletedUsers: PropTypes.func.isRequired,
   deletedUsers: PropTypes.object.isRequired,
+
+  getCategories: PropTypes.func.isRequired,
+  categories: PropTypes.object.isRequired,
+
+  getUsertypes: PropTypes.func.isRequired,
+  usertypes: PropTypes.object.isRequired,
+
+  getAccountTypes: PropTypes.func.isRequired,
+  accountTypes: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminDashboard);

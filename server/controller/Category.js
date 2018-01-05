@@ -14,7 +14,7 @@ export default {
    */
   getCategories(req, res) {
     return BookCategory
-      .findAll()
+      .findAndCountAll()
       .then((bookcategory) => {
         res.status(200).send({
           success: true,

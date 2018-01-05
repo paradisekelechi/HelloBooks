@@ -317,7 +317,7 @@ export default {
               booklog
             });
           } else {
-            res.status(400).send({
+            res.status(200).send({
               success: true,
               message: 'You have not borrowed any book!',
               booklog
