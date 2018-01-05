@@ -15,6 +15,7 @@ const {
 const routes = (app) => {
   app.post('/api/v1/users/signup', authenticationController.signup);
   app.post('/api/v1/users/signin', authenticationController.signin);
+  app.post('/api/v1/users/signin/google', authenticationController.googleSignin);
 
   app.post('/api/v1/books/', checkLogin, checkUser, bookController.addBook);
   app.get('/api/v1/books/', bookController.getBooks);

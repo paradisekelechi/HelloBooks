@@ -2,6 +2,7 @@ const baseRoute = '/api/v1/';
 const users = `${baseRoute}users`;
 const signin = `${baseRoute}users/signin`;
 const signup = `${baseRoute}users/signup`;
+const googleSignin = `${baseRoute}users/signin/google`;
 const getBooks = `${baseRoute}books`;
 const getSingleBook = `${baseRoute}book`;
 const getBooksFinished = `${baseRoute}books?finished=true`;
@@ -29,6 +30,7 @@ const routes = {
   users,
   signup,
   signin,
+  googleSignin,
   editUser,
   deleteUser,
   addBooks,
