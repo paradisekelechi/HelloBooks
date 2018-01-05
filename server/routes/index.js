@@ -29,6 +29,7 @@ const routes = (app) => {
 
   app.get('/api/v1/users', checkLogin, checkUser, userController.getUsers);
   app.put('/api/v1/users/:userId/', checkLogin, userController.editUser);
+  app.put('/api/v1/users/:userId/password', checkLogin, userController.editPassword);
   app.put('/api/v1/users/delete/:userId/', checkLogin, checkUser, userController.deleteUser);
 
   app.post('/api/v1/categories/', checkLogin, checkUser, bookCategoryController.addCategory);

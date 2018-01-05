@@ -3,6 +3,7 @@ import querystring from 'querystring';
 
 import {
   EDIT_USER_PROFILE,
+  UPDATE_PASSWORD,
   GET_DELETED_USERS,
   GET_ADMIN_USERS,
   GET_CLIENT_USERS,
@@ -161,6 +162,30 @@ export const editUserProfileImage = (imageUrl) => {
         if (response.data.success) {
           dispatch(editUserProfileImageSync(response.data));
         }
+      }).catch((error) => {
+        Alert('error', error.response.data.message, null);
+      });
+  };
+};
+
+const updatePasswordSync = payload => ({
+  type: UPDATE_PASSWORD,
+  payload
+});
+
+export const updatePassword = (userId, formdata) => {
+  const config = {
+    headers: {
+      'user-token': token
+    }
+  };
+  const url = routes.editUser;
+  return (dispatch) => {
+    axios
+      .put(`${url}/${userId}/password`, formdata, config)
+      .then((response) => {
+        dispatch(updatePasswordSync(response.data));
+        Alert('success', response.data.message, null);
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
