@@ -38,3 +38,4 @@ export const GET_USERTYPES = 'get usertypes ';
 export const GET_ACCOUNTTYPES = 'get accounttypes';
 
 export const ADD_CATEGORY = 'add book category';
+export const UPDATE_PASSWORD = 'update password';

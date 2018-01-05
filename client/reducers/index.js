@@ -25,6 +25,7 @@ import DeleteBookReducer from './books/DeleteBookReducer';
 import GetUsertypesReducer from './usertypes/GetUsertypesReducer';
 import GetAccountTypesReducer from './accounttypes/GetAccountTypesReducer';
 import AddCategoryReducer from './categories/AddCategoryReducer';
+import UpdatePasswordReducer from './profile/UpdatePasswordReducer';
 
 const rootReducer = combineReducers({
   signupReducer: SignupReducer,
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
   pendingBooksReducer: PendingBooksReducer,
 
   profileImageReducer: ProfileImageReducer,
+  updatePasswordReducer: UpdatePasswordReducer,
   availableBooksReducer: AvailableBooksReducer,
   getCategoriesReducer: GetCategoriesReducer,
   getUsertypesReducer: GetUsertypesReducer,

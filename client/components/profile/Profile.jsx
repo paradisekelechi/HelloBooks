@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import profileImage from '../../assets/img/profile.jpg';
 import { authenticateFetch } from '../../helpers/Authentication';
 import { getUserType, getAccountType } from '../../helpers/TypeSync';
-import { editUserProfileImage } from '../../actions/User';
+import { editUserProfileImage, updatePassword } from '../../actions/User';
 
 /**
  *
@@ -25,10 +25,20 @@ class Profile extends React.Component {
       email: '',
       userType: '',
       accountType: '',
-      imageUrl: ''
+      imageUrl: '',
+      userId: '',
+      formdata: {
+        password: '',
+        newPassword: '',
+        confirmPassword: ''
+      },
+      shouldShowForm: false
     };
 
     this.uploadImage = this.uploadImage.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.shouldUpdatePassword = this.shouldUpdatePassword.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
   }
 
   /**
@@ -45,7 +55,45 @@ class Profile extends React.Component {
     state.email = userdata.email;
     state.username = userdata.username;
     state.imageUrl = userdata.image;
+    state.userId = userdata.userid;
     this.setState(state);
+  }
+
+  /**
+   * Handles the onChange event of the form inputs
+   *
+   * @param {any} event
+   * @memberof Profile
+   * @returns {void} updates the formdata value of the state
+   */
+  onChange(event) {
+    event.preventDefault();
+    const { formdata } = this.state;
+    formdata[event.target.name] = event.target.value;
+    this.setState({ formdata });
+  }
+
+  /**
+   * Handles the update of the password
+   *
+   * @memberof Profile
+   *@returns {void}
+   */
+  updatePassword() {
+    const { userId, formdata } = this.state;
+    this.props.updatePassword(userId, formdata);
+  }
+
+  /**
+   * Checks if the update password form should be shown
+   *
+   * @memberof Profile
+   * @returns {void}
+   */
+  shouldUpdatePassword() {
+    this.setState({
+      shouldShowForm: !this.state.shouldShowForm
+    });
   }
 
   /**
@@ -67,6 +115,7 @@ class Profile extends React.Component {
       }
     );
   }
+
 
   /**
    *
@@ -111,20 +160,85 @@ class Profile extends React.Component {
               <div className="card-content">
                 <div className="row">
                   <div className="col m1"></div>
-                  <div className="col m3 s12">
+                  <div className="col m3 s6">
                     <p>{this.state.username}</p>
                     <span>Username</span>
                   </div>
-                  <div className="col m3 s12">
+                  <div className="col m3 s6">
                     <p>{this.state.email}</p>
                     <span>Email</span>
                   </div>
-                  <div className="col m3 s12">
+                  <div className="col m3 s6">
                     <p>{this.state.userType}</p>
                     <span>Usertype</span>
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="row">
+              <div className="col m4 s12">
+                <button
+                  onClick={this.shouldUpdatePassword}
+                  className="btn btn-large btn-edit col s12"
+                >
+                  Update Password
+                </button>
+              </div>
+              {this.state.shouldShowForm ?
+                (
+                  <div className="col m5 s12">
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input
+                          id="password"
+                          type="password"
+                          name="password"
+                          className="validate"
+                          onChange={this.onChange}
+                        />
+                        <label className="active" htmlFor="password">Current Password</label>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input
+                          id="newPassword"
+                          type="password"
+                          name="newPassword"
+                          className="validate"
+                          onChange={this.onChange}
+                        />
+                        <label className="active" htmlFor="newPassword">New Password</label>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <input
+                          id="confirmPassword"
+                          type="password"
+                          name="confirmPassword"
+                          className="validate"
+                          onChange={this.onChange}
+                        />
+                        <label className="active" htmlFor="confirmPassword">Confirm Password</label>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="input-field col s12">
+                        <button
+                          className="btn  waves-effect waves-light"
+                          type="button"
+                          onClick={this.updatePassword}
+                        >
+                          Save
+                          <i className="material-icons right">send</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) :
+                ''
+              }
             </div>
           </div>
         </div>
@@ -138,6 +252,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updateImageUrl: (imageUrl) => {
       dispatch(editUserProfileImage(imageUrl));
+    },
+    updatePassword: (userId, formdata) => {
+      dispatch(updatePassword(userId, formdata));
     }
   };
 };
@@ -149,6 +266,7 @@ const mapStateToProps = (state) => {
 };
 
 Profile.propTypes = {
-  updateImageUrl: PropTypes.func.isRequired
+  updateImageUrl: PropTypes.func.isRequired,
+  updatePassword: PropTypes.func.isRequired
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

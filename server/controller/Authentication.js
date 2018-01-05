@@ -11,7 +11,7 @@ const {
 const empty = '';
 
 /**
- * Secret for authentication -- to be added to the environment as a variable
+ * Secret for authentication
  */
 const secret = process.env.SECRET;
 const salt = bcrypt.genSaltSync(10);

@@ -1,8 +1,10 @@
+import bcrypt from 'bcrypt';
 import models from '../models';
 
 const {
   User
 } = models;
+const salt = bcrypt.genSaltSync(10);
 
 export default {
   /**
@@ -158,6 +160,96 @@ export default {
         res.status(400).send({
           success: false,
           message: 'User not successfully updated'
+        });
+      });
+  },
+
+  editPassword(req, res) {
+    const {
+      body: {
+        password,
+        newPassword,
+        confirmPassword
+      }
+    } = req;
+    const {
+      params: {
+        userId
+      }
+    } = req;
+
+    if (userId == null) {
+      res.status(400).send({
+        success: false,
+        message: 'User Id is required'
+      });
+      return;
+    }
+
+    if (!password) {
+      res.status(400).send({
+        success: false,
+        message: 'Password is required'
+      });
+      return;
+    }
+
+    if (!newPassword) {
+      res.status(400).send({
+        success: false,
+        message: 'New password is required'
+      });
+      return;
+    }
+
+    if (!confirmPassword) {
+      res.status(400).send({
+        success: false,
+        message: 'Confirm password is required'
+      });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      res.status(400).send({
+        success: false,
+        message: 'New password does not match'
+      });
+      return;
+    }
+
+    return User
+      .findOne({
+        where: {
+          id: userId
+        },
+      })
+      .then((userDetails) => {
+        const oldPassword = userDetails.password;
+        bcrypt.compare(password, oldPassword, (err, success) => {
+          if (!success) {
+            res.status(400).send({
+              success: false,
+              message: 'Password is incorrect'
+            });
+          } else {
+            bcrypt.hash(newPassword, salt, (err, hashedPassword) => {
+              User
+                .update({
+                  password: hashedPassword
+                }, {
+                  where: {
+                    id: userId
+                  }
+                })
+                .then(() => {
+                  res.status(200).send({
+                    success: true,
+                    message: 'Password change successful'
+                  });
+                });
+            });
+          }
         });
       });
   },

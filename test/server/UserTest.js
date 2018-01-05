@@ -504,6 +504,140 @@ describe('Edit User Route', () => {
   });
 });
 
+describe('Edit Password Route', () => {
+  it('should edit password', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        password: 'password',
+        newPassword: 'password1',
+        confirmPassword: 'password1'
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 200);
+        assert.equal(res.body.success, true);
+        assert.equal(res.body.message, 'Password change successful');
+      });
+    done();
+  });
+  it('should edit password', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        password: 'password1',
+        newPassword: 'password',
+        confirmPassword: 'password'
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 200);
+        assert.equal(res.body.success, true);
+        assert.equal(res.body.message, 'Password change successful');
+      });
+    done();
+  });
+  it('should not edit password: missing password', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        newPassword: 'password',
+        confirmPassword: 'password'
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Password is required');
+      });
+    done();
+  });
+  it('should not edit password: missing new password', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        password: 'password1',
+        confirmPassword: 'password'
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'New password is required');
+      });
+    done();
+  });
+  it('should not edit password: missing confirm password', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        password: 'password1',
+        newPassword: 'password',
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Confirm password is required');
+      });
+    done();
+  });
+
+  it('should  not edit password: password mismatch', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        password: 'password1',
+        newPassword: 'password',
+        confirmPassword: 'passwordee'
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'New password does not match');
+      });
+    done();
+  });
+  it('should not edit password: incorrect password', (done) => {
+    request
+      .put(`${editUser}/6/password`)
+      .set('user-token', userToken)
+      .send({
+        password: 'pa8877word1',
+        newPassword: 'password',
+        confirmPassword: 'password'
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 400);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Password is incorrect');
+      });
+    done();
+  });
+});
+
 
 describe('Delete User Route', () => {
   it('should delete a user', (done) => {
