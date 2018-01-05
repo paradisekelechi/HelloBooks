@@ -11,6 +11,7 @@ export const DELETE_BOOK = 'delete book';
 export const CREATE_USER = 'create user';
 export const DELETE_USER = 'delete user';
 export const SIGNIN_USER = 'sign in user';
+export const GOOGLE_SIGNIN_USER = 'google signin user';
 export const SIGNUP_USER = 'sign up user';
 export const LOGOUT_USER = 'log out user';
 export const CHECK_LOGIN_STATUS = 'check login status';

@@ -3,6 +3,7 @@ import {
 } from 'redux';
 import SignupReducer from './authentication/SignupReducer';
 import SigninReducer from './authentication/SigninReducer';
+import GoogleSigninReducer from './authentication/GoogleSigninReducer';
 import GetAllUsersReducer from './users/GetAllUsersReducer';
 import GetAdminUsersReducer from './users/GetAdminUsersReducer';
 import GetClientUsersReducer from './users/GetClientUsersReducer';
@@ -28,6 +29,7 @@ import AddCategoryReducer from './categories/AddCategoryReducer';
 const rootReducer = combineReducers({
   signupReducer: SignupReducer,
   signinReducer: SigninReducer,
+  googleSigninReducer: GoogleSigninReducer,
 
   getAllUsersReducer: GetAllUsersReducer,
   getAdminUsersReducer: GetAdminUsersReducer,
@@ -53,7 +55,7 @@ const rootReducer = combineReducers({
   getCategoriesReducer: GetCategoriesReducer,
   getUsertypesReducer: GetUsertypesReducer,
   getAccountTypesReducer: GetAccountTypesReducer,
-  addCategoryReducer: AddCategoryReducer
+  addCategoryReducer: AddCategoryReducer,
 });
 
 export default rootReducer;

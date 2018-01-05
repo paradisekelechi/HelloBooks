@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+
 import background from '../../assets/img/background6.jpg';
-import { signinUser } from '../../actions/Authentication';
+import { signinUser, googleSigninUser } from '../../actions/Authentication';
 
 /**
  *
@@ -29,6 +30,7 @@ class Signin extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onClickSubmit = this.onClickSubmit.bind(this);
+    this.onSignIn = this.onSignIn.bind(this);
   }
 
   /**
@@ -70,6 +72,27 @@ class Signin extends React.Component {
   }
 
   /**
+   * Google Signin
+   *
+   * @memberof Signin
+   * @returns {void} implements google signin on click
+   */
+  onSignIn() {
+    const googleAuth = gapi.auth2.getAuthInstance();
+    googleAuth.signIn();
+    googleAuth.currentUser.listen((currentUser) => {
+      const userProfile = currentUser.getBasicProfile();
+      const {
+        wea: username,
+        U3: email,
+        Eea: password
+      } = userProfile;
+      const userdata = { username, email, password };
+      this.props.googleSignin(userdata);
+    });
+  }
+
+  /**
    *
    *
    * @returns {Object}  react object
@@ -88,9 +111,13 @@ class Signin extends React.Component {
             >
               <h5 className="center authentication-header">Account Signin</h5>
               <div className="col s12">
-                <button className="waves-effect waves-light btn col s12 red ">
+                <button
+                  onClick={this.onSignIn}
+                  className="waves-effect waves-light btn  btn-red col s12 "
+                >
                   Google Plus Signin
                 </button>
+                <div className="g-signin2" hidden="true"></div>
               </div>
               <div className="col s12">
                 <br />
@@ -156,6 +183,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     signin: userData =>
       dispatch(signinUser(userData)),
+    googleSignin: userDetails =>
+      dispatch(googleSigninUser(userDetails))
   };
 };
 
@@ -166,7 +195,8 @@ const mapStateToProps = (state) => {
 };
 
 Signin.propTypes = {
-  signin: PropTypes.func.isRequired
+  signin: PropTypes.func.isRequired,
+  googleSignin: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signin);

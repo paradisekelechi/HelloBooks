@@ -77,6 +77,7 @@
     "Typewriter": false,
     "$": false,
     "cloudinary": false,
-    "Materialize": false
+    "Materialize": false,
+    "gapi": false
   }
 }

@@ -5,6 +5,7 @@ import {
 } from 'react-router';
 import {
   SIGNIN_USER,
+  GOOGLE_SIGNIN_USER,
   SIGNUP_USER,
   LOGOUT_USER,
 } from '../helpers/Constants';
@@ -70,6 +71,39 @@ export const signupUser = (user) => {
       .then((response) => {
         authenticatePersist(response.data.token);
         dispatch(signupUserAsync(response.data));
+        browserHistory.push('/books');
+        Alert('success', response.data.message, window.location.reload());
+      }).catch((error) => {
+        Alert('error', error.response.data.message, null);
+      });
+  };
+};
+
+const googleSigninUserAsync = payload => ({
+  type: GOOGLE_SIGNIN_USER,
+  payload
+});
+/**
+ *
+ *
+ * @export
+ * @param {any} user
+ * @returns {void}
+ */
+export const googleSigninUser = (user) => {
+  const formdata = querystring.stringify({
+    username: user.username,
+    password: user.password,
+    email: user.email
+  });
+  return (dispatch) => {
+    const request = axios
+      .post(`${routes.googleSignin}`, formdata);
+
+    return request
+      .then((response) => {
+        authenticatePersist(response.data.token);
+        dispatch(googleSigninUserAsync(response.data));
         browserHistory.push('/books');
         Alert('success', response.data.message, window.location.reload());
       }).catch((error) => {
