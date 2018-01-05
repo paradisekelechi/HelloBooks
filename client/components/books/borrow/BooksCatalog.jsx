@@ -113,9 +113,8 @@ class BooksCatalog extends React.Component {
           <div className="col m1"></div>
           {this.state.isLoading ?
             (
-              <div>
+              <div className="col m6 offset-m2 s12 page-info loader-wrapper">
                 <div id="img4" className="loader img"></div>
-                <div id="img5" className="loader img"></div>
               </div>
             ) :
             (

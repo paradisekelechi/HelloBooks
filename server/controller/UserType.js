@@ -17,7 +17,7 @@ export default {
    */
   getUserTypes(req, res) {
     return UserType
-      .findAll({
+      .findAndCountAll({
         where: {
           deleted: false
         }

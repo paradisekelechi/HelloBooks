@@ -85,30 +85,31 @@ class Profile extends React.Component {
         </div>
         <div className="row">
           <div className="col m1"></div>
-          <div className="col s12 m10">
-            <div className="card medium">
+          <div className="col m3 s12">
+            <button
+              onClick={this.uploadImage}
+              className="btn-floating waves-effect dark-blue-background right"
+            >
+              <i className="material-icons">mode_edit</i>
+            </button>
+            <img
+              className="circle responsive-img"
+              alt="profile"
+              src={
+                this.state.imageUrl === '' || this.state.imageUrl === null ?
+                  profileImage :
+                  this.state.imageUrl}
+              width="100%"
+              height="100%"
+            />
+          </div>
+          <div className="col s12 m7">
+            <div className="card small">
               <div className="card-image">
                 <img src="https://res.cloudinary.com/skiposki/image/upload/v1513072462/user-profile-bg_gghcqw.jpg" alt="profile" className=" responsive-img" />
               </div>
               <div className="card-content">
                 <div className="row">
-                  <div className="col m2 s12">
-                    <button
-                      onClick={this.uploadImage}
-                      className="btn-floating waves-effect dark-blue-background right"
-                    >
-                      <i className="material-icons">mode_edit</i>
-                    </button>
-                    <img
-                      className="circle responsive-img"
-                      alt="profile"
-                      src={
-                        this.state.imageUrl === '' || this.state.imageUrl === null ?
-                          profileImage :
-                          this.state.imageUrl}
-                      width="85%"
-                    />
-                  </div>
                   <div className="col m1"></div>
                   <div className="col m3 s12">
                     <p>{this.state.username}</p>

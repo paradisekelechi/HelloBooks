@@ -21,7 +21,8 @@ class BooksCatalog extends React.Component {
     super(props);
     this.state = {
       booksList: [],
-      loggedIn: true
+      loggedIn: true,
+      isLoading: true
     };
   }
 
@@ -50,9 +51,9 @@ class BooksCatalog extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { state } = this;
     state.booksList = nextProps.books.list;
+    state.isLoading = nextProps.isLoading;
     this.setState(state);
   }
-
 
   /**
    *
@@ -71,17 +72,31 @@ class BooksCatalog extends React.Component {
         </div>
         <div className="row">
           <div className="col m1"></div>
-          {this.state.booksList.length === 0 ?
+          {this.state.isLoading ?
             (
-              <div
-                className="col m6 offset-m2 page-info not-found"
-              >
-                <h5>No Pending Borrow Available</h5>
+              <div className="col m6 offset-m2 page-info loader-wrapper">
+                <div id="img4" className="loader img"></div>
               </div>
             ) :
             (
-              <div className=" col m10 books-wrapper">
-                <BookIterator borrowLog={this.state.booksList} loggedIn={this.state.loggedIn} />
+              <div>
+                {this.state.booksList.length === 0 ?
+                  (
+                    <div
+                      className="col m6 offset-m2 page-info not-found"
+                    >
+                      <h5>No Pending Borrow Available</h5>
+                    </div>
+                  ) :
+                  (
+                    <div className=" col m10 books-wrapper">
+                      <BookIterator
+                        borrowLog={this.state.booksList}
+                        loggedIn={this.state.loggedIn}
+                      />
+                    </div>
+                  )
+                }
               </div>
             )
           }
@@ -107,7 +122,8 @@ const mapStateToProps = (state) => {
 
 BooksCatalog.propTypes = {
   books: PropTypes.object.isRequired,
-  getPendingBooks: PropTypes.func.isRequired
+  getPendingBooks: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BooksCatalog);

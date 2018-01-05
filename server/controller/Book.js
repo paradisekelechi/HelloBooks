@@ -77,10 +77,6 @@ export default {
     }
     return Book
       .findAndCountAll({
-        where: {
-          deleted: false,
-        }
-      }, {
         include: [{
           model: models.BookCategory,
         }],

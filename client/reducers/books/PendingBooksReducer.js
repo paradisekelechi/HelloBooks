@@ -3,14 +3,16 @@ import {
 } from '../../helpers/Constants';
 
 const initialState = [{
-  list: []
+  list: [],
+  isLoading: true
 }];
 
 const PendingBooksReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_PENDING_BOOKS:
     return [{
-      list: action.payload.booklog
+      list: action.payload.booklog,
+      isLoading: false
     }, ...state];
 
   default:

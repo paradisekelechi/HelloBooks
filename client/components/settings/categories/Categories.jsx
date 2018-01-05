@@ -16,8 +16,7 @@ const Categories = (props) => {
   }
   return (
     <div>
-      <h5>Categories</h5>
-      <table>
+      <table className="responsive-table">
         <thead>
           <tr>
             <th>Name</th>

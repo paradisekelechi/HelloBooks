@@ -33,3 +33,7 @@ export const GET_PENDING_BOOKS = 'get pending books';
 export const GET_BORROWED_BOOKS = 'get borrowed books';
 
 export const GET_BOOK_CATEGORIES = 'get book categories';
+export const GET_USERTYPES = 'get usertypes ';
+export const GET_ACCOUNTTYPES = 'get accounttypes';
+
+export const ADD_CATEGORY = 'add book category';
