@@ -1,4 +1,5 @@
 import models from '../models';
+import ResponseHandler from '../../tools/ResponseHandler';
 
 const {
   UserType
@@ -23,14 +24,7 @@ export default {
         }
       })
       .then((usertype) => {
-        res.status(200).send({
-          success: true,
-          message: 'Usertypes gotten successfully',
-          usertype
-        });
-      })
-      .catch((error) => {
-        res.status(400).send(error);
+        ResponseHandler(req, res, 200, true, 'Usertypes gotten successfully', usertype, 'usertype');
       });
   },
 
@@ -50,35 +44,22 @@ export default {
     } = req;
 
     if (!name) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Name cannot be empty'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Name cannot be empty', null, null);
       return;
     }
 
     if (!description) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Description cannot be empty'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Description cannot be empty', null, null);
       return;
     }
 
     if (!level) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Level cannot be empty'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Level cannot be empty', null, null);
       return;
     }
 
     if (Number.isNaN(Number(level))) {
-      res.status(400).send({
-        success: false,
-        message: 'Level should be a valid number',
-        resultType: typeof (level)
-      });
+      ResponseHandler(req, res, 400, false, 'Level should be a valid number', null, null);
       return;
     }
 
@@ -90,12 +71,7 @@ export default {
         deleted: false,
       })
       .then((usertype) => {
-        res.status(200).send({
-          message: 'Usertype added successfully',
-          success: true,
-          usertype
-        });
-      })
-      .catch(error => res.status(400).send(error));
+        ResponseHandler(req, res, 200, true, 'Usertype added successfully', usertype, 'usertype');
+      });
   },
 };

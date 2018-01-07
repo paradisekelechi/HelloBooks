@@ -10,7 +10,7 @@
     "start:dev": "NODE_ENV=development npm-run-all --parallel start:webpack-dev start:server",
     "start:webpack-dev": "webpack-dev-server",
     "start:server": "babel-node  app.js",
-    "test": "NODE_ENV=test nyc --reporter=text --reporter=html --reporter=lcov _mocha test/* --timeout 150000 --compilers js:babel-register",
+    "test": "NODE_ENV=test nyc --reporter=text-summary --reporter=html --reporter=lcov _mocha test/* --timeout 150000 --compilers js:babel-register",
     "test:client": "mocha --reporter spec test/client",
     "lint": "node_modules/.bin/esw webpack.config.* client tools server",
     "seed:db": "NODE_ENV=test babel-node server/scripts/initialize.js",

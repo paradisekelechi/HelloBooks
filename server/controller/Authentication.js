@@ -1,14 +1,12 @@
 import validator from 'validator';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-
 import models from '../models';
+import ResponseHandler from '../../tools/ResponseHandler';
 
 const {
   User
 } = models;
-
-const empty = '';
 
 /**
  * Secret for authentication
@@ -33,42 +31,28 @@ export default {
       }
     } = req;
 
-    if (validator.isEmpty(`${username}${empty}`) || username == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Username is required'
-      });
+    if (!username) {
+      ResponseHandler(req, res, 401, false, 'Username is required', null, null);
       return;
     }
     username = validator.trim(`${username}`);
 
-    if (validator.isEmpty(`${email}`) || email == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Email is required'
-      });
+    if (!email) {
+      ResponseHandler(req, res, 401, false, 'Email is required', null, null);
       return;
     }
     email = validator.trim(`${email}`);
 
-    if (validator.isEmpty(`${password}`) || password == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Password is required'
-      });
+    if (!password) {
+      ResponseHandler(req, res, 401, false, 'Password is required', null, null);
       return;
     }
     password = validator.trim(`${password}`);
 
-
     if (!validator.isEmail(`${email}`)) {
-      res.status(401).send({
-        success: false,
-        message: 'Enter a valid email address'
-      });
+      ResponseHandler(req, res, 401, false, 'Enter a valid email address', null, null);
       return;
     }
-
 
     bcrypt.hash(password, salt, (err, hashedPassword) => User
       .create({
@@ -108,24 +92,14 @@ export default {
       .catch((error) => {
         if (error.name === 'SequelizeUniqueConstraintError') {
           if (error.fields.username) {
-            res.status(401).send({
-              success: false,
-              message: 'Username already exists'
-            });
+            ResponseHandler(req, res, 401, false, 'Username already exists', null, null);
           }
 
           if (error.fields.email) {
-            res.status(401).send({
-              success: false,
-              message: 'Email already exists'
-            });
+            ResponseHandler(req, res, 401, false, 'Email already exists', null, null);
           }
         } else {
-          res.status(503).send({
-            success: false,
-            message: 'Service unavailable',
-            error
-          });
+          ResponseHandler(req, res, 503, false, 'Service unavailable', error, 'error');
         }
       }));
   },
@@ -145,19 +119,13 @@ export default {
       }
     } = req;
 
-    if (validator.isEmpty(`${username}`) || username == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Username is required'
-      });
+    if (!username) {
+      ResponseHandler(req, res, 401, false, 'Username is required', null, null);
       return;
     }
 
-    if (validator.isEmpty(`${password}`) || password == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Password is required'
-      });
+    if (!password) {
+      ResponseHandler(req, res, 401, false, 'Password is required', null, null);
       return;
     }
 
@@ -200,23 +168,13 @@ export default {
                 accounttype: user.account_type_id
               });
             } else {
-              res.status(401).send({
-                message: 'Oops! Password is incorrect',
-                success: false
-              });
+              ResponseHandler(req, res, 401, false, 'Oops! Password is incorrect', null, null);
             }
           });
         } else {
-          res.status(401).send({
-            message: 'Oops! Username does not exist',
-            success: false
-          });
+          ResponseHandler(req, res, 401, false, 'Oops! Username does not exist', null, null);
         }
-      })
-      .catch(() => res.status(401).send({
-        message: 'Oops! User does not exist',
-        success: false
-      }));
+      });
   },
 
   googleSignin(req, res) {
@@ -228,39 +186,27 @@ export default {
       }
     } = req;
 
-    if (validator.isEmpty(`${username}${empty}`) || username == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Username is required'
-      });
+    if (!username) {
+      ResponseHandler(req, res, 401, false, 'Username is required', null, null);
       return;
     }
     username = validator.trim(`${username}`);
 
-    if (validator.isEmpty(`${email}`) || email == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Email is required'
-      });
+    if (!email) {
+      ResponseHandler(req, res, 401, false, 'Email is required', null, null);
       return;
     }
     email = validator.trim(`${email}`);
 
-    if (validator.isEmpty(`${password}`) || password == null) {
-      res.status(401).send({
-        success: false,
-        message: 'Password is required'
-      });
+    if (!password) {
+      ResponseHandler(req, res, 401, false, 'Password is required', null, null);
       return;
     }
     password = validator.trim(`${password}`);
 
 
     if (!validator.isEmail(`${email}`)) {
-      res.status(401).send({
-        success: false,
-        message: 'Enter a valid email address'
-      });
+      ResponseHandler(req, res, 401, false, 'Enter a valid email address', null, null);
       return;
     }
 
@@ -315,10 +261,7 @@ export default {
                     });
                   });
               } else {
-                res.status(400).send({
-                  success: false,
-                  message: 'User  username already exists'
-                });
+                ResponseHandler(req, res, 400, false, 'User  username already exists', null, null);
               }
             });
         } else {
@@ -346,10 +289,7 @@ export default {
         }
       })
       .catch((error) => {
-        res.status(400).send({
-          message: 'no road',
-          error
-        });
+        ResponseHandler(req, res, 400, false, 'Service unavailable', error, 'error');
       });
   },
 };
