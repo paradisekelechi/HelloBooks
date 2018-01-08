@@ -28,7 +28,7 @@ const {
   userdata
 } = authenticateFetch();
 
-const borrowBookSync = payload => ({
+export const borrowBookSync = payload => ({
   type: BORROW_BOOK,
   payload
 });
@@ -65,7 +65,7 @@ export const borrowBook = (bookId) => {
   };
 };
 
-const returnBookSync = payload => ({
+export const returnBookSync = payload => ({
   type: RETURN_BOOK,
   payload
 });

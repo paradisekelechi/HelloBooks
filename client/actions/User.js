@@ -33,11 +33,11 @@ const {
   token,
   userdata
 } = authenticateFetch();
-const getAllUsersSync = payload => ({
+
+export const getAllUsersSync = payload => ({
   type: GET_ALL_USERS,
   payload
 });
-
 /**
  * Get all users action
  * @export getAllUsers
@@ -64,7 +64,7 @@ export const getAllUsers = () => {
 };
 
 
-const getAdminUsersSync = payload => ({
+export const getAdminUsersSync = payload => ({
   type: GET_ADMIN_USERS,
   payload
 });
@@ -95,7 +95,7 @@ export const getAdminUsers = () => {
 };
 
 
-const getClientUsersSync = payload => ({
+export const getClientUsersSync = payload => ({
   type: GET_CLIENT_USERS,
   payload
 });
@@ -126,7 +126,7 @@ export const getClientUsers = () => {
 };
 
 
-const getDeletedUsersSync = payload => ({
+export const getDeletedUsersSync = payload => ({
   type: GET_DELETED_USERS,
   payload
 });
@@ -156,7 +156,7 @@ export const getDeletedUsers = () => {
   };
 };
 
-const editUserProfileImageSync = (data) => {
+export const editUserProfileImageSync = (data) => {
   return {
     type: EDIT_USER_PROFILE,
     payload: data
@@ -194,7 +194,7 @@ export const editUserProfileImage = (imageUrl) => {
   };
 };
 
-const updatePasswordSync = payload => ({
+export const updatePasswordSync = payload => ({
   type: UPDATE_PASSWORD,
   payload
 });

@@ -39,7 +39,7 @@ const {
   userdata
 } = authenticateFetch();
 
-const addBookSync = payload => ({
+export const addBookSync = payload => ({
   type: ADD_BOOK,
   payload
 });
@@ -74,7 +74,7 @@ export const addBook = (addBookId, bookdata) => {
 };
 
 
-const editBookSync = payload => ({
+export const editBookSync = payload => ({
   type: EDIT_BOOK,
   payload
 });
@@ -109,7 +109,7 @@ export const editBook = (editBookId, bookdata) => {
   };
 };
 
-const deleteBookSync = payload => ({
+export const deleteBookSync = payload => ({
   type: DELETE_BOOK,
   payload
 });
@@ -143,7 +143,7 @@ export const deleteBook = (bookId) => {
 };
 
 
-const getSingleBookSync = payload => ({
+export const getSingleBookSync = payload => ({
   type: GET_SINGLE_BOOK,
   payload
 });
@@ -175,7 +175,7 @@ export const getSingleBook = (bookId) => {
 };
 
 
-const getBooksSync = payload => ({
+export const getBooksSync = payload => ({
   type: GET_BOOKS,
   payload
 });
@@ -201,7 +201,7 @@ export const getBooks = () => {
 };
 
 
-const getBooksFinishedSync = payload => ({
+export const getBooksFinishedSync = payload => ({
   type: GET_BOOKS_FINISHED,
   payload
 });
@@ -229,7 +229,7 @@ export const getBooksFinished = () => {
   };
 };
 
-const getBooksAvailableSync = payload => ({
+export const getBooksAvailableSync = payload => ({
   type: GET_BOOKS_AVAILABLE,
   payload
 });
@@ -256,7 +256,7 @@ export const getBooksAvailable = () => {
   };
 };
 
-const getPendingBooksSync = payload => ({
+export const getPendingBooksSync = payload => ({
   type: GET_PENDING_BOOKS,
   payload
 });
@@ -291,7 +291,7 @@ export const getPendingBooks = () => {
 };
 
 
-const getBooksDeletedSync = payload => ({
+export const getBooksDeletedSync = payload => ({
   type: GET_BOOKS_DELETED,
   payload
 });

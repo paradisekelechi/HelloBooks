@@ -32,7 +32,7 @@ import {
 import Alert from '../helpers/Alert';
 
 
-const signinUserAsync = data => ({
+export const signinUserAsync = data => ({
   type: SIGNIN_USER,
   payload: data
 });
@@ -66,7 +66,7 @@ export const signinUser = (user) => {
 };
 
 
-const signupUserAsync = user => ({
+export const signupUserAsync = user => ({
   type: SIGNUP_USER,
   payload: user
 });
@@ -99,7 +99,7 @@ export const signupUser = (user) => {
   };
 };
 
-const googleSigninUserAsync = payload => ({
+export const googleSigninUserAsync = payload => ({
   type: GOOGLE_SIGNIN_USER,
   payload
 });
@@ -135,7 +135,7 @@ export const googleSigninUser = (user) => {
 };
 
 
-const logoutUserAsync = user => ({
+export const logoutUserAsync = user => ({
   type: LOGOUT_USER,
   user
 });

@@ -27,7 +27,7 @@ const {
   token
 } = authenticateFetch();
 
-const getCategoriesSync = payload => ({
+export const getCategoriesSync = payload => ({
   type: GET_BOOK_CATEGORIES,
   payload
 });
@@ -51,7 +51,7 @@ export const getCategories = () => {
   };
 };
 
-const addCategorySync = payload => ({
+export const addCategorySync = payload => ({
   type: ADD_CATEGORY,
   payload
 });
