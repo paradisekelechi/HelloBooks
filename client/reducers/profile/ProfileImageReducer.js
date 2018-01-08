@@ -19,7 +19,7 @@ const initialState = [{
  * @returns {Object} State object
  */
 const ProfileImageReducer = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
   case EDIT_USER_PROFILE:
     return [{
       isEdited: true,
