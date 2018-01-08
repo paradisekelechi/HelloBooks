@@ -1,3 +1,10 @@
+
+/**
+ * Get Account type of user
+ *
+ * @param {Int} accountTypeId
+ * @returns {String} The account type ofthe user
+ */
 export const getAccountType = (accountTypeId) => {
   const id = accountTypeId;
   let accountType;
@@ -13,6 +20,12 @@ export const getAccountType = (accountTypeId) => {
   return accountType;
 };
 
+/**
+ * Get Usertype of the user
+ *
+ * @param {Int} userTypeId
+ * @returns {String} Usertype of the user
+ */
 export const getUserType = (userTypeId) => {
   const id = userTypeId;
   let userType;

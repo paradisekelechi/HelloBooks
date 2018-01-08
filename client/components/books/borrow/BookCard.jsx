@@ -14,9 +14,12 @@ import { deleteBook } from '../../../actions/Book';
  */
 class BookCard extends React.Component {
   /**
+   *Handles the click of the borrow button
    *
-   * @returns{Object} dispatch object
+   * @returns {void}
+   *
    * @param {String} id
+   *
    * @memberof BookCard
    */
   borrowButtonOnClick(id) {
@@ -36,7 +39,9 @@ class BookCard extends React.Component {
 
   /**
    *
-   * @returns{Object} dispatch object
+   * Delete Button On Click
+   *
+   * @returns {void}
    * @param {String} id
    * @memberof BookCard
    */
@@ -56,7 +61,7 @@ class BookCard extends React.Component {
   }
 
   /**
-   *
+   * Render function
    *
    * @returns {Object} render object
    * @memberof BookCard

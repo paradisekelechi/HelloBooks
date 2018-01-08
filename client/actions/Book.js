@@ -1,3 +1,18 @@
+/**
+ *  @fileOverview  Book action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires NPM:querystring
+ * @requires NPM:react-router
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ * @requires ../helpers/Authentication'
+ *
+ */
+
 import axios from 'axios';
 import {
   browserHistory
@@ -30,14 +45,16 @@ const addBookSync = payload => ({
 });
 
 /**
+ * Add book action
  *
+ * @export addBook
  *
- * @export
  * @param {String} addBookId
  * @param {Object} bookdata
+ *
  * @returns {Object}  dispatch object
  */
-export function addBook(addBookId, bookdata) {
+export const addBook = (addBookId, bookdata) => {
   const config = {
     headers: {
       'user-token': token
@@ -54,7 +71,7 @@ export function addBook(addBookId, bookdata) {
         Alert('error', error.response.data.message, null);
       });
   };
-}
+};
 
 
 const editBookSync = payload => ({
@@ -63,14 +80,16 @@ const editBookSync = payload => ({
 });
 
 /**
+ * Edit book action
  *
+ * @export editBook
  *
- * @export
  * @param {String} editBookId
  * @param {Object} bookdata
+ *
  * @returns {Object}  dispatch object
  */
-export function editBook(editBookId, bookdata) {
+export const editBook = (editBookId, bookdata) => {
   const config = {
     headers: {
       'user-token': token
@@ -88,7 +107,7 @@ export function editBook(editBookId, bookdata) {
         Alert('error', error.response.data.message, null);
       });
   };
-}
+};
 
 const deleteBookSync = payload => ({
   type: DELETE_BOOK,
@@ -96,13 +115,15 @@ const deleteBookSync = payload => ({
 });
 
 /**
+ * Delete book action
  *
+ * @export deleteBook
  *
- * @export
  * @param {String} bookId
+ *
  * @returns {Object}  dispatch object
  */
-export function deleteBook(bookId) {
+export const deleteBook = (bookId) => {
   const config = {
     headers: {
       'user-token': token
@@ -119,7 +140,7 @@ export function deleteBook(bookId) {
         Alert('error', error.response.data.message, null);
       });
   };
-}
+};
 
 
 const getSingleBookSync = payload => ({
@@ -128,13 +149,15 @@ const getSingleBookSync = payload => ({
 });
 
 /**
+ * Get single book action
  *
+ * @export getSingleBook
  *
- * @export
  * @param {any} bookId
+ *
  * @returns {Object} config object
  */
-export function getSingleBook(bookId) {
+export const getSingleBook = (bookId) => {
   const config = {
     headers: {
       'user-token': token
@@ -149,7 +172,7 @@ export function getSingleBook(bookId) {
         }
       });
   };
-}
+};
 
 
 const getBooksSync = payload => ({
@@ -157,13 +180,15 @@ const getBooksSync = payload => ({
   payload
 });
 /**
+ * Get books action
  *
+ * @export getBooks
  *
- * @export
  * @param {any} books
+ *
  * @returns {object} dispatch object
  */
-export function getBooks() {
+export const getBooks = () => {
   return (dispatch) => {
     axios
       .get(routes.getBooks)
@@ -173,7 +198,7 @@ export function getBooks() {
         }
       });
   };
-}
+};
 
 
 const getBooksFinishedSync = payload => ({
@@ -181,12 +206,13 @@ const getBooksFinishedSync = payload => ({
   payload
 });
 /**
+ * Get finished books action
  *
+ * @export getBooksFinished
  *
- * @export
- * @returns {type} book dispatch
+ * @returns {Object} book dispatch
  */
-export function getBooksFinished() {
+export const getBooksFinished = () => {
   const config = {
     headers: {
       'user-token': token
@@ -201,7 +227,7 @@ export function getBooksFinished() {
         }
       });
   };
-}
+};
 
 const getBooksAvailableSync = payload => ({
   type: GET_BOOKS_AVAILABLE,
@@ -209,13 +235,15 @@ const getBooksAvailableSync = payload => ({
 });
 
 /**
+ * Get vailable books action
  *
+ * @export getBooksAvailable
  *
- * @export
  * @param {String} category
+ *
  * @returns {object} dispatch object
  */
-export function getBooksAvailable() {
+export const getBooksAvailable = () => {
   const getBooksUrl = routes.getBooksAvailable;
   return (dispatch) => {
     axios
@@ -226,7 +254,7 @@ export function getBooksAvailable() {
         Alert('error', error.response.data.message, null);
       });
   };
-}
+};
 
 const getPendingBooksSync = payload => ({
   type: GET_PENDING_BOOKS,
@@ -234,13 +262,15 @@ const getPendingBooksSync = payload => ({
 });
 
 /**
+ * Get pending books action
  *
+ * @export getPendingBooks
  *
- * @export
  * @param {String} category
+ *
  * @returns {object} dispatch object
  */
-export function getPendingBooks() {
+export const getPendingBooks = () => {
   const url = `${routes.users}/${userdata.userid}/books`;
   const config = {
     headers: {
@@ -258,7 +288,7 @@ export function getPendingBooks() {
         dispatch(getPendingBooksSync(error.data));
       });
   };
-}
+};
 
 
 const getBooksDeletedSync = payload => ({
@@ -266,12 +296,13 @@ const getBooksDeletedSync = payload => ({
   payload
 });
 /**
+ * Get deleted books action
  *
+ * @export getBooksDeleted
  *
- * @export
- * @returns {type} book dispatch
+ * @returns {Object} book dispatch
  */
-export function getBooksDeleted() {
+export const getBooksDeleted = () => {
   const config = {
     headers: {
       'user-token': token
@@ -286,4 +317,4 @@ export function getBooksDeleted() {
         }
       });
   };
-}
+};

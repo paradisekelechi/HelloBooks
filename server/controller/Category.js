@@ -1,4 +1,14 @@
+/**
+ *  @fileOverview Controller file for book category processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import models from '../models';
+import ResponseHandler from '../../tools/ResponseHandler';
 
 const {
   BookCategory
@@ -6,37 +16,37 @@ const {
 
 export default {
   /**
-   * view all books in the library
+   * Get all book categories in the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} categories object
+   *
+   * @returns {void}
    */
   getCategories(req, res) {
     return BookCategory
       .findAndCountAll()
       .then((bookcategory) => {
-        res.status(200).send({
-          success: true,
-          message: 'Book category successfully gotten',
-          bookcategory
-        });
+        ResponseHandler(
+          req, res, 200, true, 'Book category successfully gotten',
+          bookcategory, 'bookcategory'
+        );
       })
       .catch((error) => {
-        res.status(400).send({
-          success: false,
-          message: 'Book category not successfully gotten',
-          error
-        });
+        ResponseHandler(
+          req, res, 400, false, 'Book category not successfully gotten',
+          error, 'error'
+        );
       });
   },
 
   /**
-   * Add category
+   * Add book category
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} Response object
+   *
+   * @returns {void}
    */
   addCategory(req, res) {
     const {
@@ -47,26 +57,26 @@ export default {
       }
     } = req;
     if (!name) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Name cannot be empty'
-      });
+      ResponseHandler(
+        req, res, 400, false, 'Oops! Name cannot be empty',
+        null, 'null'
+      );
       return;
     }
 
     if (!description) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Description cannot be empty'
-      });
+      ResponseHandler(
+        req, res, 400, false, 'Oops! Description cannot be empty',
+        null, 'null'
+      );
       return;
     }
 
     if (!abbreviation) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Abbreviation cannot be empty'
-      });
+      ResponseHandler(
+        req, res, 400, false, 'Oops! Abbreviation cannot be empty',
+        null, 'null'
+      );
       return;
     }
 
@@ -78,18 +88,10 @@ export default {
         deleted: false,
       })
       .then((category) => {
-        res.status(200).send({
-          message: 'Book category added',
-          success: true,
-          category
-        });
-      })
-      .catch((error) => {
-        res.status(400).send({
-          message: 'Book cactegory not added',
-          success: false,
-          error
-        });
+        ResponseHandler(
+          req, res, 200, true, 'Book category added',
+          category, 'category'
+        );
       });
   },
 };

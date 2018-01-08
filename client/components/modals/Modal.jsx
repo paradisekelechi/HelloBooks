@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- *
+ * Modal Class
  *
  * @class Modal
  * @extends {React.Component}
@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 class Modal extends React.Component {
   /**
    * Creates an instance of Modal.
+   *
    * @param {any} props
    * @memberof Modal
    */
@@ -19,6 +20,7 @@ class Modal extends React.Component {
   }
 
   /**
+   * Component Did Mount
    *
    * @returns {void} initializes modal
    * @memberof Modal
@@ -32,6 +34,7 @@ class Modal extends React.Component {
   }
 
   /**
+   * Handle modal close
    *
    * @returns {void} closes the modal
    * @param {any} event
@@ -43,9 +46,9 @@ class Modal extends React.Component {
   }
 
   /**
+   * Render function
    *
-   *
-   * @returns {void} renders the modal component
+   * @returns {Object} Jsx Object
    * @memberof Modal
    */
   render() {

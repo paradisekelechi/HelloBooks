@@ -84,7 +84,7 @@ class BooksCatalog extends React.Component {
   }
 
   /**
-   *
+   * Render object
    *
    * @returns {Object} render object
    * @memberof BooksCatalog

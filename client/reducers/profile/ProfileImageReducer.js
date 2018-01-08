@@ -8,7 +8,17 @@ const initialState = [{
   imageUrl: ''
 }];
 
-const profileImageReducer = (state = initialState, action) => {
+/**
+ * ProfileImageReducer
+ *
+ * @export ProfileImageReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
+const ProfileImageReducer = (state = initialState, action) => {
   switch (action) {
   case EDIT_USER_PROFILE:
     return [{
@@ -20,4 +30,4 @@ const profileImageReducer = (state = initialState, action) => {
   }
 };
 
-export default profileImageReducer;
+export default ProfileImageReducer;

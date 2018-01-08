@@ -8,6 +8,16 @@ const initialState = [{
   isProcessing: true,
 }];
 
+/**
+ * UpdatePasswordReducer
+ *
+ * @export UpdatePasswordReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const UpdatePasswordReducer = (state = initialState, action) => {
   switch (action.type) {
   case UPDATE_PASSWORD:

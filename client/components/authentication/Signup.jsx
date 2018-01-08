@@ -11,7 +11,9 @@ import background from '../../assets/img/background6.jpg';
 class Signup extends React.Component {
   /**
    * Creates an instance of Signup.
+   *
    * @param {any} props
+   *
    * @memberof Signup
    */
   constructor(props) {
@@ -28,8 +30,8 @@ class Signup extends React.Component {
   }
 
   /**
-   *
-   * @returns {void} no object
+   *Component Did Mount
+   * @returns {void}
    * @memberof Signup
    */
   componentDidMount() {
@@ -41,7 +43,7 @@ class Signup extends React.Component {
 
   /**
    * Generic onChange function
-   * @returns {void} returns nothing
+   * @returns {void}
    * @param {any} event
    * @memberof Signup
    */
@@ -54,8 +56,8 @@ class Signup extends React.Component {
 
   /**
    *
-   * @returns {void} description
-   * @param {any} event
+   * @returns {void}
+   * @param {Object} event
    * @memberof Signup
    */
   onClickSubmit(event) {

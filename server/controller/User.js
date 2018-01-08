@@ -1,5 +1,16 @@
+/**
+ *  @fileOverview Controller file for user management processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:bcrypt
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import bcrypt from 'bcrypt';
 import models from '../models';
+import ResponseHandler from '../../tools/ResponseHandler';
 
 const {
   User
@@ -12,7 +23,8 @@ export default {
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   getUsers(req, res) {
     if (req.query.client === 'true') {
@@ -24,17 +36,10 @@ export default {
           }
         })
         .then((users) => {
-          res.status(200).send({
-            success: true,
-            message: 'Users list successfully gotten ',
-            users
-          });
-        })
-        .catch(() => {
-          res.status.send({
-            success: false,
-            message: 'Users list not obtained'
-          });
+          ResponseHandler(
+            req, res, 200, true, 'Users list successfully gotten',
+            users, 'users'
+          );
         });
     }
     if (req.query.admin === 'true') {
@@ -46,17 +51,10 @@ export default {
           }
         })
         .then((users) => {
-          res.status(200).send({
-            success: true,
-            message: 'Users list successfully gotten ',
-            users
-          });
-        })
-        .catch(() => {
-          res.status.send({
-            success: false,
-            message: 'Users list not obtained'
-          });
+          ResponseHandler(
+            req, res, 200, true, 'Users list successfully gotten',
+            users, 'users'
+          );
         });
     }
     if (req.query.deleted === 'true') {
@@ -67,17 +65,10 @@ export default {
           }
         })
         .then((users) => {
-          res.status(200).send({
-            success: true,
-            message: 'Users list successfully gotten ',
-            users
-          });
-        })
-        .catch(() => {
-          res.status.send({
-            success: false,
-            message: 'Users list not obtained'
-          });
+          ResponseHandler(
+            req, res, 200, true, 'Users list successfully gotten',
+            users, 'users'
+          );
         });
     }
     return User
@@ -87,26 +78,20 @@ export default {
         }
       })
       .then((users) => {
-        res.status(200).send({
-          success: true,
-          message: 'Users list successfully gotten ',
-          users
-        });
-      })
-      .catch(() => {
-        res.status.send({
-          success: false,
-          message: 'Users list not obtained'
-        });
+        ResponseHandler(
+          req, res, 200, true, 'Users list successfully gotten',
+          users, 'users'
+        );
       });
   },
 
   /**
-   * Edit User
+   * Edit a User
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   editUser(req, res) {
     const {
@@ -123,19 +108,19 @@ export default {
       }
     } = req;
 
-    if (userId == null) {
-      res.status(400).send({
-        success: false,
-        message: 'User Id is required'
-      });
+    if (!userId) {
+      ResponseHandler(
+        req, res, 400, false, 'User Id is required',
+        null, null
+      );
       return;
     }
 
-    if (userTypeId == null && accountTypeId == null && imageUrl == null && password == null) {
-      res.status(400).send({
-        success: false,
-        message: 'No data to edit'
-      });
+    if (!userTypeId && !accountTypeId && !imageUrl && !password) {
+      ResponseHandler(
+        req, res, 400, false, 'No data to edit',
+        null, null
+      );
       return;
     }
 
@@ -150,20 +135,21 @@ export default {
         }
       })
       .then(() => {
-        res.status(200).send({
-          success: true,
-          message: 'User successfully updated',
-          image: imageUrl
-        });
-      })
-      .catch(() => {
-        res.status(400).send({
-          success: false,
-          message: 'User not successfully updated'
-        });
+        ResponseHandler(
+          req, res, 200, true, 'User successfully updated',
+          imageUrl, 'image'
+        );
       });
   },
 
+  /**
+   * Edit  a user's password
+   *
+   * @param {Object} req
+   * @param {Object} res
+   *
+   * @returns {void}
+   */
   editPassword(req, res) {
     const {
       body: {
@@ -179,42 +165,27 @@ export default {
     } = req;
 
     if (userId == null) {
-      res.status(400).send({
-        success: false,
-        message: 'User Id is required'
-      });
+      ResponseHandler(req, res, 400, false, 'User Id is required', null, null);
       return;
     }
 
     if (!password) {
-      res.status(400).send({
-        success: false,
-        message: 'Password is required'
-      });
+      ResponseHandler(req, res, 400, false, 'Password is required', null, null);
       return;
     }
 
     if (!newPassword) {
-      res.status(400).send({
-        success: false,
-        message: 'New password is required'
-      });
+      ResponseHandler(req, res, 400, false, 'New Password is required', null, null);
       return;
     }
 
     if (!confirmPassword) {
-      res.status(400).send({
-        success: false,
-        message: 'Confirm password is required'
-      });
+      ResponseHandler(req, res, 400, false, 'Confirm Password is required', null, null);
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      res.status(400).send({
-        success: false,
-        message: 'New password does not match'
-      });
+      ResponseHandler(req, res, 400, false, 'New Password does not match', null, null);
       return;
     }
 
@@ -228,10 +199,7 @@ export default {
         const oldPassword = userDetails.password;
         bcrypt.compare(password, oldPassword, (err, success) => {
           if (!success) {
-            res.status(400).send({
-              success: false,
-              message: 'Password is incorrect'
-            });
+            ResponseHandler(req, res, 400, false, 'Password is incorrect', null, null);
           } else {
             bcrypt.hash(newPassword, salt, (err, hashedPassword) => {
               User
@@ -243,10 +211,7 @@ export default {
                   }
                 })
                 .then(() => {
-                  res.status(200).send({
-                    success: true,
-                    message: 'Password change successful'
-                  });
+                  ResponseHandler(req, res, 200, true, 'Password change successful', null, null);
                 });
             });
           }
@@ -255,11 +220,12 @@ export default {
   },
 
   /**
-   * DeleteUser
+   * Delete a User from the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   deleteUser(req, res) {
     const {
@@ -267,11 +233,8 @@ export default {
         userId
       }
     } = req;
-    if (userId == null) {
-      res.status(400).send({
-        success: false,
-        message: 'User Id is required'
-      });
+    if (!userId) {
+      ResponseHandler(req, res, 400, false, 'User Id is required', null, null);
       return;
     }
 
@@ -284,16 +247,7 @@ export default {
         }
       })
       .then(() => {
-        res.status(200).send({
-          success: true,
-          message: 'User successfully deleted'
-        });
-      })
-      .catch(() => {
-        res.status(400).send({
-          success: false,
-          message: 'User not successfully deleted'
-        });
+        ResponseHandler(req, res, 200, true, 'User successfully deleted', null, null);
       });
   },
 };

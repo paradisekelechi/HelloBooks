@@ -9,6 +9,16 @@ const initialState = [{
   list: []
 }];
 
+/**
+ * AvailableBooksReducer
+ *
+ * @export AvailableBooksReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const AvailableBooksReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_BOOKS_AVAILABLE:

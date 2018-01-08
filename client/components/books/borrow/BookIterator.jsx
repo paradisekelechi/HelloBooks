@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BookCard from './BookCard';
 
+/**
+ *
+ * @param {Object} props
+ *
+ * @returns {Object} Jsx object
+ */
 const BookIterator = (props) => {
   let bookList = () => {
     return (

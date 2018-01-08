@@ -1,3 +1,17 @@
+/**
+ *  @fileOverview  Usertype action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ * @requires ../helpers/Authentication'
+ *
+ */
+
+
 import axios from 'axios';
 import {
   GET_USERTYPES
@@ -11,7 +25,10 @@ export const getUsertypesSync = payload => ({
 });
 
 /**
- * @export
+ * Get usertypes action
+ *
+ * @export getUsertypes
+ *
  * @returns {object} dispatch object
  */
 export const getUsertypes = () => {

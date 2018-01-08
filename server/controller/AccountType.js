@@ -1,4 +1,13 @@
+/**
+ *  @fileOverview Controller file for account type processes in the server
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
 import models from '../models';
+import ResponseHandler from '../../tools/ResponseHandler';
 
 const {
   AccountType
@@ -11,7 +20,7 @@ export default {
    * @param {Object} req
    * @param {Object} res
    *
-   * @returns {Object} description
+   * @returns {void}
    */
   getAccountTypes(req, res) {
     return AccountType
@@ -21,20 +30,18 @@ export default {
         }
       })
       .then((accounttype) => {
-        res.status(200).send({
-          success: true,
-          message: 'Account types gotten',
-          accounttype
-        });
+        ResponseHandler(req, res, 200, true, 'Account types gotten', accounttype, 'accounttype');
       })
       .catch((error) => {
-        res.status(400).send(error);
+        ResponseHandler(req, res, 400, true, 'Account types not gotten', error, 'error');
       });
   },
 
   /**
    * Add a new Account type
-   * @returns {Object} description
+   *
+   * @returns {void}
+   *
    * @param {Request} req
    * @param {Response} res
    */
@@ -48,33 +55,21 @@ export default {
     } = req;
 
     if (!name) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Name cannot be empty'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Name cannot be empty', null, null);
       return;
     }
 
     if (!description) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Description cannot be empty'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Description cannot be empty', null, null);
       return;
     }
 
     if (!level) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Level cannot be empty'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Level cannot be empty', null, null);
       return;
     }
     if (Number.isNaN(Number(level))) {
-      res.status(400).send({
-        success: false,
-        message: 'Level should be a valid number'
-      });
+      ResponseHandler(req, res, 400, false, 'Level should be a valid number', null, null);
       return;
     }
 
@@ -86,16 +81,13 @@ export default {
         deleted: false,
       })
       .then((accounttype) => {
-        res.status(200).send({
-          message: 'Accounttype added successfully',
-          success: true,
-          accounttype
-        });
+        ResponseHandler(
+          req, res, 200, true, 'Accounttype added successfully',
+          accounttype, 'accounttype'
+        );
       })
-      .catch(error => res.status(400).send({
-        success: false,
-        message: 'Account Type not  added',
-        error
-      }));
+      .catch((error) => {
+        ResponseHandler(req, res, 400, false, 'Account Type not  added', error, 'error');
+      });
   },
 };

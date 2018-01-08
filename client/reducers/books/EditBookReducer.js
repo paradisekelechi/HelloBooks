@@ -9,6 +9,16 @@ const initialState = [{
   editBookId: ''
 }];
 
+/**
+ * EditBookReducer
+ *
+ * @export EditBookReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const EditBookReducer = (state = initialState, action) => {
   switch (action.type) {
   case EDIT_BOOK:

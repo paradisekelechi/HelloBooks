@@ -7,7 +7,7 @@ import NavigationCard from './components/NavigationCard';
 import { logoutUser } from '../../actions/Authentication';
 
 /**
- *
+ * Navigation class
  *
  * @class Navigation
  * @extends {React.Component}
@@ -15,6 +15,7 @@ import { logoutUser } from '../../actions/Authentication';
 class Navigation extends React.Component {
   /**
    * Creates an instance of Navigation.
+   *
    * @param {any} props
    * @memberof Navigation
    */
@@ -28,8 +29,9 @@ class Navigation extends React.Component {
     this.logoutUser = this.logoutUser.bind(this);
   }
   /**
+   * Component Will Mount
    *
-   * @returns{*} sets state
+   * @returns {void}
    * @memberof Navigation
    */
   componentWillMount() {
@@ -42,8 +44,10 @@ class Navigation extends React.Component {
 
 
   /**
-   * @returns {void} description
-   * @param {any} event
+   * Log out user function
+   *
+   * @returns {void}
+   * @param {Object} event
    * @memberof PageBar
    */
   logoutUser(event) {
@@ -54,7 +58,7 @@ class Navigation extends React.Component {
   /**
    * Toggles the navigation bar on smaller screens
    *
-   * @param {any} event
+   * @param {Object} event
    * @memberof Navigation
    * @returns {void} toggles the navigation bar
    */
@@ -66,7 +70,7 @@ class Navigation extends React.Component {
   }
 
   /**
-   *
+   * Render function
    *
    * @returns {Object} render object
    * @memberof Navigation
@@ -170,8 +174,6 @@ class Navigation extends React.Component {
                   </div>
                 )
               }
-
-
             </div>
           </div>
         </nav>
@@ -180,7 +182,12 @@ class Navigation extends React.Component {
   }
 }
 
-
+/**
+ * Map Dispatch To Props
+ *
+ * @param {Object} dispatch
+ * @returns {Object} dispatch actions
+ */
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => {

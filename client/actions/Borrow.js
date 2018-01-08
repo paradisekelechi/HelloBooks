@@ -1,3 +1,17 @@
+
+/**
+ *  @fileOverview  Borrow action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ * @requires ../helpers/Authentication'
+ *
+ */
+
 import axios from 'axios';
 import {
   BORROW_BOOK,
@@ -14,19 +28,21 @@ const {
   userdata
 } = authenticateFetch();
 
-export const borrowBookSync = payload => ({
+const borrowBookSync = payload => ({
   type: BORROW_BOOK,
   payload
 });
 
 /**
+ * Borrow book action
  *
+ * @export borrowBook
  *
- * @export
  * @param {any} bookId
+ *
  * @returns {object} dispatch object
  */
-export function borrowBook(bookId) {
+export const borrowBook = (bookId) => {
   const config = {
     headers: {
       'user-token': token
@@ -47,18 +63,20 @@ export function borrowBook(bookId) {
         Alert('error', error.response.data.message, null);
       });
   };
-}
+};
 
-export const returnBookSync = payload => ({
+const returnBookSync = payload => ({
   type: RETURN_BOOK,
   payload
 });
 
 /**
+ * Return book action
  *
+ * @export returnBook
  *
- * @export
  * @param {string} bookId
+ *
  * @returns {object} dispatch object
  */
 export const returnBook = (bookId) => {

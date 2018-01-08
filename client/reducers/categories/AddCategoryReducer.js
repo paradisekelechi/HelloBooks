@@ -7,7 +7,16 @@ const initialState = [{
   message: '',
   isProcessing: true,
 }];
-
+/**
+ * AddCategoryReducer
+ *
+ * @export AddCategoryReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const AddCategoryReducer = (state = initialState, action) => {
   switch (action.type) {
   case ADD_CATEGORY:

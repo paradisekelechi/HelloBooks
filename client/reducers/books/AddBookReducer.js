@@ -8,6 +8,16 @@ const initialState = [{
   isProcessing: true,
 }];
 
+/**
+ * AddBookReducer
+ *
+ * @export AddBookReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const AddBookReducer = (state = initialState, action) => {
   switch (action.type) {
   case ADD_BOOK:

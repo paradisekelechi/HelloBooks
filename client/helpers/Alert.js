@@ -1,3 +1,11 @@
+/**
+ * Alert Function
+ *
+ * @param {String} alertType
+ * @param {String} alertMessage
+ * @param {Object} callback
+ * @returns {void}
+ */
 const Alert = (alertType, alertMessage, callback) => {
   if (callback) {
     Materialize.toast(

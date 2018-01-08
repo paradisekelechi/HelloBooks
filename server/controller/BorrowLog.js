@@ -1,7 +1,18 @@
-import validator from 'validator';
+/**
+ *  @fileOverview Controller file for borrow and return book processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:validator
+ * @requires ../models
+ * @requires '../../tools/Email'
+ * @requires ../../tools/ResponseHandler
+ */
 
+import validator from 'validator';
 import models from '../models';
 import emailController from '../../tools/Email';
+import ResponseHandler from '../../tools/ResponseHandler';
 
 const {
   notification
@@ -20,22 +31,20 @@ const {
 
 export default {
   /**
-   * Borrow book
+   * Borrow book from the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} borrow book
+   *
+   * @returns {void}
    */
   borrowBook(req, res) {
     const today = new Date();
     const borrowDate = today;
-
     const userEmail = req.email;
-
     const timeout = 24 * 60 * 60 * 1000 * process.env.BORROW_VALIDITY_IN_DAYS;
     const returnDate = validator.isEmpty(`${req.body.return_date}`) || req.body.return_date == null ?
       new Date(today.getTime() + timeout) : new Date(req.body.return_date);
-
     const {
       params: {
         userId
@@ -51,20 +60,14 @@ export default {
      * Check if userid
      */
     if (!userId) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Userid is required!'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! Userid is required!', null, null);
     }
 
     /**
      * Check if the bookId is null and insist on it
      */
     if (!bookId) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! BookId is required!'
-      });
+      ResponseHandler(req, res, 400, false, 'Oops! BookId is required!', null, null);
       return;
     }
 
@@ -77,15 +80,9 @@ export default {
       })
       .then((book) => {
         if (!book) {
-          res.status(404).send({
-            success: false,
-            message: 'Book does not exist'
-          });
+          ResponseHandler(req, res, 404, false, 'Book does not exist', null, null);
         } else if (book.quantity === 0) {
-          res.status(404).send({
-            success: false,
-            message: 'Book is no longer available'
-          });
+          ResponseHandler(req, res, 404, false, 'Book is no longer available', null, null);
         } else {
           return BorrowLog
             .findAll({
@@ -97,10 +94,10 @@ export default {
             })
             .then((log) => {
               if (log.length > 0 && !log[0].returned) {
-                res.status(400).send({
-                  success: false,
-                  message: 'You have already borrowed this book'
-                });
+                ResponseHandler(
+                  req, res, 400, false, 'You have already borrowed this book',
+                  null, null
+                );
               } else {
                 /**
                  * Borrow book by user
@@ -114,7 +111,7 @@ export default {
                     user_id: userId,
                     book_id: bookId,
                   })
-                  .then(borrowDetails =>
+                  .then((borrowDetails) => {
                     /**
                      * Update book quantity
                      */
@@ -126,14 +123,14 @@ export default {
                           id: bookId
                         }
                       })
-                      .then(
-                        res.status(200).send({
-                          success: true,
-                          message: 'Book borrowed successfully',
-                          borrowDetails
-                        }),
-                        notification('Book borrowed successfully', userEmail, 'Hello Books')
-                      ));
+                      .then(() => {
+                        ResponseHandler(
+                          req, res, 200, true, 'Book borrowed successfully',
+                          borrowDetails, 'borrowDetails'
+                        );
+                        notification('Book borrowed successfully', userEmail, 'Hello Books');
+                      });
+                  });
               }
             });
         }
@@ -142,11 +139,12 @@ export default {
 
 
   /**
-   *
+   * Returns a borrowed book to the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} Book response object
+   *
+   * @returns {void}
    */
   returnBook(req, res) {
     const today = new Date();
@@ -162,19 +160,12 @@ export default {
     } = req;
 
     if (!userId) {
-      res.status(400).send({
-        success: false,
-        message: 'Userid is required!'
-      });
+      ResponseHandler(req, res, 400, false, 'Userid is required!', null, null);
       return;
     }
 
-
     if (!bookId) {
-      res.status(400).send({
-        success: false,
-        message: 'BookId is required!'
-      });
+      ResponseHandler(req, res, 400, false, 'BookId is required!', null, null);
       return;
     }
 
@@ -186,10 +177,7 @@ export default {
       })
       .then((book) => {
         if (!book) {
-          res.status(404).send({
-            success: false,
-            message: 'Book does not exist'
-          });
+          ResponseHandler(req, res, 404, false, 'Book does not exist', null, null);
         } else {
           return BorrowLog
             .findAll({
@@ -204,10 +192,10 @@ export default {
             .then((borrowLogs) => {
               const lastTransaction = borrowLogs[0];
               if (lastTransaction.returned) {
-                res.status(400).send({
-                  success: false,
-                  message: 'Oops! You have already returned this book!',
-                });
+                ResponseHandler(
+                  req, res, 400, false,
+                  'Oops! You have already returned this book!', null, null
+                );
               } else {
                 /**
                  * Return Borrowed book
@@ -270,9 +258,12 @@ export default {
   },
 
   /**
-   * @returns {Object} Response object
+   * Gets a user's borrowed books
+   *
    * @param {Object} req
    * @param {Object} res
+   *
+   * @returns {void}
    */
   getBorrowedBooks(req, res) {
     const {
@@ -286,11 +277,8 @@ export default {
       }
     } = req;
 
-    if (userId == null || userId === '' || userId === undefined) {
-      res.status(400).send({
-        success: false,
-        message: 'Oops! Userid is required!'
-      });
+    if (!userId) {
+      ResponseHandler(req, res, 400, false, 'Oops! Userid is required!', null, null);
       return;
     }
 
@@ -311,20 +299,23 @@ export default {
         })
         .then((booklog) => {
           if (booklog.length !== 0) {
-            res.status(200).send({
-              success: true,
-              message: 'You have borrowed some books!',
-              booklog
-            });
+            ResponseHandler(
+              req, res, 200, true, 'You have borrowed some books!',
+              booklog, 'booklog'
+            );
           } else {
-            res.status(200).send({
-              success: true,
-              message: 'You have not borrowed any book!',
-              booklog
-            });
+            ResponseHandler(
+              req, res, 200, true, 'You have not borrowed any book!',
+              booklog, 'booklog'
+            );
           }
         })
-        .catch(error => res.status(400).send(error));
+        .catch((error) => {
+          ResponseHandler(
+            req, res, 400, true, 'Book not borrowed',
+            error, 'error'
+          );
+        });
     }
     return BorrowLog
       .findAll({
@@ -342,20 +333,16 @@ export default {
       })
       .then((booklog) => {
         if (booklog.length !== 0) {
-          res.status(200).send({
-            success: true,
-            message: 'You have pending books!',
-            booklog
-          });
+          ResponseHandler(
+            req, res, 200, true, 'You have pending books!',
+            booklog, 'booklog'
+          );
         } else {
-          res.status(200).send({
-            success: true,
-            message: 'You have no unreturned/pending books!',
-            booklog
-          });
+          ResponseHandler(
+            req, res, 200, true, 'You have no unreturned/pending books!',
+            booklog, 'booklog'
+          );
         }
-      })
-      .catch(error => res.status(400).send(error));
+      });
   }
-
 };

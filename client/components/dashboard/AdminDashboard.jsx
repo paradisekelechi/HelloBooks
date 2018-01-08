@@ -37,7 +37,7 @@ class AdminDashboard extends React.Component {
 
 
   /**
-   *
+   * Render function
    *
    * @returns  {object} jsx component
    * @memberof AdminDashboard

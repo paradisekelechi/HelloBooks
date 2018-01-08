@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+/**
+ * About function
+ * @returns {Object} JSX Object
+ */
 const About = () => {
   document.title = 'HelloBooks | About';
   return (

@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Dashboard Card
+ *
+ * @param {Object} props
+ * @returns {Object} JSX Object
+ */
 const DashboardCard = (props) => {
   return (
     <div className="col m3 s12">

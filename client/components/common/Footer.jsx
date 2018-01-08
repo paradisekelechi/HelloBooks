@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+/**
+ * Footer function
+ *
+ * @returns {Object} JSX object
+ */
 const Footer = () => {
   return (
     <footer className="page-footer footer-color">

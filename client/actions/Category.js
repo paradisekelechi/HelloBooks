@@ -1,3 +1,17 @@
+/**
+ *  @fileOverview  Book Category action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ * @requires ../helpers/Authentication'
+ *
+ */
+
+
 import axios from 'axios';
 import {
   GET_BOOK_CATEGORIES,
@@ -19,7 +33,10 @@ const getCategoriesSync = payload => ({
 });
 
 /**
- * @export
+ * Get book categories action
+ *
+ * @export getCategories
+ *
  * @returns {object} dispatch object
  */
 export const getCategories = () => {
@@ -39,6 +56,15 @@ const addCategorySync = payload => ({
   payload
 });
 
+/**
+ * Add book category action
+ *
+ * @export addCategory
+ *
+ * @param {Object} formdata
+ *
+ * @returns {Object} dispatch object
+ */
 export const addCategory = (formdata) => {
   const config = {
     headers: {

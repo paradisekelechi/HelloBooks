@@ -11,6 +11,7 @@ import { signinUser, googleSigninUser } from '../../actions/Authentication';
  *
  *
  * @class Signin
+ *
  * @extends {React.Component}
  */
 class Signin extends React.Component {
@@ -35,7 +36,8 @@ class Signin extends React.Component {
 
   /**
  *
- * @returns {void} no object
+ * @returns {void}
+ *
  * @memberof Signin
  */
   componentDidMount() {
@@ -47,8 +49,10 @@ class Signin extends React.Component {
 
   /**
    *
-   * @returns {*} description
+   * @returns {void}
+   *
    * @param {object} event
+   *
    * @memberof Signin
    */
   onChange(event) {
@@ -61,9 +65,11 @@ class Signin extends React.Component {
   }
 
   /**
+   * Handles the submit of the form after clicking the submit button
+   * @returns {void}
    *
-   * @returns {void} description
-   * @param {any} event
+   * @param {Object} event
+   *
    * @memberof Signin
    */
   onClickSubmit(event) {
@@ -75,7 +81,8 @@ class Signin extends React.Component {
    * Google Signin
    *
    * @memberof Signin
-   * @returns {void} implements google signin on click
+   *
+   * @returns {void}
    */
   onSignIn() {
     const googleAuth = gapi.auth2.getAuthInstance();
@@ -93,7 +100,7 @@ class Signin extends React.Component {
   }
 
   /**
-   *
+   * Render function
    *
    * @returns {Object}  react object
    * @memberof Signin

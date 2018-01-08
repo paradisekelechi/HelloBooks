@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Helper function that sets out the routes' url for use
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 const baseRoute = '/api/v1/';
 const users = `${baseRoute}users`;
 const signin = `${baseRoute}users/signin`;

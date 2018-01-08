@@ -1,3 +1,15 @@
+/**
+ *  @fileOverview Test file for user related routes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:chai
+ * @requires NPM:supertest
+ * @requires ../../app
+ * @requires ../../tools/Routes
+ * @requires ./TestData
+ */
+
 import chai from 'chai';
 import supertest from 'supertest';
 import app from '../../app';
@@ -47,6 +59,44 @@ describe('Signup Route', () => {
         assert.equal(res.body.username, username);
         assert.equal(res.body.email, email);
         userToken = res.body.token;
+      });
+    done();
+  });
+
+  it('should not be able to signup: already existing username', (done) => {
+    request
+      .post(signup)
+      .send({
+        username,
+        password,
+        email: `${email}test`
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 401);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Username already exists');
+      });
+    done();
+  });
+
+  it('should not be able to signup: already existing email', (done) => {
+    request
+      .post(signup)
+      .send({
+        username: `${username}test`,
+        password,
+        email
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 401);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Email already exists');
       });
     done();
   });
@@ -481,9 +531,11 @@ describe('Edit User Route', () => {
         assert.exists(res.status);
         assert.exists(res.body.success);
         assert.exists(res.body.message);
+        assert.exists(res.body.image);
         assert.equal(res.status, 200);
         assert.equal(res.body.success, true);
         assert.equal(res.body.message, 'User successfully updated');
+        assert.equal(res.body.image, 'imageUrl');
       });
     done();
   });

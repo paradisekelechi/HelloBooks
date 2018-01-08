@@ -8,12 +8,14 @@ const initialState = [{
 }];
 
 /**
+ * GetDeletedUsersReducer
  *
+ * @export GetDeletedUsersReducer
  *
- * @export
- * @param {any} state
- * @param {any} action
- * @returns {object} State object
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
  */
 const GetDeletedUsersReducer = (state = initialState, action) => {
   switch (action.type) {

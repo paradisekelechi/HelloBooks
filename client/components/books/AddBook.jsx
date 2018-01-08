@@ -72,9 +72,10 @@ class AddBook extends React.Component {
   }
 
   /**
-   *
-   * @returns {void} description
-   * @param {any} event
+   *Handle submit on click
+
+   * @returns {void}
+   * @param {Object} event
    * @memberof ViewBook
    */
   onClickSubmit(event) {
@@ -83,8 +84,9 @@ class AddBook extends React.Component {
   }
 
   /**
-   * Upload image
-   * @returns {*} upload image
+   * Upload image function
+   *
+   * @returns {void}
    * @memberof AddBook
    */
   uploadWidget() {
@@ -100,7 +102,7 @@ class AddBook extends React.Component {
   }
 
   /**
-   *
+   * Render function
    *
    * @returns {Object} render object
    * @memberof ViewBook
