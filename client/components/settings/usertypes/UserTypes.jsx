@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * User Types Function
+ *
+ * @returns {Object} JSX Object
+ */
 const UserTypes = () => {
   return (
     <div className="card white">

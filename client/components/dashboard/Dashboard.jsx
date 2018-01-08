@@ -25,7 +25,8 @@ class Dashboard extends React.Component {
   }
   /**
    * Check usertype and determine what to display
-   * @returns {*} sets state
+   *
+   * @returns {void} sets state
    * @memberof Dashboard
    */
   componentWillMount() {
@@ -39,7 +40,7 @@ class Dashboard extends React.Component {
 
   /**
    *
-   * @returns {*} nothing
+   * @returns {void} nothing
    * @memberof Dashboard
    */
   componentDidMount() {
@@ -47,8 +48,9 @@ class Dashboard extends React.Component {
   }
 
   /**
- * render method
- * @returns {*} value
+ * Render method
+ *
+ * @returns {Object} JSX object
  * @memberof Dashboard
  */
   render() {

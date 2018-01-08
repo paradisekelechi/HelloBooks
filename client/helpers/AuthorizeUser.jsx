@@ -8,7 +8,7 @@ import { authenticateFetch } from './Authentication';
  * Export HOC
  *
  * @export
- * @param {any} Component
+ * @param {Object} Component
  * @returns {Object} Authenticated Component
  */
 const AuthorizeUser = (Component) => {
@@ -22,7 +22,7 @@ const AuthorizeUser = (Component) => {
     /**
      *
      * Checks the login status before rendering
-     * @returns {*} state
+     * @returns {void}
      * @memberof Authorize
      */
     componentWillMount() {

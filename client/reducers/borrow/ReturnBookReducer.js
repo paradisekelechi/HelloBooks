@@ -9,6 +9,16 @@ const initialState = [{
   bookId: ''
 }];
 
+/**
+ * ReturnBookReducer
+ *
+ * @export ReturnBookReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const ReturnBookReducer = (state = initialState, action) => {
   switch (action.type) {
   case RETURN_BOOK:

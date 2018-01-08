@@ -1,3 +1,12 @@
+/**
+ *  @fileOverview Helper function that sets up and sends email notifcations
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:dotenv
+ * @requires NPM:nodemailer
+ * @requires ./Logger
+ */
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 import logger from './Logger';

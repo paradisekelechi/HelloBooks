@@ -1,3 +1,17 @@
+/**
+ *  @fileOverview  User action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ * @requires ../helpers/Authentication'
+ *
+ */
+
+
 import axios from 'axios';
 import querystring from 'querystring';
 
@@ -19,14 +33,15 @@ const {
   token,
   userdata
 } = authenticateFetch();
-
-
 const getAllUsersSync = payload => ({
   type: GET_ALL_USERS,
   payload
 });
+
 /**
- * @export
+ * Get all users action
+ * @export getAllUsers
+ *
  * @returns {object} dispatch object
  */
 export const getAllUsers = () => {
@@ -54,7 +69,10 @@ const getAdminUsersSync = payload => ({
   payload
 });
 /**
- * @export
+ * Get admin users action
+ *
+ * @export getAdminUsers
+ *
  * @returns {object} dispatch object
  */
 export const getAdminUsers = () => {
@@ -82,7 +100,10 @@ const getClientUsersSync = payload => ({
   payload
 });
 /**
- * @export
+ * Get client users action
+ *
+ * @export getClientUsers
+ *
  * @returns {object} dispatch object
  */
 export const getClientUsers = () => {
@@ -110,7 +131,10 @@ const getDeletedUsersSync = payload => ({
   payload
 });
 /**
- * @export
+ * Get deleted users action
+ *
+ * @export getDeletedUsers
+ *
  * @returns {object} dispatch object
  */
 export const getDeletedUsers = () => {
@@ -142,8 +166,10 @@ const editUserProfileImageSync = (data) => {
 /**
  * Edit User Profile Image
  *
- * @export
- * @param {any} imageUrl
+ * @export editUserProfileImage
+ *
+ * @param {String} imageUrl
+ *
  * @returns {Object} dispatch object
  */
 export const editUserProfileImage = (imageUrl) => {
@@ -172,7 +198,16 @@ const updatePasswordSync = payload => ({
   type: UPDATE_PASSWORD,
   payload
 });
-
+/**
+ * Update password action
+ *
+ * @export updatePassword
+ *
+ * @param {any} userId
+ * @param {any} formdata
+ *
+ * @returns {Object} dispatch object
+ */
 export const updatePassword = (userId, formdata) => {
   const config = {
     headers: {

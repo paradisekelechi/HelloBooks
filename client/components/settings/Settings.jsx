@@ -7,7 +7,7 @@ import UserTypes from './usertypes/UserTypes';
 import AccountTypes from './accounttypes/AccountTypes';
 
 /**
- *
+ * Settings Class
  *
  * @class Settings
  * @extends {React.Component}
@@ -15,7 +15,8 @@ import AccountTypes from './accounttypes/AccountTypes';
 class Settings extends React.Component {
   /**
    * Creates an instance of Settings.
-   * @param {any} props
+   *
+   * @param {Object} props
    * @memberof Settings
    */
   constructor(props) {
@@ -33,7 +34,7 @@ class Settings extends React.Component {
 
   /**
    *
-   *@returns {*} get props
+   *@returns {void}
    * @memberof Settings
    */
   componentWillMount() {
@@ -41,8 +42,9 @@ class Settings extends React.Component {
   }
 
   /**
+   * Component Did Mount
    *
-   *@returns {*} Add page title
+   *@returns {void}
    * @memberof Settings
    */
   componentDidMount() {
@@ -51,9 +53,10 @@ class Settings extends React.Component {
   }
 
   /**
+   * Component Will Recieve Props
    *
-   *@returns {Object} set state
-   * @param {any} nextProps
+   *@returns {void}
+   * @param {Object} nextProps
    * @memberof Settings
    */
   componentWillReceiveProps(nextProps) {
@@ -68,7 +71,8 @@ class Settings extends React.Component {
 
   /**
    * Generic onChange function
-   * @returns {void} returns nothing
+   *
+   * @returns {void}
    * @param {Object} event
    * @memberof ViewBook
    */
@@ -80,6 +84,7 @@ class Settings extends React.Component {
   }
 
   /**
+   * Handles the dispalay of the add category form
    *
    *@returns {void} sets shouldAddCategory property of state
    * @memberof Settings
@@ -102,9 +107,9 @@ class Settings extends React.Component {
   }
 
   /**
+   * Render Object
    *
-   *
-   * @returns {Object} render object
+   * @returns {Object} JSX object
    * @memberof Settings
    */
   render() {

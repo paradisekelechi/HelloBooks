@@ -3,15 +3,9 @@ import { Route, Router, browserHistory } from 'react-router';
 import React from 'react';
 import { Provider } from 'react-redux';
 import ConfigureStore from './store/ConfigureStore';
-
 import './assets/sass/materialize.scss';
 import './assets/js/main';
-
-
-// Import the layouts
 import HomeLayout from './components/layouts/Home';
-
-// Import components
 import BooksBorrowCatalog from './components/books/borrow/BooksCatalog';
 import BooksReturnCatalog from './components/books/return/BooksCatalog';
 import ViewBook from './components/books/ViewBook';

@@ -1,3 +1,11 @@
+/**
+ *  @fileOverview Helper function that sets up logger
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:winston
+ * @requires NPM:path
+ */
 import winston, {
   format
 } from 'winston';

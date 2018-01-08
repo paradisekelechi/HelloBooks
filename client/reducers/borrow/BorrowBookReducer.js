@@ -9,6 +9,16 @@ const initialState = [{
   bookId: ''
 }];
 
+/**
+ * BorrowBookReducer
+ *
+ * @export BorrowBookReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const BorrowBookReducer = (state = initialState, action) => {
   switch (action.type) {
   case BORROW_BOOK:

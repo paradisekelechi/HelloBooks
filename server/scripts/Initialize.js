@@ -1,3 +1,12 @@
+/**
+ *  @fileOverview Script that seeds the database of initial data
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:dotenv
+ * @requires ../models
+ */
+
 import dotenv from 'dotenv';
 import models from '../models';
 

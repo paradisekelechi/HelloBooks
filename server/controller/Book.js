@@ -1,3 +1,13 @@
+/**
+ *  @fileOverview Controller file for book processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:validator
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import validator from 'validator';
 
 import models from '../models';
@@ -9,11 +19,11 @@ const {
 
 export default {
   /**
-   * view all books in the library
+   * View all books in the library
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} get books object
+   * @returns {void}
    */
   getBooks(req, res) {
     if (req.query.finished === 'true') {
@@ -87,6 +97,13 @@ export default {
       });
   },
 
+  /**
+   * Gets a single book resource from the database
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {void}
+   */
   getSingleBook(req, res) {
     const {
       id
@@ -109,13 +126,16 @@ export default {
       })
       .then((book) => {
         ResponseHandler(req, res, 200, true, 'Book obtained successfully', book, 'book');
-      })
-      .catch(() => res.status(400).send({
-        message: 'Error getting book'
-      }));
+      });
   },
 
-
+  /**
+   * Adds a new book to the database
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {void}
+   */
   addBook(req, res) {
     let {
       body: {
@@ -128,9 +148,8 @@ export default {
       }
     } = req;
 
-
     /**
-     * checks if the name is undefined or null and insists on it
+     * Checks if the name is undefined or null and insists on it
      */
     if (!name) {
       ResponseHandler(req, res, 400, false, 'Book name is required', null, null);
@@ -140,7 +159,7 @@ export default {
 
 
     /**
-     * checks if the author is undefined or null and insists on it
+     * Checks if the author is undefined or null and insists on it
      */
     if (!author) {
       ResponseHandler(req, res, 400, false, 'Book author is required', null, null);
@@ -150,7 +169,7 @@ export default {
 
 
     /**
-     * checks if the quantity is empty or null and insists on it
+     * Checks if the quantity is empty or null and insists on it
      */
     if (!quantity) {
       ResponseHandler(req, res, 400, false, 'Quantity is required', null, null);
@@ -160,7 +179,7 @@ export default {
 
 
     /**
-     * checks if the categoryId is empty or null and insists on it
+     * Checks if the categoryId is empty or null and insists on it
      */
     if (!categoryId) {
       ResponseHandler(req, res, 400, false, 'Category is required', null, null);
@@ -192,11 +211,11 @@ export default {
   },
 
   /**
-   * Edit Book
+   * Edit Book in the database
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} Book object
+   * @returns {void}
    */
   editBook(req, res) {
     const {
@@ -208,7 +227,8 @@ export default {
     const {
       bookId
     } = req.params;
-    if (bookId == null || bookId === 0 || bookId === undefined) {
+
+    if (!bookId) {
       ResponseHandler(req, res, 400, false, 'Oops!! BookId is required', null, null);
       return;
     }
@@ -237,6 +257,13 @@ export default {
       });
   },
 
+  /**
+   * Deletes book from the database
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {void}
+   */
   deleteBook(req, res) {
     const {
       bookId

@@ -1,3 +1,13 @@
+/**
+ *  @fileOverview Routes index file that exports and exposes all routes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../controller
+ * @requires ../helper/CheckUser
+ * @requires ../helper/CheckLogin
+ */
+
 import controllers from '../controller';
 import checkUser from '../helper/CheckUser';
 import checkLogin from '../helper/CheckLogin';

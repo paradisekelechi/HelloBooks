@@ -1,3 +1,12 @@
+/**
+ *  @fileOverview Controller file for book category processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import models from '../models';
 import ResponseHandler from '../../tools/ResponseHandler';
 
@@ -7,11 +16,12 @@ const {
 
 export default {
   /**
-   * view all books in the library
+   * Get all book categories in the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} categories object
+   *
+   * @returns {void}
    */
   getCategories(req, res) {
     return BookCategory
@@ -31,11 +41,12 @@ export default {
   },
 
   /**
-   * Add category
+   * Add book category
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} Response object
+   *
+   * @returns {void}
    */
   addCategory(req, res) {
     const {

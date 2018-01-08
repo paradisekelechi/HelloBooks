@@ -1,10 +1,12 @@
 import jwtDecode from 'jwt-decode';
 
 /**
+ * Persist user data and token to the local storage
  *
- * @returns {boolean} the set status of the token
+ * @returns {Boolean} the set status of the token
+ *
  * @export
- * @param {string} usertoken
+ * @param {String} usertoken
  */
 export function authenticatePersist(usertoken) {
   if (usertoken) {
@@ -17,10 +19,10 @@ export function authenticatePersist(usertoken) {
 }
 
 /**
- *
+ * Fetch application's userdat from the local storage
  *
  * @export
- * @returns {object} Userdata object
+ * @returns {Object} Userdata object
  */
 export function authenticateFetch() {
   const storageData = JSON.parse(localStorage.getItem('userdata'));
@@ -42,6 +44,7 @@ export function authenticateFetch() {
 }
 
 /**
+ * Clear usertoken from the local storage
  *
  * @returns {Boolean} logout status
  * @export

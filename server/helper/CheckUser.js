@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Middleware function to check  the usertype of a user that is logged in
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 const checkUser = (req, res, next) => {
   const {
     userType

@@ -8,6 +8,14 @@ const initialState = [{
   count: 0
 }];
 
+/**
+ * GetAccountTypesReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Array} description
+ */
 const GetAccountTypesReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_ACCOUNTTYPES:

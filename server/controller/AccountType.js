@@ -1,3 +1,11 @@
+/**
+ *  @fileOverview Controller file for account type processes in the server
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
 import models from '../models';
 import ResponseHandler from '../../tools/ResponseHandler';
 
@@ -12,7 +20,7 @@ export default {
    * @param {Object} req
    * @param {Object} res
    *
-   * @returns {Object} description
+   * @returns {void}
    */
   getAccountTypes(req, res) {
     return AccountType
@@ -31,7 +39,9 @@ export default {
 
   /**
    * Add a new Account type
-   * @returns {Object} description
+   *
+   * @returns {void}
+   *
    * @param {Request} req
    * @param {Response} res
    */

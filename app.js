@@ -1,3 +1,19 @@
+/**
+ *  @fileOverview Application's entry point
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:express
+ * @requires NPM:morgan
+ * @requires NPM:body-parser
+ * @requires NPM:path
+ * @requires NPM:http
+ * @requires NPM:fs
+ * @requires NPM:dotenv
+ * @requires ./tools/Logger
+ * @requires ./server/routes
+ */
+
 import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';

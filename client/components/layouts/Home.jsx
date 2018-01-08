@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Navigation from '../common/Navigation';
 import Footer from '../common/Footer';
 
-
+/**
+ * Home Function
+ *
+ * @param {Object} props
+ * @returns {Object} JSX Object
+ */
 const Home = (props) => {
   return (
     <div>

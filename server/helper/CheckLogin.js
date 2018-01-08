@@ -1,10 +1,18 @@
+/**
+ *  @fileOverview Middleware function to check if a user is logged in
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:jsonwebtoken
+ */
+
 import jwt from 'jsonwebtoken';
 
 const secret = process.env.SECRET;
+
 const checkLogin = (req, res, next) => {
   const token = req.body.token || req.headers['user-token'];
 
-  // Check if token is sent
   if (token) {
     jwt.verify(token, secret, (error, decoded) => {
       if (error) {

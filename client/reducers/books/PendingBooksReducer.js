@@ -7,6 +7,16 @@ const initialState = [{
   isLoading: true
 }];
 
+/**
+ * PendingBooksReducer
+ *
+ * @export PendingBooksReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const PendingBooksReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_PENDING_BOOKS:

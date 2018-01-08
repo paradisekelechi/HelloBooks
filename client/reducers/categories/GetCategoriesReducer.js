@@ -9,6 +9,16 @@ const initialState = [{
   isLoading: true
 }];
 
+/**
+ * GetCategoriesReducer
+ *
+ * @export GetCategoriesReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const GetCategoriesReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_BOOK_CATEGORIES:

@@ -8,12 +8,14 @@ const initialState = [{
 }];
 
 /**
+ * GetClientUsersReducer
  *
+ * @export GetClientUsersReducer
  *
- * @export
- * @param {any} state
- * @param {any} action
- * @returns {object} State object
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
  */
 const GetClientUsersReducer = (state = initialState, action) => {
   switch (action.type) {

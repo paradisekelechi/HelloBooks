@@ -1,3 +1,15 @@
+/**
+ *  @fileOverview Test file for book category routes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:chai
+ * @requires NPM:supertest
+ * @requires ../../app
+ * @requires ../../tools/Routes
+ * @requires ./TestData
+ */
+
 import chai from 'chai';
 import supertest from 'supertest';
 import app from '../../app';

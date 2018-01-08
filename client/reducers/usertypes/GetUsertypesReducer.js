@@ -8,6 +8,16 @@ const initialState = [{
   count: 0
 }];
 
+/**
+ * GetUsertypesReducer
+ *
+ * @export GetUsertypesReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const GetUsertypesReducer = (state = initialState, action) => {
   switch (action.type) {
   case GET_USERTYPES:

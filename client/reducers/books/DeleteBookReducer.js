@@ -7,6 +7,16 @@ const initialState = [{
   message: ''
 }];
 
+/**
+ * DeleteBookReducer
+ *
+ * @export DeleteBookReducer
+ *
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
+ */
 const DeleteBookReducer = (state = initialState, action) => {
   switch (action.type) {
   case DELETE_BOOK:

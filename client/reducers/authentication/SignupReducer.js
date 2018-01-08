@@ -15,12 +15,14 @@ const initialState = [{
 }];
 
 /**
+ * SignupReducer
  *
+ * @export SignupReducer
  *
- * @export
- * @param {any} state
- * @param {any} action
- * @returns {object} State object
+ * @param {Array} state
+ * @param {Object} action
+ *
+ * @returns {Object} State object
  */
 const SignupReducer = (state = initialState, action) => {
   switch (action.type) {

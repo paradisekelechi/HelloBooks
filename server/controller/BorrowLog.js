@@ -1,5 +1,15 @@
-import validator from 'validator';
+/**
+ *  @fileOverview Controller file for borrow and return book processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:validator
+ * @requires ../models
+ * @requires '../../tools/Email'
+ * @requires ../../tools/ResponseHandler
+ */
 
+import validator from 'validator';
 import models from '../models';
 import emailController from '../../tools/Email';
 import ResponseHandler from '../../tools/ResponseHandler';
@@ -21,22 +31,20 @@ const {
 
 export default {
   /**
-   * Borrow book
+   * Borrow book from the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} borrow book
+   *
+   * @returns {void}
    */
   borrowBook(req, res) {
     const today = new Date();
     const borrowDate = today;
-
     const userEmail = req.email;
-
     const timeout = 24 * 60 * 60 * 1000 * process.env.BORROW_VALIDITY_IN_DAYS;
     const returnDate = validator.isEmpty(`${req.body.return_date}`) || req.body.return_date == null ?
       new Date(today.getTime() + timeout) : new Date(req.body.return_date);
-
     const {
       params: {
         userId
@@ -131,11 +139,12 @@ export default {
 
 
   /**
-   *
+   * Returns a borrowed book to the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} Book response object
+   *
+   * @returns {void}
    */
   returnBook(req, res) {
     const today = new Date();
@@ -154,7 +163,6 @@ export default {
       ResponseHandler(req, res, 400, false, 'Userid is required!', null, null);
       return;
     }
-
 
     if (!bookId) {
       ResponseHandler(req, res, 400, false, 'BookId is required!', null, null);
@@ -250,9 +258,12 @@ export default {
   },
 
   /**
-   * @returns {Object} Response object
+   * Gets a user's borrowed books
+   *
    * @param {Object} req
    * @param {Object} res
+   *
+   * @returns {void}
    */
   getBorrowedBooks(req, res) {
     const {
@@ -334,5 +345,4 @@ export default {
         }
       });
   }
-
 };

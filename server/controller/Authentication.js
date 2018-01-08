@@ -1,3 +1,15 @@
+/**
+ *  @fileOverview Controller file for authentication
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:validator
+ * @requires NPM:jsonwebtoken
+ * @requires NPM:bcrypt
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import validator from 'validator';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -20,7 +32,8 @@ export default {
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   signup(req, res) {
     let {
@@ -109,7 +122,7 @@ export default {
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   * @returns {void}
    */
   signin(req, res) {
     const {
@@ -177,6 +190,13 @@ export default {
       });
   },
 
+  /**
+   *
+   *
+   * @param {any} req
+   * @param {any} res
+   * @returns {void}
+   */
   googleSignin(req, res) {
     let {
       body: {
@@ -261,7 +281,10 @@ export default {
                     });
                   });
               } else {
-                ResponseHandler(req, res, 400, false, 'User  username already exists', null, null);
+                ResponseHandler(
+                  req, res, 400, false, 'User  username already exists',
+                  null, null
+                );
               }
             });
         } else {
@@ -287,9 +310,6 @@ export default {
             account_type: response.dataValues.account_type_id
           });
         }
-      })
-      .catch((error) => {
-        ResponseHandler(req, res, 400, false, 'Service unavailable', error, 'error');
       });
   },
 };

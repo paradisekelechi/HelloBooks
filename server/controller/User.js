@@ -1,3 +1,13 @@
+/**
+ *  @fileOverview Controller file for user management processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:bcrypt
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import bcrypt from 'bcrypt';
 import models from '../models';
 import ResponseHandler from '../../tools/ResponseHandler';
@@ -13,7 +23,8 @@ export default {
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   getUsers(req, res) {
     if (req.query.client === 'true') {
@@ -75,11 +86,12 @@ export default {
   },
 
   /**
-   * Edit User
+   * Edit a User
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   editUser(req, res) {
     const {
@@ -130,6 +142,14 @@ export default {
       });
   },
 
+  /**
+   * Edit  a user's password
+   *
+   * @param {Object} req
+   * @param {Object} res
+   *
+   * @returns {void}
+   */
   editPassword(req, res) {
     const {
       body: {
@@ -200,11 +220,12 @@ export default {
   },
 
   /**
-   * DeleteUser
+   * Delete a User from the application
    *
    * @param {Object} req
    * @param {Object} res
-   * @returns {Object} response object
+   *
+   * @returns {void}
    */
   deleteUser(req, res) {
     const {

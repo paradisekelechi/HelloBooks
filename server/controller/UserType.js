@@ -1,3 +1,12 @@
+/**
+ *  @fileOverview Controller file for user type processes
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../models
+ * @requires ../../tools/ResponseHandler
+ */
+
 import models from '../models';
 import ResponseHandler from '../../tools/ResponseHandler';
 
@@ -5,16 +14,14 @@ const {
   UserType
 } = models;
 
-/**
- * Export usertype controller methods
- */
 export default {
-
   /**
    * Get all the usertypes
-   * @returns {Object} description
+   *
    * @param {Object} req
    * @param {Object} res
+   *
+   * @returns {void}
    */
   getUserTypes(req, res) {
     return UserType
@@ -30,9 +37,11 @@ export default {
 
   /**
    * Add a new usertype
-   * @returns {Object} description
+   *
    * @param {Object} req
    * @param {Object} res
+   *
+   * @returns {void}
    */
   addUserType(req, res) {
     const {

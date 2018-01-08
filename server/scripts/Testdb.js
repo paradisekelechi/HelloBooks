@@ -1,3 +1,11 @@
+/**
+ *  @fileOverview Script that seeds the test database of initial data
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires ../models
+ */
+
 import models from '../models';
 
 /**

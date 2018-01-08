@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Categories Function
+ *
+ * @param {Object} props
+ * @returns {Object} JSX Object
+ */
 const Categories = (props) => {
   let categoryList = '';
   if ((props.list).length > 0) {

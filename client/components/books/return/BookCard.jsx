@@ -6,15 +6,16 @@ import { connect } from 'react-redux';
 import { returnBook } from '../../../actions/Borrow';
 
 /**
- *
+ * BookCard Class
  *
  * @class BookCard
  * @extends {React.Component}
  */
 class BookCard extends React.Component {
   /**
+   * Return Book On Click function
    *
-   * @returns{Object} dispatch object
+   * @returns {void}
    * @param {String} id
    * @memberof BookCard
    */
@@ -34,9 +35,9 @@ class BookCard extends React.Component {
   }
 
   /**
+   * Render object
    *
-   *
-   * @returns {Object} render object
+   * @returns {void}
    * @memberof BookCard
    */
   render() {

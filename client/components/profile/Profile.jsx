@@ -7,7 +7,7 @@ import { getUserType, getAccountType } from '../../helpers/TypeSync';
 import { editUserProfileImage, updatePassword } from '../../actions/User';
 
 /**
- *
+ * Profile Class
  *
  * @class ProfilePage
  * @extends {React.Component}
@@ -15,7 +15,8 @@ import { editUserProfileImage, updatePassword } from '../../actions/User';
 class Profile extends React.Component {
   /**
      * Creates an instance of Dashboard.
-     * @param {any} props
+     *
+     * @param {Object} props
      * @memberof Dashboard
      */
   constructor(props) {
@@ -42,7 +43,9 @@ class Profile extends React.Component {
   }
 
   /**
+   * Component Will Mount
   * Check userdetails and determine what to display
+  *
   * @returns {*} sets state
   * @memberof Dashboard
   */
@@ -62,7 +65,7 @@ class Profile extends React.Component {
   /**
    * Handles the onChange event of the form inputs
    *
-   * @param {any} event
+   * @param {Object} event
    * @memberof Profile
    * @returns {void} updates the formdata value of the state
    */
@@ -98,7 +101,8 @@ class Profile extends React.Component {
 
   /**
    * Upload image
-   * @returns {*} upload image
+   *
+   * @returns {void} upload image
    * @memberof Profile
    */
   uploadImage() {

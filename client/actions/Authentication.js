@@ -1,3 +1,18 @@
+/**
+ *  @fileOverview  Authentication (Signin and signup) action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires NPM:querystring
+ * @requires NPM:react-router
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ * @requires ../helpers/Authentication'
+ *
+ */
+
 import axios from 'axios';
 import querystring from 'querystring';
 import {
@@ -22,8 +37,13 @@ const signinUserAsync = data => ({
   payload: data
 });
 /**
- * @export
- * @param {any} user
+ *
+ * Signin user action
+ *
+ * @export signinUser
+ *
+ * @param {Object} user
+ *
  * @returns {void}
  */
 export const signinUser = (user) => {
@@ -51,10 +71,10 @@ const signupUserAsync = user => ({
   payload: user
 });
 /**
+ * Signup user action
  *
- *
- * @export
- * @param {any} user
+ * @export signupUser
+ * @param {object} user
  * @returns {void}
  */
 export const signupUser = (user) => {
@@ -84,10 +104,12 @@ const googleSigninUserAsync = payload => ({
   payload
 });
 /**
+ * Google signin user action
  *
+ * @export googleSigninUser
  *
- * @export
- * @param {any} user
+ * @param {Object} user
+ *
  * @returns {void}
  */
 export const googleSigninUser = (user) => {
@@ -118,10 +140,12 @@ const logoutUserAsync = user => ({
   user
 });
 /**
+ * Logout user action
  *
+ * @export logoutUser
  *
- * @export
- * @param {any} user
+ * @param {Object} user
+ *
  * @returns {Object} logout dispatch
  */
 export const logoutUser = (user) => {

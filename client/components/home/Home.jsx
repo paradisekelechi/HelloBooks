@@ -20,8 +20,9 @@ class Home extends React.Component {
     authenticateClear();
   }
   /**
+   * Component Did Mount
    *
-   * @returns {void} Nothing
+   * @returns {void}
    * @memberof Home
    */
   componentDidMount() {
@@ -44,9 +45,9 @@ class Home extends React.Component {
 
 
   /**
+   * Render function
    *
-   *
-   * @returns {void} nothing
+   * @returns {void}
    * @memberof Home
    */
   render() {

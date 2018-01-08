@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * Account Types Function
+ *
+ * @returns {Object} JSX Object
+ */
 const AccountTypes = () => {
   return (
     <div className="card white">

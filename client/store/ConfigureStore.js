@@ -11,11 +11,12 @@ import {
 import rootReducer from '../reducers';
 
 /**
+ * Redux store configuration
  *
+ * @export ConfigureStore
  *
- * @export
  * @param {any} initialState
- * @returns {object} createStore
+ * @returns {Object} createStore
  */
 export default function ConfigureStore(initialState) {
   const composeEnhancers = composeWithDevTools({});

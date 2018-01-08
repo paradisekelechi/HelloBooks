@@ -6,7 +6,7 @@ import { getSingleBook, editBook } from '../../actions/Book';
 import notFoundImage from '../../assets/img/not-found.png';
 
 /**
- *
+ * View book class
  *
  * @class ViewBook
  * @extends {React.Component}
@@ -14,7 +14,7 @@ import notFoundImage from '../../assets/img/not-found.png';
 class ViewBook extends React.Component {
   /**
    * Creates an instance of ViewBook.
-   * @param {any} props
+   * @param {Object} props
    * @memberof ViewBook
    */
   constructor(props) {
@@ -30,8 +30,9 @@ class ViewBook extends React.Component {
   }
 
   /**
+   * Component will mount
    *
-   *@returns{Object} dispatches actions
+   *@returns {void}
    * @memberof ViewBook
    */
   componentWillMount() {
@@ -40,17 +41,19 @@ class ViewBook extends React.Component {
     this.props.getCategories();
   }
   /**
+   * Component Did Mount
    *
-   *@returns {*} set title
+   *@returns {void}
    * @memberof ViewBook
    */
   componentDidMount() {
     document.title = 'HelloBooks | Book';
   }
   /**
+   * Component Will Receive Props
    *
-   *@returns {Object} set state
-   * @param {any} nextProps
+   *@returns {void}
+   * @param {Object} nextProps
    * @memberof ViewBook
    */
   componentWillReceiveProps(nextProps) {
@@ -66,7 +69,8 @@ class ViewBook extends React.Component {
 
   /**
    * Generic onChange function
-   * @returns {void} returns nothing
+   *
+   * @returns {void}
    * @param {Object} event
    * @memberof ViewBook
    */
@@ -79,9 +83,10 @@ class ViewBook extends React.Component {
   }
 
   /**
+   * Handle submit on click
    *
-   * @returns {void} description
-   * @param {any} event
+   * @returns {void}
+   * @param {Object} event
    * @memberof ViewBook
    */
   onClickSubmit(event) {
@@ -90,8 +95,9 @@ class ViewBook extends React.Component {
   }
 
   /**
-   * Upload image
-   * @returns {*} upload image
+   * Handle image upload
+   *
+   * @returns {void}
    * @memberof AddBook
    */
   uploadWidget() {
@@ -107,7 +113,7 @@ class ViewBook extends React.Component {
   }
 
   /**
-   *
+   * Render function
    *
    * @returns {Object} render object
    * @memberof ViewBook

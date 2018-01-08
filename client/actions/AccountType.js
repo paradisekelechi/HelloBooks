@@ -1,3 +1,15 @@
+/**
+ *  @fileOverview Account type action file
+ *
+ *  @author Paradise Kelechi
+ *
+ * @requires NPM:axios
+ * @requires ../helpers/Constants
+ * @requires ../../tools/Routes
+ * @requires ../helpers/Alert
+ *
+ */
+
 import axios from 'axios';
 import {
   GET_ACCOUNTTYPES
@@ -11,7 +23,8 @@ export const getAccountTypesSync = payload => ({
 });
 
 /**
- * @export
+ * @export getAccountTypes
+ *
  * @returns {object} dispatch object
  */
 export const getAccountTypes = () => {

@@ -28,24 +28,29 @@ class BooksCatalog extends React.Component {
 
   /**
    *
-   * @returns {Object} description
+   * @returns {void}
    * @memberof Books
    */
   componentWillMount() {
     this.props.getPendingBooks();
   }
   /**
+     * Component Did Mount
      *
-     *@returns {*} set title
+     *@returns {void}
+
      * @memberof BookCatalog
      */
   componentDidMount() {
     document.title = 'HelloBooks | Books';
   }
   /**
+   * Component Will Receive Props
    *
-   * @returns {*} executes an action
-   * @param {any} nextProps
+   * @returns {void}
+   *
+   * @param {Object} nextProps
+   *
    * @memberof BooksCatalog
    */
   componentWillReceiveProps(nextProps) {
@@ -56,9 +61,10 @@ class BooksCatalog extends React.Component {
   }
 
   /**
-   *
+   * Render function
    *
    * @returns {Object} render object
+   *
    * @memberof BooksCatalog
    */
   render() {
