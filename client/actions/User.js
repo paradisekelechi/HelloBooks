@@ -51,12 +51,10 @@ export const getAllUsers = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getAllUsers, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getAllUsersSync(response.data));
-        }
+        dispatch(getAllUsersSync(response.data));
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -82,12 +80,10 @@ export const getAdminUsers = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getAdminUsers, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getAdminUsersSync(response.data));
-        }
+        dispatch(getAdminUsersSync(response.data));
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -113,12 +109,10 @@ export const getClientUsers = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getClientUsers, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getClientUsersSync(response.data));
-        }
+        dispatch(getClientUsersSync(response.data));
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -144,12 +138,10 @@ export const getDeletedUsers = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getDeletedUsers, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getDeletedUsersSync(response.data));
-        }
+        dispatch(getDeletedUsersSync(response.data));
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });

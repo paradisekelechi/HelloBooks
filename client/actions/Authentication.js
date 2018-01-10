@@ -52,7 +52,7 @@ export const signinUser = (user) => {
     password: user.password
   });
   return (dispatch) => {
-    axios.post(`${routes.signin}`, formdata)
+    return axios.post(`${routes.signin}`, formdata)
       .then((response) => {
         const responseData = response.data;
         authenticatePersist(responseData.token);

@@ -5,8 +5,9 @@ import {
 } from '../../helpers/Constants';
 import {
   borrowBookSync,
-  returnBookSync
+  returnBookSync,
 } from '../../actions/Borrow';
+
 
 describe('Borrow actions', () => {
   it('should create an action to borrow a book', () => {

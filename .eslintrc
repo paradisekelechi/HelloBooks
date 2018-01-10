@@ -79,6 +79,7 @@
     "$": false,
     "cloudinary": false,
     "Materialize": false,
-    "gapi": false
+    "gapi": false,
+    "jest": false
   }
 }

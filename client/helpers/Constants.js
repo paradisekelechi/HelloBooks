@@ -39,3 +39,4 @@ export const GET_ACCOUNTTYPES = 'get accounttypes';
 
 export const ADD_CATEGORY = 'add book category';
 export const UPDATE_PASSWORD = 'update password';
+export const ERROR = 'Error';

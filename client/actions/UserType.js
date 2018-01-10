@@ -33,7 +33,7 @@ export const getUsertypesSync = payload => ({
  */
 export const getUsertypes = () => {
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.userType)
       .then((response) => {
         dispatch(getUsertypesSync(response.data));

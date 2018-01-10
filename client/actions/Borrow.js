@@ -51,9 +51,10 @@ export const borrowBook = (bookId) => {
   const formdata = {
     bookId
   };
-  const url = `${routes.users}/${userdata.userid}/books`;
+  const userId = userdata.userid;
+  const url = (`${routes.users}/${userId}/books`);
   return (dispatch) => {
-    axios
+    return axios
       .post(url, formdata, config)
       .then((response) => {
         response.data.bookId = bookId;

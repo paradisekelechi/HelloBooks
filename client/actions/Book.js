@@ -62,7 +62,7 @@ export const addBook = (addBookId, bookdata) => {
   };
   const url = routes.addBooks;
   return (dispatch) => {
-    axios
+    return axios
       .post(url, bookdata, config)
       .then((response) => {
         dispatch(addBookSync(response.data));
@@ -97,7 +97,7 @@ export const editBook = (editBookId, bookdata) => {
   };
   const url = `${routes.getBooks}/${editBookId}`;
   return (dispatch) => {
-    axios
+    return axios
       .put(url, bookdata, config)
       .then((response) => {
         response.data.editBookId = editBookId;
@@ -131,7 +131,7 @@ export const deleteBook = (bookId) => {
   };
   const url = `${routes.getBooks}/${bookId}`;
   return (dispatch) => {
-    axios
+    return axios
       .delete(url, config)
       .then((response) => {
         dispatch(deleteBookSync(response.data));
@@ -164,12 +164,10 @@ export const getSingleBook = (bookId) => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(`${routes.getSingleBook}?id=${bookId}`, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getSingleBookSync(response.data));
-        }
+        dispatch(getSingleBookSync(response.data));
       });
   };
 };
@@ -190,12 +188,10 @@ export const getBooksSync = payload => ({
  */
 export const getBooks = () => {
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getBooks)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksSync(response.data));
-        }
+        dispatch(getBooksSync(response.data));
       });
   };
 };
@@ -219,12 +215,10 @@ export const getBooksFinished = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getBooksFinished, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksFinishedSync(response.data));
-        }
+        dispatch(getBooksFinishedSync(response.data));
       });
   };
 };
@@ -246,7 +240,7 @@ export const getBooksAvailableSync = payload => ({
 export const getBooksAvailable = () => {
   const getBooksUrl = routes.getBooksAvailable;
   return (dispatch) => {
-    axios
+    return axios
       .get(getBooksUrl)
       .then((response) => {
         dispatch(getBooksAvailableSync(response.data));
@@ -278,14 +272,12 @@ export const getPendingBooks = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(url, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getPendingBooksSync(response.data));
-        }
+        dispatch(getPendingBooksSync(response.data));
       }).catch((error) => {
-        dispatch(getPendingBooksSync(error.data));
+        Alert('error', error.response.data.message, null);
       });
   };
 };
@@ -309,12 +301,10 @@ export const getBooksDeleted = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getBooksDeleted, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksDeletedSync(response.data));
-        }
+        dispatch(getBooksDeletedSync(response.data));
       });
   };
 };

@@ -29,7 +29,7 @@ export const getAccountTypesSync = payload => ({
  */
 export const getAccountTypes = () => {
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.accountType)
       .then((response) => {
         dispatch(getAccountTypesSync(response.data));
