@@ -7,8 +7,11 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'client/actions/**/*.js',
+    '!client/components/**/*.jsx',
     'client/reducers/**/*.js',
     '!client/reducers/index.js'
   ],
-  setupFiles: ['jest-localstorage-mock']
+  setupFiles: [
+    'jest-localstorage-mock'
+  ]
 };

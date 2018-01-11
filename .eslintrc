@@ -80,6 +80,8 @@
     "cloudinary": false,
     "Materialize": false,
     "gapi": false,
-    "jest": false
+    "jest": false,
+    "shallow": false,
+    "mount": false
   }
 }
