@@ -6,7 +6,7 @@ const NavigationCard = (props) => {
   return (
     <div className="col m2 xs12 s12 nav-card" >
       <Link to={props.link} activeClassName="active" >
-        <div className="card-link">
+        <div className="card-link" name={props.name}>
           <h4>{props.title}</h4>
           <p>{props.description}</p>
         </div>
@@ -19,6 +19,7 @@ NavigationCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 

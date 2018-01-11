@@ -146,6 +146,7 @@ class Profile extends React.Component {
               <i className="material-icons">mode_edit</i>
             </button>
             <img
+              id="profile-image"
               className="circle responsive-img"
               alt="profile"
               src={
@@ -182,6 +183,7 @@ class Profile extends React.Component {
             <div className="row">
               <div className="col m4 s12">
                 <button
+                  id="update-toggle"
                   onClick={this.shouldUpdatePassword}
                   className="btn btn-large btn-edit col s12"
                 >
@@ -230,6 +232,7 @@ class Profile extends React.Component {
                     <div className="row">
                       <div className="input-field col s12">
                         <button
+                          id="save-password"
                           className="btn  waves-effect waves-light"
                           type="button"
                           onClick={this.updatePassword}

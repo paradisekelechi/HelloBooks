@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="10">
+
+  <testsuite name="AdminRoleTest"
+    errors="0" failures="0" hostname="" id="" package="AdminRoleTest" skipped="0"
+    tests="10" time="83.20" timestamp="Thu, 11 Jan 2018 09:46:02 GMT">
+  
+    <testcase name="Landing Page" classname="AdminRoleTest" time="10.68" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Books Page" classname="AdminRoleTest" time="5.109" assertions="0">
+    </testcase>
+  
+    <testcase name="About Page" classname="AdminRoleTest" time="3.104" assertions="0">
+    </testcase>
+  
+    <testcase name="Signin User" classname="AdminRoleTest" time="34.85" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="View Book" classname="AdminRoleTest" time="2.358" assertions="0">
+    </testcase>
+  
+    <testcase name="Books view" classname="AdminRoleTest" time="4.576" assertions="0">
+    </testcase>
+  
+    <testcase name="Settings view" classname="AdminRoleTest" time="4.092" assertions="0">
+    </testcase>
+  
+    <testcase name="Dashboard Page" classname="AdminRoleTest" time="5.134" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="User Profile" classname="AdminRoleTest" time="8.324" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Logout User after signin" classname="AdminRoleTest" time="4.983" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

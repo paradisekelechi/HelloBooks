@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="10">
+
+  <testsuite name="AuthenticationTests"
+    errors="0" failures="0" hostname="" id="" package="AuthenticationTests" skipped="0"
+    tests="10" time="166.3" timestamp="Thu, 11 Jan 2018 07:48:40 GMT">
+  
+    <testcase name="Landing Page" classname="AuthenticationTests" time="10.65" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Books Page" classname="AuthenticationTests" time="5.102" assertions="0">
+    </testcase>
+  
+    <testcase name="About Page" classname="AuthenticationTests" time="3.088" assertions="0">
+    </testcase>
+  
+    <testcase name="Signup User" classname="AuthenticationTests" time="31.57" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Borrow Book" classname="AuthenticationTests" time="5.263" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Borrow History" classname="AuthenticationTests" time="0.6280" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="Return Book" classname="AuthenticationTests" time="5.154" assertions="1">
+
+    
+    </testcase>
+  
+    <testcase name="User Profile" classname="AuthenticationTests" time="71.64" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Logout User" classname="AuthenticationTests" time="4.504" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Signin User" classname="AuthenticationTests" time="28.72" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

@@ -45,7 +45,7 @@ class BookCard extends React.Component {
       <div className="col m3 s12">
         <div className="card  sticky-action small">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src={this.props.image !== 'undefined' ? this.props.image : 'https://res.cloudinary.com/skiposki/image/upload/v1513075173/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef_rnxyvl.png'} alt="book" />
+            <img className="activator" src={this.props.image !== 'undefined' ? this.props.image : '../../../assets/img/noimage.png'} alt="book" />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
@@ -58,6 +58,7 @@ class BookCard extends React.Component {
                 (
                   <p>
                     <button
+                      id={`book-return-${this.props.id}`}
                       value={this.id}
                       className="btn btn-book"
                       onClick={this.returnButtonOnClick.bind(this, this.props.id)}

@@ -116,6 +116,7 @@ class Signup extends React.Component {
                 </div>
                 <div className="col s12">
                   <button
+                    name="signup"
                     type="submit"
                     className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
                   >

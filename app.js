@@ -89,7 +89,7 @@ routes(app);
 /**
  * Default route
  */
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'e2e') {
   const buildPath = path.join(__dirname, './dist');
   const filePath = path.join(buildPath, 'index.html');
   app.use(express.static(buildPath));
