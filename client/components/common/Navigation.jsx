@@ -97,26 +97,31 @@ class Navigation extends React.Component {
                 (
                   <div>
                     <NavigationCard
+                      name="home"
                       title="Home"
                       description="Welcome and Landing page"
                       link="/"
                     />
                     <NavigationCard
+                      name="books"
                       title="Books"
                       description="Collection of Books"
                       link="/books"
                     />
                     <NavigationCard
+                      name="about"
                       title="About"
                       description="Description of the application"
                       link="/about"
                     />
                     <NavigationCard
+                      name="register"
                       title="Register"
                       description="Signup into the application"
                       link="/signup"
                     />
                     <NavigationCard
+                      name="login"
                       title="Login"
                       description="Signin to application"
                       link="/signin"
@@ -128,6 +133,7 @@ class Navigation extends React.Component {
                     {getUserType(this.state.userdata.usertype) === 'ADMIN' ?
                       (
                         <NavigationCard
+                          name="dashboard"
                           title="Dashboard"
                           description="Application Dashboard"
                           link="/dashboard"
@@ -136,6 +142,7 @@ class Navigation extends React.Component {
                       ''
                     }
                     <NavigationCard
+                      name="books"
                       title="Books"
                       description="Collection of Books"
                       link="/books"
@@ -143,6 +150,7 @@ class Navigation extends React.Component {
                     {getUserType(this.state.userdata.usertype) === 'ADMIN' ?
                       (
                         <NavigationCard
+                          name="settings"
                           title="Settings"
                           description="Application Settings"
                           link="/settings"
@@ -150,6 +158,7 @@ class Navigation extends React.Component {
                       ) :
                       (
                         <NavigationCard
+                          name="history"
                           title="Borrow History"
                           description="Book Borrow History"
                           link="/history"
@@ -157,6 +166,7 @@ class Navigation extends React.Component {
                       )
                     }
                     <NavigationCard
+                      name="profile"
                       title="Profile"
                       description="User's Profile Page"
                       link="/profile"
@@ -164,6 +174,7 @@ class Navigation extends React.Component {
 
                     <div className="col m2 xs12 s12 nav-card" >
                       <div
+                        name="logout-link"
                         className="card-link logout-link"
                         onClick={this.logoutUser}
                       >

@@ -71,7 +71,7 @@ class BookCard extends React.Component {
       <div className="col m3 s12">
         <div className="card  sticky-action small">
           <div className="card-image waves-effect waves-block waves-light">
-            <img className="activator" src={this.props.image !== 'undefined' ? this.props.image : 'https://res.cloudinary.com/skiposki/image/upload/v1513075173/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef_rnxyvl.png'} alt="book" />
+            <img className="activator" src={this.props.image !== 'undefined' ? this.props.image : '../../../assets/img/noimage.png'} alt="book" />
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
@@ -86,6 +86,7 @@ class BookCard extends React.Component {
                     {this.props.userdata.usertype === 1 ?
                       (
                         <button
+                          id={`book-borrow-${this.props.id}`}
                           value={this.id}
                           className="btn btn-book"
                           onClick={this.borrowButtonOnClick.bind(this, this.props.id)}
@@ -96,11 +97,12 @@ class BookCard extends React.Component {
                       (
                         <div>
                           <Link to={`/viewbook?id=${this.props.id}`}>
-                            <button className="btn">
+                            <button id={`book-view-${this.props.id}`} className="btn">
                               <i className=" action-buttons material-icons">pageview</i>
                             </button>
                           </Link>
                           <button
+                            id={`book-delete-${this.props.id}`}
                             className="btn btn-red"
                             onClick={this.deleteButtonOnClick.bind(this, this.props.id)}
                           >

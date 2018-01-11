@@ -39,7 +39,7 @@ const {
   userdata
 } = authenticateFetch();
 
-const addBookSync = payload => ({
+export const addBookSync = payload => ({
   type: ADD_BOOK,
   payload
 });
@@ -62,7 +62,7 @@ export const addBook = (addBookId, bookdata) => {
   };
   const url = routes.addBooks;
   return (dispatch) => {
-    axios
+    return axios
       .post(url, bookdata, config)
       .then((response) => {
         dispatch(addBookSync(response.data));
@@ -74,7 +74,7 @@ export const addBook = (addBookId, bookdata) => {
 };
 
 
-const editBookSync = payload => ({
+export const editBookSync = payload => ({
   type: EDIT_BOOK,
   payload
 });
@@ -97,7 +97,7 @@ export const editBook = (editBookId, bookdata) => {
   };
   const url = `${routes.getBooks}/${editBookId}`;
   return (dispatch) => {
-    axios
+    return axios
       .put(url, bookdata, config)
       .then((response) => {
         response.data.editBookId = editBookId;
@@ -109,7 +109,7 @@ export const editBook = (editBookId, bookdata) => {
   };
 };
 
-const deleteBookSync = payload => ({
+export const deleteBookSync = payload => ({
   type: DELETE_BOOK,
   payload
 });
@@ -131,7 +131,7 @@ export const deleteBook = (bookId) => {
   };
   const url = `${routes.getBooks}/${bookId}`;
   return (dispatch) => {
-    axios
+    return axios
       .delete(url, config)
       .then((response) => {
         dispatch(deleteBookSync(response.data));
@@ -143,7 +143,7 @@ export const deleteBook = (bookId) => {
 };
 
 
-const getSingleBookSync = payload => ({
+export const getSingleBookSync = payload => ({
   type: GET_SINGLE_BOOK,
   payload
 });
@@ -164,18 +164,16 @@ export const getSingleBook = (bookId) => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(`${routes.getSingleBook}?id=${bookId}`, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getSingleBookSync(response.data));
-        }
+        dispatch(getSingleBookSync(response.data));
       });
   };
 };
 
 
-const getBooksSync = payload => ({
+export const getBooksSync = payload => ({
   type: GET_BOOKS,
   payload
 });
@@ -190,18 +188,16 @@ const getBooksSync = payload => ({
  */
 export const getBooks = () => {
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getBooks)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksSync(response.data));
-        }
+        dispatch(getBooksSync(response.data));
       });
   };
 };
 
 
-const getBooksFinishedSync = payload => ({
+export const getBooksFinishedSync = payload => ({
   type: GET_BOOKS_FINISHED,
   payload
 });
@@ -219,17 +215,15 @@ export const getBooksFinished = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getBooksFinished, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksFinishedSync(response.data));
-        }
+        dispatch(getBooksFinishedSync(response.data));
       });
   };
 };
 
-const getBooksAvailableSync = payload => ({
+export const getBooksAvailableSync = payload => ({
   type: GET_BOOKS_AVAILABLE,
   payload
 });
@@ -246,7 +240,7 @@ const getBooksAvailableSync = payload => ({
 export const getBooksAvailable = () => {
   const getBooksUrl = routes.getBooksAvailable;
   return (dispatch) => {
-    axios
+    return axios
       .get(getBooksUrl)
       .then((response) => {
         dispatch(getBooksAvailableSync(response.data));
@@ -256,7 +250,7 @@ export const getBooksAvailable = () => {
   };
 };
 
-const getPendingBooksSync = payload => ({
+export const getPendingBooksSync = payload => ({
   type: GET_PENDING_BOOKS,
   payload
 });
@@ -278,20 +272,18 @@ export const getPendingBooks = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(url, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getPendingBooksSync(response.data));
-        }
+        dispatch(getPendingBooksSync(response.data));
       }).catch((error) => {
-        dispatch(getPendingBooksSync(error.data));
+        Alert('error', error.response.data.message, null);
       });
   };
 };
 
 
-const getBooksDeletedSync = payload => ({
+export const getBooksDeletedSync = payload => ({
   type: GET_BOOKS_DELETED,
   payload
 });
@@ -309,12 +301,10 @@ export const getBooksDeleted = () => {
     }
   };
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.getBooksDeleted, config)
       .then((response) => {
-        if (response.data.success) {
-          dispatch(getBooksDeletedSync(response.data));
-        }
+        dispatch(getBooksDeletedSync(response.data));
       });
   };
 };

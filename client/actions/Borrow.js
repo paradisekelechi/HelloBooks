@@ -28,7 +28,7 @@ const {
   userdata
 } = authenticateFetch();
 
-const borrowBookSync = payload => ({
+export const borrowBookSync = payload => ({
   type: BORROW_BOOK,
   payload
 });
@@ -51,9 +51,10 @@ export const borrowBook = (bookId) => {
   const formdata = {
     bookId
   };
-  const url = `${routes.users}/${userdata.userid}/books`;
+  const userId = userdata.userid;
+  const url = (`${routes.users}/${userId}/books`);
   return (dispatch) => {
-    axios
+    return axios
       .post(url, formdata, config)
       .then((response) => {
         response.data.bookId = bookId;
@@ -65,7 +66,7 @@ export const borrowBook = (bookId) => {
   };
 };
 
-const returnBookSync = payload => ({
+export const returnBookSync = payload => ({
   type: RETURN_BOOK,
   payload
 });

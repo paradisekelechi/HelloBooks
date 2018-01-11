@@ -27,7 +27,7 @@ const {
   token
 } = authenticateFetch();
 
-const getCategoriesSync = payload => ({
+export const getCategoriesSync = payload => ({
   type: GET_BOOK_CATEGORIES,
   payload
 });
@@ -41,7 +41,7 @@ const getCategoriesSync = payload => ({
  */
 export const getCategories = () => {
   return (dispatch) => {
-    axios
+    return axios
       .get(routes.bookCategory)
       .then((response) => {
         dispatch(getCategoriesSync(response.data));
@@ -51,7 +51,7 @@ export const getCategories = () => {
   };
 };
 
-const addCategorySync = payload => ({
+export const addCategorySync = payload => ({
   type: ADD_CATEGORY,
   payload
 });
@@ -73,7 +73,7 @@ export const addCategory = (formdata) => {
   };
   const url = routes.bookCategory;
   return (dispatch) => {
-    axios
+    return axios
       .post(url, formdata, config)
       .then((response) => {
         dispatch(addCategorySync(response.data));
