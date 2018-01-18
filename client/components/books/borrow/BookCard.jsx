@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview BookCard component that presents a book
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import swal from 'sweetalert2';

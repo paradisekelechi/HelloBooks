@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Modal component - renders the modal popup
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 

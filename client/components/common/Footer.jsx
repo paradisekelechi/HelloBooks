@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Footer component
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import { Link } from 'react-router';
 

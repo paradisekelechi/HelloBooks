@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Settings component - renders the settings page
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

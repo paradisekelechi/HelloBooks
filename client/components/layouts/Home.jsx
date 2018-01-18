@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Home layout component - handles the layout of the components
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Navigation from '../common/Navigation';

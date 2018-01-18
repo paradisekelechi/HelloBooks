@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview AdminDashboard component - renders the admin dashboard
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

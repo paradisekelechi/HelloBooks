@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview BookCatalog component that loads the books to be displayed
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';

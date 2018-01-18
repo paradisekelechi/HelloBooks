@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview BookIterator component that loops through the list of books
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import BookCard from './BookCard';
@@ -10,12 +17,10 @@ import BookCard from './BookCard';
  */
 const BookIterator = (props) => {
   let bookList = () => {
-    return (
-      <h5>No books found!</h5>
-    );
+    return <h5>No books found!</h5>;
   };
-  if ((props.borrowLog).length > 0) {
-    bookList = (props.borrowLog).map((log) => {
+  if (props.borrowLog.length > 0) {
+    bookList = props.borrowLog.map((log) => {
       return (
         <BookCard
           key={log.Book.id}
@@ -30,11 +35,7 @@ const BookIterator = (props) => {
     });
   }
 
-  return (
-    <div>
-      {bookList}
-    </div>
-  );
+  return <div>{bookList}</div>;
 };
 
 BookIterator.propTypes = {

@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview UserTypes component - renders the UserTypes table
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 
 /**
