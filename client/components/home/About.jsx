@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview About component - renders the about page
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import { Link } from 'react-router';
 

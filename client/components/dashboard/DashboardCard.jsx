@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview DashboardCard component - renders a cdashboard card
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 

@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview AccountTypes component - renders the Account Types table
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 
 /**

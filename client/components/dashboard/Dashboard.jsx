@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Dashboard component - acts as the dashboard wrapper component
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import { authenticateFetch } from '../../helpers/Authentication';
 import { getUserType, getAccountType } from '../../helpers/TypeSync';

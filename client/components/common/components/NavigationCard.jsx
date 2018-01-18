@@ -1,3 +1,11 @@
+/**
+ *  @fileOverview NavigationCard component
+ * - Renders each navigation link as a module
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
