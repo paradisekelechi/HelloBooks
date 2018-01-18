@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Categories component - renders the categories table
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 

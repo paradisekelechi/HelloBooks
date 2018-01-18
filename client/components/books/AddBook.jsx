@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview AddBook component shows the view to add a book
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

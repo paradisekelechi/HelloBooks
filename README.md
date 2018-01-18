@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/paradisekelechi/HelloBooks.svg?branch=development)](https://travis-ci.org/paradisekelechi/HelloBooks)
-[![Coverage Status](https://coveralls.io/repos/github/paradisekelechi/HelloBooks/badge.svg?branch=development)](https://coveralls.io/github/paradisekelechi/HelloBooks?branch=development)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9fc290d018cbb3c1041c/test_coverage)](https://codeclimate.com/github/paradisekelechi/HelloBooks/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9fc290d018cbb3c1041c/maintainability)](https://codeclimate.com/github/paradisekelechi/HelloBooks/maintainability)
 # HelloBooks

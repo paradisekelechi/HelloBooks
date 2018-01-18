@@ -332,17 +332,10 @@ export default {
         }
       })
       .then((booklog) => {
-        if (booklog.length !== 0) {
-          ResponseHandler(
-            req, res, 200, true, 'You have pending books!',
-            booklog, 'booklog'
-          );
-        } else {
-          ResponseHandler(
-            req, res, 200, true, 'You have no unreturned/pending books!',
-            booklog, 'booklog'
-          );
-        }
+        ResponseHandler(
+          req, res, 200, true, 'Borrowed books pending return',
+          booklog, 'booklog'
+        );
       });
   }
 };

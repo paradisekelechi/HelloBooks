@@ -1,3 +1,10 @@
+/**
+ *  @fileOverview Home component - renders the home page
+ *
+ *  @author Paradise Kelechi
+ *
+ */
+
 import React from 'react';
 import { Link } from 'react-router';
 import background from '../../assets/img/background6.jpg';
