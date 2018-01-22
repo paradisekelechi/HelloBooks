@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/paradisekelechi/HelloBooks.svg?branch=development)](https://travis-ci.org/paradisekelechi/HelloBooks)
-[![Coverage Status](https://coveralls.io/repos/github/paradisekelechi/HelloBooks/badge.svg?branch=development)](https://coveralls.io/github/paradisekelechi/HelloBooks?branch=development)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9fc290d018cbb3c1041c/test_coverage)](https://codeclimate.com/github/paradisekelechi/HelloBooks/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9fc290d018cbb3c1041c/maintainability)](https://codeclimate.com/github/paradisekelechi/HelloBooks/maintainability)
 # HelloBooks
@@ -120,6 +119,16 @@ npm run test:client
 npm run e2e-server
 npm run e2e-test
 ```
+
+## Contributing
+
+In order to contribute to the project, kindly do the following
+- Fork the repository
+- Work on the feature you desire
+- Ensure that you follow the convention as outlined in the [wiki](https://github.com/paradisekelechi/HelloBooks/wiki)
+- Raise a pull request to the repository
+
+We welcome and deeply appreciate your contributions.
 ## Authors
 
 * **Kelechi Iheanyichukwu** - (https://github.com/paradisekelechi)

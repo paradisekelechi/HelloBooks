@@ -12,6 +12,7 @@ import { getCategories, addCategory } from '../../actions/Category';
 import Categories from './categories/Categories';
 import UserTypes from './usertypes/UserTypes';
 import AccountTypes from './accounttypes/AccountTypes';
+import Navigation from '../common/UserNavigation';
 
 /**
  * Settings Class
@@ -121,118 +122,126 @@ class Settings extends React.Component {
    */
   render() {
     return (
-      <div className="container-fluid main-wrapper">
-        <div className="row page-info">
-          <div className="col m1"></div>
-          <div className="col m8">
-            <h5>Application Settings</h5>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col m1"></div>
-          <div className="col s12 m5">
-            <UserTypes />
-          </div>
-          <div className="col s12 m5">
-            <AccountTypes />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col m1"></div>
-          <div className="col s12 m5">
-            <div className="card white">
-              <div className="card-content ">
-                <button
-                  onClick={this.handleAddCategory}
-                  className="btn btn-floating btn-large waves-effect waves-light right"
-                >
-                  <i className="material-icons">add</i>
-                </button>
-                <span className="card-title"><h5>Book Categories</h5></span>
-                {this.state.isCategoriesLoading ?
-                  (
-                    <div className="page-info loader-wrapper">
-                      <div id="img4" className="loader img"></div>
-                    </div>
-                  ) :
-                  (
-                    <div>
-                      {
-                        this.state.categories.length === 0 ?
-                          'No Categories found' :
-                          <Categories list={this.state.categories} />
-                      }
-                    </div>
-                  )
-                }
-              </div>
+      <div>
+        <Navigation />
+        <div className="container-fluid main-wrapper">
+          <div className="row page-info">
+            <div className="col m1"></div>
+            <div className="col m8">
+              <h5>Application Settings</h5>
             </div>
           </div>
-          <div className="col s12 m5">
-            {this.state.shouldAddCategory ?
-              (
-                <div className="card white">
-                  <div className="card-content ">
-                    <span className="card-title"><h5>Add Book Category</h5></span>
-                    <div className="row">
-                      <div className="input-field col m6 s12">
-                        <input
-                          id="category_name"
-                          type="text"
-                          className="validate"
-                          name="name"
-                          onChange={this.onChange}
-                        />
-                        <label className="active" htmlFor="category_name">Name</label>
+          <div className="row">
+            <div className="col m1"></div>
+            <div className="col s12 m5">
+              <UserTypes />
+            </div>
+            <div className="col s12 m5">
+              <AccountTypes />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col m1"></div>
+            <div className="col s12 m5">
+              <div className="card white">
+                <div className="card-content ">
+                  <button
+                    onClick={this.handleAddCategory}
+                    className="btn btn-floating btn-large waves-effect waves-light right"
+                  >
+                    <i className="material-icons">add</i>
+                  </button>
+                  <span className="card-title"><h5>Book Categories</h5></span>
+                  {this.state.isCategoriesLoading ?
+                    (
+                      <div className="page-info loader-wrapper">
+                        <div id="img4" className="loader img"></div>
                       </div>
-                      <div className="input-field col m6 s12">
-                        <input
-                          id="category_abbreviation"
-                          type="text"
-                          className="validate"
-                          name="abbreviation"
-                          onChange={this.onChange}
-                        />
-                        <label
-                          className="active"
-                          htmlFor="category_abbreviation"
-                        >
-                          Abbreviation
-                        </label>
+                    ) :
+                    (
+                      <div>
+                        {
+                          this.state.categories.length === 0 ?
+                            'No Categories found' :
+                            <Categories list={this.state.categories} />
+                        }
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          id="category_description"
-                          type="text"
-                          className="validate"
-                          name="description"
-                          onChange={this.onChange}
-                        />
-                        <label className="active" htmlFor="category_description">Description</label>
+                    )
+                  }
+                </div>
+              </div>
+            </div>
+            <div className="col s12 m5">
+              {this.state.shouldAddCategory ?
+                (
+                  <div className="card white">
+                    <div className="card-content ">
+                      <span className="card-title"><h5>Add Book Category</h5></span>
+                      <div className="row">
+                        <div className="input-field col m6 s12">
+                          <input
+                            id="category_name"
+                            type="text"
+                            className="validate"
+                            name="name"
+                            onChange={this.onChange}
+                          />
+                          <label className="active" htmlFor="category_name">Name</label>
+                        </div>
+                        <div className="input-field col m6 s12">
+                          <input
+                            id="category_abbreviation"
+                            type="text"
+                            className="validate"
+                            name="abbreviation"
+                            onChange={this.onChange}
+                          />
+                          <label
+                            className="active"
+                            htmlFor="category_abbreviation"
+                          >
+                            Abbreviation
+                          </label>
+                        </div>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12 m6">
-                        <button
-                          className="btn btn-large btn-edit col s12 waves-effect waves-light"
-                          type="button"
-                          onClick={this.handleClickSubmit}
-                        >
-                          Add Category
-                          <i className="material-icons right">send</i>
-                        </button>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="category_description"
+                            type="text"
+                            className="validate"
+                            name="description"
+                            onChange={this.onChange}
+                          />
+                          <label
+                            className="active"
+                            htmlFor="category_description"
+                          >
+                            Description
+                          </label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12 m6">
+                          <button
+                            className="btn btn-large btn-edit col s12 waves-effect waves-light"
+                            type="button"
+                            onClick={this.handleClickSubmit}
+                          >
+                            Add Category
+                            <i className="material-icons right">send</i>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ) :
-              ''
-            }
+                ) :
+                ''
+              }
+            </div>
           </div>
-        </div>
-      </div >
+        </div >
+      </div>
     );
   }
 }

@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPendingBooks } from '../../../actions/Book';
 import BookIterator from './BookIterator';
+import Navigation from '../../common/UserNavigation';
 
 /**
  *
@@ -76,32 +77,35 @@ class BooksCatalog extends React.Component {
    */
   render() {
     return (
-      <div className="container-fluid main-wrapper">
-        <div className="row page-info">
-          <div className="col m1" />
-          <div className="col m8">
-            <h5>Borrow History</h5>
+      <div>
+        <Navigation />
+        <div className="container-fluid main-wrapper">
+          <div className="row page-info">
+            <div className="col m1" />
+            <div className="col m8">
+              <h5>Borrow History</h5>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col m1" />
-          {this.state.isLoading ? (
-            <div className="col m6 offset-m2 page-info loader-wrapper">
-              <div id="img4" className="loader img" />
-            </div>
-          ) : (
-            <div>
-              {this.state.booksList.length === 0 ? (
-                <div className="col m6 offset-m2 page-info not-found">
-                  <h5>No Pending Borrow Available</h5>
-                </div>
-              ) : (
-                <div className=" col m10 books-wrapper">
-                  <BookIterator borrowLog={this.state.booksList} loggedIn={this.state.loggedIn} />
-                </div>
-              )}
-            </div>
-          )}
+          <div className="row">
+            <div className="col m1" />
+            {this.state.isLoading ? (
+              <div className="col m6 offset-m2 page-info loader-wrapper">
+                <div id="img4" className="loader img" />
+              </div>
+            ) : (
+              <div>
+                {this.state.booksList.length === 0 ? (
+                  <div className="col m6 offset-m2 page-info not-found">
+                    <h5>No Pending Borrow Available</h5>
+                  </div>
+                ) : (
+                  <div className=" col m10 books-wrapper">
+                    <BookIterator borrowLog={this.state.booksList} loggedIn={this.state.loggedIn} />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

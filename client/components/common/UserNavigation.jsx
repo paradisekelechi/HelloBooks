@@ -9,6 +9,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { authenticateFetch } from '../../helpers/Authentication';
+import { getUserType } from '../../helpers/TypeSync';
 import NavigationCard from './components/NavigationCard';
 import { logoutUser } from '../../actions/Authentication';
 
@@ -20,18 +22,33 @@ import { logoutUser } from '../../actions/Authentication';
  */
 class Navigation extends React.Component {
   /**
-    * Creates an instance of Navigation.
-    *
-    * @param {any} props
-    * @memberof Navigation
-    */
+   * Creates an instance of Navigation.
+   *
+   * @param {any} props
+   * @memberof Navigation
+   */
   constructor(props) {
     super(props);
     this.state = {
+      userdata: {},
       toggleNav: true
     };
     this.logoutUser = this.logoutUser.bind(this);
   }
+  /**
+     * Component Will Mount
+     *
+     * @returns {void}
+     * @memberof Navigation
+     */
+  componentWillMount() {
+    const { userdata } = authenticateFetch();
+    this.setState({
+      userdata
+    });
+  }
+
+
   /**
    * Log out user function
    *
@@ -82,37 +99,60 @@ class Navigation extends React.Component {
               <div className="col m1">
 
               </div>
+
               <div>
-                <NavigationCard
-                  name="home"
-                  title="Home"
-                  description="Welcome and Landing page"
-                  link="/"
-                />
+                {getUserType(this.state.userdata.usertype) === 'ADMIN' ?
+                  (
+                    <NavigationCard
+                      name="dashboard"
+                      title="Dashboard"
+                      description="Application Dashboard"
+                      link="/dashboard"
+                    />
+                  ) :
+                  ''
+                }
                 <NavigationCard
                   name="books"
                   title="Books"
                   description="Collection of Books"
-                  link="/books-display"
+                  link="/books"
                 />
+                {getUserType(this.state.userdata.usertype) === 'ADMIN' ?
+                  (
+                    <NavigationCard
+                      name="settings"
+                      title="Settings"
+                      description="Application Settings"
+                      link="/settings"
+                    />
+                  ) :
+                  (
+                    <NavigationCard
+                      name="history"
+                      title="Borrowed Books"
+                      description="Borrowed Books"
+                      link="/borrowed"
+                    />
+                  )
+                }
                 <NavigationCard
-                  name="about"
-                  title="About"
-                  description="Description of the application"
-                  link="/about"
+                  name="profile"
+                  title="Profile"
+                  description="User's Profile Page"
+                  link="/profile"
                 />
-                <NavigationCard
-                  name="register"
-                  title="Register"
-                  description="Signup into the application"
-                  link="/signup"
-                />
-                <NavigationCard
-                  name="login"
-                  title="Login"
-                  description="Signin to application"
-                  link="/signin"
-                />
+
+                <div className="col m2 xs12 s12 nav-card" >
+                  <div
+                    name="logout-link"
+                    className="card-link logout-link"
+                    onClick={this.logoutUser}
+                  >
+                    <h4>Logout</h4>
+                    <p>Leave the application</p>
+                  </div>
+                </div>
               </div>
 
             </div>

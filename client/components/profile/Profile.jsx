@@ -12,6 +12,7 @@ import profileImage from '../../assets/img/profile.jpg';
 import { authenticateFetch } from '../../helpers/Authentication';
 import { getUserType, getAccountType } from '../../helpers/TypeSync';
 import { editUserProfileImage, updatePassword } from '../../actions/User';
+import Navigation from '../common/UserNavigation';
 
 /**
  * Profile Class
@@ -136,127 +137,135 @@ class Profile extends React.Component {
    */
   render() {
     return (
-      <div className="container-fluid main-wrapper">
-        <div className="row page-info">
-          <div className="col m1"></div>
-          <div className="col m10">
-            <h5>Profile</h5>
+      <div>
+        <Navigation />
+        <div className="container-fluid main-wrapper">
+          <div className="row page-info">
+            <div className="col m1"></div>
+            <div className="col m10">
+              <h5>Profile</h5>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col m1"></div>
-          <div className="col m3 s12">
-            <button
-              onClick={this.uploadImage}
-              className="btn-floating waves-effect dark-blue-background right"
-            >
-              <i className="material-icons">mode_edit</i>
-            </button>
-            <img
-              id="profile-image"
-              className="circle responsive-img"
-              alt="profile"
-              src={
-                this.state.imageUrl === '' || this.state.imageUrl === null ?
-                  profileImage :
-                  this.state.imageUrl}
-              width="100%"
-              height="100%"
-            />
-          </div>
-          <div className="col s12 m7">
-            <div className="card small">
-              <div className="card-image">
-                <img src="https://res.cloudinary.com/skiposki/image/upload/v1513072462/user-profile-bg_gghcqw.jpg" alt="profile" className=" responsive-img" />
-              </div>
-              <div className="card-content">
-                <div className="row">
-                  <div className="col m1"></div>
-                  <div className="col m3 s6">
-                    <p>{this.state.username}</p>
-                    <span>Username</span>
-                  </div>
-                  <div className="col m3 s6">
-                    <p>{this.state.email}</p>
-                    <span>Email</span>
-                  </div>
-                  <div className="col m3 s6">
-                    <p>{this.state.userType}</p>
-                    <span>Usertype</span>
+          <div className="row">
+            <div className="col m1"></div>
+            <div className="col m3 s12">
+              <button
+                onClick={this.uploadImage}
+                className="btn-floating waves-effect dark-blue-background right"
+              >
+                <i className="material-icons">mode_edit</i>
+              </button>
+              <img
+                id="profile-image"
+                className="circle responsive-img"
+                alt="profile"
+                src={
+                  this.state.imageUrl === '' || this.state.imageUrl === null ?
+                    profileImage :
+                    this.state.imageUrl}
+                width="100%"
+                height="100%"
+              />
+            </div>
+            <div className="col s12 m7">
+              <div className="card small">
+                <div className="card-image">
+                  <img src="https://res.cloudinary.com/skiposki/image/upload/v1513072462/user-profile-bg_gghcqw.jpg" alt="profile" className=" responsive-img" />
+                </div>
+                <div className="card-content">
+                  <div className="row">
+                    <div className="col m1"></div>
+                    <div className="col m3 s6">
+                      <p>{this.state.username}</p>
+                      <span>Username</span>
+                    </div>
+                    <div className="col m3 s6">
+                      <p>{this.state.email}</p>
+                      <span>Email</span>
+                    </div>
+                    <div className="col m3 s6">
+                      <p>{this.state.userType}</p>
+                      <span>Usertype</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col m4 s12">
-                <button
-                  id="update-toggle"
-                  onClick={this.shouldUpdatePassword}
-                  className="btn btn-large btn-edit col s12"
-                >
-                  Update Password
-                </button>
+              <div className="row">
+                <div className="col m4 s12">
+                  <button
+                    id="update-toggle"
+                    onClick={this.shouldUpdatePassword}
+                    className="btn btn-large btn-edit col s12"
+                  >
+                    Update Password
+                  </button>
+                </div>
+                {this.state.shouldShowForm ?
+                  (
+                    <div className="col m5 s12">
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            className="validate"
+                            onChange={this.onChange}
+                          />
+                          <label className="active" htmlFor="password">Current Password</label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="newPassword"
+                            type="password"
+                            name="newPassword"
+                            className="validate"
+                            onChange={this.onChange}
+                          />
+                          <label className="active" htmlFor="newPassword">New Password</label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <input
+                            id="confirmPassword"
+                            type="password"
+                            name="confirmPassword"
+                            className="validate"
+                            onChange={this.onChange}
+                          />
+                          <label
+                            className="active"
+                            htmlFor="confirmPassword"
+                          >
+                            Confirm Password
+                          </label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="input-field col s12">
+                          <button
+                            id="save-password"
+                            className="btn  waves-effect waves-light"
+                            type="button"
+                            onClick={this.updatePassword}
+                          >
+                            Save
+                            <i className="material-icons right">send</i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ) :
+                  ''
+                }
               </div>
-              {this.state.shouldShowForm ?
-                (
-                  <div className="col m5 s12">
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          id="password"
-                          type="password"
-                          name="password"
-                          className="validate"
-                          onChange={this.onChange}
-                        />
-                        <label className="active" htmlFor="password">Current Password</label>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          id="newPassword"
-                          type="password"
-                          name="newPassword"
-                          className="validate"
-                          onChange={this.onChange}
-                        />
-                        <label className="active" htmlFor="newPassword">New Password</label>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <input
-                          id="confirmPassword"
-                          type="password"
-                          name="confirmPassword"
-                          className="validate"
-                          onChange={this.onChange}
-                        />
-                        <label className="active" htmlFor="confirmPassword">Confirm Password</label>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col s12">
-                        <button
-                          id="save-password"
-                          className="btn  waves-effect waves-light"
-                          type="button"
-                          onClick={this.updatePassword}
-                        >
-                          Save
-                          <i className="material-icons right">send</i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ) :
-                ''
-              }
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     );
   }

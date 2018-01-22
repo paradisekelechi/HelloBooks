@@ -1,4 +1,3 @@
-
 /**
  *  @fileOverview  Borrow action file
  *
@@ -59,7 +58,7 @@ export const borrowBook = (bookId) => {
       .then((response) => {
         response.data.bookId = bookId;
         dispatch(borrowBookSync(response.data));
-        Alert('success', response.data.message, window.location.reload());
+        Alert('success', response.data.message, null);
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -96,7 +95,7 @@ export const returnBook = (bookId) => {
       .then((response) => {
         response.data.bookId = bookId;
         dispatch(returnBookSync(response.data));
-        Alert('success', response.data.message, window.location.reload());
+        Alert('success', response.data.message, null);
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });

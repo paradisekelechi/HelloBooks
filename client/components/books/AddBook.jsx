@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCategories } from '../../actions/Category';
 import { addBook } from '../../actions/Book';
+import Navigation from '../common/UserNavigation';
 
 /**
  *
@@ -116,103 +117,111 @@ class AddBook extends React.Component {
    */
   render() {
     return (
-      <div className="container-fluid main-wrapper">
-        <div className="row page-info">
-          <div className="col m1"></div>
-          <div className="col m10">
-            <h5>Add Book</h5>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col m1"></div>
-          <div className="col s12 m3">
-            <button onClick={this.uploadWidget} className="btn btn-large">Upload Book Cover</button>
-          </div>
-          <form onSubmit={this.onClickSubmit}>
-            <div className="col m3 s12">
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="book_name"
-                    type="text"
-                    className="validate"
-                    name="name"
-                    onChange={this.onChange}
-                  />
-                  <label className="active" htmlFor="book_name">Book Name</label>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="book_author"
-                    type="text"
-                    name="author"
-                    className="validate"
-                    onChange={this.onChange}
-                  />
-                  <label className="active" htmlFor="book_name">Book Author</label>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="book_description"
-                    type="text"
-                    className="validate"
-                    name="description"
-                    onChange={this.onChange}
-                  />
-                  <label className="active" htmlFor="book_name">Book Description</label>
-                </div>
-              </div>
-
+      <div>
+        <Navigation />
+        <div className="container-fluid main-wrapper">
+          <div className="row page-info">
+            <div className="col m1"></div>
+            <div className="col m10">
+              <h5>Add Book</h5>
             </div>
-            <div className="col m3 s12">
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    id="quantity"
-                    type="text"
-                    className="validate"
-                    name="quantity"
-                    onChange={this.onChange}
-                  />
-                  <label className="active" htmlFor="quantity">Quantity</label>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col m12 s12">
-                  <label htmlFor="bookCategory">Category</label>
-                  <select name="categoryId" onChange={this.onChange} className="browser-default">
-                    <option>Choose Category</option>
-                    {(this.state.categoryList).map((category) => {
-                      return (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>);
-                    })}
-                  </select>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="input-field col s12">
-                  <button
-                    className="btn btn-large btn-edit col s12 waves-effect waves-light"
-                    type="submit"
-                  >
-                    Add Book
-                    <i className="material-icons right">send</i>
-                  </button>
-                </div>
-              </div>
-
+          </div>
+          <div className="row">
+            <div className="col m1"></div>
+            <div className="col s12 m3">
+              <button
+                onClick={this.uploadWidget}
+                className="btn btn-large"
+              >
+                Upload Book Cover
+              </button>
             </div>
-          </form>
+            <form onSubmit={this.onClickSubmit}>
+              <div className="col m3 s12">
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      id="book_name"
+                      type="text"
+                      className="validate"
+                      name="name"
+                      onChange={this.onChange}
+                    />
+                    <label className="active" htmlFor="book_name">Book Name</label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      id="book_author"
+                      type="text"
+                      name="author"
+                      className="validate"
+                      onChange={this.onChange}
+                    />
+                    <label className="active" htmlFor="book_name">Book Author</label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      id="book_description"
+                      type="text"
+                      className="validate"
+                      name="description"
+                      onChange={this.onChange}
+                    />
+                    <label className="active" htmlFor="book_name">Book Description</label>
+                  </div>
+                </div>
+
+              </div>
+              <div className="col m3 s12">
+                <div className="row">
+                  <div className="input-field col s12">
+                    <input
+                      id="quantity"
+                      type="text"
+                      className="validate"
+                      name="quantity"
+                      onChange={this.onChange}
+                    />
+                    <label className="active" htmlFor="quantity">Quantity</label>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col m12 s12">
+                    <label htmlFor="bookCategory">Category</label>
+                    <select name="categoryId" onChange={this.onChange} className="browser-default">
+                      <option>Choose Category</option>
+                      {(this.state.categoryList).map((category) => {
+                        return (
+                          <option key={category.id} value={category.id}>
+                            {category.name}
+                          </option>);
+                      })}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="input-field col s12">
+                    <button
+                      className="btn btn-large btn-edit col s12 waves-effect waves-light"
+                      type="submit"
+                    >
+                      Add Book
+                      <i className="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

@@ -25,14 +25,9 @@ import {
 } from '../helpers/Constants';
 import routes from '../../tools/Routes';
 import {
-  authenticateFetch,
+  authenticateFetch
 } from '../helpers/Authentication';
 import Alert from '../helpers/Alert';
-
-const {
-  token,
-  userdata
-} = authenticateFetch();
 
 export const getAllUsersSync = payload => ({
   type: GET_ALL_USERS,
@@ -45,6 +40,9 @@ export const getAllUsersSync = payload => ({
  * @returns {object} dispatch object
  */
 export const getAllUsers = () => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -74,6 +72,9 @@ export const getAdminUsersSync = payload => ({
  * @returns {object} dispatch object
  */
 export const getAdminUsers = () => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -103,6 +104,9 @@ export const getClientUsersSync = payload => ({
  * @returns {object} dispatch object
  */
 export const getClientUsers = () => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -132,6 +136,9 @@ export const getDeletedUsersSync = payload => ({
  * @returns {object} dispatch object
  */
 export const getDeletedUsers = () => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -165,6 +172,10 @@ export const editUserProfileImageSync = (data) => {
  * @returns {Object} dispatch object
  */
 export const editUserProfileImage = (imageUrl) => {
+  const {
+    token,
+    userdata
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -201,6 +212,9 @@ export const updatePasswordSync = payload => ({
  * @returns {Object} dispatch object
  */
 export const updatePassword = (userId, formdata) => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token

@@ -92,6 +92,24 @@ export default {
           req, res, 200, true, 'Book category added',
           category, 'category'
         );
+      }).catch((error) => {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          if (error.fields.name) {
+            ResponseHandler(
+              req, res, 401, false, 'Category name already exists',
+              null, null
+            );
+          }
+
+          if (error.fields.abbreviation) {
+            ResponseHandler(
+              req, res, 401, false, 'Category abbreviation already exists',
+              null, null
+            );
+          }
+        } else {
+          ResponseHandler(req, res, 503, false, 'Service unavailable', error, 'error');
+        }
       });
   },
 };

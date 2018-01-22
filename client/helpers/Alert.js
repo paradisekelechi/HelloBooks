@@ -11,9 +11,7 @@ const Alert = (alertType, alertMessage, callback) => {
     Materialize.toast(
       alertMessage,
       6000,
-      `${alertType !== 'error' ? 'blue' : 'red'} rounded`, () => {
-        callback();
-      }
+      `${alertType !== 'error' ? 'blue' : 'red'} rounded`,
     );
   } else {
     Materialize.toast(
