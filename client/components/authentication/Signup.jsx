@@ -128,10 +128,10 @@ class Signup extends React.Component {
                     <button
                       name="signup"
                       type="submit"
-                      className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
+                      className="waves-effect btn btn-large col s12 dark-blue-background"
                     >
                       Register
-                  </button>
+                    </button>
                   </div>
                 </form>
 
@@ -147,7 +147,7 @@ class Signup extends React.Component {
                   <Link to="/signin">
                     <button className="waves-effect waves-light btn col s12 dark-blue-background">
                       Signin
-                  </button>
+                    </button>
                   </Link>
                 </div>
               </div>

@@ -164,7 +164,7 @@ class Signin extends React.Component {
                   <div className="col s12">
                     <button
                       name="signin"
-                      className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
+                      className="waves-effect btn btn-large col s12 dark-blue-background"
                     >
                       Signin
                     </button>

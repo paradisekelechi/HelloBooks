@@ -137,10 +137,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    userDetails: state.userDataReducer[0]
-  };
+const mapStateToProps = () => {
+  return null;
 };
 
 Navigation.propTypes = {

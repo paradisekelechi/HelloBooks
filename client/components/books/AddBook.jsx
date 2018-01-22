@@ -129,7 +129,12 @@ class AddBook extends React.Component {
           <div className="row">
             <div className="col m1"></div>
             <div className="col s12 m3">
-              <button onClick={this.uploadWidget} className="btn btn-large">Upload Book Cover</button>
+              <button
+                onClick={this.uploadWidget}
+                className="btn btn-large"
+              >
+                Upload Book Cover
+              </button>
             </div>
             <form onSubmit={this.onClickSubmit}>
               <div className="col m3 s12">
