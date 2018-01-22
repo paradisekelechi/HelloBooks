@@ -34,11 +34,6 @@ import {
 import routes from '../../tools/Routes';
 import Alert from '../helpers/Alert';
 
-const {
-  token,
-  userdata
-} = authenticateFetch();
-
 export const addBookSync = payload => ({
   type: ADD_BOOK,
   payload
@@ -55,6 +50,9 @@ export const addBookSync = payload => ({
  * @returns {Object}  dispatch object
  */
 export const addBook = (addBookId, bookdata) => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -90,6 +88,9 @@ export const editBookSync = payload => ({
  * @returns {Object}  dispatch object
  */
 export const editBook = (editBookId, bookdata) => {
+  const {
+    token,
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -124,6 +125,9 @@ export const deleteBookSync = payload => ({
  * @returns {Object}  dispatch object
  */
 export const deleteBook = (bookId) => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -158,6 +162,9 @@ export const getSingleBookSync = payload => ({
  * @returns {Object} config object
  */
 export const getSingleBook = (bookId) => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -209,6 +216,9 @@ export const getBooksFinishedSync = payload => ({
  * @returns {Object} book dispatch
  */
 export const getBooksFinished = () => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -265,6 +275,10 @@ export const getPendingBooksSync = payload => ({
  * @returns {object} dispatch object
  */
 export const getPendingBooks = () => {
+  const {
+    token,
+    userdata
+  } = authenticateFetch();
   const url = `${routes.users}/${userdata.userid}/books`;
   const config = {
     headers: {
@@ -295,6 +309,9 @@ export const getBooksDeletedSync = payload => ({
  * @returns {Object} book dispatch
  */
 export const getBooksDeleted = () => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token

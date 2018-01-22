@@ -23,10 +23,6 @@ import {
   authenticateFetch
 } from '../helpers/Authentication';
 
-const {
-  token
-} = authenticateFetch();
-
 export const getCategoriesSync = payload => ({
   type: GET_BOOK_CATEGORIES,
   payload
@@ -66,6 +62,9 @@ export const addCategorySync = payload => ({
  * @returns {Object} dispatch object
  */
 export const addCategory = (formdata) => {
+  const {
+    token
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
