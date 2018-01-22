@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 
 import background from '../../assets/img/background6.jpg';
 import { signinUser, googleSigninUser } from '../../actions/Authentication';
+import Navigation from '../common/Navigation';
 
 /**
  *
@@ -114,77 +115,80 @@ class Signin extends React.Component {
    */
   render() {
     return (
-      <div className="parallax-container">
-        <div className="container">
-          <div className="row authentication-row">
-            <div
-              className="col m4 offset-m4 auth-box"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration={2000}
-            >
-              <h5 className="center authentication-header">Account Signin</h5>
-              <div className="col s12">
-                <button
-                  onClick={this.onSignIn}
-                  className="waves-effect waves-light btn  btn-red col s12 "
-                >
-                  Google Plus Signin
-                </button>
-                <div className="g-signin2" hidden="true"></div>
-              </div>
-              <div className="col s12">
-                <br />
-                <p className="center">OR</p>
-              </div>
-              <form onSubmit={this.onClickSubmit} >
-                <div className="input-field col s12">
-                  <input
-                    id="username"
-                    name="username"
-                    onChange={this.onChange}
-                    type="text"
-                    className="validate"
-                  />
-                  <label htmlFor="username">Username</label>
-                </div>
-                <div className="input-field col s12 ">
-                  <input
-                    id="password"
-                    name="password"
-                    onChange={this.onChange}
-                    type="password"
-                    className="validate"
-                  />
-                  <label htmlFor="password">Password</label>
-                </div>
+      <div>
+        <Navigation />
+        <div className="parallax-container">
+          <div className="container">
+            <div className="row authentication-row">
+              <div
+                className="col m4 offset-m4 auth-box"
+                data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration={2000}
+              >
+                <h5 className="center authentication-header">Account Signin</h5>
                 <div className="col s12">
                   <button
-                    name="signin"
-                    className="waves-effect waves-light btn btn-large col s12 dark-blue-background "
+                    onClick={this.onSignIn}
+                    className="waves-effect waves-light btn  btn-red col s12 "
                   >
-                    Signin
+                    Google Plus Signin
                   </button>
+                  <div className="g-signin2" hidden="true"></div>
                 </div>
-              </form>
-              <div className="col s12">
-                <br />
-                <span>
-                  <p>Not yet a User?</p>
-                </span>
-                <br />
+                <div className="col s12">
+                  <br />
+                  <p className="center">OR</p>
+                </div>
+                <form onSubmit={this.onClickSubmit} >
+                  <div className="input-field col s12">
+                    <input
+                      id="username"
+                      name="username"
+                      onChange={this.onChange}
+                      type="text"
+                      className="validate"
+                    />
+                    <label htmlFor="username">Username</label>
+                  </div>
+                  <div className="input-field col s12 ">
+                    <input
+                      id="password"
+                      name="password"
+                      onChange={this.onChange}
+                      type="password"
+                      className="validate"
+                    />
+                    <label htmlFor="password">Password</label>
+                  </div>
+                  <div className="col s12">
+                    <button
+                      name="signin"
+                      className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
+                    >
+                      Signin
+                    </button>
+                  </div>
+                </form>
+                <div className="col s12">
+                  <br />
+                  <span>
+                    <p>Not yet a User?</p>
+                  </span>
+                  <br />
+                </div>
+                <div className="col s12">
+                  <br />
+                  <Link to="/signup">
+                    <button className="waves-effect waves-light btn col s12 dark-blue-background" >
+                      Register
+                    </button>
+                  </Link>
+                </div>
               </div>
-              <div className="col s12">
-                <br />
-                <Link to="/signup">
-                  <button className="waves-effect waves-light btn col s12 dark-blue-background" >
-                    Register
-                  </button>
-                </Link>
+              <div className="parallax">
+                <img src={background} alt="Unsplashed background img 1" />
               </div>
-            </div>
-            <div className="parallax">
-              <img src={background} alt="Unsplashed background img 1" />
             </div>
           </div>
         </div>

@@ -9,6 +9,7 @@ import React from 'react';
 import { authenticateFetch } from '../../helpers/Authentication';
 import { getUserType, getAccountType } from '../../helpers/TypeSync';
 import AdminDashboard from './AdminDashboard';
+import Navigation from '../common/UserNavigation';
 
 
 /**
@@ -63,17 +64,20 @@ class Dashboard extends React.Component {
   render() {
     if (this.state.userType === 'ADMIN') {
       return (
-        <div className="container-fluid main-wrapper">
-          <div className="row page-info">
-            <div className="col m1"></div>
-            <div className="col m10">
-              <h5>Dashboard</h5>
+        <div>
+          <Navigation />
+          <div className="container-fluid main-wrapper">
+            <div className="row page-info">
+              <div className="col m1"></div>
+              <div className="col m10">
+                <h5>Dashboard</h5>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col m1"></div>
-            <div className="col m10 s12">
-              <AdminDashboard />
+            <div className="row">
+              <div className="col m1"></div>
+              <div className="col m10 s12">
+                <AdminDashboard />
+              </div>
             </div>
           </div>
         </div>

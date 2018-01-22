@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import { returnBook } from '../../../actions/Borrow';
+import { getPendingBooks } from '../../../actions/Book';
 
 /**
  * BookCard Class
@@ -37,6 +38,7 @@ class BookCard extends React.Component {
     }).then((result) => {
       if (result.value) {
         this.props.returnBook(id);
+        this.props.getPendingBooks();
       }
     });
   }
@@ -98,13 +100,16 @@ const mapDispatchToProps = (dispatch) => {
   return {
     returnBook: (bookId) => {
       dispatch(returnBook(bookId));
+    },
+    getPendingBooks: () => {
+      dispatch(getPendingBooks());
     }
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    return: state.returnBookReducer[0]
+    return: state.returnBookReducer[0],
   };
 };
 
@@ -115,7 +120,8 @@ BookCard.propTypes = {
   image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  returnBook: PropTypes.func.isRequired
+  returnBook: PropTypes.func.isRequired,
+  getPendingBooks: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookCard);

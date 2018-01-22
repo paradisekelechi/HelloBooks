@@ -13,7 +13,7 @@ import { getBooksAvailable } from '../../../actions/Book';
 import { getCategories } from '../../../actions/Category';
 import { authenticateFetch } from '../../../helpers/Authentication';
 import BookIterator from './BookIterator';
-import Navigation from '../../common/UserNavigation';
+import Navigation from '../../common/Navigation';
 
 /**
  *
@@ -22,7 +22,7 @@ import Navigation from '../../common/UserNavigation';
  * @extends {React.Component}
  * @returns {Object} react component
  */
-class BooksCatalog extends React.Component {
+class BooksDisplayCatalog extends React.Component {
   /**
    * Creates an instance of BooksCatalog.
    * @param {any} props
@@ -175,7 +175,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-BooksCatalog.propTypes = {
+BooksDisplayCatalog.propTypes = {
   books: PropTypes.object.isRequired,
   getAvailableBooks: PropTypes.func.isRequired,
   categories: PropTypes.object.isRequired,
@@ -183,4 +183,4 @@ BooksCatalog.propTypes = {
   isLoading: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BooksCatalog);
+export default connect(mapStateToProps, mapDispatchToProps)(BooksDisplayCatalog);

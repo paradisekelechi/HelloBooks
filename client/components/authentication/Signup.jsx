@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { signupUser } from '../../actions/Authentication';
 import background from '../../assets/img/background6.jpg';
+import Navigation from '../common/Navigation';
 
 /**
  * Signup class
@@ -80,76 +81,79 @@ class Signup extends React.Component {
    */
   render() {
     return (
-      <div className="parallax-container">
-        <div className="container">
-          <div className="row authentication-row">
-            <div
-              className="col m4 offset-m4 auth-box dark-blue-text"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration={2000}
-            >
-              <h5 className="center authentication-header">Register Account</h5>
-              <form onSubmit={this.onClickSubmit}>
-                <div className="input-field col s12">
-                  <input
-                    onChange={this.onChange}
-                    name="email"
-                    id="email"
-                    type="text"
-                    className="validate"
-                  />
-                  <label htmlFor="email" id="email">Email</label>
-                </div>
-                <div className="input-field col s12">
-                  <input
-                    onChange={this.onChange}
-                    name="username"
-                    id="username"
-                    type="text"
-                    className="validate"
-                  />
-                  <label htmlFor="username" id="username">Username</label>
-                </div>
-                <div className="input-field col s12 ">
-                  <input
-                    onChange={this.onChange}
-                    name="password"
-                    id="password"
-                    type="password"
-                    className="validate"
-                  />
-                  <label htmlFor="password" id="password">Password</label>
+      <div>
+        <Navigation />
+        <div className="parallax-container">
+          <div className="container">
+            <div className="row authentication-row">
+              <div
+                className="col m4 offset-m4 auth-box dark-blue-text"
+                data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration={2000}
+              >
+                <h5 className="center authentication-header">Register Account</h5>
+                <form onSubmit={this.onClickSubmit}>
+                  <div className="input-field col s12">
+                    <input
+                      onChange={this.onChange}
+                      name="email"
+                      id="email"
+                      type="text"
+                      className="validate"
+                    />
+                    <label htmlFor="email" id="email">Email</label>
+                  </div>
+                  <div className="input-field col s12">
+                    <input
+                      onChange={this.onChange}
+                      name="username"
+                      id="username"
+                      type="text"
+                      className="validate"
+                    />
+                    <label htmlFor="username" id="username">Username</label>
+                  </div>
+                  <div className="input-field col s12 ">
+                    <input
+                      onChange={this.onChange}
+                      name="password"
+                      id="password"
+                      type="password"
+                      className="validate"
+                    />
+                    <label htmlFor="password" id="password">Password</label>
+                  </div>
+                  <div className="col s12">
+                    <button
+                      name="signup"
+                      type="submit"
+                      className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
+                    >
+                      Register
+                  </button>
+                  </div>
+                </form>
+
+                <div className="col s12">
+                  <br />
+                  <small>
+                    <p>Already a User?</p>
+                  </small>
+                  <br />
                 </div>
                 <div className="col s12">
-                  <button
-                    name="signup"
-                    type="submit"
-                    className="waves-effect waves-light btn btn-large col s12 dark-blue-background"
-                  >
-                    Register
+                  <br />
+                  <Link to="/signin">
+                    <button className="waves-effect waves-light btn col s12 dark-blue-background">
+                      Signin
                   </button>
+                  </Link>
                 </div>
-              </form>
-
-              <div className="col s12">
-                <br />
-                <small>
-                  <p>Already a User?</p>
-                </small>
-                <br />
               </div>
-              <div className="col s12">
-                <br />
-                <Link to="/signin">
-                  <button className="waves-effect waves-light btn col s12 dark-blue-background">
-                    Signin
-                  </button>
-                </Link>
+              <div className="parallax">
+                <img src={background} alt="Unsplashed background img 1" />
               </div>
-            </div>
-            <div className="parallax">
-              <img src={background} alt="Unsplashed background img 1" />
             </div>
           </div>
         </div>

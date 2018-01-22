@@ -7,6 +7,7 @@ import './assets/sass/materialize.scss';
 import './assets/js/main';
 import HomeLayout from './components/layouts/Home';
 import BooksBorrowCatalog from './components/books/borrow/BooksCatalog';
+import BooksDisplayCatalog from './components/books/borrow/BooksDisplayCatalog';
 import BooksReturnCatalog from './components/books/return/BooksCatalog';
 import ViewBook from './components/books/ViewBook';
 import AddBook from './components/books/AddBook';
@@ -26,13 +27,14 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route component={HomeLayout}>
         <Route path="/" component={Home} />
-        <Route path="/books" component={BooksBorrowCatalog} />
+        <Route path="/books-display" component={BooksDisplayCatalog} />
+        <Route path="/books" component={authorize(BooksBorrowCatalog)} />
         <Route path="/viewbook" component={ViewBook} />
         <Route path="/addbook" component={AddBook} />
         <Route path="/about" component={About} />
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
-        <Route path="/history" component={authorize(BooksReturnCatalog)} />
+        <Route path="/borrowed" component={authorize(BooksReturnCatalog)} />
         <Route path="/profile" component={authorize(Profile)} />
         <Route path="/dashboard" component={authorize(Dashboard)} />
         <Route path="/settings" component={authorize(Settings)} />
