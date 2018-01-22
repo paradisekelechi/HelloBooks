@@ -52,6 +52,44 @@ describe('Add Book category', () => {
       });
     done();
   });
+  it('should not be able to add a book category: already existing name', (done) => {
+    request
+      .post(`${bookCategory}`)
+      .set('user-token', adminToken)
+      .send({
+        name: categoryName,
+        abbreviation,
+        description: categoryDescription
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 401);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Category name already exists');
+      });
+    done();
+  });
+  it('should not be able to add a book category: already existing abbreviation', (done) => {
+    request
+      .post(`${bookCategory}`)
+      .set('user-token', adminToken)
+      .send({
+        name: `${categoryName}gh`,
+        abbreviation,
+        description: categoryDescription
+      })
+      .end((err, res) => {
+        assert.exists(res.status);
+        assert.exists(res.body.success);
+        assert.exists(res.body.message);
+        assert.equal(res.status, 401);
+        assert.equal(res.body.success, false);
+        assert.equal(res.body.message, 'Category abbreviation already exists');
+      });
+    done();
+  });
 
   it('should not be able to add a book category: missing name', (done) => {
     request
