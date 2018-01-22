@@ -22,11 +22,6 @@ import {
 } from '../helpers/Authentication';
 import Alert from '../helpers/Alert';
 
-const {
-  token,
-  userdata
-} = authenticateFetch();
-
 export const borrowBookSync = payload => ({
   type: BORROW_BOOK,
   payload
@@ -42,6 +37,10 @@ export const borrowBookSync = payload => ({
  * @returns {object} dispatch object
  */
 export const borrowBook = (bookId) => {
+  const {
+    token,
+    userdata
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
@@ -80,6 +79,10 @@ export const returnBookSync = payload => ({
  * @returns {object} dispatch object
  */
 export const returnBook = (bookId) => {
+  const {
+    token,
+    userdata
+  } = authenticateFetch();
   const config = {
     headers: {
       'user-token': token
