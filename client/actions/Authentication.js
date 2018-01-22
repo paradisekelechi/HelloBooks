@@ -58,7 +58,6 @@ export const signinUser = (user) => {
         authenticatePersist(responseData.token);
         dispatch(signinUserAsync(responseData));
         browserHistory.push('/books');
-        window.location.reload();
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -92,7 +91,7 @@ export const signupUser = (user) => {
         authenticatePersist(response.data.token);
         dispatch(signupUserAsync(response.data));
         browserHistory.push('/books');
-        Alert('success', response.data.message, window.location.reload());
+        Alert('success', response.data.message, null);
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -127,7 +126,7 @@ export const googleSigninUser = (user) => {
         authenticatePersist(response.data.token);
         dispatch(googleSigninUserAsync(response.data));
         browserHistory.push('/books');
-        Alert('success', response.data.message, window.location.reload());
+        Alert('success', response.data.message, null);
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });
@@ -153,6 +152,6 @@ export const logoutUser = (user) => {
     authenticateClear();
     dispatch(logoutUserAsync(user));
     browserHistory.push('/signin');
-    Alert('success', 'User successfully signed out', window.location.reload());
+    Alert('success', 'User successfully signed out', null);
   };
 };

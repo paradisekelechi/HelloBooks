@@ -135,7 +135,7 @@ export const deleteBook = (bookId) => {
       .delete(url, config)
       .then((response) => {
         dispatch(deleteBookSync(response.data));
-        Alert('success', response.data.message, window.location.reload());
+        Alert('success', response.data.message, null);
       }).catch((error) => {
         Alert('error', error.response.data.message, null);
       });

@@ -8,7 +8,7 @@ import jwtDecode from 'jwt-decode';
  * @export
  * @param {String} usertoken
  */
-export function authenticatePersist(usertoken) {
+export const authenticatePersist = (usertoken) => {
   if (usertoken) {
     localStorage.setItem('userdata', JSON.stringify({
       token: usertoken
@@ -16,7 +16,7 @@ export function authenticatePersist(usertoken) {
     return true;
   }
   return false;
-}
+};
 
 /**
  * Fetch application's userdat from the local storage
@@ -24,7 +24,7 @@ export function authenticatePersist(usertoken) {
  * @export
  * @returns {Object} Userdata object
  */
-export function authenticateFetch() {
+export const authenticateFetch = () => {
   const storageData = JSON.parse(localStorage.getItem('userdata'));
   if (storageData) {
     const {
@@ -41,7 +41,7 @@ export function authenticateFetch() {
     loggedIn: false,
     userdata: {}
   };
-}
+};
 
 /**
  * Clear usertoken from the local storage
@@ -49,7 +49,7 @@ export function authenticateFetch() {
  * @returns {Boolean} logout status
  * @export
  */
-export function authenticateClear() {
+export const authenticateClear = () => {
   const storageData = JSON.parse(localStorage.getItem('userdata'));
   let isLoggedOut = false;
   if (storageData) {
@@ -57,4 +57,4 @@ export function authenticateClear() {
     isLoggedOut = true;
   }
   return isLoggedOut;
-}
+};
