@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 const merge = require('webpack-merge');
 const common = require('./webpack.common');
 
@@ -17,8 +18,11 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        BABEL_ENV: JSON.stringify('development')
-      },
+        BABEL_ENV: JSON.stringify('development'),
+      }
+    }),
+    new DotenvPlugin({
+      path: '.env'
     })
   ],
 });

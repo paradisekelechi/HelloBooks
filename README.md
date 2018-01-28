@@ -90,6 +90,7 @@ CLIENT_USERNAME=
 CLIENT_PASSWORD=
 NODE_ENV=
 PORT=
+GOOGLE_ID=
 
 ```
 Navigate to the root folder of the application

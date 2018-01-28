@@ -8,7 +8,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import background from '../../assets/img/background6.jpg';
-import { authenticateClear } from '../../helpers/Authentication';
 import Navigation from '../common/Navigation';
 
 /**
@@ -19,14 +18,6 @@ import Navigation from '../common/Navigation';
  * @returns {Object} jsx component
  */
 class Home extends React.Component {
-  /**
-   *
-   * @returns {*} Clear token
-   * @memberof Home
-   */
-  componentWillMount() {
-    authenticateClear();
-  }
   /**
    * Component Did Mount
    *
