@@ -93,17 +93,23 @@ class Signin extends React.Component {
    * @returns {void}
    */
   onSignIn() {
-    const googleAuth = gapi.auth2.getAuthInstance();
-    googleAuth.signIn();
-    googleAuth.currentUser.listen((currentUser) => {
-      const userProfile = currentUser.getBasicProfile();
-      const {
-        wea: username,
-        U3: email,
-        Eea: password
-      } = userProfile;
-      const userdata = { username, email, password };
-      this.props.googleSignin(userdata);
+    gapi.load('auth2', () => {
+      gapi.auth2.init({
+        client_id: process.env.GOOGLE_ID
+      })
+        .then((googleAuth) => {
+          googleAuth.signIn();
+          googleAuth.currentUser.listen((currentUser) => {
+            const userProfile = currentUser.getBasicProfile();
+            const {
+              wea: username,
+              U3: email,
+              Eea: password
+            } = userProfile;
+            const userdata = { username, email, password };
+            this.props.googleSignin(userdata);
+          });
+        });
     });
   }
 
